@@ -6,8 +6,9 @@
 //
 
 import UIKit
-
+import FirebaseDatabase
 class ViewController: UIViewController {
+    private let database = Database.database().reference()
 
     override func viewDidLoad() {
         super.viewDidLoad()
