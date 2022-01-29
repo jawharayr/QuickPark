@@ -1,0 +1,6 @@
+framework module Pods_QuickPark_QuickParkUITests {
+  umbrella header "Pods-QuickPark-QuickParkUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
