@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>901573164742-aghog5eu9a2vues02aq3vqr4jeegpv16.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.901573164742-aghog5eu9a2vues02aq3vqr4jeegpv16</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA61o_GTcZzW6eFBFZMFnXz43wavvnERnQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>901573164742</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>G3.QuickPark</string>
+	<key>PROJECT_ID</key>
+	<string>quickpark-e0656</string>
+	<key>STORAGE_BUCKET</key>
+	<string>quickpark-e0656.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:901573164742:ios:1b8bee82da2b81ab58a1c7</string>
+	<key>DATABASE_URL</key>
+	<string>https://quickpark-e0656-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
