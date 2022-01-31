@@ -41,6 +41,9 @@
                                 <color key="tintColor" red="0.0" green="0.56470588239999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add area" cornerStyle="large"/>
+                                <connections>
+                                    <segue destination="AB2-cI-n6H" kind="show" id="mFW-nY-lm2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OQs-6w-qwh"/>
@@ -92,6 +95,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="spotNoTextField:" destination="AB2-cI-n6H" eventType="editingDidEnd" id="pKb-Op-xtX"/>
+                                </connections>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AddNewAreaHeader" translatesAutoresizingMaskIntoConstraints="NO" id="Xii-fd-4Er">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
@@ -115,6 +121,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xuv-Be-gsb"/>
                     <connections>
+                        <outlet property="areaNmaeTextField" destination="Kgn-iJ-SjA" id="8Ou-pb-b0y"/>
                         <outlet property="mapPin" destination="Kgn-iJ-SjA" id="Ok5-UG-uzu"/>
                     </connections>
                 </viewController>
