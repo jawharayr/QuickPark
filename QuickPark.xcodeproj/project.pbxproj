@@ -122,13 +122,10 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
-				04DD469A27A4621200342200 /* AppDelegate.swift */,
-				04DD469C27A4621200342200 /* SceneDelegate.swift */,
-				04DD469E27A4621200342200 /* ViewController.swift */,
-				1F82E70127A847F600E08952 /* AddAreaViewController.swift */,
-				04DD46A027A4621200342200 /* Main.storyboard */,
+				1FBF08D027A9AC9C0034BABE /* View */,
+				1FBF08CF27A9AC920034BABE /* Model */,
+				1FBF08CE27A9AC730034BABE /* Controller */,
 				04DD46A327A4621300342200 /* Assets.xcassets */,
-				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
 				04DD46A827A4621300342200 /* Info.plist */,
 				1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */,
 			);
@@ -150,6 +147,33 @@
 				04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */,
 			);
 			path = QuickParkUITests;
+			sourceTree = "<group>";
+		};
+		1FBF08CE27A9AC730034BABE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04DD469A27A4621200342200 /* AppDelegate.swift */,
+				04DD469C27A4621200342200 /* SceneDelegate.swift */,
+				04DD469E27A4621200342200 /* ViewController.swift */,
+				1F82E70127A847F600E08952 /* AddAreaViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1FBF08CF27A9AC920034BABE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1FBF08D027A9AC9C0034BABE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04DD46A027A4621200342200 /* Main.storyboard */,
+				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		65699CE1427702DA0E42818D /* Frameworks */ = {
