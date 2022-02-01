@@ -27,14 +27,23 @@
             </objects>
             <point key="canvasLocation" x="278" y="-15"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="gke-4o-4FE">
             <objects>
-                <viewController id="Oui-q8-ZiL" sceneMemberID="viewController">
+                <viewController id="Oui-q8-ZiL" customClass="HomeViewController" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GB7-iW-vkP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HomePage Header" translatesAutoresizingMaskIntoConstraints="NO" id="3Kh-es-nuJ">
+                                <rect key="frame" x="0.0" y="-14" width="414" height="164"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="r5g-Ea-3MK">
+                                <rect key="frame" x="0.0" y="212" width="414" height="535"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YU-SI-qj0">
                                 <rect key="frame" x="76" y="755" width="262" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -45,20 +54,14 @@
                                     <segue destination="AB2-cI-n6H" kind="show" id="mFW-nY-lm2"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HomePage Header" translatesAutoresizingMaskIntoConstraints="NO" id="3Kh-es-nuJ">
-                                <rect key="frame" x="0.0" y="-14" width="414" height="164"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="r5g-Ea-3MK">
-                                <rect key="frame" x="0.0" y="212" width="414" height="535"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OQs-6w-qwh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="deF-yq-xtN"/>
+                    <connections>
+                        <outlet property="areaListTable" destination="r5g-Ea-3MK" id="Eaq-SD-sxZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ILK-sA-fWe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -123,6 +126,9 @@
                                 <color key="tintColor" red="0.0" green="0.56470588239999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Save" cornerStyle="large"/>
+                                <connections>
+                                    <action selector="SaveAreaButton:" destination="AB2-cI-n6H" eventType="touchUpInside" id="V6n-Mc-a6H"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UR5-oz-AW2"/>
@@ -130,6 +136,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xuv-Be-gsb"/>
                     <connections>
+                        <outlet property="AreaNameTextField" destination="Ypb-ow-cEN" id="Bum-BC-vSx"/>
+                        <outlet property="Map" destination="fQh-5l-BWf" id="u93-Fg-h33"/>
+                        <outlet property="SpotNoTextField" destination="iVt-7F-1iU" id="5Ts-f8-v3O"/>
                         <outlet property="areaNmaeTextField" destination="Kgn-iJ-SjA" id="8Ou-pb-b0y"/>
                         <outlet property="mapPin" destination="Kgn-iJ-SjA" id="Ok5-UG-uzu"/>
                     </connections>
