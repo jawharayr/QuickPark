@@ -139,8 +139,6 @@
                         <outlet property="AreaNameTextField" destination="Ypb-ow-cEN" id="Bum-BC-vSx"/>
                         <outlet property="Map" destination="fQh-5l-BWf" id="u93-Fg-h33"/>
                         <outlet property="SpotNoTextField" destination="iVt-7F-1iU" id="5Ts-f8-v3O"/>
-                        <outlet property="areaNmaeTextField" destination="Kgn-iJ-SjA" id="8Ou-pb-b0y"/>
-                        <outlet property="mapPin" destination="Kgn-iJ-SjA" id="Ok5-UG-uzu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UV3-Xb-Z7f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

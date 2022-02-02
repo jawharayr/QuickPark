@@ -20,9 +20,10 @@
 		1F45BF0E27A82D6300349504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */; };
 		1F82E70227A847F600E08952 /* AddAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F82E70127A847F600E08952 /* AddAreaViewController.swift */; };
 		1FBF08D227A9AD800034BABE /* LandMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF08D127A9AD800034BABE /* LandMark.swift */; };
-		1FBF08D527A9AE660034BABE /* ParkingAreas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF08D327A9AE660034BABE /* ParkingAreas.swift */; };
+		1FBF08D527A9AE660034BABE /* HomeAreasList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF08D327A9AE660034BABE /* HomeAreasList.swift */; };
 		1FBF08D627A9AE660034BABE /* ParkingAreas.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FBF08D427A9AE660034BABE /* ParkingAreas.xib */; };
 		1FBF08D827A9B3D70034BABE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF08D727A9B3D70034BABE /* HomeViewController.swift */; };
+		1FBF08DA27A9D1CF0034BABE /* ParkingAreas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF08D927A9D1CF0034BABE /* ParkingAreas.swift */; };
 		5D41BD200CE3093AA5049F08 /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1BC3D1B0C964571C89D1DDA /* Pods_QuickPark.framework */; };
 		928C5A307610FD0CB8A710A3 /* Pods_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 943916B23B0BF5691FFD8B59 /* Pods_QuickParkTests.framework */; };
 		9B05612C9EF783F68E81E786 /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD403AFAF1D658B09874A7AE /* Pods_QuickPark_QuickParkUITests.framework */; };
@@ -61,9 +62,10 @@
 		1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F82E70127A847F600E08952 /* AddAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAreaViewController.swift; sourceTree = "<group>"; };
 		1FBF08D127A9AD800034BABE /* LandMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandMark.swift; sourceTree = "<group>"; };
-		1FBF08D327A9AE660034BABE /* ParkingAreas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingAreas.swift; sourceTree = "<group>"; };
+		1FBF08D327A9AE660034BABE /* HomeAreasList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAreasList.swift; sourceTree = "<group>"; };
 		1FBF08D427A9AE660034BABE /* ParkingAreas.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkingAreas.xib; sourceTree = "<group>"; };
 		1FBF08D727A9B3D70034BABE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1FBF08D927A9D1CF0034BABE /* ParkingAreas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingAreas.swift; sourceTree = "<group>"; };
 		943916B23B0BF5691FFD8B59 /* Pods_QuickParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1BC3D1B0C964571C89D1DDA /* Pods_QuickPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB937EEEC0759494F4BB12B7 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				1FBF08D127A9AD800034BABE /* LandMark.swift */,
+				1FBF08D927A9D1CF0034BABE /* ParkingAreas.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,7 +182,7 @@
 			children = (
 				04DD46A027A4621200342200 /* Main.storyboard */,
 				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
-				1FBF08D327A9AE660034BABE /* ParkingAreas.swift */,
+				1FBF08D327A9AE660034BABE /* HomeAreasList.swift */,
 				1FBF08D427A9AE660034BABE /* ParkingAreas.xib */,
 			);
 			path = View;
@@ -469,12 +472,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FBF08D527A9AE660034BABE /* ParkingAreas.swift in Sources */,
+				1FBF08D527A9AE660034BABE /* HomeAreasList.swift in Sources */,
 				1FBF08D227A9AD800034BABE /* LandMark.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 				1FBF08D827A9B3D70034BABE /* HomeViewController.swift in Sources */,
 				1F82E70227A847F600E08952 /* AddAreaViewController.swift in Sources */,
+				1FBF08DA27A9D1CF0034BABE /* ParkingAreas.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

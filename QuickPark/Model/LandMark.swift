@@ -4,12 +4,15 @@
 //
 //  Created by manar . on 01/02/2022.
 //
+import FirebaseDatabase
+import Firebase
 
 import Foundation
-struct Landmark {
-    let areaName: String
-    let spotNo: String
-    let lat: Double
-    let lon: Double
+ class Landmark {
+    @objc dynamic var areaName: String = ""
+    @objc dynamic var spotNo: String = ""
+    @objc dynamic var lat: Double = 0.0
+    @objc dynamic var lon: Double = 0.0
     
 }
+

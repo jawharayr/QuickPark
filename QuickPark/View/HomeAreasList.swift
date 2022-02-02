@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ParkingAreas: UITableViewCell {
+class HomeAreasList: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

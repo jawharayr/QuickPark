@@ -8,19 +8,23 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Firebase
+import FirebaseFirestore
 
 
 class AddAreaViewController: UIViewController {
     private var locationManager = CLLocationManager()
-    
+    private let database = Database.database().reference()
   
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let db = Firestore.firestore()
         locationManager.delegate=self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
 
         
     }
@@ -31,6 +35,14 @@ class AddAreaViewController: UIViewController {
     
     @IBAction func SaveAreaButton(_ sender: UIButton) {
         print("SaveAreaButton is pressed")
+        let object: [String : Any] = ["areaname": "Saud" ,"spotNo": 4 , "locationdesc":"near saud" ]
+        database.child("Area").setValue(object)
+        
+        
+        let newLandMark=Landmark()
+        newLandMark.areaName = AreaNameTextField.text!
+        newLandMark.spotNo = SpotNoTextField.text!
+        
         
     }
     
@@ -53,6 +65,8 @@ extension AddAreaViewController: CLLocationManagerDelegate{
         
         Map.setRegion(region, animated: true)
         Map.showsUserLocation = true
+        let annotation = MKPointAnnotation()
+        
         
     }
     
