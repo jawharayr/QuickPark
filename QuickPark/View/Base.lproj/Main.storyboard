@@ -107,9 +107,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="spotNoTextField:" destination="AB2-cI-n6H" eventType="editingDidEnd" id="pKb-Op-xtX"/>
-                                </connections>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AddNewAreaHeader" translatesAutoresizingMaskIntoConstraints="NO" id="Xii-fd-4Er">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
@@ -136,9 +133,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xuv-Be-gsb"/>
                     <connections>
-                        <outlet property="AreaNameTextField" destination="Ypb-ow-cEN" id="Bum-BC-vSx"/>
-                        <outlet property="Map" destination="fQh-5l-BWf" id="u93-Fg-h33"/>
-                        <outlet property="SpotNoTextField" destination="iVt-7F-1iU" id="5Ts-f8-v3O"/>
+                        <outlet property="AreaNameTextField" destination="Ypb-ow-cEN" id="Lx9-iC-F27"/>
+                        <outlet property="SpotNoTextField" destination="iVt-7F-1iU" id="nMz-a0-zVc"/>
+                        <outlet property="mapView" destination="fQh-5l-BWf" id="TlM-5i-0yr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UV3-Xb-Z7f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

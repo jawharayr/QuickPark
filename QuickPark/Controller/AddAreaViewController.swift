@@ -9,68 +9,86 @@ import UIKit
 import CoreLocation
 import MapKit
 import Firebase
-import FirebaseFirestore
-
 
 class AddAreaViewController: UIViewController {
     private var locationManager = CLLocationManager()
     private let database = Database.database().reference()
+ 
+    @IBOutlet weak var AreaNameTextField: UITextField!
+    
+    @IBOutlet weak var SpotNoTextField: UITextField!
+    @IBOutlet weak var mapView: MKMapView!
   
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let db = Firestore.firestore()
-        locationManager.delegate=self
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-
+        mapView.delegate = self
+        let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
+        mapView.addGestureRecognizer(longTapGesture)
         
     }
     
-    @IBOutlet weak var AreaNameTextField: UITextField!
-    
-    @IBOutlet weak var SpotNoTextField: UITextField!
+   
     
     @IBAction func SaveAreaButton(_ sender: UIButton) {
         print("SaveAreaButton is pressed")
-        let object: [String : Any] = ["areaname": "Saud" ,"spotNo": 4 , "locationdesc":"near saud" ]
+        let areaName = AreaNameTextField.text
+        let spotNo = SpotNoTextField.text
+        let object: [String : Any] = ["areaname": areaName! as Any ,"spotNo": spotNo , "locationdesc":"near saud" ]
         database.child("Area").setValue(object)
         
         
-        let newLandMark=Landmark()
-        newLandMark.areaName = AreaNameTextField.text!
-        newLandMark.spotNo = SpotNoTextField.text!
-        
-        
     }
     
-    @IBOutlet var Map: MKMapView!
+ 
     
-    
-    
-    
+    @objc func longTap(sender: UIGestureRecognizer){
+        print("long tap")
+        if sender.state == .began {
+            let locationInView = sender.location(in: mapView)
+            let locationOnMap = mapView.convert(locationInView, toCoordinateFrom: mapView)
+            addAnnotation(location: locationOnMap)
+        }
+    }
+
+    func addAnnotation(location: CLLocationCoordinate2D){
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            self.mapView.addAnnotation(annotation)
+    }
 }
 
-extension AddAreaViewController: CLLocationManagerDelegate{
+
+
+
+extension AddAreaViewController: MKMapViewDelegate{
+
+func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    guard annotation is MKPointAnnotation else { print("no mkpointannotaions"); return nil }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        let areaLocation = locations.last
-        print (areaLocation)
-        
-        let centerLocation = CLLocationCoordinate2D (latitude: (areaLocation?.coordinate.latitude)! , longitude: (areaLocation?.coordinate.longitude)!)
-        let region = MKCoordinateRegion(center: centerLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        Map.setRegion(region, animated: true)
-        Map.showsUserLocation = true
-        let annotation = MKPointAnnotation()
-        
-        
+    let reuseId = "pin"
+    var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+    
+    if pinView == nil {
+        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        pinView!.canShowCallout = true
+        pinView!.rightCalloutAccessoryView = UIButton(type: .infoDark)
+        pinView!.pinTintColor = UIColor.black
     }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
+    else {
+        pinView!.annotation = annotation
+    }
+    return pinView
+}
+
+func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    if control == view.rightCalloutAccessoryView {
+        if let doSomething = view.annotation?.title! {
+           print("do something")
+        }
     }
 }
+} //end MKMapDelegate extension
+
+
+
