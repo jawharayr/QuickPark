@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Tab BarVC-->
         <scene sceneID="3vs-G4-Yv4">
             <objects>
-                <tabBarController id="yLN-th-xVz" sceneMemberID="viewController">
+                <tabBarController id="yLN-th-xVz" customClass="TabBarVC" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WtX-gO-ggH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -57,11 +57,11 @@
             </objects>
             <point key="canvasLocation" x="-474" y="444"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--More-->
         <scene sceneID="JS0-Nu-T9Q">
             <objects>
                 <navigationController id="P6e-Ru-EhO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="NYL-yj-tY7"/>
+                    <tabBarItem key="tabBarItem" title="More" id="NYL-yj-tY7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1be-Yl-JEr">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -78,7 +78,7 @@
         <scene sceneID="Dd5-ZF-tuf">
             <objects>
                 <navigationController id="LTp-TW-N5t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Account" image="person.circle" catalog="system" id="U0J-Gc-OId"/>
+                    <tabBarItem key="tabBarItem" title="Account" id="U0J-Gc-OId"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="u6A-C6-qSS">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -99,7 +99,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="78T-XM-azN"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="YoD-WO-zup"/>
                 </viewController>
@@ -111,7 +111,7 @@
         <scene sceneID="F9h-19-5O4">
             <objects>
                 <navigationController id="ydt-OR-ppx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Parkings" image="ticket" catalog="system" id="Hxy-J2-uTn"/>
+                    <tabBarItem key="tabBarItem" title="My Parkings" id="Hxy-J2-uTn"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eiR-4Z-sft">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -132,7 +132,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="hJ2-S8-29U"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="oim-oI-VpP"/>
                 </viewController>
@@ -144,7 +144,7 @@
         <scene sceneID="cpC-jP-VtN">
             <objects>
                 <navigationController id="xBq-6y-fcw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="car" catalog="system" selectedImage="car" id="H3g-se-SAK"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="H3g-se-SAK"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Mxn-kt-pvK">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -168,6 +168,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="R6b-Sk-bXg">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomCell" rowHeight="100" id="j76-vL-9n0" customClass="CustomCell" customModule="QuickPark" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="100"/>
@@ -193,7 +194,6 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="ph5-Hd-wjM" firstAttribute="bottom" secondItem="nca-0c-jp0" secondAttribute="bottom" id="7fG-Kc-fl1"/>
                                                         <constraint firstItem="nca-0c-jp0" firstAttribute="centerY" secondItem="GBa-DD-Ond" secondAttribute="centerY" id="Qkc-zA-p3J"/>
@@ -240,10 +240,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="car" catalog="system" width="128" height="93"/>
         <image name="ksu_shieldlogo_colour_rgb" width="361" height="565"/>
-        <image name="person.circle" catalog="system" width="128" height="121"/>
-        <image name="ticket" catalog="system" width="128" height="84"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
