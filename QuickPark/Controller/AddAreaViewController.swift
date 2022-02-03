@@ -52,6 +52,7 @@ class AddAreaViewController: UIViewController {
     }
 
     func addAnnotation(location: CLLocationCoordinate2D){
+        mapView.removeAnnotations(mapView.annotations)
             let annotation = MKPointAnnotation()
             annotation.coordinate = location
             self.mapView.addAnnotation(annotation)
