@@ -157,7 +157,7 @@
             </objects>
             <point key="canvasLocation" x="632" y="-970"/>
         </scene>
-        <!--Available Parkings-->
+        <!--View Controller-->
         <scene sceneID="Tgv-88-QR8">
             <objects>
                 <viewController id="eZ7-RA-p0v" customClass="ViewController" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
@@ -178,40 +178,49 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GBa-DD-Ond">
-                                                    <rect key="frame" x="5" y="5" width="404" height="90"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="78"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ksu_shieldlogo_colour_rgb" translatesAutoresizingMaskIntoConstraints="NO" id="nca-0c-jp0">
-                                                            <rect key="frame" x="8" y="20" width="60" height="50"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ksu_shieldlogo_colour_rgb" translatesAutoresizingMaskIntoConstraints="NO" id="nca-0c-jp0">
+                                                            <rect key="frame" x="8" y="8" width="55" height="60"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="Pik-Dw-jrh"/>
-                                                                <constraint firstAttribute="height" constant="50" id="bWd-Zl-fbe"/>
+                                                                <constraint firstAttribute="height" constant="60" id="757-LJ-1e0"/>
+                                                                <constraint firstAttribute="width" constant="55" id="kXw-6a-3Hu"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="King Saud University" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ph5-Hd-wjM">
-                                                            <rect key="frame" x="60" y="20" width="187.5" height="50"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="King Saud University" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ph5-Hd-wjM">
+                                                            <rect key="frame" x="74" y="9" width="187.5" height="60"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cx-a4-z8t">
+                                                            <rect key="frame" x="74" y="57" width="217" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="systemRedColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="ph5-Hd-wjM" firstAttribute="bottom" secondItem="nca-0c-jp0" secondAttribute="bottom" id="7fG-Kc-fl1"/>
-                                                        <constraint firstItem="nca-0c-jp0" firstAttribute="centerY" secondItem="GBa-DD-Ond" secondAttribute="centerY" id="Qkc-zA-p3J"/>
-                                                        <constraint firstItem="ph5-Hd-wjM" firstAttribute="leading" secondItem="nca-0c-jp0" secondAttribute="trailing" constant="-8" id="ful-Ub-0Pe"/>
+                                                        <constraint firstItem="ph5-Hd-wjM" firstAttribute="bottom" secondItem="nca-0c-jp0" secondAttribute="bottom" constant="1" id="7fG-Kc-fl1"/>
+                                                        <constraint firstItem="nca-0c-jp0" firstAttribute="leading" secondItem="GBa-DD-Ond" secondAttribute="leading" id="ELK-m2-Dp5"/>
+                                                        <constraint firstItem="nca-0c-jp0" firstAttribute="centerY" secondItem="GBa-DD-Ond" secondAttribute="centerY" constant="-1" id="Qkc-zA-p3J"/>
                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ph5-Hd-wjM" secondAttribute="trailing" constant="20" symbolic="YES" id="k0Q-63-Dhv"/>
-                                                        <constraint firstAttribute="trailing" secondItem="nca-0c-jp0" secondAttribute="trailing" constant="336" id="s1C-up-nWI"/>
-                                                        <constraint firstItem="ph5-Hd-wjM" firstAttribute="top" secondItem="nca-0c-jp0" secondAttribute="top" id="txG-2Y-CIO"/>
+                                                        <constraint firstItem="ph5-Hd-wjM" firstAttribute="leading" secondItem="nca-0c-jp0" secondAttribute="trailing" constant="3" id="ofT-py-Gjn"/>
+                                                        <constraint firstAttribute="trailing" secondItem="nca-0c-jp0" secondAttribute="trailing" constant="319" id="s1C-up-nWI"/>
+                                                        <constraint firstItem="ph5-Hd-wjM" firstAttribute="top" secondItem="nca-0c-jp0" secondAttribute="top" constant="1" id="txG-2Y-CIO"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="GBa-DD-Ond" firstAttribute="top" secondItem="oU6-BU-4tq" secondAttribute="top" constant="5" id="9PP-W2-id7"/>
-                                                <constraint firstAttribute="trailing" secondItem="GBa-DD-Ond" secondAttribute="trailing" constant="5" id="Fa1-R1-0ko"/>
-                                                <constraint firstItem="GBa-DD-Ond" firstAttribute="leading" secondItem="oU6-BU-4tq" secondAttribute="leading" constant="5" id="mXi-Uf-JRm"/>
-                                                <constraint firstAttribute="bottom" secondItem="GBa-DD-Ond" secondAttribute="bottom" constant="5" id="xcl-bz-H7Z"/>
+                                                <constraint firstItem="GBa-DD-Ond" firstAttribute="leading" secondItem="oU6-BU-4tq" secondAttribute="leadingMargin" id="1xB-gm-QMQ"/>
+                                                <constraint firstItem="GBa-DD-Ond" firstAttribute="bottom" secondItem="oU6-BU-4tq" secondAttribute="bottomMargin" id="iL0-8n-K62"/>
+                                                <constraint firstItem="GBa-DD-Ond" firstAttribute="top" secondItem="oU6-BU-4tq" secondAttribute="topMargin" id="pD6-Da-MaL"/>
+                                                <constraint firstItem="GBa-DD-Ond" firstAttribute="trailing" secondItem="oU6-BU-4tq" secondAttribute="trailingMargin" id="qnR-gL-LlO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="Alert" destination="9Cx-a4-z8t" id="Dke-Eo-yrn"/>
                                             <outlet property="Label" destination="ph5-Hd-wjM" id="pdd-Cv-G7D"/>
                                             <outlet property="Logos" destination="nca-0c-jp0" id="cGs-Od-J6h"/>
                                             <outlet property="ParkingView" destination="oU6-BU-4tq" id="XVA-yG-hxp"/>
@@ -219,9 +228,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Available Spots" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQx-PL-dlk">
+                                <rect key="frame" x="9" y="105" width="173" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.56470588235294117" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aAB-qa-KwY"/>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="aAB-qa-KwY" firstAttribute="bottom" secondItem="R6b-Sk-bXg" secondAttribute="bottom" id="CXZ-MQ-O3W"/>
                             <constraint firstItem="R6b-Sk-bXg" firstAttribute="leading" secondItem="aAB-qa-KwY" secondAttribute="leading" id="SDX-rt-Fo7"/>
@@ -229,7 +245,7 @@
                             <constraint firstItem="aAB-qa-KwY" firstAttribute="trailing" secondItem="R6b-Sk-bXg" secondAttribute="trailing" id="nMp-Zo-TpC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Available Parkings" id="KpN-Nm-Lnf"/>
+                    <navigationItem key="navigationItem" id="KpN-Nm-Lnf"/>
                     <connections>
                         <outlet property="ParkingsViews" destination="R6b-Sk-bXg" id="Uym-Iu-GjY"/>
                     </connections>
@@ -243,6 +259,9 @@
         <image name="ksu_shieldlogo_colour_rgb" width="361" height="565"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
