@@ -47,6 +47,7 @@ class ViewController: UIViewController{
                 width: size,
                 height: size)
             
+            self.imageView.alpha = 0
         
         })
     }
