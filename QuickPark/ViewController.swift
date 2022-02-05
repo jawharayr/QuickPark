@@ -38,7 +38,7 @@ class ViewController: UIViewController{
     }
     private func animate(){
         UIView.animate(withDuration: 1, animations: {
-            let size = self.view.frame.size.width * 2.5
+            let size = self.view.frame.size.width * 3.5
             let diffX = size - self.view.frame.size.width
             let diffY = self.view.frame.size.height - size
             self.imageView.frame = CGRect(
@@ -46,10 +46,15 @@ class ViewController: UIViewController{
                 y: (diffY/2),
                 width: size,
                 height: size)
-            
+                    
+        })
+        
+        UIView.animate(withDuration: 1 , animations: {
+           
             self.imageView.alpha = 0
         
         })
+        
     }
 }
     extension ViewController: UITableViewDelegate, UITableViewDataSource{
