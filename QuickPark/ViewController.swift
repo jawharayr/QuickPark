@@ -11,16 +11,41 @@ class ViewController: UIViewController{
     let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
    
 
+   
+    @IBOutlet weak var StartTime: UITextField!
     
+
+    @IBOutlet weak var ConfirmButton: UIButton!
+    
+    let timePicker = UIDatePicker()
     @IBOutlet weak var ParkingsViews: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        ParkingsViews.delegate = self
-        ParkingsViews.dataSource = self
+        ParkingsViews?.delegate = self
+        ParkingsViews?.dataSource = self
         //making table view look good
-        ParkingsViews.separatorStyle = .none
-        ParkingsViews.showsVerticalScrollIndicator = false
+        ParkingsViews?.separatorStyle = .none
+        ParkingsViews?.showsVerticalScrollIndicator = false
+        //buttons
+        ConfirmButton?.layer.cornerRadius = 20
+        ConfirmButton?.layer.borderWidth = 1
+        ConfirmButton?.layer.borderColor = UIColor(red: 0/225, green: 144/255, blue: 205/255, alpha: 1).cgColor
         
+        // time picker
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonClicked))
+        toolBar.items = [doneBtn]
+        StartTime?.inputAccessoryView = toolBar
+        StartTime?.inputView = timePicker
+        timePicker.datePickerMode = .time
+    }
+    @objc func doneButtonClicked()
+    {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        StartTime.text = formatter.string(from: timePicker.date)
+        self.view.endEditing(true)
         
     }
 }
