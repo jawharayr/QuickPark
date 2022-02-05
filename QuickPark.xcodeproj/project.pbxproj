@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0435947A27A9CA650035FF35 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435947927A9CA650035FF35 /* CustomCell.swift */; };
+		04B4135327AC0CFF00C76023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B4135227AC0CFF00C76023 /* Assets.xcassets */; };
 		04DD469B27A4621200342200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469A27A4621200342200 /* AppDelegate.swift */; };
 		04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469C27A4621200342200 /* SceneDelegate.swift */; };
 		04DD469F27A4621200342200 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469E27A4621200342200 /* ViewController.swift */; };
 		04DD46A227A4621200342200 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A027A4621200342200 /* Main.storyboard */; };
-		04DD46A427A4621300342200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A327A4621300342200 /* Assets.xcassets */; };
 		04DD46A727A4621300342200 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A527A4621300342200 /* LaunchScreen.storyboard */; };
 		04DD46B227A4621300342200 /* QuickParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46B127A4621300342200 /* QuickParkTests.swift */; };
 		04DD46BC27A4621300342200 /* QuickParkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BB27A4621300342200 /* QuickParkUITests.swift */; };
 		04DD46BE27A4621300342200 /* QuickParkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */; };
+		04F2CA4727AAA90500C636DD /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2CA4627AAA90500C636DD /* TabBarVC.swift */; };
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
@@ -42,12 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0435947927A9CA650035FF35 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		04B4135227AC0CFF00C76023 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04DD469727A4621200342200 /* QuickPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DD469A27A4621200342200 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04DD469C27A4621200342200 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04DD469E27A4621200342200 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04DD46A127A4621200342200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		04DD46A327A4621300342200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04DD46A627A4621300342200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04DD46A827A4621300342200 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04DD46AD27A4621300342200 /* QuickParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickParkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +58,7 @@
 		04DD46B727A4621300342200 /* QuickParkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickParkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DD46BB27A4621300342200 /* QuickParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITests.swift; sourceTree = "<group>"; };
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		04F2CA4627AAA90500C636DD /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
 		4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,10 +141,12 @@
 				04DD469C27A4621200342200 /* SceneDelegate.swift */,
 				04DD469E27A4621200342200 /* ViewController.swift */,
 				04DD46A027A4621200342200 /* Main.storyboard */,
-				04DD46A327A4621300342200 /* Assets.xcassets */,
 				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
 				04DD46A827A4621300342200 /* Info.plist */,
 				1F342B1427A56D6A00493084 /* GoogleService-Info.plist */,
+				04B4135227AC0CFF00C76023 /* Assets.xcassets */,
+				0435947927A9CA650035FF35 /* CustomCell.swift */,
+				04F2CA4627AAA90500C636DD /* TabBarVC.swift */,
 			);
 			path = QuickPark;
 			sourceTree = "<group>";
@@ -284,7 +290,7 @@
 			files = (
 				04DD46A727A4621300342200 /* LaunchScreen.storyboard in Resources */,
 				1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */,
-				04DD46A427A4621300342200 /* Assets.xcassets in Resources */,
+				04B4135327AC0CFF00C76023 /* Assets.xcassets in Resources */,
 				04DD46A227A4621200342200 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,6 +440,8 @@
 			files = (
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
+				04F2CA4727AAA90500C636DD /* TabBarVC.swift in Sources */,
+				0435947A27A9CA650035FF35 /* CustomCell.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
