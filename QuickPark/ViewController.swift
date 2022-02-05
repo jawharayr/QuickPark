@@ -44,12 +44,12 @@ class ViewController: UIViewController{
             cell.Logos.layer.cornerRadius = cell.Logos.frame.height / 2
             cell.ParkingView.layer.borderWidth = 1
             let borderColor: UIColor =  (parkings[indexPath.row] == " ") ? .red : UIColor(red: 0/225, green: 144/255, blue: 205/255, alpha: 1)
-            (parkings[indexPath.row] == "Dallah Hospital") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
+            (parkings[indexPath.row] == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
             cell.ParkingView.layer.borderColor = borderColor.cgColor
             return cell
         }
-        
-    }
+      
+            }
 
 
 
