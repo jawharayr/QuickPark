@@ -10,7 +10,14 @@ import FirebaseDatabase
 class ViewController: UIViewController{
     let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
    
-
+    //DEEMA
+    private let imageView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
+        imageView.image = UIImage(named: "logo")
+        return imageView
+        
+    }()
+    //DEEMA END HERE
     
     @IBOutlet weak var ParkingsViews: UITableView!
     override func viewDidLoad() {
@@ -18,7 +25,15 @@ class ViewController: UIViewController{
         ParkingsViews.delegate = self
         ParkingsViews.dataSource = self
         
+        view.addSubview(imageView)
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        imageView.center = view.center
+        
+    }
+    
 }
     extension ViewController: UITableViewDelegate, UITableViewDataSource{
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
