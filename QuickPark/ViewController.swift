@@ -15,8 +15,15 @@ class ViewController: UIViewController{
     @IBOutlet weak var StartTime: UITextField!
     
 
+    
+    @IBOutlet weak var StartEndView: UIView!
+  
+    @IBOutlet weak var PriceView: UIView!
     @IBOutlet weak var ConfirmButton: UIButton!
     
+   
+    @IBOutlet weak var PayButton: UIButton!
+    @IBOutlet weak var BlueView: UIView!
     let timePicker = UIDatePicker()
     @IBOutlet weak var ParkingsViews: UITableView!
     override func viewDidLoad() {
@@ -26,19 +33,16 @@ class ViewController: UIViewController{
         //making table view look good
         ParkingsViews?.separatorStyle = .none
         ParkingsViews?.showsVerticalScrollIndicator = false
-        //buttons
-        ConfirmButton?.layer.cornerRadius = 20
-        ConfirmButton?.layer.borderWidth = 1
-        ConfirmButton?.layer.borderColor = UIColor(red: 0/225, green: 144/255, blue: 205/255, alpha: 1).cgColor
         
-        // time picker
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonClicked))
-        toolBar.items = [doneBtn]
-        StartTime?.inputAccessoryView = toolBar
-        StartTime?.inputView = timePicker
-        timePicker.datePickerMode = .time
+        
+        // Start- end time view
+        StartEndView?.layer.cornerRadius = 35
+        PriceView?.layer.cornerRadius = 20
+        
+        
+        // Confirm button
+        PayButton?.layer.cornerRadius = 20
+        
     }
     @objc func doneButtonClicked()
     {
@@ -58,6 +62,16 @@ class ViewController: UIViewController{
         }
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return parkings.count
+        }
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let viewController = storyboard.instantiateViewController(withIdentifier: "SendProposalVC")
+                            
+                            if let presentationController = viewController.presentationController as? UISheetPresentationController {
+                                presentationController.detents = [.medium()] /// change to [.medium(), .large()] for a half and full screen sheet
+                            }
+                            
+                            self.present(viewController, animated: true)
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
