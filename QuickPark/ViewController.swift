@@ -65,7 +65,7 @@ class ViewController: UIViewController{
         }
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let viewController = storyboard.instantiateViewController(withIdentifier: "SendProposalVC")
+                            let viewController = storyboard.instantiateViewController(withIdentifier: "ratingViewVC")
                             
                             if let presentationController = viewController.presentationController as? UISheetPresentationController {
                                 presentationController.detents = [.medium()] /// change to [.medium(), .large()] for a half and full screen sheet
