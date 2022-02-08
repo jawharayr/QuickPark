@@ -9,13 +9,17 @@ import UIKit
 
 class ConfirmAndPay: UIViewController {
 
+    @IBOutlet weak var StartWithView: UIView!
+    
     @IBOutlet weak var PriceView: UIView!
+    @IBOutlet weak var EndWithView: UIView!
+    @IBOutlet weak var AreaView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //price View round
+        AreaView.layer.cornerRadius = 20
+        StartWithView.layer.cornerRadius = 20
+        EndWithView.layer.cornerRadius = 20
         PriceView.layer.cornerRadius = 20
-
-        // Do any additional setup after loading the view.
     }
     
 
