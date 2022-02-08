@@ -34,6 +34,13 @@ class AddAreaViewController: UIViewController {
         print("SaveAreaButton is pressed")
         let areaName = AreaNameTextField.text
         let spotNo = SpotNoTextField.text
+        if areaName == "" || spotNo == ""
+              {
+
+          print("empty fields")
+          
+
+              }
         let object: [String : Any] = ["areaname": areaName! as Any ,"spotNo": spotNo , "locationdesc":"near saud" ]
         database.child("Area").setValue(object)
         
