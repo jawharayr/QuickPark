@@ -35,13 +35,7 @@ class ViewController: UIViewController{
         ParkingsViews?.showsVerticalScrollIndicator = false
         
         
-        // Start- end time view
-        StartEndView?.layer.cornerRadius = 35
-        PriceView?.layer.cornerRadius = 20
-        
-        
-        // Confirm button
-        PayButton?.layer.cornerRadius = 20
+      
         
     }
     @objc func doneButtonClicked()
@@ -65,7 +59,7 @@ class ViewController: UIViewController{
         }
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let viewController = storyboard.instantiateViewController(withIdentifier: "ratingViewVC")
+                            let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay")
                             
                             if let presentationController = viewController.presentationController as? UISheetPresentationController {
                                 presentationController.detents = [.medium()] /// change to [.medium(), .large()] for a half and full screen sheet

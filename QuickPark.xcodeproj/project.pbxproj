@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0403BADE27B14CC800573257 /* ConfirmAndPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403BADD27B14CC800573257 /* ConfirmAndPay.swift */; };
 		0435947A27A9CA650035FF35 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435947927A9CA650035FF35 /* CustomCell.swift */; };
 		04B4135327AC0CFF00C76023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B4135227AC0CFF00C76023 /* Assets.xcassets */; };
 		04DD469B27A4621200342200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469A27A4621200342200 /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0403BADD27B14CC800573257 /* ConfirmAndPay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAndPay.swift; sourceTree = "<group>"; };
 		0435947927A9CA650035FF35 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		04B4135227AC0CFF00C76023 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04DD469727A4621200342200 /* QuickPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 				04B4135227AC0CFF00C76023 /* Assets.xcassets */,
 				0435947927A9CA650035FF35 /* CustomCell.swift */,
 				04F2CA4627AAA90500C636DD /* TabBarVC.swift */,
+				0403BADD27B14CC800573257 /* ConfirmAndPay.swift */,
 			);
 			path = QuickPark;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
 				04F2CA4727AAA90500C636DD /* TabBarVC.swift in Sources */,
+				0403BADE27B14CC800573257 /* ConfirmAndPay.swift in Sources */,
 				0435947A27A9CA650035FF35 /* CustomCell.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 			);
