@@ -18,6 +18,7 @@
 		04DD46B227A4621300342200 /* QuickParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46B127A4621300342200 /* QuickParkTests.swift */; };
 		04DD46BC27A4621300342200 /* QuickParkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BB27A4621300342200 /* QuickParkUITests.swift */; };
 		04DD46BE27A4621300342200 /* QuickParkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */; };
+		04E1BEC527B3D81C008AB775 /* TimerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E1BEC427B3D81C008AB775 /* TimerVC.swift */; };
 		04F2CA4727AAA90500C636DD /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2CA4627AAA90500C636DD /* TabBarVC.swift */; };
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
@@ -60,6 +61,7 @@
 		04DD46B727A4621300342200 /* QuickParkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickParkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DD46BB27A4621300342200 /* QuickParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITests.swift; sourceTree = "<group>"; };
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		04E1BEC427B3D81C008AB775 /* TimerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerVC.swift; sourceTree = "<group>"; };
 		04F2CA4627AAA90500C636DD /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				0435947927A9CA650035FF35 /* CustomCell.swift */,
 				04F2CA4627AAA90500C636DD /* TabBarVC.swift */,
 				0403BADD27B14CC800573257 /* ConfirmAndPay.swift */,
+				04E1BEC427B3D81C008AB775 /* TimerVC.swift */,
 			);
 			path = QuickPark;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E1BEC527B3D81C008AB775 /* TimerVC.swift in Sources */,
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
 				04F2CA4727AAA90500C636DD /* TabBarVC.swift in Sources */,

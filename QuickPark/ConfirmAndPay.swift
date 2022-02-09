@@ -11,6 +11,13 @@ class ConfirmAndPay: UIViewController {
 
     @IBOutlet weak var StartWithView: UIView!
     
+    @IBAction func WhenDoneClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        let FirstViewController = ViewController()
+               present(FirstViewController, animated: true, completion: nil)
+        
+    }
+    @IBOutlet weak var DoneButton: UIButton!
     @IBOutlet weak var PriceView: UIView!
     @IBOutlet weak var EndWithView: UIView!
     @IBOutlet weak var AreaView: UIView!
@@ -40,6 +47,7 @@ class ConfirmAndPay: UIViewController {
         PriceView.layer.shadowOpacity = 0.1
         PriceView.layer.shadowOffset = .zero
        PriceView.layer.shadowRadius = 10
+        DoneButton.layer.cornerRadius = 20
       
     }
     
