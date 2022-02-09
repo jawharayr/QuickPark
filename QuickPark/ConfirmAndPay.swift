@@ -20,6 +20,27 @@ class ConfirmAndPay: UIViewController {
         StartWithView.layer.cornerRadius = 20
         EndWithView.layer.cornerRadius = 20
         PriceView.layer.cornerRadius = 20
+        //shadow
+        AreaView.layer.shadowColor = UIColor.black.cgColor
+        AreaView.layer.shadowOpacity = 0.1
+        AreaView.layer.shadowOffset = .zero
+       AreaView.layer.shadowRadius = 10
+        //
+        StartWithView.layer.shadowColor = UIColor.black.cgColor
+        StartWithView.layer.shadowOpacity = 0.1
+        StartWithView.layer.shadowOffset = .zero
+       StartWithView.layer.shadowRadius = 10
+        //
+        EndWithView.layer.shadowColor = UIColor.black.cgColor
+        EndWithView.layer.shadowOpacity = 0.1
+        EndWithView.layer.shadowOffset = .zero
+       EndWithView.layer.shadowRadius = 10
+        //
+        PriceView.layer.shadowColor = UIColor.black.cgColor
+        PriceView.layer.shadowOpacity = 0.1
+        PriceView.layer.shadowOffset = .zero
+       PriceView.layer.shadowRadius = 10
+      
     }
     
 
