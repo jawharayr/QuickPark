@@ -8,18 +8,21 @@ target 'QuickPark' do
 pod 'Firebase/Core' 
 pod 'Firebase/Database'
 pod 'Firebase/Firestore' 
+pod 'Firebase/Storage'
 
   target 'QuickParkTests' do
     inherit! :search_paths
 pod 'Firebase/Core' 
 pod 'Firebase/Database'
 pod 'Firebase/Firestore' 
+pod 'Firebase/Storage'
   end
 
   target 'QuickParkUITests' do
 pod 'Firebase/Core' 
 pod 'Firebase/Database'
-pod 'Firebase/Firestore' 
+pod 'Firebase/Firestore'
+pod 'Firebase/Storage' 
   end
 
 end

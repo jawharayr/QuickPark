@@ -9,14 +9,18 @@ import UIKit
 import CoreLocation
 import MapKit
 import Firebase
+import FirebaseStorage
+
 
 class AddAreaViewController: UIViewController {
     private var locationManager = CLLocationManager()
     private let database = Database.database().reference()
+    private let storage = Storage.storage().reference()
     @IBOutlet weak var AreaNameTextField: UITextField!
     @IBOutlet weak var SpotNoTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     var areaCoordinate:  CLLocationCoordinate2D? = nil
+    var areaName:String = ""
    
     
   
@@ -58,9 +62,7 @@ class AddAreaViewController: UIViewController {
         vc.delegate = self
         vc.allowsEditing = true
         present(vc, animated: true)
-        
-
-
+     
     }
     
     @objc func longTap(sender: UIGestureRecognizer){
@@ -81,6 +83,8 @@ class AddAreaViewController: UIViewController {
         
         
     }
+    
+    
     
 }
 
@@ -120,14 +124,28 @@ extension AddAreaViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediawithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        print("\(info)")
-        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
-           
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            return
+        }
+        guard let imageData = image.pngData() else {
+            return
             
         }
-                                                            
-        picker.dismiss(animated: true, completion: nil) }
-    
+      
+        storage.child("AreasImages/"+areaName+".png").putData(imageData, metadata: nil, completion: { _ , error in
+            guard error == nil else { print("Failed to upload")
+            return }
+            
+            self.storage.child("images/file.png").downloadURL(completion: {url , error in
+                guard let url = url, error == nil else {return }
+                let urlString = url.absoluteString
+                print("Download URL: \(urlString)")
+                UserDefaults.standard.set(urlString, forKey: "url")
+            })
+        })
+       
+         }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
