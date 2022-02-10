@@ -9,9 +9,21 @@ import UIKit
 
 class CustomCell: UITableViewCell {
 
+    @IBOutlet weak var MainView: UIView!
+    @IBOutlet weak var BackView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+           self.BackView.layer.borderWidth = 1
+           self.BackView.layer.cornerRadius = 20
+        self.BackView.layer.borderColor = UIColor.white.cgColor
+           self.BackView.layer.masksToBounds = true
+
+        self.MainView.layer.shadowOpacity = 0.18
+        self.MainView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.MainView.layer.shadowRadius = 6
+        self.MainView.layer.shadowColor = UIColor.black.cgColor
+        self.MainView.layer.masksToBounds = false
     }
     @IBOutlet weak var ParkingView: UIView!
     
@@ -24,6 +36,7 @@ class CustomCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
 
