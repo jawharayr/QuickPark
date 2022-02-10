@@ -8,6 +8,7 @@ target 'QuickPark' do
 pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Crashlytics'
+pod 'Firebase/Auth'
 
   target 'QuickParkTests' do
     inherit! :search_paths
