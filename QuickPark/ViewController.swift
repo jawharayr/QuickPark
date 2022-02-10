@@ -62,9 +62,13 @@ class ViewController: UIViewController{
            // let borderColor: UIColor =  (parkings[indexPath.row] == " ") ? .red : UIColor(red: 0/225, green: 144/255, blue: 205/255, alpha: 1) //
             (parkings[indexPath.row] == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
             
+            
 
             return cell
         }
+        func addShadow(backgroundColor: UIColor = .white, cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 5, shadowOpacity: Float = 0.1, shadowPathInset: (dx: CGFloat, dy: CGFloat), shadowPathOffset: (dx: CGFloat, dy: CGFloat)) {
+          
+            }
       
             }
 

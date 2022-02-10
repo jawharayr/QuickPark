@@ -312,15 +312,17 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3nS-Du-8ZK">
-                                                <rect key="frame" x="127" y="-9" width="119" height="11"/>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <rect key="frame" x="331" y="0.0" width="74" height="11"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="119" id="AhL-bY-AUk"/>
+                                                    <constraint firstAttribute="width" constant="74" id="AhL-bY-AUk"/>
                                                     <constraint firstAttribute="height" constant="11" id="VvJ-KI-AEV"/>
                                                 </constraints>
-                                                <color key="tintColor" systemColor="systemGray5Color"/>
+                                                <color key="tintColor" red="0.0" green="0.56470588239999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" Done"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="X">
+                                                    <fontDescription key="titleFontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="WhenDoneClicked:" destination="Znv-2K-isu" eventType="touchUpInside" id="cpf-oW-Pxe"/>
                                                 </connections>
@@ -328,15 +330,15 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="3nS-Du-8ZK" secondAttribute="trailing" constant="136" id="3Ts-wD-LE3"/>
+                                            <constraint firstAttribute="trailing" secondItem="3nS-Du-8ZK" secondAttribute="trailing" constant="-23" id="3Ts-wD-LE3"/>
                                             <constraint firstItem="ppw-ov-ax6" firstAttribute="bottom" secondItem="t1q-jT-7UL" secondAttribute="bottomMargin" constant="17" id="4Kt-G5-YaN"/>
                                             <constraint firstAttribute="trailing" secondItem="ppw-ov-ax6" secondAttribute="trailing" constant="16" id="4s7-PV-oxK"/>
                                             <constraint firstAttribute="trailing" secondItem="ppw-ov-ax6" secondAttribute="trailing" constant="16" id="BNp-ZE-9V7"/>
-                                            <constraint firstAttribute="bottom" secondItem="3nS-Du-8ZK" secondAttribute="bottom" constant="71" id="BnL-2v-dll"/>
+                                            <constraint firstAttribute="bottom" secondItem="3nS-Du-8ZK" secondAttribute="bottom" constant="62" id="BnL-2v-dll"/>
                                             <constraint firstItem="ppw-ov-ax6" firstAttribute="leading" secondItem="t1q-jT-7UL" secondAttribute="leading" constant="16" id="Bna-IZ-BT2"/>
                                             <constraint firstItem="ppw-ov-ax6" firstAttribute="leading" secondItem="t1q-jT-7UL" secondAttribute="leading" constant="16" id="RnY-dn-VJ2"/>
-                                            <constraint firstItem="3nS-Du-8ZK" firstAttribute="top" secondItem="t1q-jT-7UL" secondAttribute="top" constant="-9" id="Sl0-IR-luB"/>
-                                            <constraint firstItem="3nS-Du-8ZK" firstAttribute="leading" secondItem="t1q-jT-7UL" secondAttribute="leading" constant="127" id="YI4-Qg-NSu"/>
+                                            <constraint firstItem="3nS-Du-8ZK" firstAttribute="top" secondItem="t1q-jT-7UL" secondAttribute="top" id="Sl0-IR-luB"/>
+                                            <constraint firstItem="3nS-Du-8ZK" firstAttribute="leading" secondItem="t1q-jT-7UL" secondAttribute="leading" constant="331" id="YI4-Qg-NSu"/>
                                             <constraint firstItem="ppw-ov-ax6" firstAttribute="top" secondItem="t1q-jT-7UL" secondAttribute="bottom" constant="-52" id="Zpl-Zy-Wuk"/>
                                             <constraint firstItem="ppw-ov-ax6" firstAttribute="top" secondItem="t1q-jT-7UL" secondAttribute="bottom" constant="-52" id="rQv-tD-v2i"/>
                                             <constraint firstItem="ppw-ov-ax6" firstAttribute="leading" secondItem="t1q-jT-7UL" secondAttribute="leading" constant="16" id="rza-kt-CKd"/>
@@ -1245,9 +1247,6 @@ AAAAAAAAAAAAAACihw
         </image>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
