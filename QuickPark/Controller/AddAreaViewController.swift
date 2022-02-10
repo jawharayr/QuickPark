@@ -12,7 +12,7 @@ import Firebase
 import FirebaseStorage
 
 
-class AddAreaViewController: UIViewController {
+class AddAreaViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private var locationManager = CLLocationManager()
     private let database = Database.database().reference()
     private let storage = Storage.storage().reference()
@@ -21,6 +21,7 @@ class AddAreaViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     var areaCoordinate:  CLLocationCoordinate2D? = nil
     var areaName:String = ""
+    var imagePickerController = UIImagePickerController()
    
     
   
@@ -28,6 +29,7 @@ class AddAreaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        imagePickerController.delegate = self
         let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
         mapView.addGestureRecognizer(longTapGesture)
         
@@ -57,13 +59,15 @@ class AddAreaViewController: UIViewController {
     
     @IBAction func chooseImageButton() {
         print("Add image button was pressed")
-        let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true)
+        
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true)
      
     }
+    
+    
+    
     
     @objc func longTap(sender: UIGestureRecognizer){
         print("long tap")
@@ -119,39 +123,4 @@ func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, callou
     }
 }
 } //end MKMapDelegate extension
-
-extension AddAreaViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediawithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        picker.dismiss(animated: true, completion: nil)
-        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
-            return
-        }
-        guard let imageData = image.pngData() else {
-            return
-            
-        }
-      
-        storage.child("AreasImages/"+areaName+".png").putData(imageData, metadata: nil, completion: { _ , error in
-            guard error == nil else { print("Failed to upload")
-            return }
-            
-            self.storage.child("images/file.png").downloadURL(completion: {url , error in
-                guard let url = url, error == nil else {return }
-                let urlString = url.absoluteString
-                print("Download URL: \(urlString)")
-                UserDefaults.standard.set(urlString, forKey: "url")
-            })
-        })
-       
-         }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-}
-
-
 
