@@ -117,12 +117,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="NameTextField:" destination="pSz-GE-lhY" eventType="editingDidEnd" id="Rtv-AB-d5h"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Manar@gmail.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IsU-Y9-BCM" customClass="CustomTextField" customModule="QuickPark" customModuleProvider="target">
                                 <rect key="frame" x="23" y="356" width="368" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="EmailTextField:" destination="pSz-GE-lhY" eventType="editingDidEnd" id="q4x-oT-Edy"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74d-V2-MXh">
                                 <rect key="frame" x="31" y="327" width="41" height="21"/>
@@ -150,12 +156,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="PasswordTextField:" destination="pSz-GE-lhY" eventType="editingDidEnd" id="6Ui-2p-Don"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GST-PW-dHO" customClass="CustomTextField" customModule="QuickPark" customModuleProvider="target">
                                 <rect key="frame" x="23" y="559" width="368" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="RPasswordTextField:" destination="pSz-GE-lhY" eventType="editingDidEnd" id="b6Q-D3-Isf"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHJ-9N-Umz">
                                 <rect key="frame" x="31" y="685" width="360" height="46"/>
@@ -173,6 +185,7 @@
                     <navigationItem key="navigationItem" id="YoD-WO-zup"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGg-v5-By5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="pSz-GE-lhY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1240.5797101449277" y="489.50892857142856"/>
         </scene>
