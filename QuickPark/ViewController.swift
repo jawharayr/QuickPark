@@ -66,11 +66,7 @@ class ViewController: UIViewController{
                             self.present(viewController, animated: true)
 
         }
-        
-        
-        
-        
-        
+
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
             let parking = parkings[indexPath.row]
@@ -89,8 +85,3 @@ class ViewController: UIViewController{
             }
       
             }
-
-
-
-
-
