@@ -21,6 +21,7 @@
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
+		1F6B27DB27B4EAD60086DD5E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B27DA27B4EAD60086DD5E /* CustomTextField.swift */; };
 		3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */; };
 		6EC6F7996FFD802C9185ACE9 /* Pods_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDC3559D504F0DD8C6AF112 /* Pods_QuickParkTests.framework */; };
 		ED08CCF069A3B5E6753C5BDD /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */; };
@@ -60,6 +61,7 @@
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		04F2CA4627AAA90500C636DD /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1F6B27DA27B4EAD60086DD5E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
 		4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DDC3559D504F0DD8C6AF112 /* Pods_QuickParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,16 +139,11 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
-				04DD469A27A4621200342200 /* AppDelegate.swift */,
-				04DD469C27A4621200342200 /* SceneDelegate.swift */,
-				04DD469E27A4621200342200 /* ViewController.swift */,
-				04DD46A027A4621200342200 /* Main.storyboard */,
-				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
+				1F6B27D927B4EAA40086DD5E /* View */,
+				1F6B27D827B4EA8A0086DD5E /* Controller */,
 				04DD46A827A4621300342200 /* Info.plist */,
 				1F342B1427A56D6A00493084 /* GoogleService-Info.plist */,
 				04B4135227AC0CFF00C76023 /* Assets.xcassets */,
-				0435947927A9CA650035FF35 /* CustomCell.swift */,
-				04F2CA4627AAA90500C636DD /* TabBarVC.swift */,
 			);
 			path = QuickPark;
 			sourceTree = "<group>";
@@ -166,6 +163,28 @@
 				04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */,
 			);
 			path = QuickParkUITests;
+			sourceTree = "<group>";
+		};
+		1F6B27D827B4EA8A0086DD5E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04DD469A27A4621200342200 /* AppDelegate.swift */,
+				04DD469C27A4621200342200 /* SceneDelegate.swift */,
+				04DD469E27A4621200342200 /* ViewController.swift */,
+				0435947927A9CA650035FF35 /* CustomCell.swift */,
+				04F2CA4627AAA90500C636DD /* TabBarVC.swift */,
+				1F6B27DA27B4EAD60086DD5E /* CustomTextField.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1F6B27D927B4EAA40086DD5E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04DD46A027A4621200342200 /* Main.storyboard */,
+				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		83636CA8ABD1D981848DFD55 /* Frameworks */ = {
@@ -440,6 +459,7 @@
 			files = (
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
+				1F6B27DB27B4EAD60086DD5E /* CustomTextField.swift in Sources */,
 				04F2CA4727AAA90500C636DD /* TabBarVC.swift in Sources */,
 				0435947A27A9CA650035FF35 /* CustomCell.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
