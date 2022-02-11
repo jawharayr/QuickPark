@@ -200,6 +200,19 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y78-nL-x1V">
+                                                                    <rect key="frame" x="334.5" y="54.5" width="21.5" height="19.5"/>
+                                                                    <attributedString key="attributedText">
+                                                                        <fragment content="Km">
+                                                                            <attributes>
+                                                                                <color key="NSColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <font key="NSFont" size="14" name="AvenirNext-Regular"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                    </attributedString>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
@@ -208,12 +221,15 @@
                                                                 <constraint firstItem="9Cx-a4-z8t" firstAttribute="centerX" secondItem="ph5-Hd-wjM" secondAttribute="centerX" constant="12" id="DZC-pw-PzT"/>
                                                                 <constraint firstItem="9Cx-a4-z8t" firstAttribute="bottom" secondItem="VCF-jM-CIP" secondAttribute="bottomMargin" constant="-3" id="E3c-1R-XuS"/>
                                                                 <constraint firstAttribute="bottom" secondItem="nca-0c-jp0" secondAttribute="bottom" constant="11" id="HSg-on-Xks"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Y78-nL-x1V" secondAttribute="bottom" constant="8" id="SBC-ua-llW"/>
                                                                 <constraint firstItem="nca-0c-jp0" firstAttribute="top" secondItem="VCF-jM-CIP" secondAttribute="top" constant="11" id="Sbk-kS-BNe"/>
                                                                 <constraint firstAttribute="bottom" secondItem="ph5-Hd-wjM" secondAttribute="bottom" constant="22" id="SyX-eq-o1j"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Y78-nL-x1V" secondAttribute="trailing" constant="18" id="chR-wa-eJx"/>
                                                                 <constraint firstItem="9Cx-a4-z8t" firstAttribute="leading" secondItem="nca-0c-jp0" secondAttribute="trailing" constant="8" symbolic="YES" id="daE-8u-4b3"/>
                                                                 <constraint firstItem="9Cx-a4-z8t" firstAttribute="leading" secondItem="ph5-Hd-wjM" secondAttribute="leading" constant="12" id="eJ3-mh-kiF"/>
                                                                 <constraint firstItem="nca-0c-jp0" firstAttribute="leading" secondItem="VCF-jM-CIP" secondAttribute="leading" constant="17" id="gMm-Ru-HJV"/>
                                                                 <constraint firstItem="ph5-Hd-wjM" firstAttribute="top" secondItem="VCF-jM-CIP" secondAttribute="topMargin" constant="-8" id="gzV-7s-hnl"/>
+                                                                <constraint firstItem="Y78-nL-x1V" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9Cx-a4-z8t" secondAttribute="trailing" constant="8" symbolic="YES" id="kqe-YS-Xoo"/>
                                                                 <constraint firstItem="9Cx-a4-z8t" firstAttribute="bottom" secondItem="nca-0c-jp0" secondAttribute="bottom" id="uaN-On-Y3P"/>
                                                             </constraints>
                                                         </view>
