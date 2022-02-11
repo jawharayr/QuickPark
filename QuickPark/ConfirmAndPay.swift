@@ -9,6 +9,9 @@ import UIKit
 
 class ConfirmAndPay: UIViewController {
 
+    @IBOutlet weak var StartTimeTxt: UITextField!
+    @IBOutlet weak var EndTimeTxt: UITextField!
+    
     @IBOutlet weak var StartWithView: UIView!
     
     @IBAction func WhenDoneClicked(_ sender: Any) {
