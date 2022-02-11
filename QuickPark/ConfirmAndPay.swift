@@ -70,6 +70,10 @@ class ConfirmAndPay: UIViewController {
             let toolbar = UIToolbar()
             toolbar.sizeToFit()
             
+            //bar button(
+           let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+           toolbar.setItems([doneBtn], animated: true)
+        
             //assign tool bar
             StartTimeTxt.inputAccessoryView = toolbar
             EndTimeTxt.inputAccessoryView = toolbar
@@ -84,7 +88,19 @@ class ConfirmAndPay: UIViewController {
             
         }
 
-
+    @objc func donePressed(){
+           // formatter
+           let formatter = DateFormatter()
+           formatter.dateStyle = .none
+           formatter.timeStyle = .short
+           
+           StartTimeTxt.text = formatter.string(from: StartTimePicker.date)
+           self.view.endEditing(true)
+           
+           EndTimeTxt.text = formatter.string(from: EndTimePicker.date)
+           self.view.endEditing(true)
+       }
+    
     /*
     // MARK: - Navigation
 
