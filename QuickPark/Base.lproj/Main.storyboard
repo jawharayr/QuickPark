@@ -267,7 +267,7 @@
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vip-5M-Aqr">
                                 <rect key="frame" x="-204" y="-43" width="642" height="261"/>
-                                <color key="backgroundColor" red="0.1828914733" green="0.24047517960000001" blue="0.34479359770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.30409777160000001" green="0.39973497390000001" blue="0.57257139680000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="261" id="1Ky-YH-Er2"/>
                                     <constraint firstAttribute="width" constant="642" id="ePh-kc-mt0"/>
@@ -276,7 +276,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearest Parking spaces" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQx-PL-dlk">
                                 <rect key="frame" x="27" y="226" width="265" height="44"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
-                                <color key="textColor" red="0.19948885550000001" green="0.26229827719999999" blue="0.37608358089999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" red="0.3520444036" green="0.45784550909999999" blue="0.658849299" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
