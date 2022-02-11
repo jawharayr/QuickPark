@@ -86,6 +86,11 @@ class ConfirmAndPay: UIViewController {
             StartTimePicker.datePickerMode = .time
             EndTimePicker.datePickerMode = .time
             
+             if #available(iOS 13.4, *)  {
+                   StartTimePicker.preferredDatePickerStyle = .wheels
+                   EndTimePicker.preferredDatePickerStyle = .wheels
+               }
+        
         }
 
     @objc func donePressed(){
