@@ -19,6 +19,7 @@
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		22035F9E27B6AD6800D1A3B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */; };
+		22035FA027B6B24E00D1A3B5 /* resetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035F9F27B6B24E00D1A3B5 /* resetPassViewController.swift */; };
 		22A0757127A925DC00658889 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757027A925DC00658889 /* RegViewController.swift */; };
 		22A0757327A9260500658889 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757227A9260500658889 /* LogViewController.swift */; };
 		22A0757527A9261E00658889 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757427A9261E00658889 /* HomePageViewController.swift */; };
@@ -60,6 +61,7 @@
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		22035F9F27B6B24E00D1A3B5 /* resetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetPassViewController.swift; sourceTree = "<group>"; };
 		22A0757027A925DC00658889 /* RegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewController.swift; sourceTree = "<group>"; };
 		22A0757227A9260500658889 /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		22A0757427A9261E00658889 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				22A0757027A925DC00658889 /* RegViewController.swift */,
 				22A0757227A9260500658889 /* LogViewController.swift */,
+				22035F9F27B6B24E00D1A3B5 /* resetPassViewController.swift */,
 				22A0757427A9261E00658889 /* HomePageViewController.swift */,
 				22C1C4CA27B6993A00866DA4 /* TermsViewController.swift */,
 			);
@@ -453,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
+				22035FA027B6B24E00D1A3B5 /* resetPassViewController.swift in Sources */,
 				22A0757327A9260500658889 /* LogViewController.swift in Sources */,
 				22A0757527A9261E00658889 /* HomePageViewController.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,

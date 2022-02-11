@@ -575,10 +575,10 @@
             </objects>
             <point key="canvasLocation" x="-1004.3478260869566" y="-644.19642857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Reset Pass View Controller-->
         <scene sceneID="ewW-KN-gKN">
             <objects>
-                <viewController id="KVZ-Y7-RXw" sceneMemberID="viewController">
+                <viewController id="KVZ-Y7-RXw" customClass="resetPassViewController" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jjn-kE-vK2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
