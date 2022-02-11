@@ -54,9 +54,36 @@ class ConfirmAndPay: UIViewController {
         PriceView.layer.shadowOffset = .zero
        PriceView.layer.shadowRadius = 10
         DoneButton.layer.cornerRadius = 20
+        
+        //time picker
+                createTimePicker()
       
     }
     
+    
+    func createTimePicker() {
+            
+            StartTimeTxt.textAlignment = .center
+            EndTimeTxt.textAlignment = .center
+            
+            //tool bar
+            let toolbar = UIToolbar()
+            toolbar.sizeToFit()
+            
+            //assign tool bar
+            StartTimeTxt.inputAccessoryView = toolbar
+            EndTimeTxt.inputAccessoryView = toolbar
+            
+            // assign time picker to the txt field
+            StartTimeTxt.inputView = StartTimePicker
+            EndTimeTxt.inputView = EndTimePicker
+            
+            //time picker mode
+            StartTimePicker.datePickerMode = .time
+            EndTimePicker.datePickerMode = .time
+            
+        }
+
 
     /*
     // MARK: - Navigation
