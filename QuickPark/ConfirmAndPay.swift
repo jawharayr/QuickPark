@@ -12,6 +12,9 @@ class ConfirmAndPay: UIViewController {
     @IBOutlet weak var StartTimeTxt: UITextField!
     @IBOutlet weak var EndTimeTxt: UITextField!
     
+    let StartTimePicker = UIDatePicker()
+    let EndTimePicker = UIDatePicker()
+    
     @IBOutlet weak var StartWithView: UIView!
     
     @IBAction func WhenDoneClicked(_ sender: Any) {
