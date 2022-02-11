@@ -18,6 +18,7 @@
 		1F45BF0C27A82D6300349504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */; };
 		1F45BF0D27A82D6300349504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */; };
 		1F45BF0E27A82D6300349504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */; };
+		1F6B27DF27B4FE5E0086DD5E /* AdminTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B27DE27B4FE5E0086DD5E /* AdminTabBarVC.swift */; };
 		1F82E70227A847F600E08952 /* AddAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F82E70127A847F600E08952 /* AddAreaViewController.swift */; };
 		1FBF08D227A9AD800034BABE /* LandMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF08D127A9AD800034BABE /* LandMark.swift */; };
 		1FBF08D527A9AE660034BABE /* HomeAreasList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBF08D327A9AE660034BABE /* HomeAreasList.swift */; };
@@ -60,6 +61,7 @@
 		04DD46BB27A4621300342200 /* QuickParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITests.swift; sourceTree = "<group>"; };
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1F6B27DE27B4FE5E0086DD5E /* AdminTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTabBarVC.swift; sourceTree = "<group>"; };
 		1F82E70127A847F600E08952 /* AddAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAreaViewController.swift; sourceTree = "<group>"; };
 		1FBF08D127A9AD800034BABE /* LandMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandMark.swift; sourceTree = "<group>"; };
 		1FBF08D327A9AE660034BABE /* HomeAreasList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAreasList.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				04DD469C27A4621200342200 /* SceneDelegate.swift */,
 				1F82E70127A847F600E08952 /* AddAreaViewController.swift */,
 				1FBF08D727A9B3D70034BABE /* HomeViewController.swift */,
+				1F6B27DE27B4FE5E0086DD5E /* AdminTabBarVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 				1FBF08D827A9B3D70034BABE /* HomeViewController.swift in Sources */,
 				1F82E70227A847F600E08952 /* AddAreaViewController.swift in Sources */,
+				1F6B27DF27B4FE5E0086DD5E /* AdminTabBarVC.swift in Sources */,
 				1FBF08DA27A9D1CF0034BABE /* ParkingAreas.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
