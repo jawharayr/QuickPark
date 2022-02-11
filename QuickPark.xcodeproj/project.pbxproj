@@ -11,7 +11,6 @@
 		04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469C27A4621200342200 /* SceneDelegate.swift */; };
 		04DD469F27A4621200342200 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469E27A4621200342200 /* ViewController.swift */; };
 		04DD46A227A4621200342200 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A027A4621200342200 /* Main.storyboard */; };
-		04DD46A427A4621300342200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A327A4621300342200 /* Assets.xcassets */; };
 		04DD46A727A4621300342200 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A527A4621300342200 /* LaunchScreen.storyboard */; };
 		04DD46B227A4621300342200 /* QuickParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46B127A4621300342200 /* QuickParkTests.swift */; };
 		04DD46BC27A4621300342200 /* QuickParkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BB27A4621300342200 /* QuickParkUITests.swift */; };
@@ -19,9 +18,11 @@
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
+		22035F9E27B6AD6800D1A3B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */; };
 		22A0757127A925DC00658889 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757027A925DC00658889 /* RegViewController.swift */; };
 		22A0757327A9260500658889 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757227A9260500658889 /* LogViewController.swift */; };
 		22A0757527A9261E00658889 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757427A9261E00658889 /* HomePageViewController.swift */; };
+		22C1C4CB27B6993A00866DA4 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C1C4CA27B6993A00866DA4 /* TermsViewController.swift */; };
 		3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */; };
 		6EC6F7996FFD802C9185ACE9 /* Pods_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDC3559D504F0DD8C6AF112 /* Pods_QuickParkTests.framework */; };
 		ED08CCF069A3B5E6753C5BDD /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */; };
@@ -50,7 +51,6 @@
 		04DD469C27A4621200342200 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04DD469E27A4621200342200 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04DD46A127A4621200342200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		04DD46A327A4621300342200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04DD46A627A4621300342200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04DD46A827A4621300342200 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04DD46AD27A4621300342200 /* QuickParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickParkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,9 +59,11 @@
 		04DD46BB27A4621300342200 /* QuickParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITests.swift; sourceTree = "<group>"; };
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22A0757027A925DC00658889 /* RegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewController.swift; sourceTree = "<group>"; };
 		22A0757227A9260500658889 /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		22A0757427A9261E00658889 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		22C1C4CA27B6993A00866DA4 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
 		4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DDC3559D504F0DD8C6AF112 /* Pods_QuickParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,8 +145,8 @@
 				04DD469A27A4621200342200 /* AppDelegate.swift */,
 				04DD469C27A4621200342200 /* SceneDelegate.swift */,
 				04DD469E27A4621200342200 /* ViewController.swift */,
+				22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */,
 				04DD46A027A4621200342200 /* Main.storyboard */,
-				04DD46A327A4621300342200 /* Assets.xcassets */,
 				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
 				04DD46A827A4621300342200 /* Info.plist */,
 				1F342B1427A56D6A00493084 /* GoogleService-Info.plist */,
@@ -175,6 +177,7 @@
 				22A0757027A925DC00658889 /* RegViewController.swift */,
 				22A0757227A9260500658889 /* LogViewController.swift */,
 				22A0757427A9261E00658889 /* HomePageViewController.swift */,
+				22C1C4CA27B6993A00866DA4 /* TermsViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -301,7 +304,7 @@
 			files = (
 				04DD46A727A4621300342200 /* LaunchScreen.storyboard in Resources */,
 				1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */,
-				04DD46A427A4621300342200 /* Assets.xcassets in Resources */,
+				22035F9E27B6AD6800D1A3B5 /* Assets.xcassets in Resources */,
 				04DD46A227A4621200342200 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +458,7 @@
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 				22A0757127A925DC00658889 /* RegViewController.swift in Sources */,
+				22C1C4CB27B6993A00866DA4 /* TermsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

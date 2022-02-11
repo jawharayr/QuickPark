@@ -51,120 +51,137 @@ class LogViewController: UIViewController {
             return "please fill in all the fields"
         }
     }
-    /* func validateRegFields () -> String? {
-         //all fields are filled
-         emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-         passOfRegField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-         confirmPas.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-         nameField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
-         ; do {
-             return "please fill in all the fields"
+    /*
+     @IBAction func LoginButton(_ sender: UIButton) {
+         if EmailTextField.text?.isEmpty == true || PasswordTextField.text?.isEmpty == true  {
+ //            let alert = Service.shared.createAlertController(title: "", message: "Please fill all fields!")
+ //            self.present(alert, animated: true, completion: nil)
+ //            return
          }
-         let securePass = passOfRegField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-         
-         if isPasswordValid(securePass) == false {
-          return "error msg"
+     
+
+     
+         guard let email = EmailTextField.text, let password = PasswordTextField.text else { return }
+         emailAuth(email: email, password: password)
+         func emailValidate() -> Bool {
+             return true
+         }
+
+         if !emailValidate() {
+             return
+         }
+
+     }
+    
+     override func viewDidLoad() {
+         super.viewDidLoad()
+         passwordLabel.isHidden = true
+         emailLabel.isHidden = true
+        // self.setupViews()
+         PasswordTextField.enablePasswordToggle()
+     }
+     
+ //    func setupViews() {
+ //        self.EmailTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+ //        self.PasswordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+ //
+ //    }
+ //
+ //    //Gets called everytime the text changes in the textfield.
+ //    @objc func textFieldDidChange(textField: UITextField){
+ //
+ //        if textField == EmailTextField {
+ //            self.emailValidation()
+ //        }
+ //        if textField == PasswordTextField {
+ //            self.passwordValidation()
+ //        }
+ //
+ //    }
+    
+     func emailAuth(email:String,password:String) {
+         ProgressHUD.show()
+         Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+             if let error = error as NSError? {
+                 ProgressHUD.dismiss()
+
+                 switch AuthErrorCode(rawValue: error.code) {
+                 case .userDisabled:
+                     self.showError(message: "User disabled")
+                 case .wrongPassword:
+                     self.showError(message: "Wrong password or Email")
+                 case .invalidEmail:
+                     self.showError(message: "Wrong password or Email")
+                 case .userNotFound:
+                     self.showError(message: "User not found")
+                 default:
+                     self.showError(message: error.localizedDescription)
+                 }
+                 // ckeck if the driver license is falid or not
+             } else if let user = authResult?.user {
+                 print("User signs in successfully")
+                 userRef.child(user.uid).observeSingleEvent(of: .value, with: { [unowned self] snapshot in
+                     ProgressHUD.dismiss()
+
+                     if let user = User(snapshot) {
+                         print("Got data \(user)")
+                         if user.role == "valet", user.role == "driver", !user.active {
+                                                     try? Auth.auth().signOut()
+                                                     self.showAlert(title: "Your account is deactivated!", message: "Please check your email for mor information")
+                                                 }
+                         if user.role == "valet", !user.isVerified {
+                             try? Auth.auth().signOut()
+                             self.showAlert(title: "Verification needed", message: "Driver license is waiting for verification, please wait!")
+                         } else {
+                             UserDefaults.standard.set(snapshot.value, forKey: "currentUser")
+                             if User.currentUser?.isPhoneVerified == true {
+                                 SceneDelegate.shared.reset()
+                             } else {
+                                 show(UIStoryboard.Phone.instantiateInitialViewController()!, sender: nil)
+                             }
+                         }
+                     } else {
+                         print("No data available")
+                         try? Auth.auth().signOut()
+                     }
+                 })
+             }
          }
      }
      
-     func isPasswordValid(_ password : String) -> Bool{
-         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
-         return passwordTest.evaluate(with: password)
-     } */
-     
-     
-     
-     
-     /* @IBAction func actionSignUp(_ sender: UIButton) {
-         if textFieldName.text?.isEmpty == true || textFieldEmail.text?.isEmpty == true || textFieldPassword.text?.isEmpty == true {
-         }
-         if validate() {
-             guard let email = textFieldEmail.text, let password = textFieldPassword.text else { return
-             }
-             emailAuth(email: email, password: password)
-        }
-     
-         
-    }
-     
-     func validate() -> Bool {
-         var isValid = true
-         let name = textFieldName.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
-         let email = textFieldEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-         let password = textFieldPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-         let password2 = textFieldPasswordConfirm.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-         
-         // Name Validations
-         if name.isEmpty {
-             nameLabel.isHidden = false
-             nameLabel.attributedText = NSAttributedString(string: "Please enter Your Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-             textFieldName.shake()
-             isValid = false
-         }
-         if !name.isAlphanumeric || name.count < 3 && !name.isEmpty {
-             nameLabel.isHidden = false
-             nameLabel.attributedText = NSAttributedString(string: "Name should have alphabets and min 3 characters", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-             textFieldName.shake()
-             isValid = false
-         }
-         if !name.isEmpty && name.count >= 3 && name.isAlphanumeric {
-             nameLabel.isHidden = true
-         }
-         
-         // Email Validations
-         if email.isEmpty {
-             emailLabel.isHidden = false
-             emailLabel.attributedText = NSAttributedString(string: "Please enter Your Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-             textFieldEmail.shake()
-             isValid = false
-         }
-         if !email.isValidEmail && !email.isEmpty {
-             emailLabel.isHidden = false
-             emailLabel.attributedText = NSAttributedString(string: "Please enter Your Valid Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-             textFieldEmail.shake()
-             isValid = false
-         }
-         if email.isValidEmail && !email.isEmpty {
-             emailLabel.isHidden = true
-         }
-         
-         // Password Validations
-         if password.isEmpty {
-             passwordLabel.isHidden = false
-             passwordLabel.attributedText = NSAttributedString(string: "Please enter Your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-             textFieldPassword.shake()
-             isValid = false
-         }
-         if password2.isEmpty {
-             confirmLabel.isHidden = false
-             confirmLabel.attributedText = NSAttributedString(string: "Please confirm Your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-             textFieldPasswordConfirm.shake()
-             isValid = false
-         }
-         if !password.isEmpty && !password2.isEmpty {
-             if password != password2 {
-                 confirmLabel.isHidden = false
-                 confirmLabel.attributedText = NSAttributedString(string: "Passwords do not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-                 textFieldPasswordConfirm.shake()
-                 isValid = false
-             }
-         }
-         
-         if !password.isValidPassword {
-             passwordLabel.isHidden = false
-             passwordLabel.attributedText = NSAttributedString(string: "Please enter Valid Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-             textFieldPassword.shake()
-             isValid = false
-         }
-         
-         if !password.isEmpty && !password2.isEmpty && (password == password2) && password.isValidPassword {
-             passwordLabel.isHidden = true
-             confirmLabel.isHidden = true
-         }
-         
-         
-         return isValid
-     }
      */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   /* reset pass
+    @IBAction func ForgotPass(_ sender: Any) {
+      
+        let forgotPasswordAlert = UIAlertController(title: "Forgot password?", message: "Enter email address", preferredStyle: .alert)
+           forgotPasswordAlert.addTextField { (textField) in
+               textField.placeholder = "Enter email address"
+           }
+           forgotPasswordAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+           forgotPasswordAlert.addAction(UIAlertAction(title: "Reset Password", style: .default, handler: { (action) in
+               let resetEmail = forgotPasswordAlert.textFields?.first?.text
+               Auth.auth().sendPasswordReset(withEmail: resetEmail!, completion: { (error) in
+                   if error != nil{
+                       self.showAlert(title: "Error", message: "Please enter a valid email!")
+                   }else {
+                       self.showAlert(title: "Password reset successful", message: "You have successfully requested to reset your password! please check your email ")
+                   }
+               })
+           }))
+           //PRESENT ALERT
+           self.present(forgotPasswordAlert, animated: true, completion: nil)
+       
+    }
+    
+    */
     
 }
