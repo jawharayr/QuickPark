@@ -10,6 +10,9 @@ import FirebaseDatabase
 class ViewController: UIViewController{
   //  let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
    
+    // data base refrence
+    let ref = Database.database().reference()
+
     var parkings = [Area]()
        
 
@@ -28,7 +31,6 @@ class ViewController: UIViewController{
 
     }
     private func getParkings() {
-        let ref = Database.database().reference()
         ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
             print(snapshots.childrenCount)
         

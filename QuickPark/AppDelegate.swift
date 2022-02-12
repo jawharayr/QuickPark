@@ -5,8 +5,8 @@
 //  Created by MAC on 25/06/1443 AH.
 //
 
-import UIKit
 import Firebase
+import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
