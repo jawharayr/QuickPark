@@ -5,21 +5,24 @@ target 'QuickPark' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-pod 'Firebase/Core'
+pod 'Firebase/Core' 
 pod 'Firebase/Database'
-pod 'Firebase/Crashlytics'
+pod 'Firebase/Firestore' 
+pod 'Firebase/Storage'
 
   target 'QuickParkTests' do
     inherit! :search_paths
-    pod 'Firebase/Core'
+pod 'Firebase/Core' 
 pod 'Firebase/Database'
-pod 'Firebase/Crashlytics'
+pod 'Firebase/Firestore' 
+pod 'Firebase/Storage'
   end
 
   target 'QuickParkUITests' do
-    pod 'Firebase/Core'
+pod 'Firebase/Core' 
 pod 'Firebase/Database'
-pod 'Firebase/Crashlytics'
+pod 'Firebase/Firestore'
+pod 'Firebase/Storage' 
   end
 
 end
