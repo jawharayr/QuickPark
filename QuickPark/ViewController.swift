@@ -114,7 +114,7 @@ extension ViewController: CLLocationManagerDelegate{
             //cell.Logos.layer.cornerRadius = 20 //cell.Logos.frame.height / 2
            // let borderColor: UIColor =  (parkings[indexPath.row] == " ") ? .red : UIColor(red: 0/225, green: 144/255, blue: 205/255, alpha: 1) //
             (parking.areaname == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
-            cell.Km.text = "\(parking.distance) Km"
+            cell.Km.text = "\(parking.distance) km"
 
             return cell
         }
