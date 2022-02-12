@@ -2,20 +2,23 @@
 //  AccountViewController.swift
 //  QuickPark
 //
-//  Created by manar . on 10/02/2022.
+//  Created by manar . on 01/02/2022.
 //
 
 import UIKit
 
 class AccountViewController: UIViewController {
 
+    @IBAction func NameTextField(_ sender: Any) {
+    }
+    
+    @IBAction func EmailTextField(_ sender: Any) {
+    }
     @IBAction func PasswordTextField(_ sender: Any) {
     }
-    @IBAction func RPasswordTextField(_ sender: Any) {
+    @IBAction func RePasswordTextField(_ sender: Any) {
     }
-    @IBAction func EmailTextField(_ sender: CustomTextField) {
-    }
-    @IBAction func NameTextField(_ sender: CustomTextField) {
+    @IBAction func SaveButton(_ sender: Any) {
     }
     override func viewDidLoad() {
         super.viewDidLoad()

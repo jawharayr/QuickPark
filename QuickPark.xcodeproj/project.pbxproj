@@ -23,6 +23,8 @@
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F6B27DB27B4EAD60086DD5E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B27DA27B4EAD60086DD5E /* CustomTextField.swift */; };
 		1F6B27DD27B4F1AD0086DD5E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B27DC27B4F1AD0086DD5E /* AccountViewController.swift */; };
+		1FBA8A8527B87248000E6065 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA8A8427B87248000E6065 /* Area.swift */; };
+		1FBA8A8827B8746E000E6065 /* ConfirmAndPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA8A8727B8746E000E6065 /* ConfirmAndPay.swift */; };
 		3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */; };
 		6EC6F7996FFD802C9185ACE9 /* Pods_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDC3559D504F0DD8C6AF112 /* Pods_QuickParkTests.framework */; };
 		ED08CCF069A3B5E6753C5BDD /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */; };
@@ -64,6 +66,8 @@
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F6B27DA27B4EAD60086DD5E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		1F6B27DC27B4F1AD0086DD5E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		1FBA8A8427B87248000E6065 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
+		1FBA8A8727B8746E000E6065 /* ConfirmAndPay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAndPay.swift; sourceTree = "<group>"; };
 		3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
 		4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DDC3559D504F0DD8C6AF112 /* Pods_QuickParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +145,7 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
+				1FBA8A8627B87438000E6065 /* Model */,
 				1F6B27D927B4EAA40086DD5E /* View */,
 				1F6B27D827B4EA8A0086DD5E /* Controller */,
 				04DD46A827A4621300342200 /* Info.plist */,
@@ -177,6 +182,7 @@
 				04F2CA4627AAA90500C636DD /* TabBarVC.swift */,
 				1F6B27DA27B4EAD60086DD5E /* CustomTextField.swift */,
 				1F6B27DC27B4F1AD0086DD5E /* AccountViewController.swift */,
+				1FBA8A8727B8746E000E6065 /* ConfirmAndPay.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -188,6 +194,14 @@
 				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1FBA8A8627B87438000E6065 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1FBA8A8427B87248000E6065 /* Area.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		83636CA8ABD1D981848DFD55 /* Frameworks */ = {
@@ -463,9 +477,11 @@
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
 				1F6B27DD27B4F1AD0086DD5E /* AccountViewController.swift in Sources */,
+				1FBA8A8827B8746E000E6065 /* ConfirmAndPay.swift in Sources */,
 				1F6B27DB27B4EAD60086DD5E /* CustomTextField.swift in Sources */,
 				04F2CA4727AAA90500C636DD /* TabBarVC.swift in Sources */,
 				0435947A27A9CA650035FF35 /* CustomCell.swift in Sources */,
+				1FBA8A8527B87248000E6065 /* Area.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
