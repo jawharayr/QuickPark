@@ -6,8 +6,10 @@
 //
 
 import UIKit
-
+import FirebaseDatabase
+import Firebase
 class AccountViewController: UIViewController {
+    var userInfo = [User]()
 
     @IBAction func NameTextField(_ sender: Any) {
     }
@@ -27,14 +29,19 @@ class AccountViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func getUserInfo() {
+        let ref = Database.database().reference()
+        ref.child("Users").observe(DataEventType.value, with: { [self] snapshots in
+            print(snapshots.childrenCount)
+        
+            for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
+                let dictionary = snapshot.value as? NSDictionary
+                let user = User(userEmail: dictionary?["UserEmail"] as? String ?? "", userName: "", userPassword: "", userRePassword: "")
+                userInfo.append(user)
+            }
+            
+            
+        })
     }
-    */
 
 }
