@@ -255,6 +255,7 @@
                                         <connections>
                                             <outlet property="Alert" destination="9Cx-a4-z8t" id="Dke-Eo-yrn"/>
                                             <outlet property="BackView" destination="VCF-jM-CIP" id="L4o-wk-FFg"/>
+                                            <outlet property="Km" destination="Y78-nL-x1V" id="Cxu-W8-oP2"/>
                                             <outlet property="Label" destination="ph5-Hd-wjM" id="pdd-Cv-G7D"/>
                                             <outlet property="Logos" destination="nca-0c-jp0" id="cGs-Od-J6h"/>
                                             <outlet property="MainView" destination="GBa-DD-Ond" id="wQz-iY-5oO"/>

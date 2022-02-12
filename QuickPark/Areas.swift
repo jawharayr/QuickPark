@@ -13,4 +13,5 @@ struct Area {
     var locationLong: String
     var spotNo: String
     var logo: String
+    var distance: Double
 }

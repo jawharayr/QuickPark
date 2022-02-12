@@ -7,12 +7,16 @@
 
 import UIKit
 import FirebaseDatabase
+import CoreLocation
+
 class ViewController: UIViewController{
   //  let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
    
     var parkings = [Area]()
        
-
+    var locationManager:CLLocationManager?
+    var currentLocation:CLLocation?
+    
     @IBOutlet weak var ParkingView: UIView!
     @IBOutlet weak var ParkingsViews: UITableView!
 
@@ -23,26 +27,60 @@ class ViewController: UIViewController{
         //making table view look good
         ParkingsViews?.separatorStyle = .none
         ParkingsViews?.showsVerticalScrollIndicator = false
-        
-        getParkings()
+        requestLocationPermission()
+//        getParkings()
 
     }
+    private func requestLocationPermission(){
+        locationManager = CLLocationManager()
+        locationManager?.requestAlwaysAuthorization()
+        locationManager?.startUpdatingLocation()
+        locationManager?.delegate = self
+    }
+    
     private func getParkings() {
         let ref = Database.database().reference()
         ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
             print(snapshots.childrenCount)
         
+            parkings.removeAll()
             for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
                 let dictionary = snapshot.value as? NSDictionary
-                let area = Area(areaname: dictionary?["areaname"] as? String ?? "", loactionLat: "", locationLong: "", spotNo: "", logo: "")
+                var area = Area(areaname: dictionary?["areaname"] as? String ?? "",
+                                loactionLat: "\(dictionary?["loactionLat"] as? Double ?? 0)",
+                                locationLong: "\(dictionary?["locationLong"] as? Double ?? 0)",
+                                spotNo: "", logo: "",distance: 0)
+                
+
+                let location = CLLocation(latitude: Double(area.loactionLat) ?? 0,
+                                              longitude: Double(area.locationLong) ?? 0)
+                if let currentLocation = currentLocation{
+                    let distance = currentLocation.distance(from: location) / 1000
+                    let distanceString = String(format: "%.2f", distance)
+                    let newDistance = Double(distanceString) ?? 0
+                    area.distance = newDistance
+                    
+                }
                 parkings.append(area)
             }
-            
+            parkings = parkings.sorted(by: { $0.distance < $1.distance })
             ParkingsViews.reloadData()
         })
     }
 
 }
+
+extension ViewController: CLLocationManagerDelegate{
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last{
+            currentLocation = location
+            self.getParkings()
+        }
+    }
+    
+}
+
     extension ViewController: UITableViewDelegate, UITableViewDataSource{
         func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
             return 60
@@ -76,7 +114,7 @@ class ViewController: UIViewController{
             //cell.Logos.layer.cornerRadius = 20 //cell.Logos.frame.height / 2
            // let borderColor: UIColor =  (parkings[indexPath.row] == " ") ? .red : UIColor(red: 0/225, green: 144/255, blue: 205/255, alpha: 1) //
             (parking.areaname == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
-            
+            cell.Km.text = "\(parking.distance) Km"
 
             return cell
         }
