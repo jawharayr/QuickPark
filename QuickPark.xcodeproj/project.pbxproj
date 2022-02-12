@@ -16,6 +16,8 @@
 		04DD46BC27A4621300342200 /* QuickParkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BB27A4621300342200 /* QuickParkUITests.swift */; };
 		04DD46BE27A4621300342200 /* QuickParkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */; };
 		1F120E7127B7CE1D00D52DD2 /* AdminHomeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F120E7027B7CE1D00D52DD2 /* AdminHomeListVC.swift */; };
+		1F120E7327B7D71600D52DD2 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F120E7227B7D71600D52DD2 /* Area.swift */; };
+		1F120E7527B7D76600D52DD2 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F120E7427B7D76600D52DD2 /* CustomCell.swift */; };
 		1F45BF0C27A82D6300349504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */; };
 		1F45BF0D27A82D6300349504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */; };
 		1F45BF0E27A82D6300349504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */; };
@@ -62,6 +64,8 @@
 		04DD46BB27A4621300342200 /* QuickParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITests.swift; sourceTree = "<group>"; };
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F120E7027B7CE1D00D52DD2 /* AdminHomeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeListVC.swift; sourceTree = "<group>"; };
+		1F120E7227B7D71600D52DD2 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
+		1F120E7427B7D76600D52DD2 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F6B27DE27B4FE5E0086DD5E /* AdminTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTabBarVC.swift; sourceTree = "<group>"; };
 		1F82E70127A847F600E08952 /* AddAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAreaViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 				1FBF08D727A9B3D70034BABE /* HomeViewController.swift */,
 				1F6B27DE27B4FE5E0086DD5E /* AdminTabBarVC.swift */,
 				1F120E7027B7CE1D00D52DD2 /* AdminHomeListVC.swift */,
+				1F120E7227B7D71600D52DD2 /* Area.swift */,
+				1F120E7427B7D76600D52DD2 /* CustomCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -478,7 +484,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F120E7327B7D71600D52DD2 /* Area.swift in Sources */,
 				1FBF08D527A9AE660034BABE /* HomeAreasList.swift in Sources */,
+				1F120E7527B7D76600D52DD2 /* CustomCell.swift in Sources */,
 				1F120E7127B7CE1D00D52DD2 /* AdminHomeListVC.swift in Sources */,
 				1FBF08D227A9AD800034BABE /* LandMark.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,

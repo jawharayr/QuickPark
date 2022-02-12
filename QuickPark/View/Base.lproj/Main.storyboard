@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3cY-vR-qAq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="278" y="-15"/>
         </scene>
-        <!--Home View Controller-->
+        <!--AdminHomeList-->
         <scene sceneID="gke-4o-4FE">
             <objects>
-                <viewController id="Oui-q8-ZiL" customClass="HomeViewController" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="AdminHomeList" id="Oui-q8-ZiL" customClass="AdminHomeListVC" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GB7-iW-vkP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,10 +168,10 @@
             </objects>
             <point key="canvasLocation" x="2031.8840579710147" y="-15.401785714285714"/>
         </scene>
-        <!--Admin Tab BarVC-->
+        <!--AdminTabBarVC-->
         <scene sceneID="S6j-y1-jdc">
             <objects>
-                <tabBarController id="3cY-vR-qAq" customClass="AdminTabBarVC" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController title="AdminTabBarVC" id="3cY-vR-qAq" customClass="AdminTabBarVC" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oKE-DN-cbY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
