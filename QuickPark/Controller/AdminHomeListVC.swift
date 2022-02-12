@@ -43,6 +43,20 @@ class AdminHomeListVC: UIViewController {
             
             ParkingsViews.reloadData()
         })
+        
+        /*ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
+            print(snapshots.childrenCount)
+        
+            for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
+                let dictionary = snapshot.value as? NSDictionary
+                let obj = Area(areaname: dictionary?["areaname"] as? String ?? "", isAvailable: "")
+         
+                
+            }
+            
+           
+        })
+         */
     }
 
 }
@@ -61,6 +75,7 @@ class AdminHomeListVC: UIViewController {
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
             let parking = parkings[indexPath.row]
+            //
             cell.Logos.image = UIImage(named: "King Saud University")
             cell.Label.text = parking.areaname
             //cell.ParkingView.layer.cornerRadius = 20 //cell.ParkingView.frame.height / 2
