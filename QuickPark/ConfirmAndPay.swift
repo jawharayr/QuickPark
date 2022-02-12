@@ -106,6 +106,18 @@ class ConfirmAndPay: UIViewController {
            self.view.endEditing(true)
        }
     
+    
+    private func calculateIntialPrice() -> Double {
+        let pricePerHour = 15.0
+        let startTime = 0
+        let endTime = 0
+        
+        let intialPrice : Double = Double(( endTime -  startTime )) * pricePerHour
+        
+        return intialPrice
+        
+    }
+    
     /*
     // MARK: - Navigation
 
