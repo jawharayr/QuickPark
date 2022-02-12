@@ -117,20 +117,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xps-rp-Aft">
-                                <rect key="frame" x="286" y="332" width="81" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Choose image" cornerStyle="medium" titleAlignment="center">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="8"/>
-                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="chooseImageButton" destination="AB2-cI-n6H" eventType="touchUpInside" id="TUz-W4-83Y"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Area Logo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uki-gk-WPF">
-                                <rect key="frame" x="49" y="330" width="78" height="21"/>
+                                <rect key="frame" x="48" y="327" width="78" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -151,6 +139,18 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Save" cornerStyle="large"/>
                                 <connections>
                                     <action selector="SaveAreaButton:" destination="AB2-cI-n6H" eventType="touchUpInside" id="V6n-Mc-a6H"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xps-rp-Aft">
+                                <rect key="frame" x="49" y="356" width="81" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Choose image" cornerStyle="medium" titleAlignment="center">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="8"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="chooseImageButton" destination="AB2-cI-n6H" eventType="touchUpInside" id="TUz-W4-83Y"/>
                                 </connections>
                             </button>
                         </subviews>

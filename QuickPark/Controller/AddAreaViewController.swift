@@ -22,8 +22,10 @@ class AddAreaViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     var areaCoordinate:  CLLocationCoordinate2D? = nil
     
-    var areaName: String = "King Khalid Airport"
-    
+    var areaName: String = ""
+    var spotNo: Int = 0
+    var areaLat: Optional<Double> = 0.0
+    var areaLong: Optional<Double> = 0.0
    
    
     
@@ -42,22 +44,29 @@ class AddAreaViewController: UIViewController {
     
     @IBAction func SaveAreaButton(_ sender: UIButton) {
         print("SaveAreaButton is pressed")
-        
-        let areaName = AreaNameTextField.text
-        let spotNo = SpotNoTextField.text
-        let areaLat = areaCoordinate?.latitude
-        let areaLong = areaCoordinate?.longitude
-        if areaName == "" || spotNo == ""
+        fillFields()
+        if areaName == "" || spotNo == 0
             
         { print("empty fields")
             
             
         }
         
-        let object: [String : Any] = ["areaname": areaName! as Any ,"spotNo": spotNo, "loactionLat": areaLat, "locationLong": areaLong]
+        let object: [String : Any] = ["areaname": areaName as Any ,"spotNo": spotNo, "loactionLat": areaLat, "locationLong": areaLong]
         database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object)
      
         
+        
+    }
+    
+    func fillFields () { //Filling the atrribute from the user input
+        areaName = AreaNameTextField.text!
+        spotNo = Int(SpotNoTextField.text!) ?? 0
+        areaLat = areaCoordinate?.latitude
+        areaLong = areaCoordinate?.longitude
+    }
+    
+    func validateFields () { //Filling the atrribute from the user input
         
     }
     
@@ -72,13 +81,13 @@ class AddAreaViewController: UIViewController {
             pickerController.mediaTypes = [imageMediaType]
             pickerController.delegate = self
             present(pickerController, animated: true, completion: nil)
-     
+
     }
     
     
     
     
-    @objc func longTap(sender: UIGestureRecognizer){
+    @objc func longTap(sender: UIGestureRecognizer){ //save the user long tap on the map
         print("long tap")
         if sender.state == .began {
             let locationInView = sender.location(in: mapView)
@@ -87,29 +96,24 @@ class AddAreaViewController: UIViewController {
         }
     }
 
-    func addAnnotation(location: CLLocationCoordinate2D){
+    func addAnnotation(location: CLLocationCoordinate2D){ //Adding the user long tap to the map as annotation
         mapView.removeAnnotations(mapView.annotations)
             let annotation = MKPointAnnotation()
             annotation.coordinate = location
             self.mapView.addAnnotation(annotation)
            areaCoordinate = annotation.coordinate
         
-        
     }
     
-    @IBAction func uploadimageTapped (_sender: Any) {
-        
-    }
     
-    func checkPermission () {
-        
-    }
     
-    func uploadFile(fileUrl: URL) {
+    
+    func uploadFile(fileUrl: URL) { //uploading images to firebase storage
       do {
         // Create file name
         let metaData = StorageMetadata()
         let fileExtension = fileUrl.pathExtension
+          fillFields()
         let fileName = ("AreasImages/"+areaName+".\(fileExtension)")
 
         let storageReference = Storage.storage().reference().child(fileName)
@@ -185,3 +189,4 @@ extension AddAreaViewController: UIImagePickerControllerDelegate, UINavigationCo
     picker.dismiss(animated: true, completion: nil)
   }
 }
+//end imagePicker extension
