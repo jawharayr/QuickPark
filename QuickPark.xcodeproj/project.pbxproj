@@ -21,8 +21,8 @@
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
+		1F6847A327B954CB00D3CE1E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6847A227B954CB00D3CE1E /* ProfileViewController.swift */; };
 		1F6B27DB27B4EAD60086DD5E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B27DA27B4EAD60086DD5E /* CustomTextField.swift */; };
-		1F6B27DD27B4F1AD0086DD5E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B27DC27B4F1AD0086DD5E /* AccountViewController.swift */; };
 		1FBA8A8527B87248000E6065 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA8A8427B87248000E6065 /* Area.swift */; };
 		1FBA8A8827B8746E000E6065 /* ConfirmAndPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA8A8727B8746E000E6065 /* ConfirmAndPay.swift */; };
 		1FBA8A8A27B87782000E6065 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA8A8927B87782000E6065 /* User.swift */; };
@@ -65,8 +65,8 @@
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		04F2CA4627AAA90500C636DD /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1F6847A227B954CB00D3CE1E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1F6B27DA27B4EAD60086DD5E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		1F6B27DC27B4F1AD0086DD5E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		1FBA8A8427B87248000E6065 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		1FBA8A8727B8746E000E6065 /* ConfirmAndPay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAndPay.swift; sourceTree = "<group>"; };
 		1FBA8A8927B87782000E6065 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 				0435947927A9CA650035FF35 /* CustomCell.swift */,
 				04F2CA4627AAA90500C636DD /* TabBarVC.swift */,
 				1F6B27DA27B4EAD60086DD5E /* CustomTextField.swift */,
-				1F6B27DC27B4F1AD0086DD5E /* AccountViewController.swift */,
+				1F6847A227B954CB00D3CE1E /* ProfileViewController.swift */,
 				1FBA8A8727B8746E000E6065 /* ConfirmAndPay.swift */,
 			);
 			path = Controller;
@@ -479,7 +479,7 @@
 			files = (
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
-				1F6B27DD27B4F1AD0086DD5E /* AccountViewController.swift in Sources */,
+				1F6847A327B954CB00D3CE1E /* ProfileViewController.swift in Sources */,
 				1FBA8A8827B8746E000E6065 /* ConfirmAndPay.swift in Sources */,
 				1F6B27DB27B4EAD60086DD5E /* CustomTextField.swift in Sources */,
 				04F2CA4727AAA90500C636DD /* TabBarVC.swift in Sources */,
