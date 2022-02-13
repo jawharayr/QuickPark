@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var txtPassword : UITextField!
     @IBOutlet weak var txtConfirmPassword : UITextField!
     
+    @IBOutlet weak var labelEmailAlert: UILabel!
+    @IBOutlet weak var labelFieldsAlert: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +116,7 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func btnSaveClicked(_ sender : UIButton) {
-        //When your registration will be completed you can use this function to save data to firebase
+        //When  registration is completed  save data to firebase
         
         let str = self.validateFields()
         
@@ -125,20 +127,21 @@ class ProfileViewController: UIViewController {
                 
                 
             }else{
-                let alert = UIAlertController(title: "Ooopps", message: "Email validation failed", preferredStyle: .alert)
+                labelEmailAlert.text = "Please check your email"
+               /* let alert = UIAlertController(title: "Ooopps", message: "Email validation failed", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                     
                 }))
-                self.present(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil) */ 
             }
             
         }else{
-            
-            let alert = UIAlertController(title: "Ooopps", message: "Fill out all the Fields and try again", preferredStyle: .alert)
+            labelFieldsAlert.text = "Please fill out all the information"
+           /*let alert = UIAlertController(title: "Ooopps", message: "Fill out all the Fields and try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 
             }))
-            self.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil) */
             
         }
     }

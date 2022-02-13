@@ -632,6 +632,20 @@
                                     <action selector="btnSaveClicked:" destination="7lH-y3-5uP" eventType="touchUpInside" id="DDE-Yh-RQz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4r-c9-phS">
+                                <rect key="frame" x="32" y="604" width="350" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0V-MH-Hfu">
+                                <rect key="frame" x="32" y="431" width="342" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="G8P-XT-alW"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -672,6 +686,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="1sA-l6-TN8"/>
                     <connections>
+                        <outlet property="labelEmailAlert" destination="D0V-MH-Hfu" id="UHL-pz-GfI"/>
+                        <outlet property="labelFieldsAlert" destination="R4r-c9-phS" id="Y6Q-5s-3ms"/>
                         <outlet property="txtConfirmPassword" destination="Kf0-31-MzM" id="uY2-NS-5IZ"/>
                         <outlet property="txtEmail" destination="r7L-fM-z9f" id="j4M-to-VU5"/>
                         <outlet property="txtPassword" destination="Fcr-WJ-og1" id="ZSK-0p-9Xe"/>
@@ -680,7 +696,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4S-bA-7cD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="445" y="1451"/>
+            <point key="canvasLocation" x="444.92753623188412" y="1450.4464285714284"/>
         </scene>
     </scenes>
     <resources>
