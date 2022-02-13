@@ -191,7 +191,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="p8U-LH-q90">
-                                <rect key="frame" x="0.0" y="215" width="414" height="522"/>
+                                <rect key="frame" x="0.0" y="215" width="414" height="514"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomCell" rowHeight="100" id="un4-DV-1Nc" customClass="CustomCell" customModule="QuickPark" customModuleProvider="target">
@@ -265,13 +265,16 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearest Parking spaces" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kx-Nz-p4g">
                                 <rect key="frame" x="27" y="226" width="265" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="265" id="C8K-HG-8Dq"/>
+                                    <constraint firstAttribute="height" constant="44" id="M4Y-6h-uLL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
                                 <color key="textColor" red="0.3520444036" green="0.45784550909999999" blue="0.658849299" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YU-SI-qj0">
-                                <rect key="frame" x="76" y="759" width="262" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YU-SI-qj0">
+                                <rect key="frame" x="76" y="759" width="262" height="31"/>
                                 <color key="tintColor" red="0.0" green="0.56470588239999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add area" cornerStyle="large"/>
@@ -283,11 +286,16 @@
                         <viewLayoutGuide key="safeArea" id="1lP-h9-0Cf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="0Kx-Nz-p4g" firstAttribute="leading" secondItem="1lP-h9-0Cf" secondAttribute="leading" constant="27" id="6q1-Ek-3bo"/>
                             <constraint firstItem="1lP-h9-0Cf" firstAttribute="bottom" secondItem="p8U-LH-q90" secondAttribute="bottom" id="9Ip-MJ-6jJ"/>
                             <constraint firstItem="1lP-h9-0Cf" firstAttribute="trailing" secondItem="0Kx-Nz-p4g" secondAttribute="trailing" constant="122" id="Ca9-iv-HMm"/>
                             <constraint firstItem="0Kx-Nz-p4g" firstAttribute="top" secondItem="iWN-9T-HRf" secondAttribute="bottom" constant="8" symbolic="YES" id="IEC-av-gPc"/>
+                            <constraint firstItem="9YU-SI-qj0" firstAttribute="centerX" secondItem="p8U-LH-q90" secondAttribute="centerX" id="K4k-UJ-hvM"/>
                             <constraint firstItem="p8U-LH-q90" firstAttribute="leading" secondItem="1lP-h9-0Cf" secondAttribute="leading" id="MiD-6K-6qj"/>
+                            <constraint firstItem="9YU-SI-qj0" firstAttribute="top" secondItem="0Kx-Nz-p4g" secondAttribute="bottom" constant="489" id="OQ4-11-7jG"/>
                             <constraint firstItem="iWN-9T-HRf" firstAttribute="leading" secondItem="1lP-h9-0Cf" secondAttribute="leading" constant="-204" id="Xoe-cA-HHS"/>
+                            <constraint firstItem="1lP-h9-0Cf" firstAttribute="trailing" secondItem="0Kx-Nz-p4g" secondAttribute="trailing" constant="122" id="bCP-HF-wlj"/>
+                            <constraint firstItem="9YU-SI-qj0" firstAttribute="leading" secondItem="1lP-h9-0Cf" secondAttribute="leading" constant="76" id="czM-FN-t5c"/>
                             <constraint firstItem="0Kx-Nz-p4g" firstAttribute="leading" secondItem="1lP-h9-0Cf" secondAttribute="leading" constant="27" id="e4n-Cc-5Rk"/>
                             <constraint firstItem="0Kx-Nz-p4g" firstAttribute="top" secondItem="iWN-9T-HRf" secondAttribute="bottom" constant="8" id="ewf-N9-Ntt"/>
                             <constraint firstItem="p8U-LH-q90" firstAttribute="top" secondItem="1lP-h9-0Cf" secondAttribute="top" constant="127" id="fl3-bR-0Jl"/>
@@ -296,6 +304,7 @@
                             <constraint firstItem="iWN-9T-HRf" firstAttribute="trailing" secondItem="1lP-h9-0Cf" secondAttribute="trailing" constant="24" id="l7o-3r-Iq5"/>
                             <constraint firstItem="iWN-9T-HRf" firstAttribute="top" secondItem="EtD-d6-DMs" secondAttribute="top" constant="-43" id="mxF-s2-Kko"/>
                             <constraint firstItem="1lP-h9-0Cf" firstAttribute="bottom" secondItem="0Kx-Nz-p4g" secondAttribute="bottom" constant="543" id="wGO-K5-QYc"/>
+                            <constraint firstItem="0Kx-Nz-p4g" firstAttribute="top" secondItem="iWN-9T-HRf" secondAttribute="bottom" constant="8" symbolic="YES" id="wgS-4h-j29"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2GP-rA-boi"/>
