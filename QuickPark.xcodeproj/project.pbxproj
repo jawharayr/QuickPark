@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0403BADE27B14CC800573257 /* ConfirmAndPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403BADD27B14CC800573257 /* ConfirmAndPay.swift */; };
 		0435947A27A9CA650035FF35 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435947927A9CA650035FF35 /* CustomCell.swift */; };
+		04A0DCF427BC0B0B002ACB7A /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */; };
+		04A0DCF527BC0B0B002ACB7A /* Pods_QuickPark.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		04A0DCF827BC151B002ACB7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04A0DCF727BC151B002ACB7A /* GoogleService-Info.plist */; };
 		04B4135327AC0CFF00C76023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B4135227AC0CFF00C76023 /* Assets.xcassets */; };
 		04DD469B27A4621200342200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469A27A4621200342200 /* AppDelegate.swift */; };
 		04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469C27A4621200342200 /* SceneDelegate.swift */; };
@@ -20,9 +23,7 @@
 		04DD46BE27A4621300342200 /* QuickParkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */; };
 		04E1BEC527B3D81C008AB775 /* TimerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E1BEC427B3D81C008AB775 /* TimerVC.swift */; };
 		04F2CA4727AAA90500C636DD /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F2CA4627AAA90500C636DD /* TabBarVC.swift */; };
-		3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */; };
 		6EC6F7996FFD802C9185ACE9 /* Pods_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDC3559D504F0DD8C6AF112 /* Pods_QuickParkTests.framework */; };
-		95A1EBB127B7178600A321CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95A1EBB027B7178600A321CF /* GoogleService-Info.plist */; };
 		95D377CC27B5CE6C00BC0BC0 /* Areas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D377CB27B5CE6C00BC0BC0 /* Areas.swift */; };
 		ED08CCF069A3B5E6753C5BDD /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */; };
 /* End PBXBuildFile section */
@@ -44,9 +45,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		04A0DCF627BC0B0B002ACB7A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				04A0DCF527BC0B0B002ACB7A /* Pods_QuickPark.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0403BADD27B14CC800573257 /* ConfirmAndPay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAndPay.swift; sourceTree = "<group>"; };
 		0435947927A9CA650035FF35 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		04A0DCF727BC151B002ACB7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../QuickPark-New-ReservationHome/QuickPark/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04B4135227AC0CFF00C76023 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04DD469727A4621200342200 /* QuickPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DD469A27A4621200342200 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +84,6 @@
 		88D157D820121CDA58F7CDAB /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkUITests.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8CF14C3F2E16B57B46117C4D /* Pods-QuickParkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickParkTests.release.xcconfig"; path = "Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests.release.xcconfig"; sourceTree = "<group>"; };
 		8E12F9684092C5EB5D532BA4 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkUITests.release.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests.release.xcconfig"; sourceTree = "<group>"; };
-		95A1EBB027B7178600A321CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		95D377CB27B5CE6C00BC0BC0 /* Areas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Areas.swift; sourceTree = "<group>"; };
 		C4D573FE1E7BF3A931F98B73 /* Pods-QuickPark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.debug.xcconfig"; sourceTree = "<group>"; };
 		DEE26C2A1663C1B2E299610A /* Pods-QuickParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickParkTests.debug.xcconfig"; path = "Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -80,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */,
+				04A0DCF427BC0B0B002ACB7A /* Pods_QuickPark.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,8 +156,8 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
-				95A1EBB027B7178600A321CF /* GoogleService-Info.plist */,
 				04DD469A27A4621200342200 /* AppDelegate.swift */,
+				04A0DCF727BC151B002ACB7A /* GoogleService-Info.plist */,
 				04DD469C27A4621200342200 /* SceneDelegate.swift */,
 				04DD469E27A4621200342200 /* ViewController.swift */,
 				95D377CB27B5CE6C00BC0BC0 /* Areas.swift */,
@@ -197,6 +212,7 @@
 				04DD469427A4621200342200 /* Frameworks */,
 				04DD469527A4621200342200 /* Resources */,
 				5152C09513D80E46E504DE42 /* [CP] Embed Pods Frameworks */,
+				04A0DCF627BC0B0B002ACB7A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -296,7 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DD46A727A4621300342200 /* LaunchScreen.storyboard in Resources */,
-				95A1EBB127B7178600A321CF /* GoogleService-Info.plist in Resources */,
+				04A0DCF827BC151B002ACB7A /* GoogleService-Info.plist in Resources */,
 				04B4135327AC0CFF00C76023 /* Assets.xcassets in Resources */,
 				04DD46A227A4621200342200 /* Main.storyboard in Resources */,
 			);
@@ -643,7 +659,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = G3.QuickPark;
+				PRODUCT_BUNDLE_IDENTIFIER = com.G3.QuickPark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
