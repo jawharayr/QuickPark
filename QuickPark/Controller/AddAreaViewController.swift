@@ -38,6 +38,22 @@ class AddAreaViewController: UIViewController {
         let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
         mapView.addGestureRecognizer(longTapGesture)
         
+        //For shadow and cornerRadius for AreaName textfield
+        AreaNameTextField.layer.masksToBounds = false
+        AreaNameTextField.layer.shadowRadius = 4.0
+        AreaNameTextField.layer.shadowColor = UIColor.lightGray.cgColor
+        AreaNameTextField.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        AreaNameTextField.layer.shadowOpacity = 1.0
+       
+        
+        //For shadow and cornerRadius for SpotNo textfield
+        SpotNoTextField.layer.masksToBounds = false
+        SpotNoTextField.layer.shadowRadius = 4.0
+        SpotNoTextField.layer.shadowColor = UIColor.lightGray.cgColor
+        SpotNoTextField.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        SpotNoTextField.layer.shadowOpacity = 1.0
+       
+        
     }
     
    
