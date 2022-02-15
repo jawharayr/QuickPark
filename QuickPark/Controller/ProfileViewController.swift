@@ -20,6 +20,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        labelEmailAlert.isHidden = true
+        labelFieldsAlert.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,6 +130,7 @@ class ProfileViewController: UIViewController {
                 
             }else{
                 labelEmailAlert.text = "Please check your email"
+                labelEmailAlert.isHidden = false
                /* let alert = UIAlertController(title: "Ooopps", message: "Email validation failed", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                     
@@ -137,6 +140,7 @@ class ProfileViewController: UIViewController {
             
         }else{
             labelFieldsAlert.text = "Please fill out all the information"
+            labelFieldsAlert.isHidden = false
            /*let alert = UIAlertController(title: "Ooopps", message: "Fill out all the Fields and try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 
