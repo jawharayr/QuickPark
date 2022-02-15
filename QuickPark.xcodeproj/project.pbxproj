@@ -648,7 +648,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8XHA6PPHP7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "QuickPark-New-ReservationHome/QuickPark/GoogleService-Info.plist";
+				INFOPLIST_FILE = "QuickPark/GoogleService-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -677,7 +677,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8XHA6PPHP7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "QuickPark-New-ReservationHome/QuickPark/GoogleService-Info.plist";
+				INFOPLIST_FILE = "QuickPark/GoogleService-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
