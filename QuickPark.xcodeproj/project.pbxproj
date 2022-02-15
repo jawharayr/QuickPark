@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0403BADE27B14CC800573257 /* ConfirmAndPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403BADD27B14CC800573257 /* ConfirmAndPay.swift */; };
 		0435947A27A9CA650035FF35 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435947927A9CA650035FF35 /* CustomCell.swift */; };
-		046B8B8727BBC0AA0029BDB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 046B8B8627BBC0AA0029BDB1 /* GoogleService-Info.plist */; };
+		04A0DCF327BBE08B002ACB7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04A0DCF227BBE08B002ACB7A /* GoogleService-Info.plist */; };
 		04B4135327AC0CFF00C76023 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B4135227AC0CFF00C76023 /* Assets.xcassets */; };
 		04DD469B27A4621200342200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469A27A4621200342200 /* AppDelegate.swift */; };
 		04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469C27A4621200342200 /* SceneDelegate.swift */; };
@@ -47,7 +47,7 @@
 /* Begin PBXFileReference section */
 		0403BADD27B14CC800573257 /* ConfirmAndPay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAndPay.swift; sourceTree = "<group>"; };
 		0435947927A9CA650035FF35 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		046B8B8627BBC0AA0029BDB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../QuickPark 2/QuickPark/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		04A0DCF227BBE08B002ACB7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../QuickPark 2 2.09.55 PM/QuickPark/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04B4135227AC0CFF00C76023 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04DD469727A4621200342200 /* QuickPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DD469A27A4621200342200 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,8 +143,8 @@
 			children = (
 				04DD469A27A4621200342200 /* AppDelegate.swift */,
 				04DD469C27A4621200342200 /* SceneDelegate.swift */,
-				046B8B8627BBC0AA0029BDB1 /* GoogleService-Info.plist */,
 				04DD469E27A4621200342200 /* ViewController.swift */,
+				04A0DCF227BBE08B002ACB7A /* GoogleService-Info.plist */,
 				95D377CB27B5CE6C00BC0BC0 /* Areas.swift */,
 				04DD46A027A4621200342200 /* Main.storyboard */,
 				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
@@ -296,7 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DD46A727A4621300342200 /* LaunchScreen.storyboard in Resources */,
-				046B8B8727BBC0AA0029BDB1 /* GoogleService-Info.plist in Resources */,
+				04A0DCF327BBE08B002ACB7A /* GoogleService-Info.plist in Resources */,
 				04B4135327AC0CFF00C76023 /* Assets.xcassets in Resources */,
 				04DD46A227A4621200342200 /* Main.storyboard in Resources */,
 			);
