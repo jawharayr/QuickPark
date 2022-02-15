@@ -9,12 +9,15 @@ import UIKit
 import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    public static var appDelegate = UIApplication.shared.delegate as? AppDelegate
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        //set up home
+        setUpHome()
         return true
     }
 
@@ -35,3 +38,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate {
+     
+    func setUpHome () {
+        if FBAuth.currentUser != nil {
+            let htb = SBSupport.viewController(sbi: "sbi_HomeTabbar", inStoryBoard: "Main")
+            self.setRootViewController(htb)
+        } else {
+            let lvc = SBSupport.viewController(sbi: "sbi_AuthNavigationViewController", inStoryBoard: "Auth")
+            self.setRootViewController(lvc)
+        }
+    }
+    
+    //to set the root view controllr on the window. This will change the base controller depending upon the user auth condition
+    func setRootViewController(_ vc:UIViewController) {
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
+    }
+}
