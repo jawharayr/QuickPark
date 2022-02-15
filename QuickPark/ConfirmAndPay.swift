@@ -83,13 +83,27 @@ class ConfirmAndPay: UIViewController {
             EndTimeTxt.inputView = EndTimePicker
             
             //time picker mode
-            StartTimePicker.datePickerMode = .time
-            EndTimePicker.datePickerMode = .time
-            
-             if #available(iOS 13.4, *)  {
-                   StartTimePicker.preferredDatePickerStyle = .wheels
-                   EndTimePicker.preferredDatePickerStyle = .wheels
-               }
+            /*StartTimePicker.datePickerMode = .time
+            EndTimePicker.datePickerMode = .time*/
+        let calendar = Calendar.current
+               //First range
+               let startTime = Date()
+               let startRangeEnd = calendar.date(byAdding: DateComponents(minute: 30), to: startTime)!
+               let startRange = startTime...startRangeEnd
+               //Second range
+               let endTime = calendar.date(byAdding: DateComponents(minute: 1), to: startRangeEnd)!
+               let endRangeEnd = calendar.startOfDay(for: calendar.date(byAdding: DateComponents(day: 1), to: startTime)!)
+               let endRange = endTime...endRangeEnd
+               StartTimePicker.date = startTime
+               StartTimePicker.minimumDate = startTime
+               StartTimePicker.maximumDate = startRangeEnd
+               EndTimePicker.date = endTime
+               EndTimePicker.minimumDate = endTime
+               EndTimePicker.maximumDate = endRangeEnd
+                    if #available(iOS 13.4, *)  {
+                          StartTimePicker.preferredDatePickerStyle = .wheels
+                          EndTimePicker.preferredDatePickerStyle = .wheels
+                      }
         
         }
 

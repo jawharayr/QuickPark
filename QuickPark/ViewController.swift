@@ -18,6 +18,7 @@ class ViewController: UIViewController{
 
     @IBOutlet weak var ParkingView: UIView!
     @IBOutlet weak var ParkingsViews: UITableView!
+    var initialRead = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,16 +59,46 @@ class ViewController: UIViewController{
         }
         // هذي الميثود حقت الشاشه الصغيره اللي تطلع بعد مانضغط
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay")
-                            
-                            if let presentationController = viewController.presentationController as? UISheetPresentationController {
-                                presentationController.detents = [.medium()] /// change to [.medium(), .large()] for a half and full screen sheet
-                            }
-                            
-                            self.present(viewController, animated: true)
+                           guard let myCell = tableView.cellForRow(at: indexPath) as? CustomCell else {return}
+                           let ref = Database.database().reference()
+                           let areaRef = ref.child("Areas")
+                           areaRef.observe(.childAdded, with: { snapshot in
+                               let areaname = snapshot.childSnapshot(forPath: "areaname").value as? String ?? ""
+                               print("areaname", areaname)
+                               if myCell.Label.text == areaname {
+                                   let isAvailable = snapshot.childSnapshot(forPath: "isAvailable").value as? Bool ?? false
+                                   print("isAvailable", isAvailable)
+                                   if isAvailable {
+                                       let Value = snapshot.childSnapshot(forPath: "Value").value as? Double ?? 0.0
+                                       print("Value", Value)
+                                   if Value == 1 {
+                                       let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                       let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay")
+                                       if #available(iOS 15.0, *) {
+                                           if let presentationController = viewController.presentationController as? UISheetPresentationController {
+                                               presentationController.detents = [.medium()]
+                                               /// change to [.medium(), .large()] for a half and full screen sheet
+                                           }
+                                       }
+                                       self.present(viewController, animated: true)
+                                   } else {
+                                       myCell.layer.borderColor = UIColor.red.cgColor
+                                       myCell.Alert.text = "No Available Parkings"
+                                   }
+                               } else {
+                                   myCell.layer.borderColor = UIColor.red.cgColor
+                                   myCell.Alert.text = "No Available Parkings"
+                               }
+                               }
+                        
+                           })
 
-        }
+                           areaRef.observeSingleEvent(of: .value, with: { snapshot in
+                                   print("Done")
+                                   self.initialRead = false
+                               })
+                       }
+
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
