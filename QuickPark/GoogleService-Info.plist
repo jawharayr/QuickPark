@@ -13,21 +13,21 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.G3.QuickPark</string>
+	<string>G3.QuickPark</string>
 	<key>PROJECT_ID</key>
 	<string>quickpark-e0656</string>
 	<key>STORAGE_BUCKET</key>
 	<string>quickpark-e0656.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:901573164742:ios:12ca37ffaabe32ca58a1c7</string>
 </dict>

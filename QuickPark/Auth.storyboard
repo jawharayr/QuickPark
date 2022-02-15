@@ -10,14 +10,14 @@
         <!--Navigation Controller-->
         <scene sceneID="r9K-Bq-qC2">
             <objects>
-                <navigationController navigationBarHidden="YES" id="Z1o-AA-DbP" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="sbi_AuthNavigationViewController" navigationBarHidden="YES" id="Z1o-AA-DbP" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jE5-oW-Qls">
                         <autoresizingMask key="autoresizingMask"/>
                         <navigationBarAppearance key="compactAppearance"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="yHm-jm-Z3e" kind="relationship" relationship="rootViewController" id="IXA-eb-f86"/>
+                        <segue destination="yHm-jm-Z3e" kind="relationship" relationship="rootViewController" id="wzU-E4-hPz"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9lb-Q0-Flg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

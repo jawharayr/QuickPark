@@ -17,7 +17,7 @@ struct FBAuth {
             if let cu = FBAuth.currentUser {
                 return cu.uid
             } else {
-                AppDelegate.appDelegate?.setUpHome()
+                SceneDelegate.sceneDelegate?.setUpHome()
                 return ""
             }
         }
