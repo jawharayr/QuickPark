@@ -17,7 +17,6 @@ class AddAreaViewController: UIViewController {
     private var locationManager = CLLocationManager()
     private let database = Database.database().reference()
     
-    @IBOutlet weak var ErorrAlertLabel: UILabel!
     @IBOutlet weak var AreaNameTextField: UITextField!
     @IBOutlet weak var SpotNoTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!

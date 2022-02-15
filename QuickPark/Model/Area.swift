@@ -15,3 +15,13 @@ struct Area {
     var spotNo: String
     var logo: String
 }
+
+class ImageURL{
+    var url:URL?
+    var didLoad:Bool
+    
+    init(url: URL?, didLoad: Bool){
+        self.url = url
+        self.didLoad = didLoad
+    }
+}
