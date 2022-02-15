@@ -98,7 +98,7 @@ class ViewController: UIViewController{
                                     self.initialRead = false
                                 })
                         }
-
+        //jjj
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
