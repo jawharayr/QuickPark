@@ -23,16 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AE3ACD8E-E0F8-434B-BB9F-86E773E0E603"
+            uuid = "12D9E8D0-47CA-43D8-B9E1-FF76A7EF2132"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QuickPark/AppProtocols/SceneDelegate.swift"
+            filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "setRootViewController(_:)"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "regPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

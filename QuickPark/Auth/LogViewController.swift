@@ -30,7 +30,7 @@ class LogViewController: UIViewController {
     }
     
     @IBAction func GoRegPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "GoReg", sender: nil)
+        // self.performSegue(withIdentifier: "GoReg", sender: nil)
     }
     
     

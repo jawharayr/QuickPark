@@ -11,9 +11,9 @@ import FirebaseAuth
 import FirebaseFirestore
 class RegViewController: UIViewController {
     @IBOutlet weak var nameField: UITextField!
- 
     @IBOutlet weak var emailField: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var passOfRegField: UITextField!
     
@@ -39,17 +39,17 @@ class RegViewController: UIViewController {
         super.viewDidLoad()
         //passOfRegField.enablePasswordToggle()
         // Do any additional setup after loading the view.
-        
-       // textFieldEmail.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
+        scrollView.contentSize = CGSize(width: 0, height: 900)
+        // textFieldEmail.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
         confirmLabel.isHidden = true
         passwordLabel.isHidden = true
         emailLabel.isHidden = true
         nameLabel.isHidden = true
         self.setupViews()
-
+        
         // Do any additional setup after loading the view.
     }
-  
+    
     func setupViews() {
         self.nameField?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         self.emailField?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -150,19 +150,18 @@ class RegViewController: UIViewController {
     }
     
     
-  
+    
     
     @IBAction func regPressed(_ sender: Any) {
+        if validate() == false {return}
         
- validate()
         let name = nameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let pass = passOfRegField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let confirmPass = confirmPas.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        
-        Auth.auth().createUser(withEmail: email, password: pass) { result, error in
-            //some code
+        FBAuth.register(email: email, password: pass) { user, error in
+            SceneDelegate.sceneDelegate?.setUpHome()
         }
         
         let database = Firestore.firestore()
@@ -172,17 +171,7 @@ class RegViewController: UIViewController {
             }
         }
     }
-    
-
-    
 }
-
-    
-    
-    
-    
-    
-
 
 extension String {
     var isAlphanumeric: Bool {
@@ -214,7 +203,7 @@ extension UITextField {
         animation.duration = 0.4
         if revert { animation.autoreverses = true } else { animation.autoreverses = false }
         self.layer.add(animation, forKey: "")
-
+        
         let shake: CABasicAnimation = CABasicAnimation(keyPath: "position")
         shake.duration = 0.07
         shake.repeatCount = shakes
