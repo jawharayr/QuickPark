@@ -39,9 +39,6 @@ class AddAreaViewController: UIViewController {
 
    
    
-    
-  
-
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -85,7 +82,9 @@ class AddAreaViewController: UIViewController {
             spotNo = Int(SpotNoTextField.text!) ?? 0
                 areaLat = areaCoordinate?.latitude ?? 0.0
                 areaLong = areaCoordinate?.longitude ?? 0.0
-            
+                
+            //image uploading should be imp inside the saveBtn fun so that the image don't get uploaded before the
+            //user click on the save btn
             
             if let imageToUpload = self.imageToUpload {
                 //Uplaoding image and save imageUrl into database:
@@ -100,7 +99,7 @@ class AddAreaViewController: UIViewController {
                        self.showAlert(title: "Photo upload failed", message: "photo uploading failed, please try again")
                     }
                 }
-            }else {
+            }else { //upload area info to the database 
                 let object: [String : Any] = ["areaname": areaName as Any ,"spotNo": spotNo, "loactionLat": areaLat ?? 0.0, "locationLong": areaLong ?? 0.0, "areaImage" : ""]
                 database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
                     self.navigationController?.popViewController(animated: true)
@@ -292,7 +291,7 @@ extension String {
 extension UIViewController {
     
     
-    func showAlert(title: String, message: String)
+    func showAlert(title: String, message: String) // Error alert for uploading images
     {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)

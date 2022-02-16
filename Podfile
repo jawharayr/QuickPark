@@ -9,6 +9,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Firestore' 
 pod 'Firebase/Storage'
+pod 'SDWebImage', '~> 5.0'
 
   target 'QuickParkTests' do
     inherit! :search_paths

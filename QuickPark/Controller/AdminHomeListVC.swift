@@ -9,6 +9,8 @@ import UIKit
 import FirebaseDatabase
 import FirebaseStorage
 import Firebase
+import SDWebImage
+
 class AdminHomeListVC: UIViewController {
 
     var parkings = [Area]()
@@ -34,10 +36,10 @@ class AdminHomeListVC: UIViewController {
         let ref = Database.database().reference()
         ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
             print(snapshots.childrenCount)
-        
+            parkings.removeAll()
             for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
                 let dictionary = snapshot.value as? NSDictionary
-                let area = Area(areaname: dictionary?["areaname"] as? String ?? "", loactionLat: "", locationLong: "", spotNo: "", logo: "")
+                let area = Area(areaname: dictionary?["areaname"] as? String ?? "", loactionLat: "", locationLong: "", spotNo: "", logo: dictionary?["areaImage"] as? String ?? "" )
                 parkings.append(area)
             }
             
@@ -47,12 +49,9 @@ class AdminHomeListVC: UIViewController {
 
 }
     extension AdminHomeListVC: UITableViewDelegate, UITableViewDataSource{
-        func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 60
-        }
         
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 120
+            return 100
         }
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return parkings.count
@@ -61,27 +60,9 @@ class AdminHomeListVC: UIViewController {
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
             let parking = parkings[indexPath.row]
-            cell.Logos.image = UIImage(named: "King Saud University")
+            cell.Logos.sd_setImage(with: URL(string: parking.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
             cell.Label.text = parking.areaname
-            //cell.ParkingView.layer.cornerRadius = 20 //cell.ParkingView.frame.height / 2
-            //cell.Logos.layer.cornerRadius = 20 //cell.Logos.frame.height / 2
-           // let borderColor: UIColor =  (parkings[indexPath.row] == " ") ? .red : UIColor(red: 0/225, green: 144/255, blue: 205/255, alpha: 1) //
-        /*
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-             let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
-             let parking = parkings[indexPath.row]
-                if !parking.imageURL.didLoad{
-                             let child = storageRef.child("AreasImages/\(parking.areaname).png")
-                             child.downloadURL { url, error in
-                                 print("Did fetch \("AreasImages/\(parking.areaname).png") url: ",url, ", with error: ",error?.localizedDescription)
-                                 self.parkings[indexPath.row].imageURL = ImageURL(url: url, didLoad: true)
-                                 tableView.reloadRows(at: [indexPath], with: .automatic)
-                             }
-                         }else{
-                             cell.Logos.kf.setImage(with: parking.imageURL.url, placeholder: nil)
-                             //
-                         }
-             */
+        
 
             return cell
         }
