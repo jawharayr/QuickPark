@@ -28,14 +28,4 @@ pod 'Firebase/Crashlytics'
 
   end
 
-  project = Xcodeproj::Project.open “./QuickPark.xcodeproj"
-
-  project.targets.each do |t|
-
-  target t.name do
-
-      common_pods
-
-  end
-
 end
