@@ -23,15 +23,15 @@
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
-		3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */; };
-		6EC6F7996FFD802C9185ACE9 /* Pods_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DDC3559D504F0DD8C6AF112 /* Pods_QuickParkTests.framework */; };
+		45F415CA60F4BA0B17089CD9 /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5880938E1A85C65F39D4357D /* Pods_QuickPark.framework */; };
+		7039AA4B784E5CDB5D3FB60B /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1752D8573D8E403E8FF15076 /* Pods_QuickPark_QuickParkUITests.framework */; };
 		959FE47F27BC844E00D7E40B /* MyParkingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FE47E27BC844E00D7E40B /* MyParkingsVC.swift */; };
 		959FE48127BC84BA00D7E40B /* PastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FE48027BC84BA00D7E40B /* PastTableViewCell.swift */; };
 		959FE48327BC84FB00D7E40B /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FE48227BC84FB00D7E40B /* QRCodeVC.swift */; };
 		959FE48527BC852B00D7E40B /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FE48427BC852B00D7E40B /* Reservation.swift */; };
 		959FE48727BC858200D7E40B /* ReservationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959FE48627BC858200D7E40B /* ReservationCell.swift */; };
 		95D377CC27B5CE6C00BC0BC0 /* Areas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D377CB27B5CE6C00BC0BC0 /* Areas.swift */; };
-		ED08CCF069A3B5E6753C5BDD /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */; };
+		ED813DB85B773F5EBFEAF110 /* Pods_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827FF5BA81267E007E2C16F3 /* Pods_QuickParkTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,22 +69,22 @@
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		04E1BEC427B3D81C008AB775 /* TimerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerVC.swift; sourceTree = "<group>"; };
 		04F2CA4627AAA90500C636DD /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
+		12839FE7EEA0E5866DAB42C7 /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkUITests.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		1752D8573D8E403E8FF15076 /* Pods_QuickPark_QuickParkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark_QuickParkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
-		4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4DDC3559D504F0DD8C6AF112 /* Pods_QuickParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		88D157D820121CDA58F7CDAB /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkUITests.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		8CF14C3F2E16B57B46117C4D /* Pods-QuickParkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickParkTests.release.xcconfig"; path = "Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests.release.xcconfig"; sourceTree = "<group>"; };
-		8E12F9684092C5EB5D532BA4 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkUITests.release.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests.release.xcconfig"; sourceTree = "<group>"; };
+		226352CBB04AF46872349C6B /* Pods-QuickPark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.debug.xcconfig"; sourceTree = "<group>"; };
+		369AB99C1A1BFD053062E794 /* Pods-QuickParkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickParkTests.release.xcconfig"; path = "Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests.release.xcconfig"; sourceTree = "<group>"; };
+		5880938E1A85C65F39D4357D /* Pods_QuickPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8008BB79E3E7C031620699E8 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkUITests.release.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests.release.xcconfig"; sourceTree = "<group>"; };
+		827FF5BA81267E007E2C16F3 /* Pods_QuickParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89734724619E1D3671696CBB /* Pods-QuickParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickParkTests.debug.xcconfig"; path = "Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		959FE47E27BC844E00D7E40B /* MyParkingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyParkingsVC.swift; sourceTree = "<group>"; };
 		959FE48027BC84BA00D7E40B /* PastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastTableViewCell.swift; sourceTree = "<group>"; };
 		959FE48227BC84FB00D7E40B /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		959FE48427BC852B00D7E40B /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		959FE48627BC858200D7E40B /* ReservationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationCell.swift; sourceTree = "<group>"; };
 		95D377CB27B5CE6C00BC0BC0 /* Areas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Areas.swift; sourceTree = "<group>"; };
-		C4D573FE1E7BF3A931F98B73 /* Pods-QuickPark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.debug.xcconfig"; sourceTree = "<group>"; };
-		DEE26C2A1663C1B2E299610A /* Pods-QuickParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickParkTests.debug.xcconfig"; path = "Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark_QuickParkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6E9150053080A70B17C8BE5 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */,
+				45F415CA60F4BA0B17089CD9 /* Pods_QuickPark.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EC6F7996FFD802C9185ACE9 /* Pods_QuickParkTests.framework in Frameworks */,
+				ED813DB85B773F5EBFEAF110 /* Pods_QuickParkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED08CCF069A3B5E6753C5BDD /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */,
+				7039AA4B784E5CDB5D3FB60B /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,12 +118,12 @@
 		00C8239F40F3D7AE0B53AAD1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C4D573FE1E7BF3A931F98B73 /* Pods-QuickPark.debug.xcconfig */,
-				3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */,
-				88D157D820121CDA58F7CDAB /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */,
-				8E12F9684092C5EB5D532BA4 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */,
-				DEE26C2A1663C1B2E299610A /* Pods-QuickParkTests.debug.xcconfig */,
-				8CF14C3F2E16B57B46117C4D /* Pods-QuickParkTests.release.xcconfig */,
+				226352CBB04AF46872349C6B /* Pods-QuickPark.debug.xcconfig */,
+				E6E9150053080A70B17C8BE5 /* Pods-QuickPark.release.xcconfig */,
+				12839FE7EEA0E5866DAB42C7 /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */,
+				8008BB79E3E7C031620699E8 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */,
+				89734724619E1D3671696CBB /* Pods-QuickParkTests.debug.xcconfig */,
+				369AB99C1A1BFD053062E794 /* Pods-QuickParkTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -136,7 +136,7 @@
 				04DD46BA27A4621300342200 /* QuickParkUITests */,
 				04DD469827A4621200342200 /* Products */,
 				00C8239F40F3D7AE0B53AAD1 /* Pods */,
-				83636CA8ABD1D981848DFD55 /* Frameworks */,
+				CB1A40D7179B77188E474473 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -192,12 +192,12 @@
 			path = QuickParkUITests;
 			sourceTree = "<group>";
 		};
-		83636CA8ABD1D981848DFD55 /* Frameworks */ = {
+		CB1A40D7179B77188E474473 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */,
-				F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */,
-				4DDC3559D504F0DD8C6AF112 /* Pods_QuickParkTests.framework */,
+				5880938E1A85C65F39D4357D /* Pods_QuickPark.framework */,
+				1752D8573D8E403E8FF15076 /* Pods_QuickPark_QuickParkUITests.framework */,
+				827FF5BA81267E007E2C16F3 /* Pods_QuickParkTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -209,11 +209,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04DD46C127A4621300342200 /* Build configuration list for PBXNativeTarget "QuickPark" */;
 			buildPhases = (
-				442942EC73783FFA660A3816 /* [CP] Check Pods Manifest.lock */,
+				A502D69F0424CB8F0AA52361 /* [CP] Check Pods Manifest.lock */,
 				04DD469327A4621200342200 /* Sources */,
 				04DD469427A4621200342200 /* Frameworks */,
 				04DD469527A4621200342200 /* Resources */,
-				5152C09513D80E46E504DE42 /* [CP] Embed Pods Frameworks */,
+				58D9C8DFE6AE28D32ACCAA24 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -228,11 +228,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04DD46C427A4621300342200 /* Build configuration list for PBXNativeTarget "QuickParkTests" */;
 			buildPhases = (
-				06C0341019FE8373DCCA59D3 /* [CP] Check Pods Manifest.lock */,
+				1B4B67E34F15E6AC843CE27A /* [CP] Check Pods Manifest.lock */,
 				04DD46A927A4621300342200 /* Sources */,
 				04DD46AA27A4621300342200 /* Frameworks */,
 				04DD46AB27A4621300342200 /* Resources */,
-				EC1CFE0029E079532DCB168C /* [CP] Embed Pods Frameworks */,
+				2C4427D66F32069FCE93EBC1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -248,11 +248,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04DD46C727A4621300342200 /* Build configuration list for PBXNativeTarget "QuickParkUITests" */;
 			buildPhases = (
-				59CF1317ACE729DB8B6A3A04 /* [CP] Check Pods Manifest.lock */,
+				25251C50825C7CB9927688D4 /* [CP] Check Pods Manifest.lock */,
 				04DD46B327A4621300342200 /* Sources */,
 				04DD46B427A4621300342200 /* Frameworks */,
 				04DD46B527A4621300342200 /* Resources */,
-				7A87A2110801A6C21C310014 /* [CP] Embed Pods Frameworks */,
+				6360D7F171E3202F4AB6C07F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -338,7 +338,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		06C0341019FE8373DCCA59D3 /* [CP] Check Pods Manifest.lock */ = {
+		1B4B67E34F15E6AC843CE27A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -360,46 +360,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		442942EC73783FFA660A3816 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-QuickPark-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5152C09513D80E46E504DE42 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		59CF1317ACE729DB8B6A3A04 /* [CP] Check Pods Manifest.lock */ = {
+		25251C50825C7CB9927688D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -421,7 +382,41 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7A87A2110801A6C21C310014 /* [CP] Embed Pods Frameworks */ = {
+		2C4427D66F32069FCE93EBC1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58D9C8DFE6AE28D32ACCAA24 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6360D7F171E3202F4AB6C07F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -438,21 +433,26 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EC1CFE0029E079532DCB168C /* [CP] Embed Pods Frameworks */ = {
+		A502D69F0424CB8F0AA52361 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QuickPark-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -648,7 +648,7 @@
 		};
 		04DD46C227A4621300342200 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4D573FE1E7BF3A931F98B73 /* Pods-QuickPark.debug.xcconfig */;
+			baseConfigurationReference = 226352CBB04AF46872349C6B /* Pods-QuickPark.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -677,7 +677,7 @@
 		};
 		04DD46C327A4621300342200 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */;
+			baseConfigurationReference = E6E9150053080A70B17C8BE5 /* Pods-QuickPark.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -706,7 +706,7 @@
 		};
 		04DD46C527A4621300342200 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEE26C2A1663C1B2E299610A /* Pods-QuickParkTests.debug.xcconfig */;
+			baseConfigurationReference = 89734724619E1D3671696CBB /* Pods-QuickParkTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -727,7 +727,7 @@
 		};
 		04DD46C627A4621300342200 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8CF14C3F2E16B57B46117C4D /* Pods-QuickParkTests.release.xcconfig */;
+			baseConfigurationReference = 369AB99C1A1BFD053062E794 /* Pods-QuickParkTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -748,7 +748,7 @@
 		};
 		04DD46C827A4621300342200 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88D157D820121CDA58F7CDAB /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */;
+			baseConfigurationReference = 12839FE7EEA0E5866DAB42C7 /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -767,7 +767,7 @@
 		};
 		04DD46C927A4621300342200 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E12F9684092C5EB5D532BA4 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */;
+			baseConfigurationReference = 8008BB79E3E7C031620699E8 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

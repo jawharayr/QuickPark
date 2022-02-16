@@ -7,8 +7,14 @@
 
 import UIKit
 
-class ConfirmAndPay: UIViewController {
+class ConfirmAndPay: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var StartTimeTxt: UITextField!
+    @IBOutlet weak var EndTimeTxt: UITextField!
+    
+    let StartTimePicker = UIDatePicker()
+    let EndTimePicker = UIDatePicker()
+    
     @IBOutlet weak var StartWithView: UIView!
     
     @IBAction func WhenDoneClicked(_ sender: Any) {
@@ -48,10 +54,95 @@ class ConfirmAndPay: UIViewController {
         PriceView.layer.shadowOffset = .zero
        PriceView.layer.shadowRadius = 10
         DoneButton.layer.cornerRadius = 20
+        
+        //time picker
+                createTimePicker()
       
     }
     
+    
+    func createTimePicker() {
+            
+            StartTimeTxt.textAlignment = .center
+            EndTimeTxt.textAlignment = .center
+            
+            //tool bar
+            let toolbar = UIToolbar()
+            toolbar.sizeToFit()
+            
+            //bar button(
+           let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+           toolbar.setItems([doneBtn], animated: true)
+        
+            //assign tool bar
+            StartTimeTxt.inputAccessoryView = toolbar
+            EndTimeTxt.inputAccessoryView = toolbar
+            
+            // assign time picker to the txt field
+            StartTimeTxt.inputView = StartTimePicker
+            EndTimeTxt.inputView = EndTimePicker
+            
+            //time picker mode
+           /* StartTimePicker.datePickerMode = .time
+            EndTimePicker.datePickerMode = .time*/
+        
+            
+        let calendar = Calendar.current
+                //First range
+                let startTime = Date()
+                let startRangeEnd = calendar.date(byAdding: DateComponents(minute: 30), to: startTime)!
+                let startRange = startTime...startRangeEnd
+                //Second range
+                let endTime = calendar.date(byAdding: DateComponents(minute: 1), to: startRangeEnd)!
+                let endRangeEnd = calendar.startOfDay(for: calendar.date(byAdding: DateComponents(day: 1), to: startTime)!)
+                let endRange = endTime...endRangeEnd
+                StartTimePicker.date = startTime
+                StartTimePicker.minimumDate = startTime
+                StartTimePicker.maximumDate = startRangeEnd
+                EndTimePicker.date = endTime
+                EndTimePicker.minimumDate = endTime
+                EndTimePicker.maximumDate = endRangeEnd
+                     if #available(iOS 13.4, *)  {
+                           StartTimePicker.preferredDatePickerStyle = .wheels
+                           EndTimePicker.preferredDatePickerStyle = .wheels
+                       }
+        
+        
+        }
 
+    @objc func donePressed(){
+           // formatter
+           let formatter = DateFormatter()
+           formatter.dateStyle = .none
+           formatter.timeStyle = .short
+           
+           StartTimeTxt.text = formatter.string(from: StartTimePicker.date)
+           self.view.endEditing(true)
+           
+           EndTimeTxt.text = formatter.string(from: EndTimePicker.date)
+           self.view.endEditing(true)
+        
+        let starttimecal = StartTimeTxt.text!
+        let endtimecal = EndTimeTxt.text!
+        print(starttimecal)
+        print(endtimecal)
+        
+       }
+
+    
+    
+    /*private func calculateIntialPrice() -> Double {
+        let pricePerHour = 15.0
+        let startTime = 0
+        let endTime = 0
+        
+        let intialPrice : Double = Double(( endTime -  startTime )) * pricePerHour
+        
+        return intialPrice
+        
+    }*/
+    
+    
     /*
     // MARK: - Navigation
 
