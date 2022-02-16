@@ -24,6 +24,7 @@
 		1F6B27DF27B4FE5E0086DD5E /* AdminTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B27DE27B4FE5E0086DD5E /* AdminTabBarVC.swift */; };
 		1F82E70227A847F600E08952 /* AddAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F82E70127A847F600E08952 /* AddAreaViewController.swift */; };
 		1FBF08D627A9AE660034BABE /* ParkingAreas.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FBF08D427A9AE660034BABE /* ParkingAreas.xib */; };
+		1FF72DE927BD9B6F0021BFD8 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF72DE827BD9B6F0021BFD8 /* FirebaseManager.swift */; };
 		5D41BD200CE3093AA5049F08 /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1BC3D1B0C964571C89D1DDA /* Pods_QuickPark.framework */; };
 		928C5A307610FD0CB8A710A3 /* Pods_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 943916B23B0BF5691FFD8B59 /* Pods_QuickParkTests.framework */; };
 		9B05612C9EF783F68E81E786 /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD403AFAF1D658B09874A7AE /* Pods_QuickPark_QuickParkUITests.framework */; };
@@ -66,6 +67,7 @@
 		1F6B27DE27B4FE5E0086DD5E /* AdminTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTabBarVC.swift; sourceTree = "<group>"; };
 		1F82E70127A847F600E08952 /* AddAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAreaViewController.swift; sourceTree = "<group>"; };
 		1FBF08D427A9AE660034BABE /* ParkingAreas.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkingAreas.xib; sourceTree = "<group>"; };
+		1FF72DE827BD9B6F0021BFD8 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		943916B23B0BF5691FFD8B59 /* Pods_QuickParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1BC3D1B0C964571C89D1DDA /* Pods_QuickPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB937EEEC0759494F4BB12B7 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				1F6B27DE27B4FE5E0086DD5E /* AdminTabBarVC.swift */,
 				1F120E7027B7CE1D00D52DD2 /* AdminHomeListVC.swift */,
 				1F120E7427B7D76600D52DD2 /* CustomCell.swift */,
+				1FF72DE827BD9B6F0021BFD8 /* FirebaseManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				1F120E7527B7D76600D52DD2 /* CustomCell.swift in Sources */,
 				1F120E7127B7CE1D00D52DD2 /* AdminHomeListVC.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
+				1FF72DE927BD9B6F0021BFD8 /* FirebaseManager.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 				1F82E70227A847F600E08952 /* AddAreaViewController.swift in Sources */,
 				1F6B27DF27B4FE5E0086DD5E /* AdminTabBarVC.swift in Sources */,

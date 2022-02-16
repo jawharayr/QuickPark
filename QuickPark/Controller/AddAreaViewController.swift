@@ -35,6 +35,8 @@ class AddAreaViewController: UIViewController {
     var spotNo: Int = 0
     var areaLat: Optional<Double> = 0.0
     var areaLong: Optional<Double> = 0.0
+    var imageToUpload : UIImage? = nil
+
    
    
     
@@ -69,27 +71,50 @@ class AddAreaViewController: UIViewController {
     
     @IBAction func SaveAreaButton(_ sender: UIButton) {
         print("SaveAreaButton is pressed")
-        fillFields()
-        if areaName == "" || spotNo == 0
+        
+        self.resetLabels()
+        
+        let emptyCheck = self.emptyCheck()
+        
+        if emptyCheck == true {
             
-        { print("empty fields")
+            let fieldsOk = self.validateFields()
             
+            if fieldsOk == true {
+            areaName = AreaNameTextField.text!
+            spotNo = Int(SpotNoTextField.text!) ?? 0
+                areaLat = areaCoordinate?.latitude ?? 0.0
+                areaLong = areaCoordinate?.longitude ?? 0.0
+            
+            
+            if let imageToUpload = self.imageToUpload {
+                //Uplaoding image and save imageUrl into database:
+                self.startActivityIndicator(withText: "Uploading Data")
+                FirebaseManager.shared.uploadImageToFirebaseStorage(imageName:"\(String(describing: areaLat))_\(String(describing: areaLong))_picture", imageToUpload: imageToUpload ) { (url, error) in
+                    self.stopActivityIndicator()
+                    if error == nil{
+                        let object: [String : Any] = ["areaname": self.areaName as Any ,"spotNo": self.spotNo, "loactionLat": "\(self.areaLat ?? 0.0)", "locationLong": "\(self.areaLong ?? 0.0)", "areaImage" : url]
+                        self.database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
+                            self.navigationController?.popViewController(animated: true)
+                        }                    }else{
+                       self.showAlert(title: "Photo upload failed", message: "photo uploading failed, please try again")
+                    }
+                }
+            }else {
+                let object: [String : Any] = ["areaname": areaName as Any ,"spotNo": spotNo, "loactionLat": areaLat ?? 0.0, "locationLong": areaLong ?? 0.0, "areaImage" : ""]
+                database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
             
         }
         
-        let object: [String : Any] = ["areaname": areaName as Any ,"spotNo": spotNo, "loactionLat": areaLat, "locationLong": areaLong]
-        database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object)
-     
+        }
         
         
     }
     
-    func fillFields () { //Filling the atrribute from the user input
-        areaName = AreaNameTextField.text!
-        spotNo = Int(SpotNoTextField.text!) ?? 0
-        areaLat = areaCoordinate?.latitude
-        areaLong = areaCoordinate?.longitude
-    }
+   
     
     func resetLabels() {
         self.lblAreaNameError.isHidden = true
@@ -123,12 +148,12 @@ class AddAreaViewController: UIViewController {
             
             if !areaName.isString {
                 self.lblAreaNameError.isHidden = false
-                self.lblAreaNameError.text =  "Area name should only containg string and numbers"
+                self.lblAreaNameError.text =  "Area name should only contain string and numbers"
                 return false
             }
             if !spotNumber.isNumeric {
                 self.lblParkingSpotError.isHidden = false
-                self.lblParkingSpotError.text =  "Parking spot number should only contaings digits"
+                self.lblParkingSpotError.text =  "Parking spot number should only contain digits"
                 return false
             }
             
@@ -136,7 +161,7 @@ class AddAreaViewController: UIViewController {
         
         if areaCoordinate == nil {
             self.lblEmptyCheckError.isHidden = false
-            self.lblEmptyCheckError.text = "press and hold for a sec on the map to select parking location"
+            self.lblEmptyCheckError.text = "Long tap on the map to select the location"
             return false
         }
         
@@ -180,39 +205,22 @@ class AddAreaViewController: UIViewController {
     }
     
     
-    
-    
-    func uploadFile(fileUrl: URL) { //uploading images to firebase storage
-      do {
-        // Create file name
-        let metaData = StorageMetadata()
-        let fileExtension = fileUrl.pathExtension
-          fillFields()
-        let fileName = ("AreasImages/"+areaName+".\(fileExtension)")
-
-        let storageReference = Storage.storage().reference().child(fileName)
-          
-        let currentUploadTask = storageReference.putFile(from: fileUrl, metadata: metaData) { (storageMetaData,error) in
-          if let error = error {
-            print("Upload error: \(error.localizedDescription)")
-            return
-          }
-                                                                                    
-          // Show UIAlertController here
-          print("Image file: \(fileName) is uploaded! View it at Firebase console!")
-                                                                                    
-          storageReference.downloadURL { (url, error) in
-            if let error = error  {
-              print("Error on getting download url: \(error.localizedDescription)")
-              return
-            }
-            print("Download url of \(fileName) is \(url!.absoluteString)")
-          }
+    func startActivityIndicator(withText message : String? = "") {
+        DispatchQueue.main.async {
+            self.activityIndicatorBG.isHidden = false
+            self.activityIndicatorlabel.text = message
+            self.activityIndicator.startAnimating()
         }
-      } catch {
-        print("Error on extracting data from url: \(error.localizedDescription)")
-      }
+        
     }
+    
+    func stopActivityIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicatorBG.isHidden = true
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
     
     
 }
@@ -251,17 +259,17 @@ func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, callou
 
 //imp the ImagePickerController
 extension AddAreaViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    // Check for the media type
-    let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! CFString
-    if mediaType == kUTTypeImage {
-      let imageURL = info[UIImagePickerController.InfoKey.imageURL] as! URL
-      // Handle your logic here, e.g. uploading file to Cloud Storage for Firebase
-        uploadFile(fileUrl: imageURL)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Check for the media type
+        let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! CFString
+        if mediaType == kUTTypeImage {
+            imageToUpload = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            // Handle your logic here, e.g. uploading file to Cloud Storage for Firebase
+            // uploadFile(fileUrl: imageURL) //upload before cliking save btn
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
     }
-
-    picker.dismiss(animated: true, completion: nil)
-  }
 }
 //end imagePicker extension
 
@@ -279,4 +287,29 @@ extension String {
         
         return Set(self).isSubset(of: str)
     }
+}
+
+extension UIViewController {
+    
+    
+    func showAlert(title: String, message: String)
+    {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    
+    func showErrorAlert()
+    {
+        let alertController = UIAlertController(title: "Sorry", message: "Something went wrong, please try again", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    
 }
