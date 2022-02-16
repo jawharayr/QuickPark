@@ -11,6 +11,7 @@ import FirebaseStorage
 import Firebase
 import SDWebImage
 
+
 class AdminHomeListVC: UIViewController {
 
     var parkings = [Area]()
@@ -18,14 +19,11 @@ class AdminHomeListVC: UIViewController {
     @IBOutlet weak var ParkingView: UIView!
     
     @IBOutlet weak var ParkingsViews: UITableView!
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         ParkingsViews?.delegate = self
         ParkingsViews?.dataSource = self
-        //making table view look good
         ParkingsViews?.separatorStyle = .none
         ParkingsViews?.showsVerticalScrollIndicator = false
         
@@ -62,7 +60,6 @@ class AdminHomeListVC: UIViewController {
             let parking = parkings[indexPath.row]
             cell.Logos.sd_setImage(with: URL(string: parking.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
             cell.Label.text = parking.areaname
-        
 
             return cell
         }

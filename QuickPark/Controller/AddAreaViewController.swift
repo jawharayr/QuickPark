@@ -60,6 +60,29 @@ class AddAreaViewController: UIViewController {
         SpotNoTextField.layer.shadowColor = UIColor.lightGray.cgColor
         SpotNoTextField.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         SpotNoTextField.layer.shadowOpacity = 1.0
+        
+        
+        activityIndicatorBG = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        activityIndicatorBG.backgroundColor = UIColor.systemGray4
+        activityIndicatorBG.layer.cornerRadius = 8.0
+        activityIndicatorBG.layer.masksToBounds = true
+        activityIndicatorBG.center = self.view.center
+        self.activityIndicatorBG.isHidden = true
+        
+        
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 25, y: 16, width: 50.0, height: 50.0))
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicatorBG.addSubview(activityIndicator)
+        
+        activityIndicatorlabel = UILabel(frame: CGRect(x: 2, y: 71, width: 96, height: 21))
+        activityIndicatorlabel.textColor = .label
+        activityIndicatorlabel.text = "Loading..."
+        activityIndicatorlabel.font = UIFont(name: "Helvetica", size: 12)
+        activityIndicatorlabel.textAlignment = .center
+        activityIndicatorBG.addSubview(activityIndicatorlabel)
+        
+        self.view.addSubview(activityIndicatorBG)
        
         
     }
