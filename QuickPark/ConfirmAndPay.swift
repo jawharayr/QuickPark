@@ -12,6 +12,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var StartTimeTxt: UITextField!
     @IBOutlet weak var EndTimeTxt: UITextField!
     
+    @IBOutlet weak var TotalPrice: UILabel!
     let StartTimePicker = UIDatePicker()
     let EndTimePicker = UIDatePicker()
     
@@ -112,6 +113,14 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
 
     @objc func donePressed(){
            // formatter
+        let calendar = Calendar.current
+        let startTime = Date()
+        let startRangeEnd = calendar.date(byAdding: DateComponents(minute: 30), to: startTime)!
+        let startRange = startTime...startRangeEnd
+        //Second range
+        let endTime = calendar.date(byAdding: DateComponents(minute: 1), to: startRangeEnd)!
+        let endRangeEnd = calendar.startOfDay(for: calendar.date(byAdding: DateComponents(day: 1), to: startTime)!)
+        let endRange = endTime...endRangeEnd
            let formatter = DateFormatter()
            formatter.dateStyle = .none
            formatter.timeStyle = .short
@@ -121,11 +130,36 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
            
            EndTimeTxt.text = formatter.string(from: EndTimePicker.date)
            self.view.endEditing(true)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "h:mm a"
+        let start = formatter.string(from: StartTimePicker.date)
+        let end = formatter.string(from: EndTimePicker.date)
+        print(start, end)
+
+        // Format and print in 12h format
+        let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: StartTimePicker.date, to: EndTimePicker.date)
+        print(hourAndMinutes)
+
+        // Calculate price, the formula is just an example
+        let price = hourAndMinutes.hour! * 15 + hourAndMinutes.minute! * 15 / 60
+        TotalPrice.text = String(price) + "SAR"
         
-        let starttimecal = StartTimeTxt.text!
+        /*let starttimecal = StartTimeTxt.text!
         let endtimecal = EndTimeTxt.text!
-        print(starttimecal)
-        print(endtimecal)
+        
+        let StartTo24 = starttimecal
+        let EndTo24 = endtimecal
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+
+        let Stime = dateFormatter.date(from: StartTo24)
+        dateFormatter.dateFormat = "HH:mm"
+        //let STime24 = dateFormatter.string(from: Stime!)
+        print("24 hour formatted Date:",Stime)
+        let ETime = dateFormatter.date(from: EndTo24)
+        dateFormatter.dateFormat = "HH:mm"
+        //let ETime24 = dateFormatter.string(from: ETime!)
+        print("24 hour formatted Date:",ETime)*/
         
        }
 

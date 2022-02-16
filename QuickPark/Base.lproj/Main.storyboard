@@ -870,7 +870,7 @@
                                             <constraint firstAttribute="height" constant="60" id="cr2-i2-by8"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
-                                        <state key="normal" title="Confirm and Pay">
+                                        <state key="normal" title="Confirm">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -1020,6 +1020,7 @@
                         <outlet property="PriceView" destination="fD7-KH-qYK" id="c6k-Y4-dsg"/>
                         <outlet property="StartTimeTxt" destination="ugO-PX-kLh" id="txI-al-KKO"/>
                         <outlet property="StartWithView" destination="hTX-8o-G58" id="yIM-sK-cKd"/>
+                        <outlet property="TotalPrice" destination="vW7-TN-BjA" id="XUg-3R-5TE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMJ-At-eRJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
