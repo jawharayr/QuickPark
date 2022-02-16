@@ -14,8 +14,17 @@ import MobileCoreServices
 
 
 class AddAreaViewController: UIViewController {
+    
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var activityIndicatorBG: UIView = UIView()
+    var activityIndicatorlabel : UILabel = UILabel()
+    
     private var locationManager = CLLocationManager()
     private let database = Database.database().reference()
+    
+    @IBOutlet weak var lblAreaNameError : UILabel!
+    @IBOutlet weak var lblParkingSpotError : UILabel!
+    @IBOutlet weak var lblEmptyCheckError : UILabel!
     
     @IBOutlet weak var AreaNameTextField: UITextField!
     @IBOutlet weak var SpotNoTextField: UITextField!
@@ -82,8 +91,57 @@ class AddAreaViewController: UIViewController {
         areaLong = areaCoordinate?.longitude
     }
     
-    func validateFields () { //Filling the atrribute from the user input
+    func resetLabels() {
+        self.lblAreaNameError.isHidden = true
+        self.lblAreaNameError.text = ""
+        self.lblParkingSpotError.isHidden = true
+        self.lblParkingSpotError.text = ""
+        self.lblEmptyCheckError.isHidden = true
+        self.lblEmptyCheckError.text = ""
         
+    }
+    
+    
+    func emptyCheck () -> Bool {
+        if AreaNameTextField.text?.replacingOccurrences(of: " ", with: "") == "" {
+            self.lblEmptyCheckError.isHidden = false
+            self.lblEmptyCheckError.text =  "Area name should not be empty"
+            return false
+        }else if SpotNoTextField.text?.replacingOccurrences(of: " ", with: "") == "" {
+            self.lblEmptyCheckError.isHidden = false
+            self.lblEmptyCheckError.text =  "Parking spot nuumber should not be empty"
+            return false
+        }
+        self.lblEmptyCheckError.isHidden = true
+        return true
+    }
+    
+    
+    func validateFields () -> Bool { //Filling the atrribute from the user input
+        
+        if let areaName = self.AreaNameTextField.text, let spotNumber = self.SpotNoTextField.text {
+            
+            if !areaName.isString {
+                self.lblAreaNameError.isHidden = false
+                self.lblAreaNameError.text =  "Area name should only containg string and numbers"
+                return false
+            }
+            if !spotNumber.isNumeric {
+                self.lblParkingSpotError.isHidden = false
+                self.lblParkingSpotError.text =  "Parking spot number should only contaings digits"
+                return false
+            }
+            
+        }
+        
+        if areaCoordinate == nil {
+            self.lblEmptyCheckError.isHidden = false
+            self.lblEmptyCheckError.text = "press and hold for a sec on the map to select parking location"
+            return false
+        }
+        
+        
+        return true
     }
     
     @IBAction func chooseImageButton() {
@@ -206,3 +264,19 @@ extension AddAreaViewController: UIImagePickerControllerDelegate, UINavigationCo
   }
 }
 //end imagePicker extension
+
+extension String {
+    
+    var isNumeric: Bool {
+        guard self.count > 0 else { return false }
+        let nums: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        return Set(self).isSubset(of: nums)
+    }
+    
+    var isString: Bool {
+        guard self.count > 0 else { return false }
+        let str: Set<Character> = [" ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        
+        return Set(self).isSubset(of: str)
+    }
+}
