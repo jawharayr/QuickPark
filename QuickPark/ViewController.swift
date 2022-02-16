@@ -7,15 +7,23 @@
 
 import UIKit
 import FirebaseDatabase
+import Firebase
+import FirebaseStorage
+//import FirebaseStorage
 import CoreLocation
+import Kingfisher
+
 
 class ViewController: UIViewController{
   //  let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
-   
+
+    
+
     var parkings = [Area]()
        
     var locationManager:CLLocationManager?
     var currentLocation:CLLocation?
+    let storageRef = Storage.storage().reference()
     
     @IBOutlet weak var ParkingView: UIView!
     @IBOutlet weak var ParkingsViews: UITableView!
@@ -28,6 +36,7 @@ class ViewController: UIViewController{
         ParkingsViews?.separatorStyle = .none
         ParkingsViews?.showsVerticalScrollIndicator = false
         requestLocationPermission()
+        
 //        getParkings()
 
     }
@@ -44,14 +53,14 @@ class ViewController: UIViewController{
             print(snapshots.childrenCount)
         
             parkings.removeAll()
-            for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
+            for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
                 let dictionary = snapshot.value as? NSDictionary
                 var area = Area(areaname: dictionary?["areaname"] as? String ?? "",
                                 loactionLat: "\(dictionary?["loactionLat"] as? Double ?? 0)",
                                 locationLong: "\(dictionary?["locationLong"] as? Double ?? 0)",
                                 spotNo: "", logo: "",distance: 0)
                 
-
+                
                 let location = CLLocation(latitude: Double(area.loactionLat) ?? 0,
                                               longitude: Double(area.locationLong) ?? 0)
                 if let currentLocation = currentLocation{
@@ -59,8 +68,8 @@ class ViewController: UIViewController{
                     let distanceString = String(format: "%.2f", distance)
                     let newDistance = Double(distanceString) ?? 0
                     area.distance = newDistance
-                    
                 }
+                
                 parkings.append(area)
             }
             parkings = parkings.sorted(by: { $0.distance < $1.distance })
@@ -108,13 +117,28 @@ extension ViewController: CLLocationManagerDelegate{
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
             let parking = parkings[indexPath.row]
-            cell.Logos.image = UIImage(named: "King Saud University")
+            
+            if !parking.imageURL.didLoad{
+                let child = storageRef.child("AreasImages/\(parking.areaname).png")
+                child.downloadURL { url, error in
+                    print("Did fetch \("AreasImages/\(parking.areaname).png") url: ",url, ", with error: ",error?.localizedDescription)
+                    self.parkings[indexPath.row].imageURL = ImageURL(url: url, didLoad: true)
+                    tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+            }else{
+                cell.Logos.kf.setImage(with: parking.imageURL.url, placeholder: nil)
+                //
+            }
+            
+            
+//            cell.Logos.kf.setImage(with: parking.imageURL, placeholder: UIImage(named: "King Saud University"))
             cell.Label.text = parking.areaname
             //cell.ParkingView.layer.cornerRadius = 20 //cell.ParkingView.frame.height / 2
             //cell.Logos.layer.cornerRadius = 20 //cell.Logos.frame.height / 2
            // let borderColor: UIColor =  (parkings[indexPath.row] == " ") ? .red : UIColor(red: 0/225, green: 144/255, blue: 205/255, alpha: 1) //
             (parking.areaname == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
             cell.Km.text = "\(parking.distance) km"
+            
 
             return cell
         }
