@@ -12,7 +12,7 @@
         <!--Tab BarVC-->
         <scene sceneID="3vs-G4-Yv4">
             <objects>
-                <tabBarController id="yLN-th-xVz" customClass="TabBarVC" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="sbi_HomeTabbar" id="yLN-th-xVz" customClass="TabBarVC" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WtX-gO-ggH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
