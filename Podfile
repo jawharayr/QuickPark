@@ -27,5 +27,6 @@ target 'QuickPark' do
   
   #Other Pods
   pod 'CodableFirebase'
+  pod 'SVProgressHUD'
   
 end
