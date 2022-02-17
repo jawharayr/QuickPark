@@ -7,6 +7,10 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
+import Firebase
+import FirebaseDatabase
+import FirebaseFirestore
 
 class ProfileViewController: UIViewController {
     
