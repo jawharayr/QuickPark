@@ -8,7 +8,8 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    public static var sceneDelegate = UIApplication.shared.delegate as? SceneDelegate
+    
+    public static let sceneDelegate = UIApplication.shared.connectedScenes.first!.delegate as! SceneDelegate
     var window: UIWindow?
 
 
@@ -18,6 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window = self.window
         self.setUpHome()
     }
 
@@ -55,8 +58,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension SceneDelegate {
      
     func setUpHome () {
+        print ("FBAuth.currentUser = " , FBAuth.currentUser)
         if FBAuth.currentUser != nil {
-            let htb = SBSupport.viewController(sbi: "sbi_HomeTabbar", inStoryBoard: "Main")
+            let htb = SBSupport.viewController(sbi: "sbi_HomeTabbar", inStoryBoard: "Main") 
             self.setRootViewController(htb)
         } else {
             let lvc = SBSupport.viewController(sbi: "sbi_AuthNavigationViewController", inStoryBoard: "Auth")
