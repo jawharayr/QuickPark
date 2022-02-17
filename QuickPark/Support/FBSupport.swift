@@ -61,6 +61,13 @@ struct FBAuth {
             complition(false, error)
         }
     }
+    
+    static func resetPasword(email:String, complition: @escaping( Error?) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            complition(error)
+        }
+    }
+    
 }
 
 //MARK:

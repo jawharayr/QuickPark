@@ -21,5 +21,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location permission needed to show you nearest parking to you.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location permission needed to show you nearest parking to you.</string>
 </dict>
 </plist>

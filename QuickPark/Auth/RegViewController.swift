@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
+import SVProgressHUD
 class RegViewController: UIViewController {
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -160,8 +161,14 @@ class RegViewController: UIViewController {
         let pass = passOfRegField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let confirmPass = confirmPas.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
+        SVProgressHUD.show()
         FBAuth.register(email: email, password: pass) { user, error in
-            SceneDelegate.sceneDelegate.setUpHome()
+            if let e = error, user == nil {
+                SVProgressHUD.showError(withStatus: e.localizedDescription)
+            } else {
+                SVProgressHUD.showSuccess(withStatus: "Registered Successfully.")
+                SceneDelegate.sceneDelegate.setUpHome()
+            }
         }
         
         let database = Firestore.firestore()
@@ -288,7 +295,6 @@ extension RegViewController {
         if password2.isEmpty {
             confirmLabel.isHidden = true
         }
-        
     }
     
 }
