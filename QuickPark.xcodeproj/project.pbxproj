@@ -18,7 +18,7 @@
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		22035F9E27B6AD6800D1A3B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */; };
-		22035FA027B6B24E00D1A3B5 /* resetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035F9F27B6B24E00D1A3B5 /* resetPassViewController.swift */; };
+		22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035F9F27B6B24E00D1A3B5 /* TVCResetPassword.swift */; };
 		22035FA227BB724600D1A3B5 /* FBSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035FA127BB724600D1A3B5 /* FBSupport.swift */; };
 		22035FA727BB74AD00D1A3B5 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22035FA627BB74AD00D1A3B5 /* Auth.storyboard */; };
 		22035FA927BB75B500D1A3B5 /* SBSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035FA827BB75B500D1A3B5 /* SBSupport.swift */; };
@@ -77,7 +77,7 @@
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		22035F9F27B6B24E00D1A3B5 /* resetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetPassViewController.swift; sourceTree = "<group>"; };
+		22035F9F27B6B24E00D1A3B5 /* TVCResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCResetPassword.swift; sourceTree = "<group>"; };
 		22035FA127BB724600D1A3B5 /* FBSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBSupport.swift; sourceTree = "<group>"; };
 		22035FA627BB74AD00D1A3B5 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		22035FA827BB75B500D1A3B5 /* SBSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBSupport.swift; sourceTree = "<group>"; };
@@ -192,6 +192,7 @@
 				226C1D0827BE85A800D11E24 /* ReservationCell.swift */,
 				226C1D0A27BE85A800D11E24 /* TabBarVC.swift */,
 				226C1D0D27BE85A800D11E24 /* TimerVC.swift */,
+				226C1D0327BE682400D11E24 /* VCMore.swift */,
 				22035FA327BB726000D1A3B5 /* Resources */,
 				22035FA527BB731100D1A3B5 /* AppProtocols */,
 				22035FA427BB728300D1A3B5 /* Support */,
@@ -221,11 +222,11 @@
 		22035FA327BB726000D1A3B5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				226C1D1D27BE85B700D11E24 /* Main.storyboard */,
 				22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */,
-				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
 				04DD46A827A4621300342200 /* Info.plist */,
 				1F342B1427A56D6A00493084 /* GoogleService-Info.plist */,
+				226C1D1D27BE85B700D11E24 /* Main.storyboard */,
+				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
 				22035FA627BB74AD00D1A3B5 /* Auth.storyboard */,
 				226C1D0527BE7C8B00D11E24 /* Shared.storyboard */,
 			);
@@ -256,10 +257,9 @@
 			children = (
 				22A0757027A925DC00658889 /* RegViewController.swift */,
 				22A0757227A9260500658889 /* LogViewController.swift */,
-				22035F9F27B6B24E00D1A3B5 /* resetPassViewController.swift */,
+				22035F9F27B6B24E00D1A3B5 /* TVCResetPassword.swift */,
 				22A0757427A9261E00658889 /* HomePageViewController.swift */,
 				22C1C4CA27B6993A00866DA4 /* TermsViewController.swift */,
-				226C1D0327BE682400D11E24 /* VCMore.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -537,7 +537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
-				22035FA027B6B24E00D1A3B5 /* resetPassViewController.swift in Sources */,
+				22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */,
 				226C1D1927BE85A800D11E24 /* Reservation.swift in Sources */,
 				226C1D1827BE85A800D11E24 /* TimerVC.swift in Sources */,
 				226C1D1327BE85A800D11E24 /* ReservationCell.swift in Sources */,
