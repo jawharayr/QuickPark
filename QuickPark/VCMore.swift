@@ -8,7 +8,7 @@
 import UIKit
 import SVProgressHUD
 
-class VCMore : ViewController {
+class TVCMore : UITableViewController {
     @IBOutlet weak var logoutButton: UIButton!
     
     @IBAction func logoutButtonTouched(_ sender: Any) {
