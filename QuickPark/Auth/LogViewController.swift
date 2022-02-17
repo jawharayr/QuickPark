@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import SVProgressHUD
 
 class LogViewController: UIViewController {
      private let database = Database.database().reference()
@@ -25,8 +26,21 @@ class LogViewController: UIViewController {
     @IBAction func ForgetPassPressed(_ sender: Any) {
     }
     
+    func validate() -> Bool {
+        if (emailField.text ?? "").isEmpty || (passField.text ?? "").isEmpty {
+            SVProgressHUD.showError(withStatus: "Email and password field can not be empty.")
+            return false
+        }
+        return true
+    }
+    
     @IBAction func loginPressed(_ sender: Any) {
-        Add()
+        guard let email = emailField.text, let password = passField.text else {return}
+        if validate() == false {return}
+        
+        FBAuth.login(email: email, password: password) { user, error in
+            SceneDelegate.sceneDelegate.setUpHome()
+        }
     }
     
     @IBAction func GoRegPressed(_ sender: Any) {

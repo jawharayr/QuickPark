@@ -6,6 +6,8 @@
 //
 
 import Firebase
+import UIKit
+import SVProgressHUD
 
 struct FBSupport  {
     struct Collections {
@@ -23,7 +25,7 @@ struct FBAuth {
             if let cu = FBAuth.currentUser {
                 return cu.uid
             } else {
-                SceneDelegate.sceneDelegate?.setUpHome()
+                SceneDelegate.sceneDelegate.setUpHome()
                 return ""
             }
         }
@@ -36,6 +38,27 @@ struct FBAuth {
                 return
             }
             complition(authResult.user, nil)
+        }
+    }
+    
+    static func login (email:String, password:String, complition:@escaping(User?, Error?) -> Void) {
+        SVProgressHUD.show(withStatus: "Loggin in..")
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let  e = error {
+                SVProgressHUD.showError(withStatus: e.localizedDescription)
+            }else{
+                SVProgressHUD.showSuccess(withStatus: "Logged in..")
+                complition(authResult?.user, error)
+            }
+        }
+    }
+    
+    static func logout (complition : @escaping(Bool, Error?) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            complition(true, nil)
+        } catch {
+            complition(false, error)
         }
     }
 }

@@ -161,7 +161,7 @@ class RegViewController: UIViewController {
         let confirmPass = confirmPas.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         FBAuth.register(email: email, password: pass) { user, error in
-            SceneDelegate.sceneDelegate?.setUpHome()
+            SceneDelegate.sceneDelegate.setUpHome()
         }
         
         let database = Firestore.firestore()
