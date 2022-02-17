@@ -29,14 +29,7 @@ class UserProfileViewController: UIViewController {
         super.viewDidLoad()
         labelEmailAlert.isHidden = true
         labelFieldsAlert.isHidden = true
-        if Auth.auth().currentUser != nil {
-            id =  Auth.auth().currentUser!.uid
-            //email = Auth.auth().currentUser!.email
-        } else {
-            print("user is not logged in")
-            //User Not logged in
-         }
-        
+        userLoggedIn()
         
         self.txtEmail.text = email
         
@@ -228,6 +221,22 @@ class UserProfileViewController: UIViewController {
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    func userLoggedIn() {
+        if Auth.auth().currentUser != nil {
+            id =  Auth.auth().currentUser!.uid
+            //email = Auth.auth().currentUser!.email
+        } else {
+            print("user is not logged in")
+            //User Not logged in
+         }
+        if Auth.auth().currentUser != nil {
+            email = Auth.auth().currentUser!.email!
+        } else {
+            print("user is not logged in")
+            //User Not logged in
+         }
     }
     
 }
