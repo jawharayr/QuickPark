@@ -34,7 +34,7 @@ class UserProfileViewController: UIViewController {
         getName { (name) in
                     if let name = name {
                         self.txtUserName.text = name
-                        print("great success")
+                        print("success in getting name")
                     }
                 }
         self.txtEmail.text = email
