@@ -1106,7 +1106,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="n9p-ZT-72o"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.56470588239999997" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1133,7 +1133,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="zaq-RC-bC0"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.56470588239999997" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1189,12 +1189,6 @@
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAE-Oo-eGx">
-                                <rect key="frame" x="139" y="229" width="136" height="35"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
-                                <color key="textColor" red="0.3294117647" green="0.56078431370000004" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ga0-Iy-MWi">
                                 <rect key="frame" x="36" y="426" width="342" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1206,18 +1200,24 @@
                                 <color key="tintColor" red="0.0" green="0.56470588239999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Save" cornerStyle="large">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                    <fontDescription key="titleFontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="saveProfileBtn:" destination="C3O-Rf-fYq" eventType="touchUpInside" id="efZ-wD-pnU"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAE-Oo-eGx">
+                                <rect key="frame" x="122" y="229" width="170" height="41"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="30"/>
+                                <color key="textColor" red="0.3294117647" green="0.56078431370000004" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="W9W-HI-1XF"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="W9W-HI-1XF" firstAttribute="trailing" secondItem="Nnq-cu-KwL" secondAttribute="trailing" constant="40" id="3nn-5d-KBx"/>
-                            <constraint firstItem="W9W-HI-1XF" firstAttribute="trailing" secondItem="AAE-Oo-eGx" secondAttribute="trailing" constant="139" id="4Dp-XE-Goc"/>
+                            <constraint firstItem="W9W-HI-1XF" firstAttribute="trailing" secondItem="AAE-Oo-eGx" secondAttribute="trailing" constant="122" id="4Dp-XE-Goc"/>
                             <constraint firstItem="W9W-HI-1XF" firstAttribute="top" secondItem="hoE-XG-ybY" secondAttribute="top" constant="94" id="4aq-p0-IXr"/>
                             <constraint firstItem="BK5-2H-b0v" firstAttribute="top" secondItem="hoE-XG-ybY" secondAttribute="bottom" constant="6" id="4uy-Ob-GRW"/>
                             <constraint firstItem="Bzk-Ok-Ucj" firstAttribute="leading" secondItem="5g6-II-fMz" secondAttribute="leading" id="53D-WL-gFE"/>
@@ -1253,7 +1253,7 @@
                             <constraint firstItem="5g6-II-fMz" firstAttribute="trailing" secondItem="Zwh-TJ-h0P" secondAttribute="trailing" id="lvJ-gV-fvO"/>
                             <constraint firstItem="gjn-gU-bUD" firstAttribute="top" secondItem="Ga0-Iy-MWi" secondAttribute="bottom" constant="8" symbolic="YES" id="mUW-Pm-y6L"/>
                             <constraint firstItem="BK5-2H-b0v" firstAttribute="leading" secondItem="hoE-XG-ybY" secondAttribute="leading" id="msj-mb-5pb"/>
-                            <constraint firstItem="AAE-Oo-eGx" firstAttribute="leading" secondItem="W9W-HI-1XF" secondAttribute="leading" constant="139" id="q9O-jg-X5x"/>
+                            <constraint firstItem="AAE-Oo-eGx" firstAttribute="leading" secondItem="W9W-HI-1XF" secondAttribute="leading" constant="122" id="q9O-jg-X5x"/>
                             <constraint firstItem="1Yt-M5-tK6" firstAttribute="leading" secondItem="G0A-Y3-ptD" secondAttribute="leading" id="r2o-dx-Qc9"/>
                             <constraint firstItem="Nnq-cu-KwL" firstAttribute="top" secondItem="BK5-2H-b0v" secondAttribute="bottom" constant="61" id="r4S-Pd-Plj"/>
                             <constraint firstItem="Zwh-TJ-h0P" firstAttribute="top" secondItem="gjn-gU-bUD" secondAttribute="bottom" constant="12" id="srZ-Ky-Wbd"/>
