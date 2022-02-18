@@ -1183,23 +1183,8 @@
                                     <action selector="btnConfirmPasswordClicekd:" destination="C3O-Rf-fYq" eventType="touchUpInside" id="kG1-Ph-MLA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UaT-B6-0iP">
-                                <rect key="frame" x="32" y="636" width="350" height="45"/>
-                                <color key="backgroundColor" red="0.0" green="0.56470588239999997" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="lGu-p0-mXh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="  Save" image="saveIcon">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnSaveClicked:" destination="C3O-Rf-fYq" eventType="touchUpInside" id="M0e-7q-Dql"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzk-Ok-Ucj">
-                                <rect key="frame" x="32" y="604" width="350" height="21"/>
+                                <rect key="frame" x="32" y="604" width="350" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
@@ -1216,6 +1201,17 @@
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJG-6U-0sf">
+                                <rect key="frame" x="34" y="653" width="346" height="50"/>
+                                <color key="tintColor" red="0.0" green="0.56470588239999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Save" cornerStyle="large">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="saveProfileBtn:" destination="C3O-Rf-fYq" eventType="touchUpInside" id="efZ-wD-pnU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="W9W-HI-1XF"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1233,7 +1229,6 @@
                             <constraint firstItem="G0A-Y3-ptD" firstAttribute="top" secondItem="Nnq-cu-KwL" secondAttribute="bottom" constant="12" id="Ck3-j9-vxg"/>
                             <constraint firstItem="Ga0-Iy-MWi" firstAttribute="centerX" secondItem="gjn-gU-bUD" secondAttribute="centerX" id="Ecl-4d-yeL"/>
                             <constraint firstItem="gjn-gU-bUD" firstAttribute="top" secondItem="1Yt-M5-tK6" secondAttribute="bottom" constant="32" id="FDz-X2-KMk"/>
-                            <constraint firstItem="UaT-B6-0iP" firstAttribute="top" secondItem="5g6-II-fMz" secondAttribute="bottom" constant="40" id="HPi-Ez-Pwd"/>
                             <constraint firstItem="jyl-pv-q4p" firstAttribute="trailing" secondItem="Zwh-TJ-h0P" secondAttribute="trailing" id="Hu0-W8-Vk4"/>
                             <constraint firstItem="Nnq-cu-KwL" firstAttribute="leading" secondItem="W9W-HI-1XF" secondAttribute="leading" constant="40" id="Jkh-yR-66B"/>
                             <constraint firstItem="G0A-Y3-ptD" firstAttribute="leading" secondItem="W9W-HI-1XF" secondAttribute="leading" constant="32" id="Joe-5i-QEG"/>
@@ -1246,24 +1241,25 @@
                             <constraint firstItem="cl5-Pz-epz" firstAttribute="trailing" secondItem="5g6-II-fMz" secondAttribute="trailing" id="XCE-1R-AvQ"/>
                             <constraint firstItem="Bzk-Ok-Ucj" firstAttribute="top" secondItem="5g6-II-fMz" secondAttribute="bottom" constant="8" symbolic="YES" id="Zmx-pQ-Dcg"/>
                             <constraint firstItem="Zwh-TJ-h0P" firstAttribute="trailing" secondItem="1Yt-M5-tK6" secondAttribute="trailing" id="aie-iK-PV6"/>
+                            <constraint firstItem="zJG-6U-0sf" firstAttribute="top" secondItem="Bzk-Ok-Ucj" secondAttribute="bottom" constant="49" id="aje-Hz-YhY"/>
                             <constraint firstItem="jyl-pv-q4p" firstAttribute="centerY" secondItem="Zwh-TJ-h0P" secondAttribute="centerY" id="bvT-Ix-fed"/>
                             <constraint firstItem="Zwh-TJ-h0P" firstAttribute="leading" secondItem="1Yt-M5-tK6" secondAttribute="leading" id="c0P-m4-S91"/>
                             <constraint firstItem="Bzk-Ok-Ucj" firstAttribute="trailing" secondItem="5g6-II-fMz" secondAttribute="trailing" id="cd1-fc-s5v"/>
                             <constraint firstItem="AAE-Oo-eGx" firstAttribute="centerX" secondItem="Nnq-cu-KwL" secondAttribute="centerX" id="e6S-37-t6s"/>
                             <constraint firstItem="BK5-2H-b0v" firstAttribute="height" secondItem="EDB-oW-MuQ" secondAttribute="height" multiplier="0.25" constant="-53" id="egN-HH-pQe"/>
+                            <constraint firstItem="W9W-HI-1XF" firstAttribute="bottom" secondItem="zJG-6U-0sf" secondAttribute="bottom" constant="110" id="gW6-df-CuU"/>
                             <constraint firstItem="Ga0-Iy-MWi" firstAttribute="top" secondItem="1Yt-M5-tK6" secondAttribute="bottom" constant="3" id="hLt-ne-cxp"/>
-                            <constraint firstItem="UaT-B6-0iP" firstAttribute="top" secondItem="Bzk-Ok-Ucj" secondAttribute="bottom" constant="11" id="hPm-LW-JYK"/>
+                            <constraint firstItem="zJG-6U-0sf" firstAttribute="leading" secondItem="W9W-HI-1XF" secondAttribute="leading" constant="34" id="lC4-Fq-cp1"/>
                             <constraint firstItem="5g6-II-fMz" firstAttribute="trailing" secondItem="Zwh-TJ-h0P" secondAttribute="trailing" id="lvJ-gV-fvO"/>
                             <constraint firstItem="gjn-gU-bUD" firstAttribute="top" secondItem="Ga0-Iy-MWi" secondAttribute="bottom" constant="8" symbolic="YES" id="mUW-Pm-y6L"/>
                             <constraint firstItem="BK5-2H-b0v" firstAttribute="leading" secondItem="hoE-XG-ybY" secondAttribute="leading" id="msj-mb-5pb"/>
-                            <constraint firstItem="UaT-B6-0iP" firstAttribute="trailing" secondItem="5g6-II-fMz" secondAttribute="trailing" id="nty-Fk-O7B"/>
                             <constraint firstItem="AAE-Oo-eGx" firstAttribute="leading" secondItem="W9W-HI-1XF" secondAttribute="leading" constant="139" id="q9O-jg-X5x"/>
                             <constraint firstItem="1Yt-M5-tK6" firstAttribute="leading" secondItem="G0A-Y3-ptD" secondAttribute="leading" id="r2o-dx-Qc9"/>
                             <constraint firstItem="Nnq-cu-KwL" firstAttribute="top" secondItem="BK5-2H-b0v" secondAttribute="bottom" constant="61" id="r4S-Pd-Plj"/>
                             <constraint firstItem="Zwh-TJ-h0P" firstAttribute="top" secondItem="gjn-gU-bUD" secondAttribute="bottom" constant="12" id="srZ-Ky-Wbd"/>
-                            <constraint firstItem="UaT-B6-0iP" firstAttribute="leading" secondItem="5g6-II-fMz" secondAttribute="leading" id="tFq-Mu-piq"/>
                             <constraint firstItem="gjn-gU-bUD" firstAttribute="leading" secondItem="Nnq-cu-KwL" secondAttribute="leading" id="wu9-Nn-cKC"/>
                             <constraint firstItem="5g6-II-fMz" firstAttribute="top" secondItem="Zwh-TJ-h0P" secondAttribute="bottom" constant="18" id="yJC-I5-08X"/>
+                            <constraint firstItem="zJG-6U-0sf" firstAttribute="centerX" secondItem="Bzk-Ok-Ucj" secondAttribute="centerX" id="zlK-eZ-6zD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VVg-is-Li7"/>
@@ -1278,7 +1274,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSD-T7-Qs4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1800" y="523"/>
+            <point key="canvasLocation" x="1800.0000000000002" y="522.99107142857144"/>
         </scene>
     </scenes>
     <resources>
@@ -1992,7 +1988,6 @@ dZB9kIqQn5CkkKiQqpCskK6Qt5C/kMGQw5DFkMeiZ6JsonSid6J8ooQAAAAAAAACAQAAAAAAAACdAAAA
 AAAAAAAAAAAAAACihw
 </mutableData>
         </image>
-        <image name="saveIcon" width="16" height="16"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

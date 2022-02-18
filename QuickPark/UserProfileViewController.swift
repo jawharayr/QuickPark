@@ -176,8 +176,34 @@ class UserProfileViewController: UIViewController {
     
     
     
-    @IBAction func btnSaveClicked(_ sender : UIButton) {
-        //When  registration is completed  save data to firebase
+    
+    
+    
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
+    
+    
+    func validateFields()->String
+    {
+        let nameString = txtUserName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let emailString = txtEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let passwordString = txtPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let confirmPasswordString = txtConfirmPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if nameString == "" || emailString == "" || passwordString == "" || confirmPasswordString == "" {
+            return "false"
+        }
+        
+        return "true"
+    }
+    
+ 
+    
+    @IBAction func saveProfileBtn(_ sender: UIButton) {
         
         let str = self.validateFields()
         
@@ -209,32 +235,6 @@ class UserProfileViewController: UIViewController {
         }
     }
     
-    
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
-    }
-    
-    
-    func validateFields()->String
-    {
-        let nameString = txtUserName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let emailString = txtEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let passwordString = txtPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let confirmPasswordString = txtConfirmPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        if nameString == "" || emailString == "" || passwordString == "" || confirmPasswordString == "" {
-            return "false"
-        }
-        
-        return "true"
-    }
-    
- 
-    
-   
     
 }
 
