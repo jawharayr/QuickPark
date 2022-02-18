@@ -31,7 +31,14 @@ class UserProfileViewController: UIViewController {
         labelFieldsAlert.isHidden = true
         userLoggedIn()
         
+        getName { (name) in
+                    if let name = name {
+                        self.txtUserName.text = name
+                        print("great success")
+                    }
+                }
         self.txtEmail.text = email
+
         
 
     }
@@ -93,21 +100,19 @@ class UserProfileViewController: UIViewController {
         
         //---------------------------------------
         
-        getName { (name) in
-                    if let name = name {
-                        self.txtUserName.text = name
-                        print("great success")
-                    }
-                }
+       
         
     }
     
     func getName(completion: @escaping (_ name: String?) -> Void) {
-            guard let uid = Auth.auth().currentUser?.uid else { // safely unwrap the uid; avoid force unwrapping with !
+            guard let uemail = Auth.auth().currentUser?.email else { // safely unwrap the uid; avoid force unwrapping with !
+                
                 completion(nil) // user is not logged in; return nil
                 return
             }
-            Firestore.firestore().collection("users").document(uid).getDocument { (docSnapshot, error) in
+        print (uemail)
+        
+            Firestore.firestore().collection("users").document(uemail).getDocument { (docSnapshot, error) in
                 if let doc = docSnapshot {
                     if let name = doc.get("name") as? String {
                         completion(name) // success; return name
@@ -123,6 +128,22 @@ class UserProfileViewController: UIViewController {
                 }
             }
         }
+    
+    func userLoggedIn() {
+        if Auth.auth().currentUser != nil {
+            id =  Auth.auth().currentUser!.uid
+            //email = Auth.auth().currentUser!.email
+        } else {
+            print("user is not logged in")
+            //User Not logged in
+         }
+        if Auth.auth().currentUser != nil {
+            email = Auth.auth().currentUser!.email!
+        } else {
+            print("user is not logged in")
+            //User Not logged in
+         }
+    }
     
     //Will get called on password textfield eye button clicked
     @IBAction func btnPasswordClicekd(_ sender : UIButton){
@@ -211,33 +232,9 @@ class UserProfileViewController: UIViewController {
         return "true"
     }
     
-    func getUserDetails() {
-        guard let key = Auth.auth().currentUser?.uid else { return }
-        self.ref.child(key).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? [String: Any]
-            self.txtEmail.text = value?["email"] as? String
-            // ...
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
+ 
     
-    func userLoggedIn() {
-        if Auth.auth().currentUser != nil {
-            id =  Auth.auth().currentUser!.uid
-            //email = Auth.auth().currentUser!.email
-        } else {
-            print("user is not logged in")
-            //User Not logged in
-         }
-        if Auth.auth().currentUser != nil {
-            email = Auth.auth().currentUser!.email!
-        } else {
-            print("user is not logged in")
-            //User Not logged in
-         }
-    }
+   
     
 }
 

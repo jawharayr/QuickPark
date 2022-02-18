@@ -172,7 +172,15 @@ class RegViewController: UIViewController {
         }
         
         let database = Firestore.firestore()
-        database.collection("users").addDocument(data: [ "name" :name, "email" : email ]) { (error) in
+        let userdata = ["email": email, "name": name]
+        print (userdata)
+        //guard let uid = Auth.auth().currentUser?.uid else { // safely unwrap the uid; avoid force unwrapping with !
+            //print("nil") // user is not logged in; return nil
+            //return
+       // }
+        database.collection("users").document(email).setData(userdata){(error)in
+            
+        //addDocument(data: [ "name" :name, "email" : email ]) { (error) in
             if error != nil {
                 //
             }
