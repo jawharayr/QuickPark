@@ -11,19 +11,26 @@ import Firebase
 import FirebaseStorage
 import CoreLocation
 import Kingfisher
+import SwiftUI
+import Firebase
 
 
-class ViewController: UIViewController{
+class ViewController: UIViewController, UITextFieldDelegate {
   //  let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
 
     
 
     var parkings = [Area]()
+    var searchedArea = [Area]()
+    var filtered = false
        
+
     var locationManager:CLLocationManager?
     var currentLocation:CLLocation?
     let storageRef = Storage.storage().reference()
     
+    
+    @IBOutlet weak var SearchTxt: UITextField!
     @IBOutlet weak var ParkingView: UIView!
     @IBOutlet weak var ParkingsViews: UITableView!
     var initialRead = true
@@ -32,14 +39,38 @@ class ViewController: UIViewController{
         super.viewDidLoad()
         ParkingsViews?.delegate = self
         ParkingsViews?.dataSource = self
+        SearchTxt.delegate = self
+        
         //making table view look good
         ParkingsViews?.separatorStyle = .none
         ParkingsViews?.showsVerticalScrollIndicator = false
         requestLocationPermission()
-        
+        SearchTxt.layer.cornerRadius = 20
+        SearchTxt.layer.shadowOpacity = 0.1
+        SearchTxt.layer.shadowOffset = .zero
+       SearchTxt.layer.shadowRadius = 10
 //        getParkings()
 
     }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = SearchTxt.text{
+            filterText(query: text+string)
+            
+        }
+        return true
+    }
+    func filterText( query:String){
+        searchedArea.removeAll()
+        for str in parkings {
+            if str.areaname.lowercased().starts(with: query.lowercased()){
+                searchedArea.append(str)
+            }
+        }
+        ParkingsViews.reloadData()
+        filtered = true
+        
+    }
+   
     private func requestLocationPermission(){
         locationManager = CLLocationManager()
         locationManager?.requestAlwaysAuthorization()
@@ -59,6 +90,7 @@ class ViewController: UIViewController{
                                 loactionLat: "\(dictionary?["loactionLat"] as? Double ?? 0)",
                                 locationLong: "\(dictionary?["locationLong"] as? Double ?? 0)",
                                 spotNo: "", logo: "",distance: 0)
+        
                 
                 
                 let location = CLLocation(latitude: Double(area.loactionLat) ?? 0,
@@ -87,7 +119,7 @@ extension ViewController: CLLocationManagerDelegate{
             self.getParkings()
         }
     }
-    
+
 }
 
     extension ViewController: UITableViewDelegate, UITableViewDataSource{
@@ -99,7 +131,12 @@ extension ViewController: CLLocationManagerDelegate{
             return 120
         }
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return parkings.count
+            if !searchedArea.isEmpty{
+                return searchedArea.count
+                
+            }
+            
+            return filtered ? 0 : parkings.count
         }
         // هذي الميثود حقت الشاشه الصغيره اللي تطلع بعد مانضغط
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -109,7 +146,7 @@ extension ViewController: CLLocationManagerDelegate{
                            areaRef.observe(.childAdded, with: { snapshot in
                                let areaname = snapshot.childSnapshot(forPath: "areaname").value as? String ?? ""
                                print("areaname", areaname)
-                               if myCell.Label.text == areaname {
+                                if myCell.Label.text == areaname {
                                    let isAvailable = snapshot.childSnapshot(forPath: "isAvailable").value as? Bool ?? false
                                    print("isAvailable", isAvailable)
                                    if isAvailable {
@@ -141,14 +178,22 @@ extension ViewController: CLLocationManagerDelegate{
                                    print("Done")
                                    self.initialRead = false
                                })
+            
                        }
 
-        
+    
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
+            var cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
             let parking = parkings[indexPath.row]
-            
+
+            if searchedArea.count > 0 && indexPath.row < searchedArea.count {
+                let searchedAreaS = searchedArea[indexPath.row]
+                cell.Label.text = searchedAreaS.areaname
+            } else {
+                cell.Label.text = parking.areaname
+            }
+           
             if !parking.imageURL.didLoad{
                 let child = storageRef.child("AreasImages/\(parking.areaname).png")
                 child.downloadURL { url, error in
@@ -163,18 +208,19 @@ extension ViewController: CLLocationManagerDelegate{
             
             
 //            cell.Logos.kf.setImage(with: parking.imageURL, placeholder: UIImage(named: "King Saud University"))
-            cell.Label.text = parking.areaname
+            
             //cell.ParkingView.layer.cornerRadius = 20 //cell.ParkingView.frame.height / 2
             //cell.Logos.layer.cornerRadius = 20 //cell.Logos.frame.height / 2
            // let borderColor: UIColor =  (parkings[indexPath.row] == " ") ? .red : UIColor(red: 0/225, green: 144/255, blue: 205/255, alpha: 1) //
             (parking.areaname == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
             cell.Km.text = "\(parking.distance) km"
-            
+
 
             return cell
         }
         func addShadow(backgroundColor: UIColor = .white, cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 5, shadowOpacity: Float = 0.1, shadowPathInset: (dx: CGFloat, dy: CGFloat), shadowPathOffset: (dx: CGFloat, dy: CGFloat)) {
           
             }
+        
       
             }
