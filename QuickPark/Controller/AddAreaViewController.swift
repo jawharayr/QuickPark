@@ -52,6 +52,8 @@ class AddAreaViewController: UIViewController {
         AreaNameTextField.layer.shadowColor = UIColor.lightGray.cgColor
         AreaNameTextField.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         AreaNameTextField.layer.shadowOpacity = 1.0
+        AreaNameTextField.borderStyle = UITextField.BorderStyle.roundedRect
+
        
         
         //For shadow and cornerRadius for SpotNo textfield
@@ -60,6 +62,8 @@ class AddAreaViewController: UIViewController {
         SpotNoTextField.layer.shadowColor = UIColor.lightGray.cgColor
         SpotNoTextField.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         SpotNoTextField.layer.shadowOpacity = 1.0
+        SpotNoTextField.borderStyle = UITextField.BorderStyle.roundedRect
+
         
         
         activityIndicatorBG = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
