@@ -18,8 +18,8 @@ class ViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
         
+        view.addSubview(imageView)
     }
     
     override func viewDidLayoutSubviews() {
