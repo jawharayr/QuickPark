@@ -9,20 +9,24 @@ import UIKit
 import FirebaseDatabase
 class ViewController: UIViewController{
    
-    //1
+    private let imageView: UIImageView = {
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
+            imageView.image = UIImage(named: "logo")
+            return imageView
+            
+        }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        //2
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//3
-    //4
+
     }
-    //5
+   
 }
 
 
