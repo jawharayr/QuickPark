@@ -42,7 +42,21 @@ class ViewController: UIViewController{
                         height: size)
                             
                 })
-    
+        UIView.animate(withDuration: 1 , animations: {
+                  
+                   self.imageView.alpha = 0
+               }, completion: { done in
+                   if done {
+                       DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                           //why are you putting the main pages code in view contorller!!
+                       let viewController = ViewController()
+                       viewController.modalTransitionStyle = .crossDissolve
+                           viewController.modalPresentationStyle = .fullScreen
+                       self.present(viewController, animated: true)
+                   })
+                       
+                   }
+               })
         
     }
 }
