@@ -24,7 +24,8 @@ class ViewController: UIViewController{
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        imageView.center = view.center
+     
     }
    
 }
