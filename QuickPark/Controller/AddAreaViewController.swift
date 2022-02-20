@@ -109,7 +109,8 @@ class AddAreaViewController: UIViewController {
             spotNo = Int(SpotNoTextField.text!) ?? 0
                 areaLat = areaCoordinate?.latitude ?? 0.0
                 areaLong = areaCoordinate?.longitude ?? 0.0
-                
+              
+               
             //image uploading should be imp inside the saveBtn fun so that the image don't get uploaded before the
             //user click on the save btn
             
@@ -130,10 +131,12 @@ class AddAreaViewController: UIViewController {
                 let object: [String : Any] = ["areaname": areaName as Any ,"spotNo": spotNo, "loactionLat": areaLat ?? 0.0, "locationLong": areaLong ?? 0.0, "areaImage" : ""]
                 database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
                     self.navigationController?.popViewController(animated: true)
+                    self.showConfirmationAlert()
                 }
             }
             
         }
+            
         
         }
         
@@ -309,7 +312,7 @@ extension String {
     
     var isString: Bool {
         guard self.count > 0 else { return false }
-        let str: Set<Character> = [" ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        let str: Set<Character> = [" ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "-", ",", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
         
         return Set(self).isSubset(of: str)
     }
@@ -336,6 +339,11 @@ extension UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    
+    func showConfirmationAlert()
+    {
+        let alertController = UIAlertController(title: "Confirm submition", message: "The area has been added", preferredStyle: .alert)
+        alertController.addAction(.init(title: "Ok", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
     
 }
