@@ -230,9 +230,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Available Parkings" id="KpN-Nm-Lnf"/>
-                    <connections>
-                        <outlet property="ParkingsViews" destination="R6b-Sk-bXg" id="Uym-Iu-GjY"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XgZ-Id-jWs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
