@@ -128,7 +128,6 @@ class AddAreaViewController: UIViewController {
                     }
                 }
             }else { //upload area info to the database
-                self.showConfirmationAlert()
                 let object: [String : Any] = ["areaname": areaName as Any ,"spotNo": spotNo, "loactionLat": areaLat ?? 0.0, "locationLong": areaLong ?? 0.0, "areaImage" : ""]
                 database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
                     self.navigationController?.popViewController(animated: true)
