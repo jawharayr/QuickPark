@@ -37,7 +37,8 @@ class AddAreaViewController: UIViewController {
     var areaLong: Optional<Double> = 0.0
     var imageToUpload : UIImage? = nil
 
-   
+    var parkings = [Area]() //for checking if area name already exist:
+    
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +96,7 @@ class AddAreaViewController: UIViewController {
     
     @IBAction func SaveAreaButton(_ sender: UIButton) {
         print("SaveAreaButton is pressed")
+        print (imageToUpload)
         
         self.resetLabels()
         
@@ -110,30 +112,37 @@ class AddAreaViewController: UIViewController {
                 areaLat = areaCoordinate?.latitude ?? 0.0
                 areaLong = areaCoordinate?.longitude ?? 0.0
               
-               
-            //image uploading should be imp inside the saveBtn fun so that the image don't get uploaded before the
-            //user click on the save btn
-            
-            if let imageToUpload = self.imageToUpload {
-                //Uplaoding image and save imageUrl into database:
-                self.startActivityIndicator(withText: "Uploading Data")
-                FirebaseManager.shared.uploadImageToFirebaseStorage(imageName:"\(String(describing: areaLat))_\(String(describing: areaLong))_picture", imageToUpload: imageToUpload ) { (url, error) in
-                    self.stopActivityIndicator()
-                    if error == nil{
-                        let object: [String : Any] = ["areaname": self.areaName as Any ,"spotNo": self.spotNo, "loactionLat": "\(self.areaLat ?? 0.0)", "locationLong": "\(self.areaLong ?? 0.0)", "areaImage" : url]
-                        self.database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
+                let isAreaNameExist = self.checkAreaNameExist(thisName: areaName)
+                if isAreaNameExist == true {
+                    self.lblEmptyCheckError.isHidden = false
+                    self.lblEmptyCheckError.text =  "This area does exist"
+                }else{
+                    //image uploading should be imp inside the saveBtn fun so that the image don't get uploaded before the
+                    //user click on the save btn
+                    self.lblEmptyCheckError.isHidden = true
+                    if let imageToUpload = self.imageToUpload {
+                        //Uplaoding image and save imageUrl into database:
+                        self.startActivityIndicator(withText: "Uploading Data")
+                        FirebaseManager.shared.uploadImageToFirebaseStorage(imageName:"\(String(describing: areaLat))_\(String(describing: areaLong))_picture", imageToUpload: imageToUpload ) { (url, error) in
+                            self.stopActivityIndicator()
+                            if error == nil{
+                                let object: [String : Any] = ["areaname": self.areaName as Any ,"spotNo": self.spotNo, "loactionLat": "\(self.areaLat ?? 0.0)", "locationLong": "\(self.areaLong ?? 0.0)", "areaImage" : url]
+                                self.database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
+                                    self.navigationController?.popViewController(animated: true)
+                                }                    }else{
+                               self.showAlert(title: "Photo upload failed", message: "photo uploading failed, please try again")
+                            }
+                        }
+                    }else { //upload area info to the database
+                        let object: [String : Any] = ["areaname": areaName as Any ,"spotNo": spotNo, "loactionLat": areaLat ?? 0.0, "locationLong": areaLong ?? 0.0, "areaImage" : ""]
+                        database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
                             self.navigationController?.popViewController(animated: true)
-                        }                    }else{
-                       self.showAlert(title: "Photo upload failed", message: "photo uploading failed, please try again")
+                            
+                        }
                     }
+
                 }
-            }else { //upload area info to the database
-                let object: [String : Any] = ["areaname": areaName as Any ,"spotNo": spotNo, "loactionLat": areaLat ?? 0.0, "locationLong": areaLong ?? 0.0, "areaImage" : ""]
-                database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
-                    self.navigationController?.popViewController(animated: true)
-                    
-                }
-            }
+               
             
         }
             
@@ -143,7 +152,16 @@ class AddAreaViewController: UIViewController {
         
     }
     
-   
+    func checkAreaNameExist(thisName : String) -> Bool {
+        
+        for area in self.parkings {
+            if area.areaname == thisName {
+                return true
+            }
+        }
+        
+        return false
+    }
     
     func resetLabels() {
         self.lblAreaNameError.isHidden = true
@@ -177,15 +195,22 @@ class AddAreaViewController: UIViewController {
             
             if !areaName.isString {
                 self.lblAreaNameError.isHidden = false
-                self.lblAreaNameError.text =  "Area name should only contain string and numbers"
+                self.lblAreaNameError.text =  "Area name should only contain string, numbers \"-\" and \",\" "
+                if !spotNumber.isNumeric {
+                    self.lblParkingSpotError.isHidden = false
+                    self.lblParkingSpotError.text =  "Parking spot number should only contain digits"
+                    return false
+                }
+
                 return false
             }
+            
             if !spotNumber.isNumeric {
                 self.lblParkingSpotError.isHidden = false
                 self.lblParkingSpotError.text =  "Parking spot number should only contain digits"
                 return false
             }
-            
+                        
         }
         
         if areaCoordinate == nil {
@@ -194,6 +219,11 @@ class AddAreaViewController: UIViewController {
             return false
         }
         
+        if imageToUpload == nil {
+            self.lblEmptyCheckError.isHidden = false
+            self.lblEmptyCheckError.text = "Choose an image"
+            return false
+        }
         
         return true
     }

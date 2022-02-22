@@ -13,13 +13,13 @@ import SDWebImage
 
 
 class AdminHomeListVC: UIViewController {
-
+    
     var parkings = [Area]()
-       
+    
     @IBOutlet weak var ParkingView: UIView!
     
     @IBOutlet weak var ParkingsViews: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ParkingsViews?.delegate = self
@@ -28,7 +28,7 @@ class AdminHomeListVC: UIViewController {
         ParkingsViews?.showsVerticalScrollIndicator = false
         
         getParkings()
-
+        
     }
     private func getParkings() {
         let ref = Database.database().reference()
@@ -44,29 +44,41 @@ class AdminHomeListVC: UIViewController {
             ParkingsViews.reloadData()
         })
     }
-
+    
+    @IBAction func btnAdddAreaClicked() {
+        self.performSegue(withIdentifier: "listToAddArea", sender: self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "listToAddArea"{
+            let dest = segue.destination as! AddAreaViewController
+            dest.parkings = self.parkings
+        }
+    }
+    
 }
-    extension AdminHomeListVC: UITableViewDelegate, UITableViewDataSource{
+extension AdminHomeListVC: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return parkings.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
+        let parking = parkings[indexPath.row]
+        cell.Logos.sd_setImage(with: URL(string: parking.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
+        cell.Label.text = parking.areaname
         
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 100
-        }
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return parkings.count
-        }
-
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
-            let parking = parkings[indexPath.row]
-            cell.Logos.sd_setImage(with: URL(string: parking.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
-            cell.Label.text = parking.areaname
-
-            return cell
-        }
+        return cell
+    }
+    
+    
+    func addShadow(backgroundColor: UIColor = .white, cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 5, shadowOpacity: Float = 0.1, shadowPathInset: (dx: CGFloat, dy: CGFloat), shadowPathOffset: (dx: CGFloat, dy: CGFloat)) {
         
-        
-        func addShadow(backgroundColor: UIColor = .white, cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 5, shadowOpacity: Float = 0.1, shadowPathInset: (dx: CGFloat, dy: CGFloat), shadowPathOffset: (dx: CGFloat, dy: CGFloat)) {
-          
-            }
-      
-            }
+    }
+    
+}
