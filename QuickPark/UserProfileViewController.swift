@@ -39,7 +39,7 @@ class UserProfileViewController: UIViewController {
                 }
         self.txtEmail.text = email
 
-        
+        self.navigationController?.navigationBar.isHidden = true
 
     }
     
