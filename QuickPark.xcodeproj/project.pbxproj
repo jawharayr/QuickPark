@@ -18,6 +18,7 @@
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1FA9093927BEACC30015CC90 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9093827BEACC30015CC90 /* UserProfileViewController.swift */; };
+		1FEE3D0C27C6565F001E36CF /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEE3D0B27C6565F001E36CF /* OnboardingVC.swift */; };
 		22035F9E27B6AD6800D1A3B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */; };
 		22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035F9F27B6B24E00D1A3B5 /* TVCResetPassword.swift */; };
 		22035FA227BB724600D1A3B5 /* FBSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035FA127BB724600D1A3B5 /* FBSupport.swift */; };
@@ -78,6 +79,7 @@
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1FA9093827BEACC30015CC90 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		1FEE3D0B27C6565F001E36CF /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22035F9F27B6B24E00D1A3B5 /* TVCResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCResetPassword.swift; sourceTree = "<group>"; };
 		22035FA127BB724600D1A3B5 /* FBSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBSupport.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				22A0756F27A9257D00658889 /* Auth */,
 				04DD469E27A4621200342200 /* ViewController.swift */,
 				1FA9093827BEACC30015CC90 /* UserProfileViewController.swift */,
+				1FEE3D0B27C6565F001E36CF /* OnboardingVC.swift */,
 			);
 			path = QuickPark;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 			files = (
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				1FA9093927BEACC30015CC90 /* UserProfileViewController.swift in Sources */,
+				1FEE3D0C27C6565F001E36CF /* OnboardingVC.swift in Sources */,
 				22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */,
 				226C1D1927BE85A800D11E24 /* Reservation.swift in Sources */,
 				226C1D1827BE85A800D11E24 /* TimerVC.swift in Sources */,

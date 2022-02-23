@@ -13,6 +13,8 @@ target 'QuickPark' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'Kingfisher'
+  pod 'paper-onboarding'
+
   
   #Other Pods
   pod 'CodableFirebase'
