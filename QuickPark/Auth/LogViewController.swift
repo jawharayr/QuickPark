@@ -9,20 +9,40 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import SVProgressHUD
+import ProgressHUD
 
 class LogViewController: UIViewController {
      private let database = Database.database().reference()
     @IBOutlet weak var emailField: UITextField!
-    
-    
     @IBOutlet weak var passField: UITextField!
-    
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var passLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        passLabel.isHidden = true
+        emailLabel.isHidden = true
+       // self.setupViews()
 
-        // Do any additional setup after loading the view.
     }
     
+    
+    
+    func setupViews() {
+        
+        
+        self.emailField?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        self.passField?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    
+    }
+    @objc func textFieldDidChange(textField: UITextField){
+      
+        if textField == emailField {
+            self.emailField
+        }
+        if textField == passField {
+            self.passField
+        }
+    }
     @IBAction func ForgetPassPressed(_ sender: Any) {
     }
     
@@ -36,10 +56,67 @@ class LogViewController: UIViewController {
     
     @IBAction func loginPressed(_ sender: Any) {
         guard let email = emailField.text, let password = passField.text else {return}
+        emailAuth(email: email, password: password)
         if validate() == false {return}
         
         FBAuth.login(email: email, password: password) { user, error in
             SceneDelegate.sceneDelegate.setUpHome()
+        }
+        
+    }
+    @discardableResult
+    func showError(message: String?) -> UIAlertController {
+        showAlert(title: " ",  message: message ?? "Unexpected error!")
+    }
+    @discardableResult
+    func showAlert(title: String? = nil, message: String, onOK: (() -> Void)? = nil) -> UIAlertController {
+        showAlert(title: title, message: message, buttons: ["OK"]) { _, _ in
+            onOK?()
+        }
+    }
+    @discardableResult
+    func showAlert(title: String? = nil, message: String, buttons: [String], handler: ((UIAlertController, Int) -> Void)?) -> UIAlertController {
+        
+        let alert = UIAlertController(title: title ?? "", message: message, preferredStyle: .alert)
+        
+        if buttons.isEmpty {
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel) { [unowned alert] _ in
+                handler?(alert, 0)
+            })
+        } else {
+            for (idx, button) in buttons.enumerated() {
+                alert.addAction(UIAlertAction(title: button, style: .default) { [unowned alert] _ in
+                    handler?(alert, idx)
+                })
+            }
+        }
+        
+        present(alert, animated: true, completion: nil)
+        
+        return alert
+    }
+    
+    
+    func emailAuth(email:String,password:String) {
+        ProgressHUD.show()
+        Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+            if let error = error as NSError? {
+                ProgressHUD.dismiss()
+
+                switch AuthErrorCode(rawValue: error.code) {
+                case .userDisabled:
+                    self.showError(message: "User disabled")
+                case .wrongPassword:
+                    self.showError(message: "Wrong password or Email")
+                case .invalidEmail:
+                    self.showError(message: "Wrong password or Email")
+                case .userNotFound:
+                    self.showError(message: "User not found")
+                default:
+                    self.showError(message: error.localizedDescription)
+                }
+                // ckeck if the driver license is falid or not
+            }
         }
     }
     

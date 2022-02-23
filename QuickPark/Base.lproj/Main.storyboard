@@ -1138,12 +1138,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" lineBreakMode="tailTruncation" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3s7-Ag-7OP">
-                                <rect key="frame" x="20" y="497.5" width="373" height="321"/>
+                                <rect key="frame" x="20" y="497.5" width="373" height="382"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="321" id="bEm-ZM-jJj"/>
+                                    <constraint firstAttribute="height" constant="382" id="bEm-ZM-jJj"/>
                                     <constraint firstAttribute="width" constant="373" id="q4G-Qk-JLP"/>
                                 </constraints>
-                                <mutableString key="text">1- Any registered user have the right to book a reservation with the desired time and spot.                    2- The invoice will be generated automatically by the system, please make sure the price is suitable before confirming any reservation.                                                3- Any extra charges will be calculated if the user use the parking AFTER the ending time.                     4- All user private data are safe and won't be used for any purposes that benefits the app.                       5- Any registered user have the right to chat with our support team whenever needed.                                     6- We do not have any returning money policy if the user did not show up for the reservation.</mutableString>
+                                <string key="text">1- Any registered user have the right to book a reservation with the desired time and spot.                    2- The invoice will be generated automatically by the system, please make sure the price is suitable before confirming any reservation.                                                3- Any extra charges will be calculated if the user use the parking AFTER the ending time.                     4- All user private data are safe and won't be used for any purposes that benefits the app.                       5- Any registered user have the right to chat with our support team whenever needed.                                     6- We do not have any returning money policy if the user did not show up for the reservation.</string>
                                 <fontDescription key="fontDescription" name="Avenir-BookOblique" family="Avenir" pointSize="17"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

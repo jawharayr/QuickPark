@@ -13,6 +13,7 @@ target 'QuickPark' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'Kingfisher'
+  pod 'ProgressHUD'
   
   #Other Pods
   pod 'CodableFirebase'
