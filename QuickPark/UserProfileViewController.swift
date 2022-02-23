@@ -27,6 +27,8 @@ class UserProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        
         labelEmailAlert.isHidden = true
         labelFieldsAlert.isHidden = true
         userLoggedIn()
