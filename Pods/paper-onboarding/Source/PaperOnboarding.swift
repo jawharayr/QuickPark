@@ -37,7 +37,7 @@ public struct OnboardingItemInfo {
 }
 
 /// An instance of PaperOnboarding which display collection of information.
-open class PaperOnboarding: UIView {
+open class PaperOnboarding: UIView { 
 
     ///  The object that acts as the data source of the  PaperOnboardingDataSource.
     @IBOutlet weak open var dataSource: AnyObject? {

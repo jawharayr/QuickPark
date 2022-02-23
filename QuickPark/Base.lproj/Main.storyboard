@@ -1661,10 +1661,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="YFq-gq-CXD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <connections>
-                            <outlet property="dataSource" destination="Mdd-Us-qw8" id="ntk-hZ-7PX"/>
-                            <outlet property="delegate" destination="Mdd-Us-qw8" id="PUe-jx-umP"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="OpI-Gv-FpM"/>
                 </viewController>
