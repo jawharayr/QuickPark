@@ -5,31 +5,54 @@
 //  Created by MAC on 06/07/1443 AH.
 //
 
+
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
+
 
 class ConfirmAndPay: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var StartTimeTxt: UITextField!
     @IBOutlet weak var EndTimeTxt: UITextField!
-    
-    @IBOutlet weak var TotalPrice: UILabel!
-    let StartTimePicker = UIDatePicker()
-    let EndTimePicker = UIDatePicker()
-    
     @IBOutlet weak var StartWithView: UIView!
+    @IBOutlet weak var TotalPrice: UILabel!
     
-    @IBAction func WhenDoneClicked(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        let FirstViewController = ViewController()
-               present(FirstViewController, animated: true, completion: nil)
-        
-    }
-    @IBOutlet weak var DoneButton: UIButton!
+    @IBOutlet weak var Button: UIButton!
     @IBOutlet weak var PriceView: UIView!
     @IBOutlet weak var EndWithView: UIView!
     @IBOutlet weak var AreaView: UIView!
+    
+    
+    
+    
+    let StartTimePicker = UIDatePicker()
+    let EndTimePicker = UIDatePicker()
+    var startTimer = ""
+    var endTimer = ""
+   
+    var ref:DatabaseReference!
+    var areaName = ""
+  
+    var uid = ""
+    var parking:Area!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = Database.database().reference()
+        
+        if Auth.auth().currentUser?.uid == nil{
+            if  UserDefaults.standard.string(forKey: "uid") == nil{
+                uid = UtilitiesManager.sharedIntance.getRandomString()
+                UserDefaults.standard.set(uid, forKey: "uid")
+            }else{
+                uid = UserDefaults.standard.string(forKey: "uid")!
+            }
+        }else{
+            uid = Auth.auth().currentUser!.uid
+        }
+        
         AreaView.layer.cornerRadius = 20
         StartWithView.layer.cornerRadius = 20
         EndWithView.layer.cornerRadius = 20
@@ -54,61 +77,66 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         PriceView.layer.shadowOpacity = 0.1
         PriceView.layer.shadowOffset = .zero
        PriceView.layer.shadowRadius = 10
-        DoneButton.layer.cornerRadius = 20
+    
         
         //time picker
                 createTimePicker()
       
     }
     
+    @IBAction func WhenDoneClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        let FirstViewController = ViewController()
+            present(FirstViewController, animated: true, completion: nil)
+        
+    }
+    
     
     func createTimePicker() {
-            
-            StartTimeTxt.textAlignment = .center
-            EndTimeTxt.textAlignment = .center
-            
-            //tool bar
-            let toolbar = UIToolbar()
-            toolbar.sizeToFit()
-            
-            //bar button(
-           let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
-           toolbar.setItems([doneBtn], animated: true)
         
-            //assign tool bar
-            StartTimeTxt.inputAccessoryView = toolbar
-            EndTimeTxt.inputAccessoryView = toolbar
-            
-            // assign time picker to the txt field
-            StartTimeTxt.inputView = StartTimePicker
-            EndTimeTxt.inputView = EndTimePicker
-            
-            //time picker mode
-           /* StartTimePicker.datePickerMode = .time
-            EndTimePicker.datePickerMode = .time*/
+        StartTimeTxt.textAlignment = .center
+        EndTimeTxt.textAlignment = .center
         
-            
+        //tool bar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        //bar button(
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([doneBtn], animated: true)
+        
+        //assign tool bar
+        StartTimeTxt.inputAccessoryView = toolbar
+        EndTimeTxt.inputAccessoryView = toolbar
+        
+        // assign time picker to the txt field
+        StartTimeTxt.inputView = StartTimePicker
+        EndTimeTxt.inputView = EndTimePicker
+        
+        //time picker mode
+        /* StartTimePicker.datePickerMode = .time
+         EndTimePicker.datePickerMode = .time*/
+        
+        
         let calendar = Calendar.current
-                //First range
-                let startTime = Date()
-                let startRangeEnd = calendar.date(byAdding: DateComponents(minute: 30), to: startTime)!
-                let startRange = startTime...startRangeEnd
-                //Second range
-                let endTime = calendar.date(byAdding: DateComponents(minute: 1), to: startRangeEnd)!
-                let endRangeEnd = calendar.startOfDay(for: calendar.date(byAdding: DateComponents(day: 1), to: startTime)!)
-                let endRange = endTime...endRangeEnd
-                StartTimePicker.date = startTime
-                StartTimePicker.minimumDate = startTime
-                StartTimePicker.maximumDate = startRangeEnd
-                EndTimePicker.date = endTime
-                EndTimePicker.minimumDate = endTime
-                EndTimePicker.maximumDate = endRangeEnd
-                     if #available(iOS 13.4, *)  {
-                           StartTimePicker.preferredDatePickerStyle = .wheels
-                           EndTimePicker.preferredDatePickerStyle = .wheels
-                       }
-        
-        
+        //First range
+        let startTime = Date()
+        let startRangeEnd = calendar.date(byAdding: DateComponents(minute: 30), to: startTime)!
+        let startRange = startTime...startRangeEnd
+        //Second range
+        let endTime = calendar.date(byAdding: DateComponents(minute: 1), to: startRangeEnd)!
+        let endRangeEnd = calendar.startOfDay(for: calendar.date(byAdding: DateComponents(day: 1), to: startTime)!)
+            let endRange = endTime...endRangeEnd
+            StartTimePicker.date = startTime
+            StartTimePicker.minimumDate = startTime
+            StartTimePicker.maximumDate = startRangeEnd
+            EndTimePicker.date = endTime
+            EndTimePicker.minimumDate = endTime
+            EndTimePicker.maximumDate = endRangeEnd
+            if #available(iOS 13.4, *)  {
+                StartTimePicker.preferredDatePickerStyle = .wheels
+                EndTimePicker.preferredDatePickerStyle = .wheels
+            }
         }
 
     @objc func donePressed(){
@@ -132,9 +160,9 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
            self.view.endEditing(true)
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "h:mm a"
-        let start = formatter.string(from: StartTimePicker.date)
-        let end = formatter.string(from: EndTimePicker.date)
-        print(start, end)
+        startTimer = formatter.string(from: StartTimePicker.date)
+        endTimer = formatter.string(from: EndTimePicker.date)
+       // print(start, end)
 
         // Format and print in 12h format
         let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: StartTimePicker.date, to: EndTimePicker.date)
@@ -143,6 +171,9 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         // Calculate price, the formula is just an example
         let price = hourAndMinutes.hour! * 15 + hourAndMinutes.minute! * 15 / 60
         TotalPrice.text = String(price) + "SAR"
+        
+        
+        
         
         /*let starttimecal = StartTimeTxt.text!
         let endtimecal = EndTimeTxt.text!
@@ -161,8 +192,39 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         //let ETime24 = dateFormatter.string(from: ETime!)
         print("24 hour formatted Date:",ETime)*/
         
+        
+        
+        
        }
 
+    @IBAction func btnContirmClicked(_ sender: Any) {
+        guard !startTimer.isEmpty && !endTimer.isEmpty else{return}
+
+        let df = DateFormatter()
+        df.dateFormat = "d MMM yyyy"
+        let dateStr = df.string(from: Date())
+        
+        
+        let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: StartTimePicker.date, to: EndTimePicker.date)
+        print(hourAndMinutes)
+        let reservationId = UtilitiesManager.sharedIntance.getRandomString()
+        let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false] as [String : Any]
+        
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
+        vc.endTimer = self.endTimer
+        vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName])
+        self.present(vc, animated: true, completion: {
+            RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
+            if self.parking.areaname == "King Saud University"{
+                self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
+                UserDefaults.standard.set("Area_23", forKey: "parkingArea")
+            }else{
+                self.ref.child("Areas").child("Area_88").child("isAvailable").setValue(false)
+                UserDefaults.standard.set("Area_88", forKey: "parkingArea")
+            }
+        })
+    }
     
     
     /*private func calculateIntialPrice() -> Double {

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,6 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        if Auth.auth().currentUser?.uid == nil{
+            if  UserDefaults.standard.string(forKey: "uid") == nil{
+                UserDefaults.standard.set(UtilitiesManager.sharedIntance.getRandomString(), forKey: "uid")
+            }else{
+                _ = UserDefaults.standard.string(forKey: "uid")!
+            }
+        }else{
+            _ = Auth.auth().currentUser!.uid
+        }
+        
         return true
     }
 

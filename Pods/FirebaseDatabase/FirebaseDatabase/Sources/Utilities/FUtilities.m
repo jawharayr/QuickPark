@@ -21,6 +21,8 @@
 #import "FirebaseDatabase/Sources/Utilities/FStringUtilities.h"
 
 #define ARC4RANDOM_MAX 0x100000000
+#define INTEGER_32_MIN (-2147483648)
+#define INTEGER_32_MAX 2147483647
 
 #pragma mark -
 #pragma mark C functions
@@ -154,13 +156,9 @@ void firebaseJobsTroll(void) {
 
     // Sanitize the database URL by removing the path component, which may
     // contain invalid URL characters.
-    NSRange lastMatch = [url rangeOfString:originalPathString
-                                   options:NSBackwardsSearch];
     NSString *sanitizedUrlWithoutPath =
-        (lastMatch.location != NSNotFound)
-            ? [url substringToIndex:lastMatch.location]
-            : url;
-
+        [url stringByReplacingOccurrencesOfString:originalPathString
+                                       withString:@""];
     NSURLComponents *urlComponents =
         [NSURLComponents componentsWithString:sanitizedUrlWithoutPath];
     if (!urlComponents) {
@@ -295,11 +293,10 @@ void firebaseJobsTroll(void) {
 }
 
 + (NSNumber *)intForString:(NSString *)string {
-    static dispatch_once_t once;
-    static NSCharacterSet *notDigits;
-    dispatch_once(&once, ^{
-      notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-    });
+    static NSCharacterSet *notDigits = nil;
+    if (!notDigits) {
+        notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    }
     if ([string rangeOfCharacterFromSet:notDigits].length == 0) {
         NSInteger num;
         NSScanner *scanner = [NSScanner scannerWithString:string];
@@ -308,14 +305,6 @@ void firebaseJobsTroll(void) {
         }
     }
     return nil;
-}
-
-+ (NSInteger)int32min {
-    return INTEGER_32_MIN;
-}
-
-+ (NSInteger)int32max {
-    return INTEGER_32_MAX;
 }
 
 + (NSString *)ieee754StringForNumber:(NSNumber *)val {
@@ -328,10 +317,6 @@ void firebaseJobsTroll(void) {
         [str appendFormat:@"%02x", byte];
     }
     return str;
-}
-
-+ (BOOL)tryParseString:(NSString *)string asInt:(NSInteger *)integer {
-    return tryParseStringToInt(string, integer);
 }
 
 static inline BOOL tryParseStringToInt(__unsafe_unretained NSString *str,
