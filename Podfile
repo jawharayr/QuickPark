@@ -14,6 +14,8 @@ target 'QuickPark' do
   pod 'Firebase/Storage'
   pod 'Kingfisher'
   pod 'ProgressHUD'
+  pod 'paper-onboarding'
+
   
   #Other Pods
   pod 'CodableFirebase'
