@@ -505,6 +505,7 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - paper-onboarding (6.1.5)
   - ProgressHUD (13.6)
   - PromisesObjC (2.0.0)
   - SVProgressHUD (2.2.5)
@@ -519,6 +520,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - Kingfisher
+  - paper-onboarding
   - ProgressHUD
   - SVProgressHUD
 
@@ -546,6 +548,7 @@ SPEC REPOS:
     - Kingfisher
     - leveldb-library
     - nanopb
+    - paper-onboarding
     - ProgressHUD
     - PromisesObjC
     - SVProgressHUD
@@ -573,10 +576,11 @@ SPEC CHECKSUMS:
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  paper-onboarding: fede1799b1da6988f3788e3b71654583c6f3bce1
   ProgressHUD: 4bdaa0d2ddf676b23324b199f9facffb5c3a1620
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: abd384e072cb37659b7897589a98aed8d0948b35
+PODFILE CHECKSUM: e23784c0fad4ce8ff5f776302d795709903c59f7
 
 COCOAPODS: 1.11.2
