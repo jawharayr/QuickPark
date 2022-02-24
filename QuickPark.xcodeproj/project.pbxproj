@@ -9,17 +9,13 @@
 /* Begin PBXBuildFile section */
 		04DD469B27A4621200342200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469A27A4621200342200 /* AppDelegate.swift */; };
 		04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469C27A4621200342200 /* SceneDelegate.swift */; };
-<<<<<<< HEAD
 		04DD469F27A4621200342200 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469E27A4621200342200 /* ViewController.swift */; };
-=======
 		04DD46A227A4621200342200 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A027A4621200342200 /* Main.storyboard */; };
 		04DD46A427A4621300342200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A327A4621300342200 /* Assets.xcassets */; };
->>>>>>> origin/Admin-AddArea
 		04DD46A727A4621300342200 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A527A4621300342200 /* LaunchScreen.storyboard */; };
 		04DD46B227A4621300342200 /* QuickParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46B127A4621300342200 /* QuickParkTests.swift */; };
 		04DD46BC27A4621300342200 /* QuickParkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BB27A4621300342200 /* QuickParkUITests.swift */; };
 		04DD46BE27A4621300342200 /* QuickParkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */; };
-<<<<<<< HEAD
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
@@ -57,21 +53,6 @@
 		3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */; };
 		D059121AA59CF4450ACB2FB6 /* Pods_QuickPark_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2E8B9214F8CFF56EFAB53E /* Pods_QuickPark_QuickParkTests.framework */; };
 		ED08CCF069A3B5E6753C5BDD /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */; };
-=======
-		1F120E7127B7CE1D00D52DD2 /* AdminHomeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F120E7027B7CE1D00D52DD2 /* AdminHomeListVC.swift */; };
-		1F120E7327B7D71600D52DD2 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F120E7227B7D71600D52DD2 /* Area.swift */; };
-		1F120E7527B7D76600D52DD2 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F120E7427B7D76600D52DD2 /* CustomCell.swift */; };
-		1F45BF0C27A82D6300349504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */; };
-		1F45BF0D27A82D6300349504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */; };
-		1F45BF0E27A82D6300349504 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */; };
-		1F6B27DF27B4FE5E0086DD5E /* AdminTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6B27DE27B4FE5E0086DD5E /* AdminTabBarVC.swift */; };
-		1F82E70227A847F600E08952 /* AddAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F82E70127A847F600E08952 /* AddAreaViewController.swift */; };
-		1FBF08D627A9AE660034BABE /* ParkingAreas.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FBF08D427A9AE660034BABE /* ParkingAreas.xib */; };
-		1FF72DE927BD9B6F0021BFD8 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF72DE827BD9B6F0021BFD8 /* FirebaseManager.swift */; };
-		5D41BD200CE3093AA5049F08 /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1BC3D1B0C964571C89D1DDA /* Pods_QuickPark.framework */; };
-		928C5A307610FD0CB8A710A3 /* Pods_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 943916B23B0BF5691FFD8B59 /* Pods_QuickParkTests.framework */; };
-		9B05612C9EF783F68E81E786 /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD403AFAF1D658B09874A7AE /* Pods_QuickPark_QuickParkUITests.framework */; };
->>>>>>> origin/Admin-AddArea
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,12 +76,7 @@
 		04DD469727A4621200342200 /* QuickPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DD469A27A4621200342200 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04DD469C27A4621200342200 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		04DD469E27A4621200342200 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-=======
-		04DD46A127A4621200342200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		04DD46A327A4621300342200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
->>>>>>> origin/Admin-AddArea
 		04DD46A627A4621300342200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04DD46A827A4621300342200 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04DD46AD27A4621300342200 /* QuickParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickParkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +84,6 @@
 		04DD46B727A4621300342200 /* QuickParkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickParkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DD46BB27A4621300342200 /* QuickParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITests.swift; sourceTree = "<group>"; };
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22035F9F27B6B24E00D1A3B5 /* TVCResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCResetPassword.swift; sourceTree = "<group>"; };
@@ -152,25 +127,6 @@
 		DEE26C2A1663C1B2E299610A /* Pods-QuickParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickParkTests.debug.xcconfig"; path = "Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark_QuickParkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCE5C5917A1148E78C8197ED /* Pods-QuickPark-QuickParkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkTests.release.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkTests/Pods-QuickPark-QuickParkTests.release.xcconfig"; sourceTree = "<group>"; };
-=======
-		1F120E7027B7CE1D00D52DD2 /* AdminHomeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeListVC.swift; sourceTree = "<group>"; };
-		1F120E7227B7D71600D52DD2 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
-		1F120E7427B7D76600D52DD2 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1F6B27DE27B4FE5E0086DD5E /* AdminTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTabBarVC.swift; sourceTree = "<group>"; };
-		1F82E70127A847F600E08952 /* AddAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAreaViewController.swift; sourceTree = "<group>"; };
-		1FBF08D427A9AE660034BABE /* ParkingAreas.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkingAreas.xib; sourceTree = "<group>"; };
-		1FF72DE827BD9B6F0021BFD8 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		943916B23B0BF5691FFD8B59 /* Pods_QuickParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1BC3D1B0C964571C89D1DDA /* Pods_QuickPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB937EEEC0759494F4BB12B7 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
-		CCC7F2CA5D1CD25658374C9D /* Pods-QuickParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickParkTests.debug.xcconfig"; path = "Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D745A3D00304685B94333EB2 /* Pods-QuickPark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.debug.xcconfig"; sourceTree = "<group>"; };
-		DC6D903EBD137471A6E7FAA0 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkUITests.release.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests.release.xcconfig"; sourceTree = "<group>"; };
-		E7EEFE5A2A1ECC843C098CF6 /* Pods-QuickParkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickParkTests.release.xcconfig"; path = "Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests.release.xcconfig"; sourceTree = "<group>"; };
-		F0E502EAF143C31FE2486B46 /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkUITests.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		FD403AFAF1D658B09874A7AE /* Pods_QuickPark_QuickParkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark_QuickParkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
->>>>>>> origin/Admin-AddArea
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,11 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */,
-=======
-				5D41BD200CE3093AA5049F08 /* Pods_QuickPark.framework in Frameworks */,
->>>>>>> origin/Admin-AddArea
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,11 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				D059121AA59CF4450ACB2FB6 /* Pods_QuickPark_QuickParkTests.framework in Frameworks */,
-=======
-				928C5A307610FD0CB8A710A3 /* Pods_QuickParkTests.framework in Frameworks */,
->>>>>>> origin/Admin-AddArea
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,18 +150,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				ED08CCF069A3B5E6753C5BDD /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */,
-=======
-				9B05612C9EF783F68E81E786 /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */,
->>>>>>> origin/Admin-AddArea
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-<<<<<<< HEAD
 		00C8239F40F3D7AE0B53AAD1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,8 +172,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-=======
->>>>>>> origin/Admin-AddArea
 		04DD468E27A4621200342200 = {
 			isa = PBXGroup;
 			children = (
@@ -238,13 +179,8 @@
 				04DD46B027A4621300342200 /* QuickParkTests */,
 				04DD46BA27A4621300342200 /* QuickParkUITests */,
 				04DD469827A4621200342200 /* Products */,
-<<<<<<< HEAD
 				00C8239F40F3D7AE0B53AAD1 /* Pods */,
 				83636CA8ABD1D981848DFD55 /* Frameworks */,
-=======
-				BCBE2CF3927E3AEE2877A879 /* Pods */,
-				65699CE1427702DA0E42818D /* Frameworks */,
->>>>>>> origin/Admin-AddArea
 			);
 			sourceTree = "<group>";
 		};
@@ -261,7 +197,6 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				225AB85327C7A805003D4253 /* UIView+Extension.swift */,
 				225AB85427C7A805003D4253 /* UIViewController+Extension.swift */,
 				225AB85527C7A806003D4253 /* UserDefaults+Extension.swift */,
@@ -286,14 +221,6 @@
 				22035FA427BB728300D1A3B5 /* Support */,
 				22A0756F27A9257D00658889 /* Auth */,
 				04DD469E27A4621200342200 /* ViewController.swift */,
-=======
-				1FBF08D027A9AC9C0034BABE /* View */,
-				1FBF08CF27A9AC920034BABE /* Model */,
-				1FBF08CE27A9AC730034BABE /* Controller */,
-				04DD46A327A4621300342200 /* Assets.xcassets */,
-				04DD46A827A4621300342200 /* Info.plist */,
-				1F45BF0B27A82D6300349504 /* GoogleService-Info.plist */,
->>>>>>> origin/Admin-AddArea
 			);
 			path = QuickPark;
 			sourceTree = "<group>";
@@ -315,7 +242,6 @@
 			path = QuickParkUITests;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		22035FA327BB726000D1A3B5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,18 +252,6 @@
 				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
 				22035FA627BB74AD00D1A3B5 /* Auth.storyboard */,
 				226C1D0527BE7C8B00D11E24 /* Shared.storyboard */,
-=======
-		1FBF08CE27A9AC730034BABE /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				04DD469A27A4621200342200 /* AppDelegate.swift */,
-				04DD469C27A4621200342200 /* SceneDelegate.swift */,
-				1F82E70127A847F600E08952 /* AddAreaViewController.swift */,
-				1F6B27DE27B4FE5E0086DD5E /* AdminTabBarVC.swift */,
-				1F120E7027B7CE1D00D52DD2 /* AdminHomeListVC.swift */,
-				1F120E7427B7D76600D52DD2 /* CustomCell.swift */,
-				1FF72DE827BD9B6F0021BFD8 /* FirebaseManager.swift */,
->>>>>>> origin/Admin-AddArea
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -345,13 +259,9 @@
 		22035FA427BB728300D1A3B5 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				22035FA127BB724600D1A3B5 /* FBSupport.swift */,
 				22035FA827BB75B500D1A3B5 /* SBSupport.swift */,
 				22035FAA27BBCF2300D1A3B5 /* Profile.swift */,
-=======
-				1F120E7227B7D71600D52DD2 /* Area.swift */,
->>>>>>> origin/Admin-AddArea
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -359,14 +269,8 @@
 		22035FA527BB731100D1A3B5 /* AppProtocols */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				04DD469A27A4621200342200 /* AppDelegate.swift */,
 				04DD469C27A4621200342200 /* SceneDelegate.swift */,
-=======
-				04DD46A027A4621200342200 /* Main.storyboard */,
-				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
-				1FBF08D427A9AE660034BABE /* ParkingAreas.xib */,
->>>>>>> origin/Admin-AddArea
 			);
 			path = AppProtocols;
 			sourceTree = "<group>";
@@ -374,7 +278,6 @@
 		22A0756F27A9257D00658889 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				22A0757027A925DC00658889 /* RegViewController.swift */,
 				22A0757227A9260500658889 /* LogViewController.swift */,
 				22035F9F27B6B24E00D1A3B5 /* TVCResetPassword.swift */,
@@ -390,17 +293,10 @@
 				4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */,
 				F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */,
 				3B2E8B9214F8CFF56EFAB53E /* Pods_QuickPark_QuickParkTests.framework */,
-=======
-				A1BC3D1B0C964571C89D1DDA /* Pods_QuickPark.framework */,
-				FD403AFAF1D658B09874A7AE /* Pods_QuickPark_QuickParkUITests.framework */,
-				943916B23B0BF5691FFD8B59 /* Pods_QuickParkTests.framework */,
->>>>>>> origin/Admin-AddArea
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-=======
 		BCBE2CF3927E3AEE2877A879 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,7 +310,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
->>>>>>> origin/Admin-AddArea
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -422,19 +317,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04DD46C127A4621300342200 /* Build configuration list for PBXNativeTarget "QuickPark" */;
 			buildPhases = (
-<<<<<<< HEAD
 				442942EC73783FFA660A3816 /* [CP] Check Pods Manifest.lock */,
 				04DD469327A4621200342200 /* Sources */,
 				04DD469427A4621200342200 /* Frameworks */,
 				04DD469527A4621200342200 /* Resources */,
 				5152C09513D80E46E504DE42 /* [CP] Embed Pods Frameworks */,
-=======
-				815816836F04B3C55ECBFBBF /* [CP] Check Pods Manifest.lock */,
-				04DD469327A4621200342200 /* Sources */,
-				04DD469427A4621200342200 /* Frameworks */,
-				04DD469527A4621200342200 /* Resources */,
-				3A5D451B9964833FEE8A37D7 /* [CP] Embed Pods Frameworks */,
->>>>>>> origin/Admin-AddArea
 			);
 			buildRules = (
 			);
@@ -449,19 +336,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04DD46C427A4621300342200 /* Build configuration list for PBXNativeTarget "QuickParkTests" */;
 			buildPhases = (
-<<<<<<< HEAD
 				06C0341019FE8373DCCA59D3 /* [CP] Check Pods Manifest.lock */,
 				04DD46A927A4621300342200 /* Sources */,
 				04DD46AA27A4621300342200 /* Frameworks */,
 				04DD46AB27A4621300342200 /* Resources */,
 				EC1CFE0029E079532DCB168C /* [CP] Embed Pods Frameworks */,
-=======
-				ECCED5B6C79036E330D68134 /* [CP] Check Pods Manifest.lock */,
-				04DD46A927A4621300342200 /* Sources */,
-				04DD46AA27A4621300342200 /* Frameworks */,
-				04DD46AB27A4621300342200 /* Resources */,
-				ED9B9E7810498D76145ADE0F /* [CP] Embed Pods Frameworks */,
->>>>>>> origin/Admin-AddArea
 			);
 			buildRules = (
 			);
@@ -477,19 +356,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04DD46C727A4621300342200 /* Build configuration list for PBXNativeTarget "QuickParkUITests" */;
 			buildPhases = (
-<<<<<<< HEAD
 				59CF1317ACE729DB8B6A3A04 /* [CP] Check Pods Manifest.lock */,
 				04DD46B327A4621300342200 /* Sources */,
 				04DD46B427A4621300342200 /* Frameworks */,
 				04DD46B527A4621300342200 /* Resources */,
 				7A87A2110801A6C21C310014 /* [CP] Embed Pods Frameworks */,
-=======
-				F53F930B4AB88E006A472364 /* [CP] Check Pods Manifest.lock */,
-				04DD46B327A4621300342200 /* Sources */,
-				04DD46B427A4621300342200 /* Frameworks */,
-				04DD46B527A4621300342200 /* Resources */,
-				ED73E6AFCE41DBDD3BBDCD69 /* [CP] Embed Pods Frameworks */,
->>>>>>> origin/Admin-AddArea
 			);
 			buildRules = (
 			);
@@ -550,18 +421,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DD46A727A4621300342200 /* LaunchScreen.storyboard in Resources */,
-<<<<<<< HEAD
 				1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */,
 				22035FA727BB74AD00D1A3B5 /* Auth.storyboard in Resources */,
 				226C1D1F27BE85B700D11E24 /* Main.storyboard in Resources */,
 				22035F9E27B6AD6800D1A3B5 /* Assets.xcassets in Resources */,
 				226C1D0627BE7C8B00D11E24 /* Shared.storyboard in Resources */,
-=======
-				1FBF08D627A9AE660034BABE /* ParkingAreas.xib in Resources */,
-				1F45BF0C27A82D6300349504 /* GoogleService-Info.plist in Resources */,
-				04DD46A427A4621300342200 /* Assets.xcassets in Resources */,
-				04DD46A227A4621200342200 /* Main.storyboard in Resources */,
->>>>>>> origin/Admin-AddArea
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,11 +433,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */,
-=======
-				1F45BF0D27A82D6300349504 /* GoogleService-Info.plist in Resources */,
->>>>>>> origin/Admin-AddArea
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,28 +441,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */,
-=======
-				1F45BF0E27A82D6300349504 /* GoogleService-Info.plist in Resources */,
->>>>>>> origin/Admin-AddArea
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-<<<<<<< HEAD
 		06C0341019FE8373DCCA59D3 /* [CP] Check Pods Manifest.lock */ = {
-=======
-		3A5D451B9964833FEE8A37D7 /* [CP] Embed Pods Frameworks */ = {
->>>>>>> origin/Admin-AddArea
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-<<<<<<< HEAD
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
@@ -620,20 +471,6 @@
 			showEnvVarsInLog = 0;
 		};
 		442942EC73783FFA660A3816 /* [CP] Check Pods Manifest.lock */ = {
-=======
-				"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		815816836F04B3C55ECBFBBF /* [CP] Check Pods Manifest.lock */ = {
->>>>>>> origin/Admin-AddArea
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -655,7 +492,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-<<<<<<< HEAD
 		5152C09513D80E46E504DE42 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -674,9 +510,6 @@
 			showEnvVarsInLog = 0;
 		};
 		59CF1317ACE729DB8B6A3A04 /* [CP] Check Pods Manifest.lock */ = {
-=======
-		ECCED5B6C79036E330D68134 /* [CP] Check Pods Manifest.lock */ = {
->>>>>>> origin/Admin-AddArea
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -691,22 +524,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-<<<<<<< HEAD
 				"$(DERIVED_FILE_DIR)/Pods-QuickPark-QuickParkUITests-checkManifestLockResult.txt",
-=======
-				"$(DERIVED_FILE_DIR)/Pods-QuickParkTests-checkManifestLockResult.txt",
->>>>>>> origin/Admin-AddArea
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-<<<<<<< HEAD
 		7A87A2110801A6C21C310014 /* [CP] Embed Pods Frameworks */ = {
-=======
-		ED73E6AFCE41DBDD3BBDCD69 /* [CP] Embed Pods Frameworks */ = {
->>>>>>> origin/Admin-AddArea
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -723,11 +548,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-<<<<<<< HEAD
 		EC1CFE0029E079532DCB168C /* [CP] Embed Pods Frameworks */ = {
-=======
-		ED9B9E7810498D76145ADE0F /* [CP] Embed Pods Frameworks */ = {
->>>>>>> origin/Admin-AddArea
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -744,8 +565,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkTests/Pods-QuickPark-QuickParkTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-<<<<<<< HEAD
-=======
 		F53F930B4AB88E006A472364 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -768,7 +587,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
->>>>>>> origin/Admin-AddArea
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -776,7 +594,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				225AB84827C7A75A003D4253 /* UserProfileViewController.swift in Sources */,
 				22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */,
@@ -807,16 +624,6 @@
 				225AB85127C7A7C1003D4253 /* OnboardingSlide.swift in Sources */,
 				225AB85827C7A806003D4253 /* UserDefaults+Extension.swift in Sources */,
 				22035FAB27BBCF2300D1A3B5 /* Profile.swift in Sources */,
-=======
-				1F120E7327B7D71600D52DD2 /* Area.swift in Sources */,
-				1F120E7527B7D76600D52DD2 /* CustomCell.swift in Sources */,
-				1F120E7127B7CE1D00D52DD2 /* AdminHomeListVC.swift in Sources */,
-				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
-				1FF72DE927BD9B6F0021BFD8 /* FirebaseManager.swift in Sources */,
-				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
-				1F82E70227A847F600E08952 /* AddAreaViewController.swift in Sources */,
-				1F6B27DF27B4FE5E0086DD5E /* AdminTabBarVC.swift in Sources */,
->>>>>>> origin/Admin-AddArea
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -990,11 +797,7 @@
 		};
 		04DD46C227A4621300342200 /* Debug */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
 			baseConfigurationReference = C4D573FE1E7BF3A931F98B73 /* Pods-QuickPark.debug.xcconfig */;
-=======
-			baseConfigurationReference = D745A3D00304685B94333EB2 /* Pods-QuickPark.debug.xcconfig */;
->>>>>>> origin/Admin-AddArea
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1024,11 +827,7 @@
 		};
 		04DD46C327A4621300342200 /* Release */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
 			baseConfigurationReference = 3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */;
-=======
-			baseConfigurationReference = BB937EEEC0759494F4BB12B7 /* Pods-QuickPark.release.xcconfig */;
->>>>>>> origin/Admin-AddArea
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1058,11 +857,7 @@
 		};
 		04DD46C527A4621300342200 /* Debug */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
 			baseConfigurationReference = 36CD72A8001F0AEED8AEF9AA /* Pods-QuickPark-QuickParkTests.debug.xcconfig */;
-=======
-			baseConfigurationReference = CCC7F2CA5D1CD25658374C9D /* Pods-QuickParkTests.debug.xcconfig */;
->>>>>>> origin/Admin-AddArea
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1083,11 +878,7 @@
 		};
 		04DD46C627A4621300342200 /* Release */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
 			baseConfigurationReference = FCE5C5917A1148E78C8197ED /* Pods-QuickPark-QuickParkTests.release.xcconfig */;
-=======
-			baseConfigurationReference = E7EEFE5A2A1ECC843C098CF6 /* Pods-QuickParkTests.release.xcconfig */;
->>>>>>> origin/Admin-AddArea
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1108,11 +899,7 @@
 		};
 		04DD46C827A4621300342200 /* Debug */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
 			baseConfigurationReference = 88D157D820121CDA58F7CDAB /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */;
-=======
-			baseConfigurationReference = F0E502EAF143C31FE2486B46 /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */;
->>>>>>> origin/Admin-AddArea
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1131,11 +918,7 @@
 		};
 		04DD46C927A4621300342200 /* Release */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
 			baseConfigurationReference = 8E12F9684092C5EB5D532BA4 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */;
-=======
-			baseConfigurationReference = DC6D903EBD137471A6E7FAA0 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */;
->>>>>>> origin/Admin-AddArea
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
