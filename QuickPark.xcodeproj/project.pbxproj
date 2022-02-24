@@ -10,8 +10,6 @@
 		04DD469B27A4621200342200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469A27A4621200342200 /* AppDelegate.swift */; };
 		04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469C27A4621200342200 /* SceneDelegate.swift */; };
 		04DD469F27A4621200342200 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469E27A4621200342200 /* ViewController.swift */; };
-		04DD46A227A4621200342200 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A027A4621200342200 /* Main.storyboard */; };
-		04DD46A427A4621300342200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A327A4621300342200 /* Assets.xcassets */; };
 		04DD46A727A4621300342200 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04DD46A527A4621300342200 /* LaunchScreen.storyboard */; };
 		04DD46B227A4621300342200 /* QuickParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46B127A4621300342200 /* QuickParkTests.swift */; };
 		04DD46BC27A4621300342200 /* QuickParkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BB27A4621300342200 /* QuickParkUITests.swift */; };
@@ -32,15 +30,17 @@
 		225AB85627C7A806003D4253 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB85327C7A805003D4253 /* UIView+Extension.swift */; };
 		225AB85727C7A806003D4253 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB85427C7A805003D4253 /* UIViewController+Extension.swift */; };
 		225AB85827C7A806003D4253 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB85527C7A806003D4253 /* UserDefaults+Extension.swift */; };
+		225AB85D27C7B3FA003D4253 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB85927C7B3FA003D4253 /* CustomCell.swift */; };
+		225AB85E27C7B3FA003D4253 /* AdminHomeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB85A27C7B3FA003D4253 /* AdminHomeListVC.swift */; };
+		225AB85F27C7B3FA003D4253 /* AdminTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB85B27C7B3FA003D4253 /* AdminTabBarVC.swift */; };
+		225AB86027C7B3FA003D4253 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB85C27C7B3FA003D4253 /* FirebaseManager.swift */; };
+		225AB86227C7B41C003D4253 /* AddAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB86127C7B41B003D4253 /* AddAreaViewController.swift */; };
+		225AB86A27C7B796003D4253 /* AdminMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 225AB86827C7B796003D4253 /* AdminMain.storyboard */; };
 		226C1D0427BE682400D11E24 /* VCMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0327BE682400D11E24 /* VCMore.swift */; };
 		226C1D0627BE7C8B00D11E24 /* Shared.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226C1D0527BE7C8B00D11E24 /* Shared.storyboard */; };
-		226C1D1227BE85A800D11E24 /* ConfirmOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0727BE85A800D11E24 /* ConfirmOrderVC.swift */; };
 		226C1D1327BE85A800D11E24 /* ReservationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0827BE85A800D11E24 /* ReservationCell.swift */; };
 		226C1D1427BE85A800D11E24 /* PastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0927BE85A800D11E24 /* PastTableViewCell.swift */; };
-		226C1D1527BE85A800D11E24 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0A27BE85A800D11E24 /* TabBarVC.swift */; };
 		226C1D1627BE85A800D11E24 /* ConfirmAndPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0B27BE85A800D11E24 /* ConfirmAndPay.swift */; };
-		226C1D1727BE85A800D11E24 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0C27BE85A800D11E24 /* CustomCell.swift */; };
-		226C1D1827BE85A800D11E24 /* TimerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0D27BE85A800D11E24 /* TimerVC.swift */; };
 		226C1D1927BE85A800D11E24 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0E27BE85A800D11E24 /* Reservation.swift */; };
 		226C1D1A27BE85A800D11E24 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0F27BE85A800D11E24 /* QRCodeVC.swift */; };
 		226C1D1B27BE85A800D11E24 /* MyParkingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D1027BE85A800D11E24 /* MyParkingsVC.swift */; };
@@ -98,15 +98,17 @@
 		225AB85327C7A805003D4253 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "Extensions/UIView+Extension.swift"; sourceTree = "<group>"; };
 		225AB85427C7A805003D4253 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extension.swift"; path = "Extensions/UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		225AB85527C7A806003D4253 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UserDefaults+Extension.swift"; path = "Extensions/UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		225AB85927C7B3FA003D4253 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = AppProtocols/CustomCell.swift; sourceTree = "<group>"; };
+		225AB85A27C7B3FA003D4253 /* AdminHomeListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminHomeListVC.swift; path = AppProtocols/AdminHomeListVC.swift; sourceTree = "<group>"; };
+		225AB85B27C7B3FA003D4253 /* AdminTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminTabBarVC.swift; path = AppProtocols/AdminTabBarVC.swift; sourceTree = "<group>"; };
+		225AB85C27C7B3FA003D4253 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseManager.swift; path = AppProtocols/FirebaseManager.swift; sourceTree = "<group>"; };
+		225AB86127C7B41B003D4253 /* AddAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddAreaViewController.swift; path = Controller/AddAreaViewController.swift; sourceTree = "<group>"; };
+		225AB86927C7B796003D4253 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = QuickPark/View/Base.lproj/AdminMain.storyboard; sourceTree = "<group>"; };
 		226C1D0327BE682400D11E24 /* VCMore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCMore.swift; sourceTree = "<group>"; };
 		226C1D0527BE7C8B00D11E24 /* Shared.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shared.storyboard; sourceTree = "<group>"; };
-		226C1D0727BE85A800D11E24 /* ConfirmOrderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmOrderVC.swift; sourceTree = "<group>"; };
 		226C1D0827BE85A800D11E24 /* ReservationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationCell.swift; sourceTree = "<group>"; };
 		226C1D0927BE85A800D11E24 /* PastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTableViewCell.swift; sourceTree = "<group>"; };
-		226C1D0A27BE85A800D11E24 /* TabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		226C1D0B27BE85A800D11E24 /* ConfirmAndPay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmAndPay.swift; sourceTree = "<group>"; };
-		226C1D0C27BE85A800D11E24 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		226C1D0D27BE85A800D11E24 /* TimerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerVC.swift; sourceTree = "<group>"; };
 		226C1D0E27BE85A800D11E24 /* Reservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		226C1D0F27BE85A800D11E24 /* QRCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		226C1D1027BE85A800D11E24 /* MyParkingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyParkingsVC.swift; sourceTree = "<group>"; };
@@ -197,6 +199,11 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
+				225AB86127C7B41B003D4253 /* AddAreaViewController.swift */,
+				225AB85A27C7B3FA003D4253 /* AdminHomeListVC.swift */,
+				225AB85B27C7B3FA003D4253 /* AdminTabBarVC.swift */,
+				225AB85927C7B3FA003D4253 /* CustomCell.swift */,
+				225AB85C27C7B3FA003D4253 /* FirebaseManager.swift */,
 				225AB85327C7A805003D4253 /* UIView+Extension.swift */,
 				225AB85427C7A805003D4253 /* UIViewController+Extension.swift */,
 				225AB85527C7A806003D4253 /* UserDefaults+Extension.swift */,
@@ -206,15 +213,11 @@
 				225AB84727C7A759003D4253 /* UserProfileViewController.swift */,
 				226C1D1127BE85A800D11E24 /* Areas.swift */,
 				226C1D0B27BE85A800D11E24 /* ConfirmAndPay.swift */,
-				226C1D0727BE85A800D11E24 /* ConfirmOrderVC.swift */,
-				226C1D0C27BE85A800D11E24 /* CustomCell.swift */,
 				226C1D1027BE85A800D11E24 /* MyParkingsVC.swift */,
 				226C1D0927BE85A800D11E24 /* PastTableViewCell.swift */,
 				226C1D0F27BE85A800D11E24 /* QRCodeVC.swift */,
 				226C1D0E27BE85A800D11E24 /* Reservation.swift */,
 				226C1D0827BE85A800D11E24 /* ReservationCell.swift */,
-				226C1D0A27BE85A800D11E24 /* TabBarVC.swift */,
-				226C1D0D27BE85A800D11E24 /* TimerVC.swift */,
 				226C1D0327BE682400D11E24 /* VCMore.swift */,
 				22035FA327BB726000D1A3B5 /* Resources */,
 				22035FA527BB731100D1A3B5 /* AppProtocols */,
@@ -251,6 +254,7 @@
 				226C1D1D27BE85B700D11E24 /* Main.storyboard */,
 				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
 				22035FA627BB74AD00D1A3B5 /* Auth.storyboard */,
+				225AB86827C7B796003D4253 /* AdminMain.storyboard */,
 				226C1D0527BE7C8B00D11E24 /* Shared.storyboard */,
 			);
 			name = Resources;
@@ -295,19 +299,6 @@
 				3B2E8B9214F8CFF56EFAB53E /* Pods_QuickPark_QuickParkTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		BCBE2CF3927E3AEE2877A879 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D745A3D00304685B94333EB2 /* Pods-QuickPark.debug.xcconfig */,
-				BB937EEEC0759494F4BB12B7 /* Pods-QuickPark.release.xcconfig */,
-				F0E502EAF143C31FE2486B46 /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */,
-				DC6D903EBD137471A6E7FAA0 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */,
-				CCC7F2CA5D1CD25658374C9D /* Pods-QuickParkTests.debug.xcconfig */,
-				E7EEFE5A2A1ECC843C098CF6 /* Pods-QuickParkTests.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,6 +414,7 @@
 				04DD46A727A4621300342200 /* LaunchScreen.storyboard in Resources */,
 				1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */,
 				22035FA727BB74AD00D1A3B5 /* Auth.storyboard in Resources */,
+				225AB86A27C7B796003D4253 /* AdminMain.storyboard in Resources */,
 				226C1D1F27BE85B700D11E24 /* Main.storyboard in Resources */,
 				22035F9E27B6AD6800D1A3B5 /* Assets.xcassets in Resources */,
 				226C1D0627BE7C8B00D11E24 /* Shared.storyboard in Resources */,
@@ -565,28 +557,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkTests/Pods-QuickPark-QuickParkTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F53F930B4AB88E006A472364 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-QuickPark-QuickParkUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -597,17 +567,19 @@
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				225AB84827C7A75A003D4253 /* UserProfileViewController.swift in Sources */,
 				22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */,
+				225AB86227C7B41C003D4253 /* AddAreaViewController.swift in Sources */,
+				225AB85F27C7B3FA003D4253 /* AdminTabBarVC.swift in Sources */,
 				226C1D1927BE85A800D11E24 /* Reservation.swift in Sources */,
+				225AB85D27C7B3FA003D4253 /* CustomCell.swift in Sources */,
 				225AB85727C7A806003D4253 /* UIViewController+Extension.swift in Sources */,
-				226C1D1827BE85A800D11E24 /* TimerVC.swift in Sources */,
 				226C1D1327BE85A800D11E24 /* ReservationCell.swift in Sources */,
 				226C1D1A27BE85A800D11E24 /* QRCodeVC.swift in Sources */,
 				22A0757327A9260500658889 /* LogViewController.swift in Sources */,
-				226C1D1727BE85A800D11E24 /* CustomCell.swift in Sources */,
 				22A0757527A9261E00658889 /* HomePageViewController.swift in Sources */,
 				226C1D1B27BE85A800D11E24 /* MyParkingsVC.swift in Sources */,
 				226C1D1627BE85A800D11E24 /* ConfirmAndPay.swift in Sources */,
 				22035FA927BB75B500D1A3B5 /* SBSupport.swift in Sources */,
+				225AB86027C7B3FA003D4253 /* FirebaseManager.swift in Sources */,
 				225AB85027C7A7C1003D4253 /* OnboardingViewController.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
 				22035FA227BB724600D1A3B5 /* FBSupport.swift in Sources */,
@@ -615,12 +587,11 @@
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 				226C1D1427BE85A800D11E24 /* PastTableViewCell.swift in Sources */,
 				225AB85227C7A7C1003D4253 /* OnboardingCollectionViewCell.swift in Sources */,
-				226C1D1227BE85A800D11E24 /* ConfirmOrderVC.swift in Sources */,
+				225AB85E27C7B3FA003D4253 /* AdminHomeListVC.swift in Sources */,
 				22A0757127A925DC00658889 /* RegViewController.swift in Sources */,
 				225AB85627C7A806003D4253 /* UIView+Extension.swift in Sources */,
 				22C1C4CB27B6993A00866DA4 /* TermsViewController.swift in Sources */,
 				226C1D1C27BE85A800D11E24 /* Areas.swift in Sources */,
-				226C1D1527BE85A800D11E24 /* TabBarVC.swift in Sources */,
 				225AB85127C7A7C1003D4253 /* OnboardingSlide.swift in Sources */,
 				225AB85827C7A806003D4253 /* UserDefaults+Extension.swift in Sources */,
 				22035FAB27BBCF2300D1A3B5 /* Profile.swift in Sources */,
@@ -666,6 +637,14 @@
 				04DD46A627A4621300342200 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		225AB86827C7B796003D4253 /* AdminMain.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				225AB86927C7B796003D4253 /* Base */,
+			);
+			name = AdminMain.storyboard;
 			sourceTree = "<group>";
 		};
 		226C1D1D27BE85B700D11E24 /* Main.storyboard */ = {

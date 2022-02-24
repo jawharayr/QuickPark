@@ -32,6 +32,7 @@ class CustomCell: UITableViewCell {
     }
     //@IBOutlet weak var ParkingView: UIView!
     @IBOutlet weak var Label: UILabel!
+    @IBOutlet weak var Alert: UILabel!
     @IBOutlet weak var Logos: UIImageView!
     @IBOutlet weak var ParkingView: UIView!
     

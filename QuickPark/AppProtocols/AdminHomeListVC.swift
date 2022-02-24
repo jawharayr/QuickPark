@@ -37,7 +37,7 @@ class AdminHomeListVC: UIViewController {
             parkings.removeAll()
             for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
                 let dictionary = snapshot.value as? NSDictionary
-                let area = Area(areaname: dictionary?["areaname"] as? String ?? "", loactionLat: "", locationLong: "", spotNo: "", logo: dictionary?["areaImage"] as? String ?? "" )
+                let area = Area(areaname: dictionary?["areaname"] as? String ?? "", loactionLat: "", locationLong: "", spotNo: "", logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0 )
                 parkings.append(area)
             }
             
