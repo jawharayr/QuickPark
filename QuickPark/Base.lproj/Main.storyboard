@@ -128,7 +128,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4DF-6B-weY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-475.36231884057975" y="443.97321428571428"/>
+            <point key="canvasLocation" x="-1362" y="1246"/>
         </scene>
         <!--More-->
         <scene sceneID="JS0-Nu-T9Q">
@@ -145,7 +145,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGo-Ii-P9N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1362" y="444"/>
+            <point key="canvasLocation" x="-1362" y="542"/>
         </scene>
         <!--Account-->
         <scene sceneID="Dd5-ZF-tuf">
@@ -162,7 +162,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAN-1g-gLb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="349" y="466"/>
+            <point key="canvasLocation" x="348" y="542"/>
         </scene>
         <!--My Parkings-->
         <scene sceneID="F9h-19-5O4">
@@ -1164,7 +1164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEn-CX-9YJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-475.36231884057975" y="1133.7053571428571"/>
+            <point key="canvasLocation" x="-1362" y="2017"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="iph-Kj-dNo">
@@ -1405,7 +1405,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Grn-Mo-Yrr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1362" y="465"/>
+            <point key="canvasLocation" x="348" y="1295"/>
         </scene>
         <!--Onboarding View Controller-->
         <scene sceneID="ebT-no-mDE">
