@@ -37,6 +37,39 @@ class RegViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
+        nameField.layer.masksToBounds = false
+        nameField.layer.shadowRadius = 4.0
+        nameField.layer.shadowColor = UIColor.lightGray.cgColor
+        nameField.layer.shadowOffset = CGSize (width: 1.0, height: 1.0)
+        nameField.layer.shadowOpacity = 1.0
+        nameField.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        
+        emailField.layer.masksToBounds = false
+        emailField.layer.shadowRadius = 4.0
+        emailField.layer.shadowColor = UIColor.lightGray.cgColor
+        emailField.layer.shadowOffset = CGSize (width: 1.0, height: 1.0)
+        emailField.layer.shadowOpacity = 1.0
+        emailField.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        passOfRegField.layer.masksToBounds = false
+        passOfRegField.layer.shadowRadius = 4.0
+        passOfRegField.layer.shadowColor = UIColor.lightGray.cgColor
+        passOfRegField.layer.shadowOffset = CGSize (width: 1.0, height: 1.0)
+        passOfRegField.layer.shadowOpacity = 1.0
+        passOfRegField.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        
+        confirmPas.layer.masksToBounds = false
+        confirmPas.layer.shadowRadius = 4.0
+        confirmPas.layer.shadowColor = UIColor.lightGray.cgColor
+        confirmPas.layer.shadowOffset = CGSize (width: 1.0, height: 1.0)
+        confirmPas.layer.shadowOpacity = 1.0
+        confirmPas.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        
+        
         super.viewDidLoad()
         //passOfRegField.enablePasswordToggle()
         // Do any additional setup after loading the view.
@@ -81,7 +114,7 @@ class RegViewController: UIViewController {
         // Name Validations
         if name.isEmpty {
             nameLabel.isHidden = false
-            nameLabel.attributedText = NSAttributedString(string: "Please enter Your Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            nameLabel.attributedText = NSAttributedString(string: "please enter your Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             nameField.shake()
             isValid = false
         }
@@ -98,13 +131,13 @@ class RegViewController: UIViewController {
         // Email Validations
         if email.isEmpty {
             emailLabel.isHidden = false
-            emailLabel.attributedText = NSAttributedString(string: "Please enter Your Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            emailLabel.attributedText = NSAttributedString(string: "Please enter your email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             emailField.shake()
             isValid = false
         }
         if !email.isValidEmail && !email.isEmpty {
             emailLabel.isHidden = false
-            emailLabel.attributedText = NSAttributedString(string: "Please enter Your Valid Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            emailLabel.attributedText = NSAttributedString(string: "Please enter your valid email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             emailField.shake()
             isValid = false
         }
@@ -172,7 +205,10 @@ class RegViewController: UIViewController {
         }
         
         let database = Firestore.firestore()
-        database.collection("users").addDocument(data: [ "name" :name, "email" : email ]) { (error) in
+        let userdata = ["email": email, "name": name]
+        print (userdata)
+        database.collection("users").document(email).setData(userdata){(error) in
+            //that line was => addDocument(data : ["name" : name , "email" : email]) { (error) in
             if error != nil {
                 //
             }
@@ -229,7 +265,7 @@ extension RegViewController {
         var isValid = true
         if name.isEmpty {
             nameLabel.isHidden = false
-            nameLabel.attributedText = NSAttributedString(string: "Please enter Your Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            nameLabel.attributedText = NSAttributedString(string: "Please enter your name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             isValid = false
         }
         if !name.isAlphanumeric || name.count < 3 && !name.isEmpty {
@@ -251,11 +287,11 @@ extension RegViewController {
         let email = emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         if email.isEmpty {
             emailLabel.isHidden = false
-            emailLabel.attributedText = NSAttributedString(string: "Please enter Your Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            emailLabel.attributedText = NSAttributedString(string: "Please enter your email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
         }
         if !email.isValidEmail && !email.isEmpty {
             emailLabel.isHidden = false
-            emailLabel.attributedText = NSAttributedString(string: "Please enter Your Valid Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            emailLabel.attributedText = NSAttributedString(string: "Please enter your valid email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
         }
         if email.isValidEmail && !email.isEmpty {
             emailLabel.isHidden = true
@@ -273,13 +309,13 @@ extension RegViewController {
         if !password.isEmpty && !password2.isEmpty {
             if password != password2 {
                 confirmLabel.isHidden = false
-                confirmLabel.attributedText = NSAttributedString(string: "password does not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+                confirmLabel.attributedText = NSAttributedString(string: "Password does not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             }
         }
         
         if !password.isValidPassword {
             passwordLabel.isHidden = false
-            passwordLabel.attributedText = NSAttributedString(string: "Please enter Valid Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            passwordLabel.attributedText = NSAttributedString(string: "Please enter valid password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
         }
         
         if !password.isEmpty && !password2.isEmpty && (password == password2) && password.isValidPassword {
