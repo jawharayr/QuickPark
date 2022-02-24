@@ -15,6 +15,7 @@ target 'QuickPark' do
   pod 'Kingfisher'
   pod 'ProgressHUD'
   pod 'paper-onboarding'
+  pod 'SDWebImage', '~> 5.0'
 
   
   #Other Pods
