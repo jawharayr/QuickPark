@@ -18,10 +18,27 @@ class LogViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var passLabel: UILabel!
     override func viewDidLoad() {
+        //buttons shadow & style
+        emailField.layer.masksToBounds = false
+        emailField.layer.shadowRadius = 4.0
+        emailField.layer.shadowColor = UIColor.lightGray.cgColor
+        emailField.layer.shadowOffset = CGSize (width: 1.0, height: 1.0)
+        emailField.layer.shadowOpacity = 1.0
+        emailField.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        
+        passField.layer.masksToBounds = false
+        passField.layer.shadowRadius = 4.0
+        passField.layer.shadowColor = UIColor.lightGray.cgColor
+        passField.layer.shadowOffset = CGSize (width: 1.0, height: 1.0)
+        passField.layer.shadowOpacity = 1.0
+        passField.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        
         super.viewDidLoad()
         passLabel.isHidden = true
         emailLabel.isHidden = true
-       // self.setupViews()
+       self.setupViews()
 
     }
     
@@ -43,16 +60,47 @@ class LogViewController: UIViewController {
             self.passField
         }
     }
+    
+
+    
+    
+    
+    
+    
+    
+    
     @IBAction func ForgetPassPressed(_ sender: Any) {
     }
     
     func validate() -> Bool {
-        if (emailField.text ?? "").isEmpty || (passField.text ?? "").isEmpty {
-            SVProgressHUD.showError(withStatus: "Email and password field can not be empty.")
+        
+        var isValid = true
+
+        if emailField.state.isEmpty  {
+            emailLabel.isHidden = false
+            emailLabel.attributedText = NSAttributedString(string: "email cannot be empty", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            emailField.shake()
+            isValid = false
+        }
+        if passField.state.isEmpty  {
+            passLabel.isHidden = false
+            passLabel.attributedText = NSAttributedString(string: "passowrd cannot be empty", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            emailField.shake()
+            isValid = false
+        }
+    
+        
+        /* emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+        passField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
+        ; do {
+        SVProgressHUD.showError(withStatus: "Email and password field can not be empty.")
             return false
         }
-        return true
+        return true */
+        return isValid
+
     }
+
     
     @IBAction func loginPressed(_ sender: Any) {
         guard let email = emailField.text, let password = passField.text else {return}
@@ -115,7 +163,6 @@ class LogViewController: UIViewController {
                 default:
                     self.showError(message: error.localizedDescription)
                 }
-                // ckeck if the driver license is falid or not
             }
         }
     }
@@ -123,7 +170,6 @@ class LogViewController: UIViewController {
     @IBAction func GoRegPressed(_ sender: Any) {
         // self.performSegue(withIdentifier: "GoReg", sender: nil)
     }
-    
     
     
    

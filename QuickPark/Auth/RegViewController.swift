@@ -37,6 +37,39 @@ class RegViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
+        nameField.layer.masksToBounds = false
+        nameField.layer.shadowRadius = 4.0
+        nameField.layer.shadowColor = UIColor.lightGray.cgColor
+        nameField.layer.shadowOffset = CGSize (width: 1.0, height: 1.0)
+        nameField.layer.shadowOpacity = 1.0
+        nameField.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        
+        emailField.layer.masksToBounds = false
+        emailField.layer.shadowRadius = 4.0
+        emailField.layer.shadowColor = UIColor.lightGray.cgColor
+        emailField.layer.shadowOffset = CGSize (width: 1.0, height: 1.0)
+        emailField.layer.shadowOpacity = 1.0
+        emailField.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        passOfRegField.layer.masksToBounds = false
+        passOfRegField.layer.shadowRadius = 4.0
+        passOfRegField.layer.shadowColor = UIColor.lightGray.cgColor
+        passOfRegField.layer.shadowOffset = CGSize (width: 1.0, height: 1.0)
+        passOfRegField.layer.shadowOpacity = 1.0
+        passOfRegField.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        
+        confirmPas.layer.masksToBounds = false
+        confirmPas.layer.shadowRadius = 4.0
+        confirmPas.layer.shadowColor = UIColor.lightGray.cgColor
+        confirmPas.layer.shadowOffset = CGSize (width: 1.0, height: 1.0)
+        confirmPas.layer.shadowOpacity = 1.0
+        confirmPas.borderStyle = UITextField.BorderStyle.roundedRect
+        
+        
+        
         super.viewDidLoad()
         //passOfRegField.enablePasswordToggle()
         // Do any additional setup after loading the view.

@@ -50,8 +50,8 @@
             filePath = "QuickPark/Auth/LogViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "loginPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
