@@ -506,6 +506,9 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - paper-onboarding (6.1.5)
   - ProgressHUD (13.6)
   - PromisesObjC (2.0.0)
@@ -525,6 +528,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - IQKeyboardManagerSwift
   - Kingfisher
+  - NVActivityIndicatorView
   - paper-onboarding
   - ProgressHUD
   - SDWebImage (~> 5.0)
@@ -555,6 +559,7 @@ SPEC REPOS:
     - Kingfisher
     - leveldb-library
     - nanopb
+    - NVActivityIndicatorView
     - paper-onboarding
     - ProgressHUD
     - PromisesObjC
@@ -585,12 +590,13 @@ SPEC CHECKSUMS:
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   paper-onboarding: fede1799b1da6988f3788e3b71654583c6f3bce1
   ProgressHUD: 4bdaa0d2ddf676b23324b199f9facffb5c3a1620
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: b7524355adfc4e534a2c07c41e7ca44bd488dad1
+PODFILE CHECKSUM: fba5284661606e7645afa7baae3b9756f1f1baf3
 
 COCOAPODS: 1.11.2

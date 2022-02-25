@@ -46,10 +46,19 @@
 		226C1D1B27BE85A800D11E24 /* MyParkingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D1027BE85A800D11E24 /* MyParkingsVC.swift */; };
 		226C1D1C27BE85A800D11E24 /* Areas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D1127BE85A800D11E24 /* Areas.swift */; };
 		226C1D1F27BE85B700D11E24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226C1D1D27BE85B700D11E24 /* Main.storyboard */; };
+		2272433327C8CD3900A35AF3 /* EnterParkingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272432D27C8CD3800A35AF3 /* EnterParkingVC.swift */; };
+		2272433427C8CD3900A35AF3 /* CountdownParkingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272432E27C8CD3800A35AF3 /* CountdownParkingVC.swift */; };
+		2272433527C8CD3900A35AF3 /* PayAbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272432F27C8CD3800A35AF3 /* PayAbleViewController.swift */; };
+		2272433627C8CD3900A35AF3 /* VCAdminMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433027C8CD3800A35AF3 /* VCAdminMore.swift */; };
+		2272433727C8CD3900A35AF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433127C8CD3800A35AF3 /* Constants.swift */; };
+		2272433827C8CD3900A35AF3 /* View in Resources */ = {isa = PBXBuildFile; fileRef = 2272433227C8CD3900A35AF3 /* View */; };
+		2272433B27C8CD6B00A35AF3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433927C8CD6B00A35AF3 /* Utilities.swift */; };
+		2272433C27C8CD6B00A35AF3 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433A27C8CD6B00A35AF3 /* Loader.swift */; };
 		22A0757127A925DC00658889 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757027A925DC00658889 /* RegViewController.swift */; };
 		22A0757327A9260500658889 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757227A9260500658889 /* LogViewController.swift */; };
 		22A0757527A9261E00658889 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757427A9261E00658889 /* HomePageViewController.swift */; };
 		22C1C4CB27B6993A00866DA4 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C1C4CA27B6993A00866DA4 /* TermsViewController.swift */; };
+		22D7793C27C90E7B00BC4677 /* Misclenious.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D7793B27C90E7B00BC4677 /* Misclenious.storyboard */; };
 		3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */; };
 		D059121AA59CF4450ACB2FB6 /* Pods_QuickPark_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2E8B9214F8CFF56EFAB53E /* Pods_QuickPark_QuickParkTests.framework */; };
 		ED08CCF069A3B5E6753C5BDD /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */; };
@@ -114,10 +123,19 @@
 		226C1D1027BE85A800D11E24 /* MyParkingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyParkingsVC.swift; sourceTree = "<group>"; };
 		226C1D1127BE85A800D11E24 /* Areas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Areas.swift; sourceTree = "<group>"; };
 		226C1D1E27BE85B700D11E24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2272432D27C8CD3800A35AF3 /* EnterParkingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterParkingVC.swift; sourceTree = "<group>"; };
+		2272432E27C8CD3800A35AF3 /* CountdownParkingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownParkingVC.swift; sourceTree = "<group>"; };
+		2272432F27C8CD3800A35AF3 /* PayAbleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayAbleViewController.swift; sourceTree = "<group>"; };
+		2272433027C8CD3800A35AF3 /* VCAdminMore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCAdminMore.swift; sourceTree = "<group>"; };
+		2272433127C8CD3800A35AF3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2272433227C8CD3900A35AF3 /* View */ = {isa = PBXFileReference; lastKnownFileType = folder; path = View; sourceTree = "<group>"; };
+		2272433927C8CD6B00A35AF3 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = AllLoader/Utilities.swift; sourceTree = "<group>"; };
+		2272433A27C8CD6B00A35AF3 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Loader.swift; path = AllLoader/Loader.swift; sourceTree = "<group>"; };
 		22A0757027A925DC00658889 /* RegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewController.swift; sourceTree = "<group>"; };
 		22A0757227A9260500658889 /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		22A0757427A9261E00658889 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		22C1C4CA27B6993A00866DA4 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		22D7793B27C90E7B00BC4677 /* Misclenious.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Misclenious.storyboard; sourceTree = "<group>"; };
 		36CD72A8001F0AEED8AEF9AA /* Pods-QuickPark-QuickParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkTests.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkTests/Pods-QuickPark-QuickParkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3B2E8B9214F8CFF56EFAB53E /* Pods_QuickPark_QuickParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark_QuickParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +217,14 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
+				2272433A27C8CD6B00A35AF3 /* Loader.swift */,
+				2272433927C8CD6B00A35AF3 /* Utilities.swift */,
+				2272433127C8CD3800A35AF3 /* Constants.swift */,
+				2272432E27C8CD3800A35AF3 /* CountdownParkingVC.swift */,
+				2272432D27C8CD3800A35AF3 /* EnterParkingVC.swift */,
+				2272432F27C8CD3800A35AF3 /* PayAbleViewController.swift */,
+				2272433027C8CD3800A35AF3 /* VCAdminMore.swift */,
+				2272433227C8CD3900A35AF3 /* View */,
 				22035FA327BB726000D1A3B5 /* Resources */,
 				226C1D0B27BE85A800D11E24 /* ConfirmAndPay.swift */,
 				225AB86127C7B41B003D4253 /* AddAreaViewController.swift */,
@@ -256,6 +282,7 @@
 				22035FA627BB74AD00D1A3B5 /* Auth.storyboard */,
 				225AB86827C7B796003D4253 /* AdminMain.storyboard */,
 				226C1D0527BE7C8B00D11E24 /* Shared.storyboard */,
+				22D7793B27C90E7B00BC4677 /* Misclenious.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -312,7 +339,7 @@
 				04DD469327A4621200342200 /* Sources */,
 				04DD469427A4621200342200 /* Frameworks */,
 				04DD469527A4621200342200 /* Resources */,
-				5152C09513D80E46E504DE42 /* [CP] Embed Pods Frameworks */,
+				D7A867B4F8EE7BF5FF36AD98 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -331,7 +358,7 @@
 				04DD46A927A4621300342200 /* Sources */,
 				04DD46AA27A4621300342200 /* Frameworks */,
 				04DD46AB27A4621300342200 /* Resources */,
-				EC1CFE0029E079532DCB168C /* [CP] Embed Pods Frameworks */,
+				7F2A111CEA6CF726C6B0FAFB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -351,7 +378,7 @@
 				04DD46B327A4621300342200 /* Sources */,
 				04DD46B427A4621300342200 /* Frameworks */,
 				04DD46B527A4621300342200 /* Resources */,
-				7A87A2110801A6C21C310014 /* [CP] Embed Pods Frameworks */,
+				ECAC59928063614C5871674C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -416,8 +443,10 @@
 				22035FA727BB74AD00D1A3B5 /* Auth.storyboard in Resources */,
 				225AB86A27C7B796003D4253 /* AdminMain.storyboard in Resources */,
 				226C1D1F27BE85B700D11E24 /* Main.storyboard in Resources */,
+				22D7793C27C90E7B00BC4677 /* Misclenious.storyboard in Resources */,
 				22035F9E27B6AD6800D1A3B5 /* Assets.xcassets in Resources */,
 				226C1D0627BE7C8B00D11E24 /* Shared.storyboard in Resources */,
+				2272433827C8CD3900A35AF3 /* View in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,23 +513,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5152C09513D80E46E504DE42 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		59CF1317ACE729DB8B6A3A04 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -523,24 +535,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7A87A2110801A6C21C310014 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EC1CFE0029E079532DCB168C /* [CP] Embed Pods Frameworks */ = {
+		7F2A111CEA6CF726C6B0FAFB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -557,6 +552,40 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkTests/Pods-QuickPark-QuickParkTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D7A867B4F8EE7BF5FF36AD98 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark/Pods-QuickPark-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECAC59928063614C5871674C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -569,6 +598,7 @@
 				22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */,
 				225AB86227C7B41C003D4253 /* AddAreaViewController.swift in Sources */,
 				225AB85F27C7B3FA003D4253 /* AdminTabBarVC.swift in Sources */,
+				2272433627C8CD3900A35AF3 /* VCAdminMore.swift in Sources */,
 				226C1D1927BE85A800D11E24 /* Reservation.swift in Sources */,
 				225AB85D27C7B3FA003D4253 /* CustomCell.swift in Sources */,
 				225AB85727C7A806003D4253 /* UIViewController+Extension.swift in Sources */,
@@ -579,13 +609,18 @@
 				226C1D1B27BE85A800D11E24 /* MyParkingsVC.swift in Sources */,
 				226C1D1627BE85A800D11E24 /* ConfirmAndPay.swift in Sources */,
 				22035FA927BB75B500D1A3B5 /* SBSupport.swift in Sources */,
+				2272433B27C8CD6B00A35AF3 /* Utilities.swift in Sources */,
 				225AB86027C7B3FA003D4253 /* FirebaseManager.swift in Sources */,
 				225AB85027C7A7C1003D4253 /* OnboardingViewController.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
+				2272433327C8CD3900A35AF3 /* EnterParkingVC.swift in Sources */,
+				2272433527C8CD3900A35AF3 /* PayAbleViewController.swift in Sources */,
 				22035FA227BB724600D1A3B5 /* FBSupport.swift in Sources */,
 				226C1D0427BE682400D11E24 /* VCMore.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 				226C1D1427BE85A800D11E24 /* PastTableViewCell.swift in Sources */,
+				2272433C27C8CD6B00A35AF3 /* Loader.swift in Sources */,
+				2272433427C8CD3900A35AF3 /* CountdownParkingVC.swift in Sources */,
 				225AB85227C7A7C1003D4253 /* OnboardingCollectionViewCell.swift in Sources */,
 				225AB85E27C7B3FA003D4253 /* AdminHomeListVC.swift in Sources */,
 				22A0757127A925DC00658889 /* RegViewController.swift in Sources */,
@@ -595,6 +630,7 @@
 				225AB85127C7A7C1003D4253 /* OnboardingSlide.swift in Sources */,
 				225AB85827C7A806003D4253 /* UserDefaults+Extension.swift in Sources */,
 				22035FAB27BBCF2300D1A3B5 /* Profile.swift in Sources */,
+				2272433727C8CD3900A35AF3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,7 +836,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = GhaliahBinakeel.QuickPark;
+				PRODUCT_BUNDLE_IDENTIFIER = G3.QuickPark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -834,7 +870,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = GhaliahBinakeel.QuickPark;
+				PRODUCT_BUNDLE_IDENTIFIER = G3.QuickPark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
