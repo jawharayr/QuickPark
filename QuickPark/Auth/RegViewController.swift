@@ -206,6 +206,12 @@ class RegViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
+    
+    @IBAction func termsOfServicePressed(_ sender: Any) {
+        let vc = SBSupport.viewController(sbi: "sbi_TermsViewController", inStoryBoard: "Misclenious")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 extension String {

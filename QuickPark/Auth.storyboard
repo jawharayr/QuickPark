@@ -430,6 +430,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="terms of service &amp; policy">
                                     <fontDescription key="titleFontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="termsOfServicePressed:" destination="b1D-23-5hP" eventType="touchUpInside" id="S90-Cz-T75"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iFn-p1-ZX0">
                                 <rect key="frame" x="56" y="779" width="302" height="45"/>
