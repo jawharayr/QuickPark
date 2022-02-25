@@ -552,21 +552,20 @@
                             <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMY-WZ-9mG">
                                 <rect key="frame" x="234" y="743" width="160" height="60"/>
                                 <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LoD-ch-VCF">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <connections>
+                                            <action selector="btnGoToTimer:" destination="eZ7-RA-p0v" eventType="touchUpInside" id="AI4-wp-Chb"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0w-6B-vlK">
                                         <rect key="frame" x="52" y="18.5" width="56" height="23"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LoD-ch-VCF">
-                                        <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain"/>
-                                        <connections>
-                                            <action selector="btnGoToTimer:" destination="eZ7-RA-p0v" eventType="touchUpInside" id="AI4-wp-Chb"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.56470588239999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -744,26 +743,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyn-et-I0m">
-                                <rect key="frame" x="20" y="653" width="374" height="44"/>
-                                <color key="backgroundColor" red="0.037999655975408206" green="0.48101217211328606" blue="0.80467998921269113" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="kLz-yc-G6c"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <color key="tintColor" red="0.0" green="0.56470588239999997" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <state key="normal" title="End Parking">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="EndParking:" destination="MgN-nl-QgV" eventType="touchUpInside" id="le2-yj-uaj"/>
-                                </connections>
-                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TCl-8G-CYf">
                                 <rect key="frame" x="30" y="158" width="354" height="40"/>
                                 <constraints>
@@ -784,7 +763,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iip-mc-Axh">
-                                <rect key="frame" x="67" y="433.5" width="280" height="29"/>
+                                <rect key="frame" x="67" y="433.5" width="239.5" height="29"/>
                                 <attributedString key="attributedText">
                                     <fragment content="There is no reservation.">
                                         <attributes>
@@ -1077,22 +1056,18 @@
                         <constraints>
                             <constraint firstItem="grI-v6-uxD" firstAttribute="top" secondItem="TCl-8G-CYf" secondAttribute="bottom" constant="18" id="0I2-6k-D8g"/>
                             <constraint firstItem="grI-v6-uxD" firstAttribute="top" secondItem="TCl-8G-CYf" secondAttribute="bottom" constant="18" id="2ki-mv-O7J"/>
-                            <constraint firstItem="Wyn-et-I0m" firstAttribute="top" secondItem="GYc-D5-70g" secondAttribute="bottom" constant="49" id="3uQ-nz-h7n"/>
                             <constraint firstItem="grI-v6-uxD" firstAttribute="leading" secondItem="zs6-ht-Uyf" secondAttribute="leading" constant="20" id="6OF-aJ-HEd"/>
                             <constraint firstItem="zs6-ht-Uyf" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bV0-aP-nTA" secondAttribute="trailing" symbolic="YES" id="7GL-6S-HQx"/>
                             <constraint firstItem="zs6-ht-Uyf" firstAttribute="trailing" secondItem="TCl-8G-CYf" secondAttribute="trailing" constant="30" id="82Z-Ep-Rwa"/>
                             <constraint firstItem="BUA-6o-tTd" firstAttribute="top" secondItem="TCl-8G-CYf" secondAttribute="bottom" constant="20" id="9I5-FM-52i"/>
                             <constraint firstAttribute="bottom" secondItem="BUA-6o-tTd" secondAttribute="bottom" id="ABe-Tq-FJu"/>
                             <constraint firstItem="zs6-ht-Uyf" firstAttribute="trailing" secondItem="grI-v6-uxD" secondAttribute="trailing" constant="20" id="Elp-TV-dkg"/>
-                            <constraint firstItem="Wyn-et-I0m" firstAttribute="centerX" secondItem="GYc-D5-70g" secondAttribute="centerX" id="Ksc-ui-tZi"/>
-                            <constraint firstItem="Wyn-et-I0m" firstAttribute="leading" secondItem="bV0-aP-nTA" secondAttribute="leading" id="MTf-QX-MzE"/>
                             <constraint firstItem="GYc-D5-70g" firstAttribute="leading" secondItem="TCl-8G-CYf" secondAttribute="leading" id="Miu-Vg-y85"/>
                             <constraint firstItem="bV0-aP-nTA" firstAttribute="top" secondItem="zs6-ht-Uyf" secondAttribute="top" constant="14" id="Mja-BL-Cfa"/>
                             <constraint firstItem="GYc-D5-70g" firstAttribute="trailing" secondItem="TCl-8G-CYf" secondAttribute="trailing" id="OC2-1X-7ge"/>
                             <constraint firstItem="TCl-8G-CYf" firstAttribute="centerX" secondItem="grI-v6-uxD" secondAttribute="centerX" id="Qti-7F-riA"/>
                             <constraint firstItem="zs6-ht-Uyf" firstAttribute="bottom" secondItem="grI-v6-uxD" secondAttribute="bottom" constant="58" id="R9c-4T-jDz"/>
                             <constraint firstItem="zs6-ht-Uyf" firstAttribute="trailing" secondItem="grI-v6-uxD" secondAttribute="trailing" constant="20" id="RGN-oC-6oS"/>
-                            <constraint firstItem="Wyn-et-I0m" firstAttribute="centerX" secondItem="iip-mc-Axh" secondAttribute="centerX" id="SiQ-Jq-dVT"/>
                             <constraint firstItem="GYc-D5-70g" firstAttribute="top" secondItem="TCl-8G-CYf" secondAttribute="bottom" constant="20" id="Snh-Tw-sNa"/>
                             <constraint firstItem="TCl-8G-CYf" firstAttribute="leading" secondItem="zs6-ht-Uyf" secondAttribute="leading" constant="30" id="TCD-Wy-4ej"/>
                             <constraint firstItem="bV0-aP-nTA" firstAttribute="leading" secondItem="BhD-dZ-YKd" secondAttribute="leadingMargin" id="caW-Ke-gES"/>
@@ -1207,9 +1182,9 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIR-4o-Naq">
-                                <rect key="frame" x="340" y="69" width="74" height="64"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="cross"/>
+                                <rect key="frame" x="364" y="69" width="50" height="50"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="cross"/>
                                 <connections>
                                     <action selector="btnExist:" destination="9R5-1o-D4i" eventType="touchUpInside" id="OGA-aV-JFd"/>
                                     <action selector="btnExist:" destination="f9u-lm-865" eventType="touchUpInside" id="c4z-dP-WDG"/>
@@ -1833,10 +1808,10 @@
                                     <constraint firstAttribute="width" constant="240" id="lRH-5g-1U2"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLt-V1-CLL">
-                                <rect key="frame" x="328" y="56" width="74" height="64"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="cross"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLt-V1-CLL">
+                                <rect key="frame" x="352" y="56" width="50" height="50"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="cross"/>
                                 <connections>
                                     <action selector="btnExist:" destination="ecL-Ug-XML" eventType="touchUpInside" id="Qa8-Ja-dqH"/>
                                 </connections>

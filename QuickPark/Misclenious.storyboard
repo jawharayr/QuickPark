@@ -23,7 +23,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <view key="tableFooterView" contentMode="scaleToFill" id="LVl-oj-UWU">
-                            <rect key="frame" x="0.0" y="786" width="414" height="53"/>
+                            <rect key="frame" x="0.0" y="803" width="414" height="53"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gmy-Wj-Nei">
@@ -79,11 +79,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="140" id="Kh1-tq-kjn">
-                                        <rect key="frame" x="0.0" y="309.5" width="414" height="140"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="157" id="Kh1-tq-kjn">
+                                        <rect key="frame" x="0.0" y="309.5" width="414" height="157"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kh1-tq-kjn" id="Krt-PX-cC7">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="157"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to QuickPark!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPB-41-bbI">
@@ -95,8 +95,8 @@
                                                     <color key="textColor" red="0.076824248319999996" green="0.49334673270000001" blue="0.78795019119999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="By using our services, you agreeing to this terms, please read them carefully to avoid any inconvenience: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwF-Vc-r8A">
-                                                    <rect key="frame" x="5" y="48.5" width="405" height="78"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="By using our services, you agreeing to this terms, please read them carefully to avoid any inconvenience: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dwF-Vc-r8A">
+                                                    <rect key="frame" x="5" y="48.5" width="405" height="112"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -104,7 +104,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dwF-Vc-r8A" firstAttribute="leading" secondItem="Krt-PX-cC7" secondAttribute="leading" constant="5" id="bDV-Q0-wqU"/>
-                                                <constraint firstAttribute="bottom" secondItem="dwF-Vc-r8A" secondAttribute="bottom" constant="13.5" id="chU-B1-lhu"/>
+                                                <constraint firstAttribute="bottom" secondItem="dwF-Vc-r8A" secondAttribute="bottom" constant="-3.5" id="chU-B1-lhu"/>
                                                 <constraint firstItem="ZPB-41-bbI" firstAttribute="centerX" secondItem="Krt-PX-cC7" secondAttribute="centerX" id="eYG-Cw-tfz"/>
                                                 <constraint firstItem="ZPB-41-bbI" firstAttribute="top" secondItem="Krt-PX-cC7" secondAttribute="topMargin" constant="1.5" id="iXE-ox-HtT"/>
                                                 <constraint firstItem="dwF-Vc-r8A" firstAttribute="top" secondItem="ZPB-41-bbI" secondAttribute="bottom" constant="7" id="njy-rP-scJ"/>
@@ -114,7 +114,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="314" id="N7c-yf-tVZ">
-                                        <rect key="frame" x="0.0" y="449.5" width="414" height="314"/>
+                                        <rect key="frame" x="0.0" y="466.5" width="414" height="314"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N7c-yf-tVZ" id="RWS-hv-zTm">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="314"/>

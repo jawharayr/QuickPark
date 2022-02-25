@@ -54,6 +54,12 @@ class MyParkingsVC: UIViewController {
         super.viewWillAppear(animated)
         // Do any additional setup after loading the view.
         //        getReservations()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidLoad() {
@@ -121,10 +127,7 @@ class MyParkingsVC: UIViewController {
     }
     
     func loadData(){
-        
-        if timer != nil{
-            timer.invalidate()
-        }
+        stopTimer()
         
         EmptyLabel.isHidden = true
         
@@ -153,15 +156,11 @@ class MyParkingsVC: UIViewController {
         viewLoader.viewWithTag(101)?.removeFromSuperview()
         btnEnd.isHidden = true
         EmptyLabel.isHidden = false
-        if timer != nil{
-            timer.invalidate()
-            timer = nil
-        }
+        stopTimer()
     }
     
     
     private func startTimer() {
-        
         startActivityAnimating(padding: 0, isFromOnView: false, view: self.viewLoader,width: self.viewLoader.frame.width,height: self.viewLoader.frame.height)
         self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
@@ -170,7 +169,7 @@ class MyParkingsVC: UIViewController {
     
     @objc func updateTimer() {
         print(self.totalTime)
-        self.lblCountDown.text = timeFormatted(self.totalTime) // will show timer
+        self.lblCountDown.text = timeFormatted(self.totalTime) // will show timerValues
         if totalTime > 0 {
             
             if UserDefaults.standard.bool(forKey: "isOverTime"){
@@ -235,7 +234,7 @@ class MyParkingsVC: UIViewController {
     
     
     func getStartTime(){
-        let start = TimeInterval.init(reservation.StartTime)
+        //let start = TimeInterval.init(reservation.StartTime)
         let end = TimeInterval.init(reservation.EndTime)
         
         
