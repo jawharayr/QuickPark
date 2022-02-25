@@ -33,11 +33,12 @@ class AdminTabBarVC: UITabBarController, UITabBarControllerDelegate {
         bgView.layer.shadowOffset = CGSize(width: 3, height: 3)
         bgView.layer.shadowOpacity = 0.5
         
-        for (idx, vc) in viewControllers!.enumerated() {
-            vc.tabBarItem.image = UIImage(named: "tabbar_\(idx)")?.withRenderingMode(.alwaysOriginal)
-            vc.tabBarItem.selectedImage = UIImage(named: "tabbar_\(idx)_selected")?.withRenderingMode(.alwaysOriginal)
-            vc.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-        }
+        //Keeping code heree if we want to use custom images later
+//        for (idx, vc) in viewControllers!.enumerated() {
+//            vc.tabBarItem.image = UIImage(named: "tabbar_\(idx)")?.withRenderingMode(.alwaysOriginal)
+//            vc.tabBarItem.selectedImage = UIImage(named: "tabbar_\(idx)_selected")?.withRenderingMode(.alwaysOriginal)
+//            vc.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+//        }
         
         
         tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true

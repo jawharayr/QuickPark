@@ -51,7 +51,6 @@
 		2272433527C8CD3900A35AF3 /* PayAbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272432F27C8CD3800A35AF3 /* PayAbleViewController.swift */; };
 		2272433627C8CD3900A35AF3 /* VCAdminMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433027C8CD3800A35AF3 /* VCAdminMore.swift */; };
 		2272433727C8CD3900A35AF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433127C8CD3800A35AF3 /* Constants.swift */; };
-		2272433827C8CD3900A35AF3 /* View in Resources */ = {isa = PBXBuildFile; fileRef = 2272433227C8CD3900A35AF3 /* View */; };
 		2272433B27C8CD6B00A35AF3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433927C8CD6B00A35AF3 /* Utilities.swift */; };
 		2272433C27C8CD6B00A35AF3 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433A27C8CD6B00A35AF3 /* Loader.swift */; };
 		22A0757127A925DC00658889 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757027A925DC00658889 /* RegViewController.swift */; };
@@ -128,7 +127,6 @@
 		2272432F27C8CD3800A35AF3 /* PayAbleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayAbleViewController.swift; sourceTree = "<group>"; };
 		2272433027C8CD3800A35AF3 /* VCAdminMore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCAdminMore.swift; sourceTree = "<group>"; };
 		2272433127C8CD3800A35AF3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		2272433227C8CD3900A35AF3 /* View */ = {isa = PBXFileReference; lastKnownFileType = folder; path = View; sourceTree = "<group>"; };
 		2272433927C8CD6B00A35AF3 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = AllLoader/Utilities.swift; sourceTree = "<group>"; };
 		2272433A27C8CD6B00A35AF3 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Loader.swift; path = AllLoader/Loader.swift; sourceTree = "<group>"; };
 		22A0757027A925DC00658889 /* RegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +215,7 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
+				22035FA327BB726000D1A3B5 /* Resources */,
 				2272433A27C8CD6B00A35AF3 /* Loader.swift */,
 				2272433927C8CD6B00A35AF3 /* Utilities.swift */,
 				2272433127C8CD3800A35AF3 /* Constants.swift */,
@@ -224,8 +223,6 @@
 				2272432D27C8CD3800A35AF3 /* EnterParkingVC.swift */,
 				2272432F27C8CD3800A35AF3 /* PayAbleViewController.swift */,
 				2272433027C8CD3800A35AF3 /* VCAdminMore.swift */,
-				2272433227C8CD3900A35AF3 /* View */,
-				22035FA327BB726000D1A3B5 /* Resources */,
 				226C1D0B27BE85A800D11E24 /* ConfirmAndPay.swift */,
 				225AB86127C7B41B003D4253 /* AddAreaViewController.swift */,
 				225AB85A27C7B3FA003D4253 /* AdminHomeListVC.swift */,
@@ -446,7 +443,6 @@
 				22D7793C27C90E7B00BC4677 /* Misclenious.storyboard in Resources */,
 				22035F9E27B6AD6800D1A3B5 /* Assets.xcassets in Resources */,
 				226C1D0627BE7C8B00D11E24 /* Shared.storyboard in Resources */,
-				2272433827C8CD3900A35AF3 /* View in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

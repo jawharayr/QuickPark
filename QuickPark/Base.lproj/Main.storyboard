@@ -18,6 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.2470588088" green="0.55686277149999996" blue="0.78823530669999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="xBq-6y-fcw" kind="relationship" relationship="viewControllers" id="mZm-G9-qol"/>
@@ -218,7 +219,7 @@
         <scene sceneID="JS0-Nu-T9Q">
             <objects>
                 <navigationController id="P6e-Ru-EhO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="More" id="NYL-yj-tY7"/>
+                    <tabBarItem key="tabBarItem" title="More" image="line.3.horizontal" catalog="system" id="NYL-yj-tY7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1be-Yl-JEr">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -235,7 +236,7 @@
         <scene sceneID="Dd5-ZF-tuf">
             <objects>
                 <navigationController id="LTp-TW-N5t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Account" id="U0J-Gc-OId"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="person.circle" catalog="system" id="U0J-Gc-OId"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="u6A-C6-qSS">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -384,13 +385,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Whv-6U-9Pw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4048" y="-212"/>
+            <point key="canvasLocation" x="4174" y="-212"/>
         </scene>
         <!--My Parkings-->
         <scene sceneID="F9h-19-5O4">
             <objects>
                 <navigationController id="ydt-OR-ppx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Parkings" id="Hxy-J2-uTn"/>
+                    <tabBarItem key="tabBarItem" title="My Parkings" image="car" catalog="system" id="Hxy-J2-uTn"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eiR-4Z-sft">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -407,7 +408,7 @@
         <scene sceneID="cpC-jP-VtN">
             <objects>
                 <navigationController id="xBq-6y-fcw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="H3g-se-SAK"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="H3g-se-SAK"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Mxn-kt-pvK">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -733,7 +734,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B8u-oi-zYz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4781" y="-212"/>
+            <point key="canvasLocation" x="5039" y="-212"/>
         </scene>
         <!--My ParkingsVC-->
         <scene sceneID="rDP-o2-dsc">
@@ -1763,16 +1764,143 @@
             </objects>
             <point key="canvasLocation" x="1468" y="542"/>
         </scene>
+        <!--Enter ParkingVC-->
+        <scene sceneID="PJZ-AI-GnB">
+            <objects>
+                <viewController storyboardIdentifier="EnterParkingVC" modalPresentationStyle="overFullScreen" id="ecL-Ug-XML" customClass="EnterParkingVC" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ljh-J4-mqy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QR" translatesAutoresizingMaskIntoConstraints="NO" id="tqm-Q2-lNZ">
+                                <rect key="frame" x="31" y="318" width="352" height="303"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="352" id="Xri-kA-wtF"/>
+                                    <constraint firstAttribute="height" constant="303" id="dlh-YN-nU6"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uR0-ZO-7zV">
+                                <rect key="frame" x="75" y="648.5" width="264" height="20"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="exclamationmark.octagon.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="N4z-X5-cxm">
+                                        <rect key="frame" x="0.0" y="0.5" width="21" height="18.5"/>
+                                        <color key="tintColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Qk2-nQ-qWO">
+                                        <rect key="frame" x="21" y="0.0" width="243" height="20"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="QR Code will expire within 15 minutes">
+                                                <attributes>
+                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <font key="NSFont" size="14" name="AvenirNext-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUY-eY-q3h">
+                                <rect key="frame" x="44" y="184" width="339" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="to Enter in the parking area">
+                                        <attributes>
+                                            <color key="NSColor" red="0.23186103672354411" green="0.30626458222127201" blue="0.44255024538201804" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="27" name="AvenirNext-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9L-X4-7Lp">
+                                <rect key="frame" x="97.5" y="693.5" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9k-v4-F7G">
+                                        <rect key="frame" x="93.5" y="52.5" width="53" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                        <color key="textColor" red="0.0" green="0.56470588239999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Q9k-v4-F7G" firstAttribute="centerY" secondItem="w9L-X4-7Lp" secondAttribute="centerY" id="RCu-Vg-rGS"/>
+                                    <constraint firstItem="Q9k-v4-F7G" firstAttribute="centerX" secondItem="w9L-X4-7Lp" secondAttribute="centerX" id="T8I-Iq-aHr"/>
+                                    <constraint firstAttribute="height" constant="128" id="Yq0-gs-qU7"/>
+                                    <constraint firstAttribute="width" constant="240" id="lRH-5g-1U2"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLt-V1-CLL">
+                                <rect key="frame" x="328" y="56" width="74" height="64"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="cross"/>
+                                <connections>
+                                    <action selector="btnExist:" destination="ecL-Ug-XML" eventType="touchUpInside" id="Qa8-Ja-dqH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g10-Ma-vFd">
+                                <rect key="frame" x="20" y="811" width="52" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Skip"/>
+                                <connections>
+                                    <action selector="btnSkip:" destination="ecL-Ug-XML" eventType="touchUpInside" id="eEb-ZT-fSB"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAo-zG-cGm">
+                                <rect key="frame" x="44" y="147" width="352" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Please use this QR Code ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.24104864883407578" green="0.31840047285820611" blue="0.46008652509269066" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="28" name="AvenirNext-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZnS-m9-RE1"/>
+                        <color key="backgroundColor" red="0.9450981021" green="0.9450981021" blue="0.9450981021" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="tqm-Q2-lNZ" firstAttribute="centerX" secondItem="Ljh-J4-mqy" secondAttribute="centerX" id="88g-3m-hxQ"/>
+                            <constraint firstItem="w9L-X4-7Lp" firstAttribute="centerX" secondItem="Qk2-nQ-qWO" secondAttribute="centerX" id="G9R-AW-LUC"/>
+                            <constraint firstItem="ZnS-m9-RE1" firstAttribute="trailing" secondItem="XLt-V1-CLL" secondAttribute="trailing" constant="12" id="Hyd-d1-tM4"/>
+                            <constraint firstItem="g10-Ma-vFd" firstAttribute="leading" secondItem="ZnS-m9-RE1" secondAttribute="leading" constant="20" id="HzS-Im-CFz"/>
+                            <constraint firstItem="ZnS-m9-RE1" firstAttribute="bottom" secondItem="g10-Ma-vFd" secondAttribute="bottom" constant="20" id="OgE-vi-AY6"/>
+                            <constraint firstItem="tqm-Q2-lNZ" firstAttribute="centerY" secondItem="Ljh-J4-mqy" secondAttribute="centerY" constant="21.5" id="Usv-Ve-by7"/>
+                            <constraint firstItem="w9L-X4-7Lp" firstAttribute="top" secondItem="Qk2-nQ-qWO" secondAttribute="bottom" constant="25" id="Uuy-JO-0Mk"/>
+                            <constraint firstItem="uR0-ZO-7zV" firstAttribute="centerX" secondItem="tqm-Q2-lNZ" secondAttribute="centerX" id="e7o-n1-X1x"/>
+                            <constraint firstItem="XLt-V1-CLL" firstAttribute="top" secondItem="ZnS-m9-RE1" secondAttribute="top" constant="12" id="fhD-mf-D6Q"/>
+                            <constraint firstItem="uR0-ZO-7zV" firstAttribute="top" secondItem="tqm-Q2-lNZ" secondAttribute="bottom" constant="27.5" id="nEP-jf-nKk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imgQR" destination="tqm-Q2-lNZ" id="ruB-I1-I0z"/>
+                        <outlet property="lblCountDown" destination="Q9k-v4-F7G" id="2Xn-Ge-U8S"/>
+                        <outlet property="viewLoader" destination="w9L-X4-7Lp" id="0fC-4K-Sxi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Yj-fb-aqB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2432" y="-233"/>
+        </scene>
     </scenes>
     <resources>
         <image name="-support-50-removebg-preview" width="50" height="50"/>
         <image name="QR" width="405" height="405"/>
         <image name="UserProfile" width="903.80706787109375" height="509.14517211914062"/>
         <image name="arrow.right" catalog="system" width="128" height="98"/>
+        <image name="car" catalog="system" width="128" height="93"/>
         <image name="cross" width="50" height="50"/>
         <image name="exclamationmark.octagon.fill" catalog="system" width="128" height="112"/>
         <image name="eye.fill" catalog="system" width="128" height="78"/>
         <image name="eye.slash.fill" catalog="system" width="128" height="82"/>
+        <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="icons8-steps-50" width="50" height="50"/>
         <image name="imageView:nca-0c-jp0:image" width="361" height="565">
             <mutableData key="keyedArchiveRepresentation">
@@ -2478,8 +2606,10 @@ dZB9kIqQn5CkkKiQqpCskK6Qt5C/kMGQw5DFkMeiZ6JsonSid6J8ooQAAAAAAAACAQAAAAAAAACdAAAA
 AAAAAAAAAAAAAACihw
 </mutableData>
         </image>
+        <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
         <image name="logout-58" width="58" height="58"/>
         <image name="more" width="546" height="457"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="terms-and-conditions-100" width="100" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
