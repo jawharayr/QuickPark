@@ -203,7 +203,7 @@ class RegViewController: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
 }
