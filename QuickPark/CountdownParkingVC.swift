@@ -8,7 +8,7 @@
 import UIKit
 import NVActivityIndicatorView
 
-class CountdownParkingVC: UIViewController {
+class CountdownParkingVC: UIViewController, UITabBarControllerDelegate {
     
     @IBOutlet weak var viewLoader:UIView!
     @IBOutlet weak var viewExtraLoader:UIView!
@@ -99,9 +99,11 @@ class CountdownParkingVC: UIViewController {
     
     @IBAction func btnExist(_ sender:Any){
         stopTimer()
-        NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: self.totalTime)
+        NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
     
+    
+    
+    
 }
-

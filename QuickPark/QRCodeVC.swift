@@ -98,19 +98,29 @@ class QRCodeVC: UIViewController {
     
     func finishParking(){
         
-        RESERVATIONS.child(self.uid).child(reservation.id).child("ExtraCharge").setValue(reservation.ExtraCharge)
         
-        RESERVATIONS.child(self.uid).child(reservation.id).child("isCompleted").setValue(true)
-        
-        guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
-        self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
-        UserDefaults.standard.set(false, forKey: "start")
-        UserDefaults.standard.removeObject(forKey: "parkingArea")
-        NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
-        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
-        
+        RESERVATIONS.child(self.uid).child(reservation.id).child("ExtraCharge").setValue(reservation.ExtraCharge) { err, data in
+            if err == nil{
+                RESERVATIONS.child(self.uid).child(self.reservation.id).child("isCompleted").setValue(true) { err, data in
+                    if err == nil{
+                        
+                        guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
+                        self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true) { err, data in
+                            if err == nil{
+                                UserDefaults.standard.set(false, forKey: "isOverTime")
+                                UserDefaults.standard.set(false, forKey: "start")
+                                UserDefaults.standard.removeObject(forKey: "parkingArea")
+                                NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                                self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            
+        }
         
     }
-    
     
 }

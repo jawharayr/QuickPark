@@ -27,7 +27,6 @@ class EnterParkingVC: UIViewController {
         // Do any additional setup after loading the view.
         colour = UIColor(red: 0, green: 144/255, blue: 205/255, alpha: 1)
         startActivityAnimating(padding: 2, isFromOnView: false, view: self.viewLoader,width: 100,height: 100)
-        QRScan()
         checkIfTimeIsValid()
     }
     
@@ -41,8 +40,21 @@ class EnterParkingVC: UIViewController {
             }
            
         }else{
+            setCustomExecution(date: Date.init(timeIntervalSince1970: TimeInterval.init(reservation.StartTime)))
+            viewLoader.isHidden = false
             lblCountDown.text = "Wait to start"
         }
+    }
+    
+    func setCustomExecution(date:Date){
+        let timer = Timer(fireAt: date, interval: 0, target: self, selector: #selector(runCode), userInfo: nil, repeats: false)
+        RunLoop.main.add(timer, forMode: .common)
+
+    }
+    
+    @objc func runCode(){
+        checkIfTimeIsValid()
+        NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
     }
     
     
@@ -59,13 +71,18 @@ class EnterParkingVC: UIViewController {
             self.totalTime = Int(UtilitiesManager.sharedIntance.getTimerValue(start: Date(), endtime: Date.init(timeIntervalSince1970: end)))
             self.viewLoader.isHidden = false
             startTimer()
+        }else{
+            UserDefaults.standard.set(false, forKey: "start")
+            
+            NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+            self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
         }
     }
     
     // MARK: - QRScan
     //Dummy_code to completing the flow it will replace with QR scan
     func QRScan(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 100) {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             // your code here
             if let timer = self.timer {
                 timer.invalidate()

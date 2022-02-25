@@ -30,10 +30,15 @@ class ReservationCell: UICollectionViewCell {
     var timer:Timer!
     var totalTime = 0
     var reservation:Reservation!
+    var uid = ""
     
-    override class func awakeFromNib() {
-        super.awakeFromNib()
     
+    override func awakeFromNib() {
+        if timer != nil{
+            timer.invalidate()
+            timer = nil
+        }
+
     }
     
     
@@ -71,6 +76,7 @@ class ReservationCell: UICollectionViewCell {
                 self.btnEnd.isUserInteractionEnabled = false
             }
         }else{
+            
             self.btnEnd.isUserInteractionEnabled = false
             lblCountDown.text = "Wait to start"
         }
@@ -95,6 +101,30 @@ class ReservationCell: UICollectionViewCell {
         
         
     }
+    
+    
+    func getIfAnyReservation(){
+        viewLoader.isHidden = true
+        self.reservation = nil
+        RESERVATIONS.child(uid).observe(.value) { dataSnap in
+            if dataSnap.exists(){
+                let reserDict = dataSnap.value as! [String:Any]
+                for (k,_) in reserDict{
+                    let res = Reservation.init(dict: reserDict[k] as! [String : Any])
+                    if res.isCompleted{
+                    }else{
+                        self.reservation = res
+                    }
+                }
+                
+                if self.reservation != nil{
+                    
+                    self.checkIfTimeIsValid()
+                }
+            }
+        }
+    }
+    
     
     
     @IBAction func EndParking(_ sender: Any) {

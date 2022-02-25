@@ -7,11 +7,13 @@
 
 import UIKit
 
-class TabBarVC: UITabBarController {
+class TabBarVC: UITabBarController,UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.delegate = self
+        
         let appearance = UITabBarAppearance()
               appearance.shadowColor = .white
               appearance.stackedLayoutAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 16)
@@ -42,6 +44,19 @@ class TabBarVC: UITabBarController {
               tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
            
           }
+    
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        
+       print("Selected item")
+   }
+
+   // UITabBarControllerDelegate
+   func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+       NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+       print("Selected view controller")
+   }
+    
+    
     }
     
 

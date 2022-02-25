@@ -10,9 +10,6 @@ import UIKit
 class PayAbleViewController: UIViewController {
 
     
-    
-    //
-    
     @IBOutlet weak var lblPrice:UILabel!
     @IBOutlet weak var lblExtra:UILabel!
     @IBOutlet weak var lblTotal:UILabel!

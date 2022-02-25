@@ -11,43 +11,55 @@ import FirebaseDatabase
 import Foundation
 import FirebaseAuth
 
-class MyParkingsVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-   
+class MyParkingsVC: UIViewController {
     
     @IBOutlet weak var SegmentedControl: UISegmentedControl!
     
-//    @IBOutlet weak var viewLoader: UIView!
+    //    @IBOutlet weak var viewLoader: UIView!
     //    @IBOutlet weak var lblCountDown: UILabel!
-
+    
     
     
     
     var totalTime = 0
     var uid = ""
-    var reservations = [Reservation]()
     var pastReservations = [Reservation]()
     var ref:DatabaseReference!
     var reservation:Reservation!
-    var timer :Timer!
+    var timer:Timer!
+    
+    
+    
+    @IBOutlet weak var StartTime: UILabel!
+    @IBOutlet weak var EndTime: UILabel!
+    @IBOutlet weak var area: UILabel!
+    
+    
+    @IBOutlet weak var btnEnd: UIButton!
+    @IBOutlet weak var lblCountDown: UILabel!
+    
+    
+    
+    
+    @IBOutlet weak var viewLoader: UIView!
     
     
     @IBOutlet weak var EmptyLabel: UILabel!
-    @IBOutlet weak var Active: UICollectionView!
+    @IBOutlet weak var Active: UIView!
     @IBOutlet weak var Past: UITableView!
     
-    
-
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Do any additional setup after loading the view.
-//        getReservations()
+        //        getReservations()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        clearData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
         
@@ -64,41 +76,266 @@ class MyParkingsVC: UIViewController, UICollectionViewDataSource, UICollectionVi
             uid = Auth.auth().currentUser!.uid
         }
         
-        Active.dataSource = self
-        Active.delegate = self
-    
         Past.delegate = self
         Past.dataSource = self
         
         getIfAnyReservation()
         
+        Active.layer.cornerRadius = 20
+        Active.layer.shadowOpacity = 0.1
+        Active.layer.shadowOffset = .zero
+        Active.layer.shadowRadius = 10
+        
     }
-  
+    
     
     
     func getIfAnyReservation(){
+        
+        Active.isHidden = true
+        reservation = nil
         pastReservations.removeAll()
-        Active.reloadData()
-        RESERVATIONS.child(uid).observe(.value) { dataSnap in
+        self.clearData()
+        Past.reloadData()
+        RESERVATIONS.child(uid).observeSingleEvent(of: .value) { dataSnap in
             if dataSnap.exists(){
                 let reserDict = dataSnap.value as! [String:Any]
                 for (k,_) in reserDict{
                     let res = Reservation.init(dict: reserDict[k] as! [String : Any])
                     if !res.isCompleted{
-                        self.reservations.append(res)
                         self.reservation = res
+                        break
                     }else{
                         self.pastReservations.append(res)
-                        self.Past.reloadData()
                     }
                 }
-                
+                self.Past.reloadData()
                 if self.reservation != nil{
-                    self.Active.reloadData()
-//                    self.getStartTime()
+                    self.loadData()
+                    //                    self.getStartTime()
+                }else{
+                    self.clearData()
                 }
             }
         }
+    }
+    
+    func loadData(){
+        
+        if timer != nil{
+            timer.invalidate()
+        }
+        
+        EmptyLabel.isHidden = true
+        
+        StartTime.isHidden = false
+        EndTime.isHidden = false
+        area.isHidden = false
+        viewLoader.isHidden = false
+        btnEnd.isHidden = false
+        EmptyLabel.isHidden = false
+        
+        
+        StartTime.text = TimeInterval.init(reservation.StartTime).dateFromTimeinterval()
+        EndTime.text = TimeInterval.init(reservation.EndTime).dateFromTimeinterval()
+        area.text = reservation.area
+        if !reservation.isCompleted{
+            checkIfTimeIsValid()
+        }
+        
+    }
+    
+    func clearData(){
+        StartTime.isHidden = true
+        EndTime.isHidden = true
+        area.isHidden = true
+        viewLoader.isHidden = true
+        viewLoader.viewWithTag(101)?.removeFromSuperview()
+        btnEnd.isHidden = true
+        EmptyLabel.isHidden = false
+        if timer != nil{
+            timer.invalidate()
+            timer = nil
+        }
+    }
+    
+    
+    private func startTimer() {
+        
+        startActivityAnimating(padding: 0, isFromOnView: false, view: self.viewLoader,width: self.viewLoader.frame.width,height: self.viewLoader.frame.height)
+        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+    
+    
+    
+    @objc func updateTimer() {
+        print(self.totalTime)
+        self.lblCountDown.text = timeFormatted(self.totalTime) // will show timer
+        if totalTime > 0 {
+            
+            if UserDefaults.standard.bool(forKey: "isOverTime"){
+                totalTime += 1
+                lblCountDown.textColor = UIColor.red
+                self.viewLoader.viewWithTag(101)?.removeFromSuperview()
+                self.viewLoader.viewWithTag(102)?.removeFromSuperview()
+                startActivityAnimatingRed(padding: 0, isFromOnView: false, view: self.viewLoader,width: self.viewLoader.frame.width,height: self.viewLoader.frame.height)
+            }else{
+                
+                totalTime -= 1
+                if totalTime < 600{
+                    lblCountDown.textColor = UIColor.red
+                    self.viewLoader.viewWithTag(101)?.removeFromSuperview()
+                    self.viewLoader.viewWithTag(102)?.removeFromSuperview()
+                    startActivityAnimatingRed(padding: 0, isFromOnView: false, view: self.viewLoader,width: self.viewLoader.frame.width,height: self.viewLoader.frame.height)
+                }
+            }
+            
+        }else{
+            
+            playOverTimer()
+        }
+    }
+    
+    
+    func checkIfTimeIsValid(){
+        if UtilitiesManager.sharedIntance.checkIfTimeIsValidToStart(start: Date.init(timeIntervalSince1970: TimeInterval.init(reservation.StartTime)), end: Date.init(timeIntervalSince1970: TimeInterval.init(reservation.EndTime))){
+            if UserDefaults.standard.bool(forKey: "start"){
+                self.getStartTime()
+                self.btnEnd.isUserInteractionEnabled = true
+            }else{
+                lblCountDown.text = "Wait to start"
+                self.btnEnd.isUserInteractionEnabled = false
+            }
+        }else if checkIfTimeOver(end: reservation.EndTime){
+            playOverTimer()
+        }else{
+            self.btnEnd.isUserInteractionEnabled = false
+            lblCountDown.text = "Wait to start"
+        }
+    }
+    
+    
+    func checkIfTimeOver(end:Double)->Bool{
+        let isValidTime = UtilitiesManager.sharedIntance.checkIfTimeIsValid(endTime: Date.init(timeIntervalSince1970: end))
+        if isValidTime{
+           return false
+        }else{
+            // remove data from firebase
+           return true
+        }
+    }
+    
+    
+    func stopTimer(){
+        if let timer = self.timer {
+            timer.invalidate()
+            self.timer = nil
+        }
+    }
+    
+    
+    func getStartTime(){
+        let start = TimeInterval.init(reservation.StartTime)
+        let end = TimeInterval.init(reservation.EndTime)
+        
+        
+        let isValidTime = UtilitiesManager.sharedIntance.checkIfTimeIsValid(endTime: Date.init(timeIntervalSince1970: end))
+        if isValidTime{
+            self.totalTime = Int(UtilitiesManager.sharedIntance.getTimerValue(start: Date(), endtime: Date.init(timeIntervalSince1970: end)))
+            startTimer()
+        }else{
+            
+            totalTime = 0
+            
+        }
+        
+        
+    }
+    
+    
+    func playOverTimer(){
+        let start = TimeInterval.init(reservation.StartTime)
+        let end = TimeInterval.init(reservation.EndTime)
+        
+        
+        UserDefaults.standard.set(true, forKey: "isOverTime")
+        
+        self.totalTime = Int(UtilitiesManager.sharedIntance.getTimerValue(start: Date.init(timeIntervalSince1970: end), endtime: Date()))
+        stopTimer()
+        self.viewLoader.isHidden = false
+        totalTime += 1
+        startTimer()
+        
+        
+    }
+    
+    //    func getIfAnyReservation(){
+    //        viewLoader.isHidden = true
+    //        self.reservation = nil
+    //        RESERVATIONS.child(uid).observe(.value) { dataSnap in
+    //            if dataSnap.exists(){
+    //                let reserDict = dataSnap.value as! [String:Any]
+    //                for (k,_) in reserDict{
+    //                    let res = Reservation.init(dict: reserDict[k] as! [String : Any])
+    //                    if res.isCompleted{
+    //                    }else{
+    //                        self.reservation = res
+    //                    }
+    //                }
+    //
+    //                if self.reservation != nil{
+    //
+    //                    self.checkIfTimeIsValid()
+    //                }
+    //            }
+    //        }
+    //    }
+    
+    
+    
+    @IBAction func EndParking(_ sender: Any) {
+        
+        
+        UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "Are you sure?", title: "End Parking?", buttons: ["YES","cancel"]) { index in
+            if index == 0{
+                self.calculateTime()
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    func calculateTime(){
+        
+        
+        var extra:Double = 0.0
+        var price:Double = 0.0
+        var total:Double = 0.0
+        
+        let startTime = reservation.StartTime
+        let endTime = reservation.EndTime
+        
+        let now = Date.init().addingMinutes(minutes: 1)
+        
+        if now.timeIntervalSince1970 > TimeInterval.init(endTime){
+            price = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime))) * 0.25
+            extra = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(endTime)), endTime: Int(now.timeIntervalSince1970)) * 0.25
+            total = price + extra
+        }else{
+            price = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime))) * 0.25
+            total = price
+        }
+        
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PayAbleViewController") as! PayAbleViewController
+        vc.total = "\(total.rounded())"
+        vc.extra = "\(extra.rounded())"
+        vc.price = "\(price.rounded())"
+        vc.modalPresentationStyle = .overFullScreen
+        vc.reservation = self.reservation
+        self.present(vc, animated: true, completion: nil)
     }
     
     
@@ -112,51 +349,37 @@ class MyParkingsVC: UIViewController, UICollectionViewDataSource, UICollectionVi
             // Past
             Active.isHidden = true
             Past.isHidden = false
+            EmptyLabel.isHidden = true
         }
     }
     
     
-    
-    
-   
-    
-    
-    
-    @objc func updateTimer() {
-        print(self.totalTime)
-//        self.lblCountDown.text = timeFormatted(self.totalTime) // will show timer
-        if totalTime != 0 {
-            totalTime -= 1  // decrease counter timer
-        } else {
-            if let timer = self.timer {
-                timer.invalidate()
-                self.timer = nil
-            }
-        }
-    }
     
     func timeFormatted(_ totalSeconds: Int) -> String {
-        let seconds: Int = totalSeconds % 60
-        let minutes: Int = (totalSeconds / 60) % 60
-        return String(format: "%02d:%02d", minutes, seconds)
+        let hour = totalSeconds / 3600
+        let minute = totalSeconds / 60 % 60
+        let second = totalSeconds % 60
+
+               // return formated string
+               return String(format: "%02i:%02i:%02i", hour, minute, second)
     }
     
     /* func removeConstraint() {
+     
+     removeConstraint()
+     }*/
     
-        removeConstraint()
-    }*/
     
-    
-    @IBAction func EndParking(_ sender: Any) {
-        if let image = generateQRCode(using: "test"){
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
-            vc.image = image
-            vc.reservation = self.reservation
-            navigationController?.pushViewController(vc, animated: true)
-            
-    
-        }
-    }
+    //    @IBAction func EndParking(_ sender: Any) {
+    //        if let image = generateQRCode(using: "test"){
+    //            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
+    //            vc.image = image
+    //            vc.reservation = self.reservation
+    //            navigationController?.pushViewController(vc, animated: true)
+    //
+    //
+    //        }
+    //    }
     
     func generateQRCode(using string:String) -> UIImage? {
         
@@ -175,35 +398,59 @@ class MyParkingsVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     
     
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return reservations.count
-    }
+    //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    //        return reservations.count
+    //    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reservationCell", for: indexPath) as! ReservationCell
-        
-//        cell.Name.text = reservation.Name
-//        cell.Date.text = reservation.Date
-        let ds = reservations[indexPath.row]
-        cell.StartTime.text = TimeInterval.init(ds.StartTime).dateFromTimeinterval()
-        cell.EndTime.text = TimeInterval.init(ds.EndTime).dateFromTimeinterval()
-        cell.area.text = ds.area
-        cell.reservation = reservations[indexPath.row]
-        cell.checkIfTimeIsValid()
-        cell.mainVC = self
-        cell.viewWidth.constant = self.view.frame.width - 40
-        cell.viewHeight.constant = 400
-     //   cell.EndTime.text = "End time: "
-//        cell.Price.text = "Price: " + reservation.Price
-//        cell.ExtraCharge.text = "ExtraCharge: " + reservation.ExtraCharge
-//        cell.logo.image = UIImage(named: "King Saud University")
-
-        
-        
-        return cell
-    }
+    //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    //
+    //
+    //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reservationCell", for: indexPath) as! ReservationCell
+    //
+    ////        cell.Name.text = reservation.Name
+    ////        cell.Date.text = reservation.Date
+    //        let ds = reservations[indexPath.row]
+    //        cell.StartTime.text = TimeInterval.init(ds.StartTime).dateFromTimeinterval()
+    //        cell.EndTime.text = TimeInterval.init(ds.EndTime).dateFromTimeinterval()
+    //        cell.area.text = ds.area
+    //        cell.reservation = reservations[indexPath.row]
+    //        if !ds.isCompleted{
+    //            cell.checkIfTimeIsValid()
+    //        }
+    //        cell.mainVC = self
+    //        cell.viewWidth.constant = self.view.frame.width - 40
+    //        cell.viewHeight.constant = 400
+    //        cell.uid = self.uid
+    //     //   cell.EndTime.text = "End time: "
+    ////        cell.Price.text = "Price: " + reservation.Price
+    ////        cell.ExtraCharge.text = "ExtraCharge: " + reservation.ExtraCharge
+    ////        cell.logo.image = UIImage(named: "King Saud University")
+    //
+    //
+    //
+    //        return cell
+    //    }
+    
+    
+    //    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    //        let cel = cell as! ReservationCell
+    //
+    ////        cell.Name.text = reservation.Name
+    ////        cell.Date.text = reservation.Date
+    //        let ds = reservations[indexPath.row]
+    //        cel.StartTime.text = TimeInterval.init(ds.StartTime).dateFromTimeinterval()
+    //        cel.EndTime.text = TimeInterval.init(ds.EndTime).dateFromTimeinterval()
+    //        cel.area.text = ds.area
+    //        cel.reservation = reservations[indexPath.row]
+    //        if !ds.isCompleted{
+    //            cel.checkIfTimeIsValid()
+    //        }
+    //        cel.mainVC = self
+    //        cel.viewWidth.constant = self.view.frame.width - 40
+    //        cel.viewHeight.constant = 400
+    //        cel.uid = self.uid
+    //    }
+    
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -211,44 +458,37 @@ class MyParkingsVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     }
     
     
-//    private func getReservations() {
-//        ref.child("Reservations").child("UserID").observe(DataEventType.value, with: { [self] snapshots in
-//            print(snapshots.childrenCount)
-//
-//            reservations.removeAll()
-//            pastReservations.removeAll()
-//            for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
-//                let dictionary = snapshot.value as? NSDictionary
-//                let reservation = Reservation(id:dictionary?["id"] as? String ?? "missing Id",Name: dictionary?["Name"] as? String ?? "", Date: dictionary?["Date"] as? String ?? "" , StartTime: dictionary?["StartTime"] as? String ?? "", EndTime: dictionary?["EndTime"] as? String ?? "", Price: dictionary?["Price"] as? String ?? "", ExtraCharge: dictionary?["ExtraCharge"] as? String ?? "", isActive: dictionary?["isActive"] as? Bool ?? false)
-//                if (reservation.isActive) {
-//                    reservations.append(reservation)
-//                }else{
-//                    pastReservations.append(reservation)
-//                }
-//
-//            }
-//
-//            if (reservations.isEmpty) {
-//                EmptyLabel.isHidden = false
-//                EndParking.isHidden = true
-//                Active.isHidden = true
-//                ActiveView.collectionView?.isHidden = true
-//            }
-//
-//            Active.reloadData()
-//            Past.reloadData()
-//        })
-//    }
+    //    private func getReservations() {
+    //        ref.child("Reservations").child("UserID").observe(DataEventType.value, with: { [self] snapshots in
+    //            print(snapshots.childrenCount)
+    //
+    //            reservations.removeAll()
+    //            pastReservations.removeAll()
+    //            for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
+    //                let dictionary = snapshot.value as? NSDictionary
+    //                let reservation = Reservation(id:dictionary?["id"] as? String ?? "missing Id",Name: dictionary?["Name"] as? String ?? "", Date: dictionary?["Date"] as? String ?? "" , StartTime: dictionary?["StartTime"] as? String ?? "", EndTime: dictionary?["EndTime"] as? String ?? "", Price: dictionary?["Price"] as? String ?? "", ExtraCharge: dictionary?["ExtraCharge"] as? String ?? "", isActive: dictionary?["isActive"] as? Bool ?? false)
+    //                if (reservation.isActive) {
+    //                    reservations.append(reservation)
+    //                }else{
+    //                    pastReservations.append(reservation)
+    //                }
+    //
+    //            }
+    //
+    //            if (reservations.isEmpty) {
+    //                EmptyLabel.isHidden = false
+    //                EndParking.isHidden = true
+    //                Active.isHidden = true
+    //                ActiveView.collectionView?.isHidden = true
+    //            }
+    //
+    //            Active.reloadData()
+    //            Past.reloadData()
+    //        })
+    //    }
     
     @objc func methodOfReceivedNotification(notification: Notification) {
         
-//        let time = notification.object as! Int
-//        if time == 0{
-//
-//        }
-//        guard time>0 else{self.viewLoader.isHidden = true;return}
-//        self.totalTime = time
-//        self.viewLoader.isHidden = false
         getIfAnyReservation()
         
         
@@ -262,20 +502,20 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 220
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pastReservations.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PastTableViewCell") as! PastTableViewCell
         let object = pastReservations[indexPath.row]
         cell.logo.image = UIImage(named: "King Saud University")
-
+        
         cell.Name.text = object.Name
         cell.Date.text = object.Date
         cell.ExtraCharges.text = object.ExtraCharge
@@ -286,5 +526,5 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-
+    
 }
