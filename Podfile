@@ -16,12 +16,12 @@ target 'QuickPark' do
   pod 'ProgressHUD'
   pod 'paper-onboarding'
   pod 'SDWebImage', '~> 5.0'
-
+  pod 'Kingfisher'
+  pod 'NVActivityIndicatorView'
   
   #Other Pods
   pod 'CodableFirebase'
   pod 'SVProgressHUD'
-  
   pod 'IQKeyboardManagerSwift'
   
   target 'QuickParkTests' do

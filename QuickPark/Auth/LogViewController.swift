@@ -58,6 +58,13 @@ class LogViewController: UIViewController {
     @IBAction func ForgetPassPressed(_ sender: Any) {
     }
     
+    @IBAction func reggisterButtonTouched(_ sender: Any) {
+        if let vc = SBSupport.viewController(sbi: "sbi_OnboardingViewController", inStoryBoard: "Misclenious") as? OnboardingViewController {
+            vc.fromViewController = "login"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func validate() -> Bool {
         var isValid = true
         emailLabel.isHidden = true

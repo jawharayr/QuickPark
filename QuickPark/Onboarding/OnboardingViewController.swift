@@ -9,18 +9,19 @@ import UIKit
 
 
 class OnboardingViewController: UIViewController {
-    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
-    
+    @IBOutlet weak var skipButton: UIButton!
     var slides: [OnboardingSlide] = []
+    
+    var fromViewController : String!
     
     var currentPage = 0 {
         didSet {
             pageControl.currentPage = currentPage
             if currentPage == slides.count - 1 {
-                nextBtn.setTitle("Get Started", for: .normal)
+                nextBtn.setTitle((fromViewController == "login") ? "Get Started" : "Back", for: .normal)
             } else {
                 nextBtn.setTitle("Next", for: .normal)
             }
@@ -47,11 +48,7 @@ class OnboardingViewController: UIViewController {
     
     @IBAction func nextBtnClicked(_ sender: UIButton) {
         if currentPage == slides.count - 1 {
-            let controller = storyboard?.instantiateViewController(identifier: "HomeNC") as! UINavigationController
-            controller.modalPresentationStyle = .fullScreen
-            controller.modalTransitionStyle = .flipHorizontal
-            UserDefaults.standard.hasOnboarded = true
-            present(controller, animated: true, completion: nil)
+            manageNavigation()
         } else {
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
@@ -59,6 +56,27 @@ class OnboardingViewController: UIViewController {
         }
     }
     
+    @IBAction func skipButtonTouched(_ sender: Any) {
+        manageNavigation()
+    }
+    
+    func manageNavigation () {
+        switch fromViewController {
+        case "login":
+            goToRegister()
+            break
+        case "more":
+            self.navigationController?.popViewController(animated: true)
+            break
+        default:
+            break
+        }
+    }
+    
+    func goToRegister () {
+        let vc = SBSupport.viewController(sbi: "sbi_regisrationView", inStoryBoard: "Auth")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

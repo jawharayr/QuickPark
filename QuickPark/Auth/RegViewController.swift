@@ -203,7 +203,13 @@ class RegViewController: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    
+    @IBAction func termsOfServicePressed(_ sender: Any) {
+        let vc = SBSupport.viewController(sbi: "sbi_TermsViewController", inStoryBoard: "Misclenious")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
