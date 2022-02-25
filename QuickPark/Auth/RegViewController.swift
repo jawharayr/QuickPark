@@ -15,9 +15,7 @@ class RegViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var passOfRegField: UITextField!
-    
     
     @IBOutlet weak var confirmPas: UITextField!
     
@@ -29,7 +27,7 @@ class RegViewController: UIViewController {
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
-    @IBOutlet weak var confirmLabel: UILabel!
+    @IBOutlet weak var confirmLabel: UILabel?
     
     @IBAction func goToLogPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "GoToLog", sender: nil)
@@ -73,9 +71,8 @@ class RegViewController: UIViewController {
         super.viewDidLoad()
         //passOfRegField.enablePasswordToggle()
         // Do any additional setup after loading the view.
-        scrollView.contentSize = CGSize(width: 0, height: 900)
         // textFieldEmail.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
-        confirmLabel.isHidden = true
+        confirmLabel?.isHidden = true
         passwordLabel.isHidden = true
         emailLabel.isHidden = true
         nameLabel.isHidden = true
@@ -105,6 +102,11 @@ class RegViewController: UIViewController {
         }
     }
     func validate() -> Bool {
+        passwordLabel.isHidden = true
+        confirmLabel?.isHidden = true
+        nameLabel.isHidden = true
+        emailLabel.isHidden = true
+        
         var isValid = true
         let name = nameField?.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
         let email = emailField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
@@ -124,9 +126,6 @@ class RegViewController: UIViewController {
             nameField.shake()
             isValid = false
         }
-        if !name.isEmpty && name.count >= 3 && name.isAlphanumeric {
-            nameLabel.isHidden = true
-        }
         
         // Email Validations
         if email.isEmpty {
@@ -141,9 +140,6 @@ class RegViewController: UIViewController {
             emailField.shake()
             isValid = false
         }
-        if email.isValidEmail && !email.isEmpty {
-            emailLabel.isHidden = true
-        }
         
         // Password Validations
         if password.isEmpty {
@@ -153,15 +149,16 @@ class RegViewController: UIViewController {
             isValid = false
         }
         if password2.isEmpty {
-            confirmLabel.isHidden = false
-            confirmLabel.attributedText = NSAttributedString(string: "Please confirm Your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-            passOfRegField.shake()
+            confirmLabel?.isHidden = false
+            confirmLabel?.attributedText = NSAttributedString(string: "Please confirm Your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            confirmPas.shake()
             isValid = false
         }
+        
         if !password.isEmpty && !password2.isEmpty {
             if password != password2 {
-                confirmLabel.isHidden = false
-                confirmLabel.attributedText = NSAttributedString(string: "Passwords do not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+                confirmLabel?.isHidden = false
+                confirmLabel?.attributedText = NSAttributedString(string: "Passwords do not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
                 confirmPas.shake()
                 isValid = false
             }
@@ -174,17 +171,8 @@ class RegViewController: UIViewController {
             isValid = false
         }
         
-        if !password.isEmpty && !password2.isEmpty && (password == password2) && password.isValidPassword {
-            passwordLabel.isHidden = true
-            confirmLabel.isHidden = true
-        }
-        
-        
         return isValid
     }
-    
-    
-    
     
     @IBAction func regPressed(_ sender: Any) {
         if validate() == false {return}
@@ -192,7 +180,6 @@ class RegViewController: UIViewController {
         let name = nameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let pass = passOfRegField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let confirmPass = confirmPas.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         SVProgressHUD.show()
         FBAuth.register(email: email, password: pass) { user, error in
@@ -214,11 +201,16 @@ class RegViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func loginPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 extension String {
     var isAlphanumeric: Bool {
-        let regex = try! NSRegularExpression(pattern: "[^a-zA-Z]", options: [])
+        let regex = try! NSRegularExpression(pattern: "[^a-zA-Z] [^a-zA-Z]", options: [])
         if regex.firstMatch(in: self, options: [], range: NSMakeRange(0, self.count)) != nil {
             return false
         }else{
@@ -231,7 +223,9 @@ extension String {
     }
     var isValidPassword: Bool {
         if (self.isEmpty){return false}
-        let passRegEx = "^(?=.*[A-Z])(?=.*[@$!%*?&#])(?=.*[0-9])(?=.*[a-z]).{8,}$"
+        let passRegEx = "^(?=.*[0-9])(?=.*[a-z]).{6,}$"
+
+        //let passRegEx = "^(?=.*[A-Z])(?=.*[@$!%*?&#])(?=.*[0-9])(?=.*[a-z]).{8,}$"
         
         let passwordTest=NSPredicate(format: "SELF MATCHES %@", passRegEx);
         return passwordTest.evaluate(with: self)
@@ -308,8 +302,8 @@ extension RegViewController {
         // Password Validations
         if !password.isEmpty && !password2.isEmpty {
             if password != password2 {
-                confirmLabel.isHidden = false
-                confirmLabel.attributedText = NSAttributedString(string: "Password does not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+                confirmLabel?.isHidden = false
+                confirmLabel?.attributedText = NSAttributedString(string: "Password does not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             }
         }
         
@@ -320,7 +314,7 @@ extension RegViewController {
         
         if !password.isEmpty && !password2.isEmpty && (password == password2) && password.isValidPassword {
             passwordLabel.isHidden = true
-            confirmLabel.isHidden = true
+            confirmLabel?.isHidden = true
         }
         if password.isValidPassword {
             passwordLabel.isHidden = true
@@ -329,7 +323,7 @@ extension RegViewController {
             passwordLabel.isHidden = true
         }
         if password2.isEmpty {
-            confirmLabel.isHidden = true
+            confirmLabel?.isHidden = true
         }
     }
     

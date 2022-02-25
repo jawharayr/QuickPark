@@ -42,4 +42,9 @@ class TVCResetPassword: UITableViewController {
         }
      
     }
+    
+    @IBAction func backToLoginPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }

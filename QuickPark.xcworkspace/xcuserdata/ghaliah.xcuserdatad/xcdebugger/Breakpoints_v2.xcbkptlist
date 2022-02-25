@@ -75,16 +75,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "05A52746-2204-4812-988F-C89995A8B73F"
-            shouldBeEnabled = "Yes"
+            uuid = "D76210D0-4770-455E-8B0F-BCCFA19245BB"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "QuickPark/Auth/LogViewController.swift"
+            filePath = "QuickPark/AppProtocols/SceneDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "loginPressed(_:)"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "setUpHome()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

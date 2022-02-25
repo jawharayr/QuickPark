@@ -68,10 +68,21 @@
         <!--AdminMorePage-->
         <scene sceneID="XhO-lU-Sgw">
             <objects>
-                <viewController title="AdminMorePage" id="7I0-CY-lsZ" sceneMemberID="viewController">
+                <viewController title="AdminMorePage" id="7I0-CY-lsZ" customClass="VCAdminMore" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WUh-CH-b8n">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRl-et-EDe">
+                                <rect key="frame" x="162" y="223" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="logoutPress:" destination="7I0-CY-lsZ" eventType="touchUpInside" id="Cak-YP-uDa"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="YNb-bO-zbZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
