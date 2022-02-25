@@ -51,6 +51,8 @@ typedef struct {
 #if CLS_MACH_EXCEPTION_SUPPORTED
   void* machStack;
 #endif
+  void* delegate;
+  void* callbackDelegate;
 
   FIRCLSBinaryImageReadOnlyContext binaryimage;
   FIRCLSExceptionReadOnlyContext exception;
@@ -79,11 +81,16 @@ typedef struct {
 } FIRCLSContext;
 
 typedef struct {
+  void* delegate;
   const char* customBundleId;
   const char* rootPath;
   const char* previouslyCrashedFileRootPath;
   const char* sessionId;
+  const char* installId;
   const char* betaToken;
+#if CLS_MACH_EXCEPTION_SUPPORTED
+  exception_mask_t machExceptionMask;
+#endif
   bool errorsEnabled;
   bool customExceptionsEnabled;
   uint32_t maxCustomExceptions;
@@ -95,8 +102,14 @@ typedef struct {
 #ifdef __OBJC__
 bool FIRCLSContextInitialize(FIRCLSInternalReport* report,
                              FIRCLSSettings* settings,
+                             FIRCLSInstallIdentifierModel* installIDModel,
                              FIRCLSFileManager* fileManager);
 
+// Re-writes the metadata file on the current thread
+void FIRCLSContextUpdateMetadata(FIRCLSInternalReport* report,
+                                 FIRCLSSettings* settings,
+                                 FIRCLSInstallIdentifierModel* installIDModel,
+                                 FIRCLSFileManager* fileManager);
 #endif
 
 void FIRCLSContextBaseInit(void);

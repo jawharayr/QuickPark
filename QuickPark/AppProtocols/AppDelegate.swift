@@ -17,6 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
+
+          if Auth.auth().currentUser?.uid == nil{
+            if  UserDefaults.standard.string(forKey: "uid") == nil{
+                UserDefaults.standard.set(UtilitiesManager.sharedIntance.getRandomString(), forKey: "uid")
+            }else{
+                _ = UserDefaults.standard.string(forKey: "uid")!
+            }
+        }else{
+            _ = Auth.auth().currentUser!.uid
+        }
         
         return true
     }
