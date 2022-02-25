@@ -76,7 +76,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Gcx-9u-XzY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjO-ar-Nka" userLabel="nameLabel">
                                 <rect key="frame" x="35" y="460" width="344" height="27"/>
@@ -275,7 +275,7 @@
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="8" left="9" bottom="8" right="8"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad" textContentType="name"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcE-FO-NmJ" userLabel="nameLabel">
                                 <rect key="frame" x="33" y="364" width="345" height="16.5"/>
@@ -294,7 +294,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="JE6-1l-ywp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yV-04-XUk" userLabel="emailLabel">
                                 <rect key="frame" x="33" y="500" width="346" height="16.5"/>
@@ -316,8 +316,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NvP-BE-qfM" userLabel="passwordLabel">
-                                <rect key="frame" x="33" y="523" width="341" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NvP-BE-qfM" userLabel="passwordLabel">
+                                <rect key="frame" x="34" y="523" width="340" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="mXx-Fx-rnp"/>
                                 </constraints>
@@ -570,10 +570,20 @@
                                         <action selector="regPressed:" destination="b1D-23-5hP" eventType="touchUpInside" id="LXC-7x-hpk"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0i-dY-VLL">
+                                    <rect key="frame" x="149.5" y="95" width="115" height="31"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Back to login?"/>
+                                    <connections>
+                                        <action selector="backToLoginPressed:" destination="lu4-Yr-NqR" eventType="touchUpInside" id="OV1-au-7oO"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="B0i-dY-VLL" firstAttribute="top" secondItem="PFr-9F-92F" secondAttribute="bottom" constant="18" id="1Rb-uM-dKi"/>
                                 <constraint firstItem="PFr-9F-92F" firstAttribute="top" secondItem="tPb-mx-TUY" secondAttribute="top" constant="32" id="EqX-de-0xb"/>
+                                <constraint firstItem="B0i-dY-VLL" firstAttribute="centerX" secondItem="PFr-9F-92F" secondAttribute="centerX" id="g5z-6p-tzU"/>
                                 <constraint firstItem="PFr-9F-92F" firstAttribute="centerX" secondItem="tPb-mx-TUY" secondAttribute="centerX" id="lUB-a6-Ggz"/>
                             </constraints>
                         </view>
