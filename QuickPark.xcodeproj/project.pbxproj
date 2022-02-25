@@ -199,6 +199,7 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
+				1FEE3D5627C7DDD9001E36CF /* New Group */,
 				225AB86127C7B41B003D4253 /* AddAreaViewController.swift */,
 				225AB85A27C7B3FA003D4253 /* AdminHomeListVC.swift */,
 				225AB85B27C7B3FA003D4253 /* AdminTabBarVC.swift */,
@@ -243,6 +244,13 @@
 				04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */,
 			);
 			path = QuickParkUITests;
+			sourceTree = "<group>";
+		};
+		1FEE3D5627C7DDD9001E36CF /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		22035FA327BB726000D1A3B5 /* Resources */ = {

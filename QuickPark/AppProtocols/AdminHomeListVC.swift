@@ -18,6 +18,7 @@ class AdminHomeListVC: UIViewController {
     
     @IBOutlet weak var ParkingView: UIView!
     
+    @IBOutlet weak var SearchTxt: UITextField!
     @IBOutlet weak var ParkingsViews: UITableView!
     
     override func viewDidLoad() {
@@ -26,7 +27,10 @@ class AdminHomeListVC: UIViewController {
         ParkingsViews?.dataSource = self
         ParkingsViews?.separatorStyle = .none
         ParkingsViews?.showsVerticalScrollIndicator = false
-        
+        SearchTxt.layer.cornerRadius = 20
+        SearchTxt.layer.shadowOpacity = 0.1
+        SearchTxt.layer.shadowOffset = .zero
+        SearchTxt.layer.shadowRadius = 10
         getParkings()
         
     }
