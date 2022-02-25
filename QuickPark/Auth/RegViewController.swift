@@ -210,7 +210,7 @@ class RegViewController: UIViewController {
 
 extension String {
     var isAlphanumeric: Bool {
-        let regex = try! NSRegularExpression(pattern: "[^a-zA-Z]", options: [])
+        let regex = try! NSRegularExpression(pattern: "[^a-zA-Z] [^a-zA-Z]", options: [])
         if regex.firstMatch(in: self, options: [], range: NSMakeRange(0, self.count)) != nil {
             return false
         }else{
