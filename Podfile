@@ -22,6 +22,8 @@ target 'QuickPark' do
   pod 'CodableFirebase'
   pod 'SVProgressHUD'
   
+  pod 'IQKeyboardManagerSwift'
+  
   target 'QuickParkTests' do
 #    inherit! :search_paths
 #    pod 'Firebase/Core'

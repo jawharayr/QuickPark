@@ -16,7 +16,10 @@ class TermsViewController: UIViewController {
     }
     
     
-
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     /*
      @IBAction func ForgotPass(_ sender: Any) {
        

@@ -199,7 +199,8 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
-				1FEE3D5627C7DDD9001E36CF /* New Group */,
+				22035FA327BB726000D1A3B5 /* Resources */,
+				226C1D0B27BE85A800D11E24 /* ConfirmAndPay.swift */,
 				225AB86127C7B41B003D4253 /* AddAreaViewController.swift */,
 				225AB85A27C7B3FA003D4253 /* AdminHomeListVC.swift */,
 				225AB85B27C7B3FA003D4253 /* AdminTabBarVC.swift */,
@@ -213,14 +214,12 @@
 				225AB84D27C7A7C1003D4253 /* OnboardingViewController.swift */,
 				225AB84727C7A759003D4253 /* UserProfileViewController.swift */,
 				226C1D1127BE85A800D11E24 /* Areas.swift */,
-				226C1D0B27BE85A800D11E24 /* ConfirmAndPay.swift */,
 				226C1D1027BE85A800D11E24 /* MyParkingsVC.swift */,
 				226C1D0927BE85A800D11E24 /* PastTableViewCell.swift */,
 				226C1D0F27BE85A800D11E24 /* QRCodeVC.swift */,
 				226C1D0E27BE85A800D11E24 /* Reservation.swift */,
 				226C1D0827BE85A800D11E24 /* ReservationCell.swift */,
 				226C1D0327BE682400D11E24 /* VCMore.swift */,
-				22035FA327BB726000D1A3B5 /* Resources */,
 				22035FA527BB731100D1A3B5 /* AppProtocols */,
 				22035FA427BB728300D1A3B5 /* Support */,
 				22A0756F27A9257D00658889 /* Auth */,
@@ -244,13 +243,6 @@
 				04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */,
 			);
 			path = QuickParkUITests;
-			sourceTree = "<group>";
-		};
-		1FEE3D5627C7DDD9001E36CF /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		22035FA327BB726000D1A3B5 /* Resources */ = {
