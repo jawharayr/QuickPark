@@ -73,7 +73,6 @@ class RegViewController: UIViewController {
         super.viewDidLoad()
         //passOfRegField.enablePasswordToggle()
         // Do any additional setup after loading the view.
-        scrollView.contentSize = CGSize(width: 0, height: 900)
         // textFieldEmail.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
         confirmLabel.isHidden = true
         passwordLabel.isHidden = true
@@ -231,7 +230,9 @@ extension String {
     }
     var isValidPassword: Bool {
         if (self.isEmpty){return false}
-        let passRegEx = "^(?=.*[A-Z])(?=.*[@$!%*?&#])(?=.*[0-9])(?=.*[a-z]).{8,}$"
+        let passRegEx = "^(?=.*[0-9])(?=.*[a-z]).{6,}$"
+
+        //let passRegEx = "^(?=.*[A-Z])(?=.*[@$!%*?&#])(?=.*[0-9])(?=.*[a-z]).{8,}$"
         
         let passwordTest=NSPredicate(format: "SELF MATCHES %@", passRegEx);
         return passwordTest.evaluate(with: self)

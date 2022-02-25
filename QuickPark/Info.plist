@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app requires access to the photo library.</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Please allow location usage</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Please allow location usage</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -27,9 +21,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Location permission needed to show you nearest parking to you.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location permission needed to show you nearest parking to you.</string>
 </dict>
 </plist>
