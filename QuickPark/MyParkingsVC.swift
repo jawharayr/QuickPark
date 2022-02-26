@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 import Foundation
 import FirebaseAuth
+import SwiftUI
 
 class MyParkingsVC: UIViewController {
     
@@ -61,6 +62,8 @@ class MyParkingsVC: UIViewController {
         
         clearData()
         
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
         
         ref = Database.database().reference()
@@ -92,6 +95,9 @@ class MyParkingsVC: UIViewController {
     
     func getIfAnyReservation(){
         
+        lblCountDown.textColor =  UIColor(red: 0, green: 144/255, blue: 205/255, alpha: 1)
+        self.viewLoader.viewWithTag(101)?.removeFromSuperview()
+        self.viewLoader.viewWithTag(102)?.removeFromSuperview()
         Active.isHidden = true
         reservation = nil
         pastReservations.removeAll()
