@@ -418,6 +418,7 @@
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="dhO-Ph-9Hf" firstAttribute="trailing" secondItem="Yba-fL-Zpk" secondAttribute="trailing" id="0ou-Gf-Ok6"/>
                                             <constraint firstItem="YXY-wO-htH" firstAttribute="trailing" secondItem="Yba-fL-Zpk" secondAttribute="trailing" id="3HD-MB-JCR"/>
@@ -453,6 +454,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="tintColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="EwT-mY-Psg" firstAttribute="width" secondItem="hBC-0K-b0U" secondAttribute="width" id="4YT-t7-NBy"/>
                                     <constraint firstItem="hBC-0K-b0U" firstAttribute="bottom" secondItem="RoQ-dY-7Ur" secondAttribute="bottom" id="50D-d4-NBd"/>
