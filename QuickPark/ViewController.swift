@@ -102,9 +102,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let reserDict = dataSnap.value as! [String:Any]
                 for (k,_) in reserDict{
                     let res = Reservation.init(dict: reserDict[k] as! [String : Any])
-                    if res.isCompleted{
-                    }else{
+                    if !res.isCompleted{
                         self.reservation = res
+                        break
+                    }else{
+                        self.reservation = nil
+                        self.stopTimer()
                     }
                 }
                 

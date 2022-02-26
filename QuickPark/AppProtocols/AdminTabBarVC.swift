@@ -13,11 +13,11 @@ class AdminTabBarVC: UITabBarController, UITabBarControllerDelegate {
         
         self.delegate = self
         
-        let appearance = UITabBarAppearance()
-        appearance.shadowColor = .white
-        appearance.stackedLayoutAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 16)
-        appearance.stackedLayoutAppearance.selected.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 16)
-        tabBar.standardAppearance = appearance
+//        let appearance = UITabBarAppearance()
+//        appearance.shadowColor = .white
+////        appearance.stackedLayoutAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 16)
+////        appearance.stackedLayoutAppearance.selected.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 16)
+//        tabBar.standardAppearance = appearance
         
         let bgView = UIView()
         bgView.backgroundColor = .white
