@@ -13,8 +13,18 @@ class TermsViewController: UITableViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.tableView.backgroundView = UIImageView(image: UIImage(named: "5a36a11aee712c8452ae989ab425827d"))
+        self.tableView.backgroundView?.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+   
     
     
     @IBAction func backButtonPressed(_ sender: Any) {

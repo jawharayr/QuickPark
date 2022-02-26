@@ -9,7 +9,10 @@ import UIKit
 import SVProgressHUD
 
 class TVCMore : UITableViewController {
-  
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
     
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

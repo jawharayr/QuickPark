@@ -9,8 +9,22 @@ import Foundation
 import UIKit
 import SVProgressHUD
 
-class VCAdminMore : UIViewController {
-    @IBAction func logoutPressed(_ sender: Any) {
+class VCAdminMore : UITableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        switch indexPath.row {
+        case 0: //Call Feature
+            break;
+        case 1: //logout
+            logout()
+            break;
+        default:
+            break
+        }
+    }
+    
+    func logout () {
         QPAlert(self).showAlert(title: "Are you sure you want to log out?", message: nil, buttons: ["Cancel", "Yes"]) { _, index in
             if index == 1 {
                 FBAuth.logout { success, error in
@@ -24,7 +38,9 @@ class VCAdminMore : UIViewController {
         }
     }
 }
-    
-    
-   
+
+
+
+
+
 
