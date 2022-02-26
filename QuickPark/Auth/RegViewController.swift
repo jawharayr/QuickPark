@@ -174,9 +174,10 @@ class RegViewController: UIViewController {
     
     @IBAction func regPressed(_ sender: Any) {
         if validate() == false {return}
-        
+        let emailLower = emailField.text!.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        print (emailLower)
         let name = nameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let email = emailField.text!.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         let pass = passOfRegField.text!
         
         SVProgressHUD.show()
