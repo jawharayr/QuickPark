@@ -1525,6 +1525,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="mBH-mB-XsO"/>
                     <connections>
+                        <outlet property="AreaLabel" destination="1La-w0-pin" id="Slt-u4-Gd7"/>
                         <outlet property="AreaView" destination="TcZ-Jz-197" id="oCU-dc-N7d"/>
                         <outlet property="DoneButton" destination="RqB-Ed-wcP" id="Q31-6O-lKu"/>
                         <outlet property="EndTimeTxt" destination="BhP-EH-r2W" id="qPU-Ov-kOJ"/>

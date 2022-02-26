@@ -429,7 +429,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
                                 /// change to [.medium(), .large()] for a half and full screen sheet
                             }
                         }
-                        viewController.areaName = areaname
+                        viewController.AreaLabel.text = areaname
                         self.present(viewController, animated: true)
                     } else {
                         myCell.layer.borderColor = UIColor.red.cgColor
