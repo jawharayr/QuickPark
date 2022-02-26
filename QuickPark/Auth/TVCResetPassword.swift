@@ -28,23 +28,21 @@ class TVCResetPassword: UITableViewController {
     @IBAction func doneButtonPressed(_ sender: Any) {
         
         guard let email = emailTextField.text, email.count > 3 else {
-            SVProgressHUD.showError(withStatus: "Invalid Email")
+            QPAlert(self).showError(message:"Invalid Email")
             return
         }
         
         FBAuth.resetPasword(email: email) { error in
             if let e = error {
-                SVProgressHUD.showError(withStatus: e.localizedDescription)
+                QPAlert(self).showError(message:e.localizedDescription)
             }else{
-                SVProgressHUD.showSuccess(withStatus: "Reset link sent to your registered email. Please follow the instruction to update the password.")
+                QPAlert(self).showError(message:"Reset link sent to your registered email. Please follow the instruction to update the password.")
                 self.navigationController?.popViewController(animated: true)
             }
         }
-     
     }
     
     @IBAction func backToLoginPressed(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    
 }

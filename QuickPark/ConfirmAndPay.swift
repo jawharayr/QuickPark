@@ -22,6 +22,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var EndWithView: UIView!
     @IBOutlet weak var AreaView: UIView!
     
+    @IBOutlet weak var AreaLabel: UILabel!
     
     
     

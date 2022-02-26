@@ -182,10 +182,11 @@ class RegViewController: UIViewController {
         
         SVProgressHUD.show()
         FBAuth.register(email: email, password: pass) { user, error in
+            SVProgressHUD.dismiss()
             if let e = error, user == nil {
-                SVProgressHUD.showError(withStatus: e.localizedDescription)
+                QPAlert(self).showError(message: e.localizedDescription)
             } else {
-                SVProgressHUD.showSuccess(withStatus: "Registered Successfully.")
+                QPAlert(self).showError(message: "Registered Successfully.")
                 SceneDelegate.sceneDelegate.setUpHome()
             }
         }

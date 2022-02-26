@@ -814,7 +814,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZS6WXPHW6X;
+				DEVELOPMENT_TEAM = 8XHA6PPHP7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickPark/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location permission needed to show you nearest parking to you.";
@@ -849,7 +849,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZS6WXPHW6X;
+				DEVELOPMENT_TEAM = 8XHA6PPHP7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickPark/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location permission needed to show you nearest parking to you.";

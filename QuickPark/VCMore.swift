@@ -9,7 +9,10 @@ import UIKit
 import SVProgressHUD
 
 class TVCMore : UITableViewController {
-  
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
     
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -42,9 +45,8 @@ class TVCMore : UITableViewController {
             if index == 1 {
                 FBAuth.logout { success, error in
                     if success == false, let e = error {
-                        SVProgressHUD.showError(withStatus: e.localizedDescription)
+                        QPAlert(self).showError(message: e.localizedDescription)
                     } else {
-                        //SVProgressHUD.showSuccess(withStatus: "Logged Out.")
                         SceneDelegate.sceneDelegate.setUpHome()
                     }
                 }
