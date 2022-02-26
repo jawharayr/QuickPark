@@ -45,6 +45,7 @@ class MyParkingsVC: UIViewController {
     @IBOutlet weak var viewLoader: UIView!
     
     
+    @IBOutlet weak var ViewAC: UIView!
     @IBOutlet weak var EmptyLabel: UILabel!
     @IBOutlet weak var Active: UIView!
     @IBOutlet weak var Past: UITableView!
@@ -99,6 +100,8 @@ class MyParkingsVC: UIViewController {
         self.viewLoader.viewWithTag(101)?.removeFromSuperview()
         self.viewLoader.viewWithTag(102)?.removeFromSuperview()
         Active.isHidden = true
+        ViewAC.isHidden = true
+        EmptyLabel.isHidden = false
         reservation = nil
         pastReservations.removeAll()
         self.clearData()
@@ -117,6 +120,8 @@ class MyParkingsVC: UIViewController {
                 }
                 self.Past.reloadData()
                 if self.reservation != nil{
+                    self.ViewAC.isHidden = false
+                    self.EmptyLabel.isHidden = true
                     self.loadData()
                     //                    self.getStartTime()
                 }else{

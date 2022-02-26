@@ -1119,6 +1119,7 @@
                         <outlet property="Past" destination="BUA-6o-tTd" id="XQb-PT-sYi"/>
                         <outlet property="SegmentedControl" destination="TCl-8G-CYf" id="OJv-FT-bkH"/>
                         <outlet property="StartTime" destination="mzZ-Az-wxf" id="OCj-H0-KwL"/>
+                        <outlet property="ViewAC" destination="GYc-D5-70g" id="NKm-Y0-j5r"/>
                         <outlet property="area" destination="HNU-HT-eSw" id="4vo-8X-vc7"/>
                         <outlet property="btnEnd" destination="4hT-ru-5hA" id="OhA-N1-tmV"/>
                         <outlet property="lblCountDown" destination="xty-lW-VZP" id="luH-fw-p5S"/>
