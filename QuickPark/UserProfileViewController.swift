@@ -15,8 +15,7 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet weak var txtUserName : UITextField!
     @IBOutlet weak var txtEmail : UITextField!
-    @IBOutlet weak var txtPassword : UITextField!
-    @IBOutlet weak var txtConfirmPassword : UITextField!
+    
     
     @IBOutlet weak var labelEmailAlert: UILabel!
     @IBOutlet weak var labelFieldsAlert: UILabel!
@@ -66,39 +65,27 @@ class UserProfileViewController: UIViewController {
         txtEmail.layer.shadowOpacity = 1.0
                 
         //For shadow and cornerRadius for Password textfield
-        txtPassword.layer.masksToBounds = false
-        txtPassword.layer.shadowRadius = 4.0
-        txtPassword.layer.shadowColor = UIColor.lightGray.cgColor
-        txtPassword.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        txtPassword.layer.shadowOpacity = 1.0
+        
         
         //For shadow and cornerRadius for Confirm password textfield
-        txtConfirmPassword.layer.masksToBounds = false
-        txtConfirmPassword.layer.shadowRadius = 4.0
-        txtConfirmPassword.layer.shadowColor = UIColor.lightGray.cgColor
-        txtConfirmPassword.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        txtConfirmPassword.layer.shadowOpacity = 1.0
+       
         
         
         //Right padding view for Password textfield
         let paddingView: UIView = UIView.init(frame: CGRect(x: 0.0, y: 0.0, width: 12.0, height: 20.0))
-        self.txtPassword.leftView = paddingView;
-        self.txtPassword.leftViewMode = .always;
+        
         
         //Left padding view for Password textfield
         let paddingView2: UIView = UIView.init(frame: CGRect(x: 0.0, y: 0.0, width: 60.0, height: 20.0))
-        self.txtPassword.rightView = paddingView2;
-        self.txtPassword.rightViewMode = .always;
+       
         
         //Right padding view for Confirm Password textfield
         let paddingView3: UIView = UIView.init(frame: CGRect(x: 0.0, y: 0.0, width: 12.0, height: 20.0))
-        self.txtConfirmPassword.leftView = paddingView3;
-        self.txtConfirmPassword.leftViewMode = .always;
+       
         
         //Left padding view for Confirm Password textfield
         let paddingView4: UIView = UIView.init(frame: CGRect(x: 0.0, y: 0.0, width: 60.0, height: 20.0))
-        self.txtConfirmPassword.rightView = paddingView4;
-        self.txtConfirmPassword.rightViewMode = .always;
+        
         
         //---------------------------------------
         
@@ -148,31 +135,11 @@ class UserProfileViewController: UIViewController {
     }
     
     //Will get called on password textfield eye button clicked
-    @IBAction func btnPasswordClicekd(_ sender : UIButton){
-        
-        if sender.isSelected {
-            //self.txtPassword.background = UIImage(systemName: "eye.slash.fill")
-            self.txtPassword.isSecureTextEntry = true
-        }else{
-            //self.txtPassword.background = UIImage(systemName: "eye.fill")
-            self.txtPassword.isSecureTextEntry = false
-        }
-        sender.isSelected = !sender.isSelected
-    }
+    
     
     
     //Will get called on confirm password textfield eye button clicked
-    @IBAction func btnConfirmPasswordClicekd(_ sender : UIButton){
-        
-        if sender.isSelected {
-           // self.txtConfirmPassword.background = UIImage(systemName: "eye.slash.fill")
-            self.txtConfirmPassword.isSecureTextEntry = true
-        }else{
-           // self.txtConfirmPassword.background = UIImage(systemName: "eye.fill")
-            self.txtConfirmPassword.isSecureTextEntry = false
-        }
-        sender.isSelected = !sender.isSelected
-    }
+    
     
     
     
@@ -193,10 +160,9 @@ class UserProfileViewController: UIViewController {
     {
         let nameString = txtUserName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let emailString = txtEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let passwordString = txtPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let confirmPasswordString = txtConfirmPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+       
         
-        if nameString == "" || emailString == "" || passwordString == "" || confirmPasswordString == "" {
+        if nameString == "" || emailString == ""  {
             return "false"
         }
         
