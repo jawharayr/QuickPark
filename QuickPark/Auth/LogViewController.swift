@@ -92,10 +92,10 @@ class LogViewController: UIViewController {
     }
     
     func emailAuth(email:String,password:String) {
-        ProgressHUD.show()
+        SVProgressHUD.show()
         Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
             if let error = error as NSError? {
-                ProgressHUD.dismiss()
+                SVProgressHUD.show()
                 let qpAlert = QPAlert(self)
                 switch AuthErrorCode(rawValue: error.code) {
                 case .userDisabled:

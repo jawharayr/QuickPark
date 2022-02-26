@@ -42,9 +42,8 @@ class TVCMore : UITableViewController {
             if index == 1 {
                 FBAuth.logout { success, error in
                     if success == false, let e = error {
-                        SVProgressHUD.showError(withStatus: e.localizedDescription)
+                        QPAlert(self).showError(message: e.localizedDescription)
                     } else {
-                        //SVProgressHUD.showSuccess(withStatus: "Logged Out.")
                         SceneDelegate.sceneDelegate.setUpHome()
                     }
                 }

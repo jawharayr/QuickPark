@@ -46,6 +46,7 @@ struct FBAuth {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let  e = error {
                 SVProgressHUD.showError(withStatus: e.localizedDescription)
+                
             }else{
                 SVProgressHUD.showSuccess(withStatus: "Logged in..")
                 complition(authResult?.user, error)
