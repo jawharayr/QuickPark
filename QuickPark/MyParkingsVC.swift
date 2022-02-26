@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 import Foundation
 import FirebaseAuth
+import SwiftUI
 
 class MyParkingsVC: UIViewController {
     
@@ -54,18 +55,14 @@ class MyParkingsVC: UIViewController {
         super.viewWillAppear(animated)
         // Do any additional setup after loading the view.
         //        getReservations()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         clearData()
+        
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
         
@@ -98,6 +95,9 @@ class MyParkingsVC: UIViewController {
     
     func getIfAnyReservation(){
         
+        lblCountDown.textColor =  UIColor(red: 0, green: 144/255, blue: 205/255, alpha: 1)
+        self.viewLoader.viewWithTag(101)?.removeFromSuperview()
+        self.viewLoader.viewWithTag(102)?.removeFromSuperview()
         Active.isHidden = true
         reservation = nil
         pastReservations.removeAll()
@@ -127,7 +127,10 @@ class MyParkingsVC: UIViewController {
     }
     
     func loadData(){
-        stopTimer()
+        
+        if timer != nil{
+            timer.invalidate()
+        }
         
         EmptyLabel.isHidden = true
         
@@ -156,11 +159,15 @@ class MyParkingsVC: UIViewController {
         viewLoader.viewWithTag(101)?.removeFromSuperview()
         btnEnd.isHidden = true
         EmptyLabel.isHidden = false
-        stopTimer()
+        if timer != nil{
+            timer.invalidate()
+            timer = nil
+        }
     }
     
     
     private func startTimer() {
+        
         startActivityAnimating(padding: 0, isFromOnView: false, view: self.viewLoader,width: self.viewLoader.frame.width,height: self.viewLoader.frame.height)
         self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
@@ -169,7 +176,7 @@ class MyParkingsVC: UIViewController {
     
     @objc func updateTimer() {
         print(self.totalTime)
-        self.lblCountDown.text = timeFormatted(self.totalTime) // will show timerValues
+        self.lblCountDown.text = timeFormatted(self.totalTime) // will show timer
         if totalTime > 0 {
             
             if UserDefaults.standard.bool(forKey: "isOverTime"){
@@ -234,7 +241,7 @@ class MyParkingsVC: UIViewController {
     
     
     func getStartTime(){
-        //let start = TimeInterval.init(reservation.StartTime)
+        let start = TimeInterval.init(reservation.StartTime)
         let end = TimeInterval.init(reservation.EndTime)
         
         
