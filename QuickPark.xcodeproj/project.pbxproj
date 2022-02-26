@@ -37,7 +37,6 @@
 		225AB86227C7B41C003D4253 /* AddAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB86127C7B41B003D4253 /* AddAreaViewController.swift */; };
 		225AB86A27C7B796003D4253 /* AdminMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 225AB86827C7B796003D4253 /* AdminMain.storyboard */; };
 		226C1D0427BE682400D11E24 /* VCMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0327BE682400D11E24 /* VCMore.swift */; };
-		226C1D0627BE7C8B00D11E24 /* Shared.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226C1D0527BE7C8B00D11E24 /* Shared.storyboard */; };
 		226C1D1327BE85A800D11E24 /* ReservationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0827BE85A800D11E24 /* ReservationCell.swift */; };
 		226C1D1427BE85A800D11E24 /* PastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0927BE85A800D11E24 /* PastTableViewCell.swift */; };
 		226C1D1627BE85A800D11E24 /* ConfirmAndPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C1D0B27BE85A800D11E24 /* ConfirmAndPay.swift */; };
@@ -53,6 +52,7 @@
 		2272433727C8CD3900A35AF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433127C8CD3800A35AF3 /* Constants.swift */; };
 		2272433B27C8CD6B00A35AF3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433927C8CD6B00A35AF3 /* Utilities.swift */; };
 		2272433C27C8CD6B00A35AF3 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433A27C8CD6B00A35AF3 /* Loader.swift */; };
+		22825ADC27CA0625002F49A0 /* QPAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22825ADB27CA0625002F49A0 /* QPAlert.swift */; };
 		22A0757127A925DC00658889 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757027A925DC00658889 /* RegViewController.swift */; };
 		22A0757327A9260500658889 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757227A9260500658889 /* LogViewController.swift */; };
 		22A0757527A9261E00658889 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757427A9261E00658889 /* HomePageViewController.swift */; };
@@ -113,7 +113,6 @@
 		225AB86127C7B41B003D4253 /* AddAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddAreaViewController.swift; path = Controller/AddAreaViewController.swift; sourceTree = "<group>"; };
 		225AB86927C7B796003D4253 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = QuickPark/View/Base.lproj/AdminMain.storyboard; sourceTree = "<group>"; };
 		226C1D0327BE682400D11E24 /* VCMore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCMore.swift; sourceTree = "<group>"; };
-		226C1D0527BE7C8B00D11E24 /* Shared.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shared.storyboard; sourceTree = "<group>"; };
 		226C1D0827BE85A800D11E24 /* ReservationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationCell.swift; sourceTree = "<group>"; };
 		226C1D0927BE85A800D11E24 /* PastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTableViewCell.swift; sourceTree = "<group>"; };
 		226C1D0B27BE85A800D11E24 /* ConfirmAndPay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmAndPay.swift; sourceTree = "<group>"; };
@@ -129,6 +128,7 @@
 		2272433127C8CD3800A35AF3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2272433927C8CD6B00A35AF3 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = AllLoader/Utilities.swift; sourceTree = "<group>"; };
 		2272433A27C8CD6B00A35AF3 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Loader.swift; path = AllLoader/Loader.swift; sourceTree = "<group>"; };
+		22825ADB27CA0625002F49A0 /* QPAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QPAlert.swift; sourceTree = "<group>"; };
 		22A0757027A925DC00658889 /* RegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewController.swift; sourceTree = "<group>"; };
 		22A0757227A9260500658889 /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		22A0757427A9261E00658889 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
@@ -278,7 +278,6 @@
 				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
 				22035FA627BB74AD00D1A3B5 /* Auth.storyboard */,
 				225AB86827C7B796003D4253 /* AdminMain.storyboard */,
-				226C1D0527BE7C8B00D11E24 /* Shared.storyboard */,
 				22D7793B27C90E7B00BC4677 /* Misclenious.storyboard */,
 			);
 			name = Resources;
@@ -290,6 +289,7 @@
 				22035FA127BB724600D1A3B5 /* FBSupport.swift */,
 				22035FA827BB75B500D1A3B5 /* SBSupport.swift */,
 				22035FAA27BBCF2300D1A3B5 /* Profile.swift */,
+				22825ADB27CA0625002F49A0 /* QPAlert.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -442,7 +442,6 @@
 				226C1D1F27BE85B700D11E24 /* Main.storyboard in Resources */,
 				22D7793C27C90E7B00BC4677 /* Misclenious.storyboard in Resources */,
 				22035F9E27B6AD6800D1A3B5 /* Assets.xcassets in Resources */,
-				226C1D0627BE7C8B00D11E24 /* Shared.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +626,7 @@
 				225AB85827C7A806003D4253 /* UserDefaults+Extension.swift in Sources */,
 				22035FAB27BBCF2300D1A3B5 /* Profile.swift in Sources */,
 				2272433727C8CD3900A35AF3 /* Constants.swift in Sources */,
+				22825ADC27CA0625002F49A0 /* QPAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,6 +824,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Auth;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
@@ -858,6 +859,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Auth;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;

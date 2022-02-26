@@ -198,7 +198,8 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
     
     @IBAction func btnContirmClicked(_ sender: Any) {
         if startTimer.isEmpty || endTimer.isEmpty {
-            UtilitiesManager.sharedIntance.showAlert(view: self, title: "Oops", message: "Select start and End Time to continue.")
+            QPAlert(self).showError(message: "Select start and End Time to continue.")
+            //UtilitiesManager.sharedIntance.showAlert(view: self, title: "Oops", message: "Select start and End Time to continue.")
         }else{
             let df = DateFormatter()
             df.dateFormat = "d MMM yyyy"

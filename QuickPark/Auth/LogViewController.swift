@@ -91,54 +91,23 @@ class LogViewController: UIViewController {
         emailAuth(email: email, password: password)
     }
     
-    @discardableResult
-    func showError(message: String?) -> UIAlertController {
-        showAlert(title: nil,  message: message ?? "Unexpected error!")
-    }
-    
-    @discardableResult
-    func showAlert(title: String? = nil, message: String, onOK: (() -> Void)? = nil) -> UIAlertController {
-        showAlert(title: title, message: message, buttons: ["OK"]) { _, _ in
-            onOK?()
-        }
-    }
-    
-    @discardableResult
-    func showAlert(title: String? = nil, message: String, buttons: [String], handler: ((UIAlertController, Int) -> Void)?) -> UIAlertController {
-        
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        
-        if buttons.isEmpty {
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel) { [unowned alert] _ in
-                handler?(alert, 0)
-            })
-        } else {
-            for (idx, button) in buttons.enumerated() {
-                alert.addAction(UIAlertAction(title: button, style: .default) { [unowned alert] _ in
-                    handler?(alert, idx)
-                })
-            }
-        }
-        present(alert, animated: true, completion: nil)
-        return alert
-    }
-    
     func emailAuth(email:String,password:String) {
         ProgressHUD.show()
         Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
             if let error = error as NSError? {
                 ProgressHUD.dismiss()
+                let qpAlert = QPAlert(self)
                 switch AuthErrorCode(rawValue: error.code) {
                 case .userDisabled:
-                    self.showError(message: "User disabled")
+                    qpAlert.showError(message: "User disabled")
                 case .wrongPassword:
-                    self.showError(message: "Wrong password or Email")
+                    qpAlert.showError(message: "Wrong password or Email")
                 case .invalidEmail:
-                    self.showError(message: "Wrong password or Email")
+                    qpAlert.showError(message: "Wrong password or Email")
                 case .userNotFound:
-                    self.showError(message: "User not found")
+                    qpAlert.showError(message: "User not found")
                 default:
-                    self.showError(message: error.localizedDescription)
+                    qpAlert.showError(message: error.localizedDescription)
                 }
             }
             else {

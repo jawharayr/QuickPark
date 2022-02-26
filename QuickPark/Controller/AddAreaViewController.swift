@@ -130,7 +130,8 @@ class AddAreaViewController: UIViewController {
                                 self.database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
                                     self.navigationController?.popViewController(animated: true)
                                 }                    }else{
-                               self.showAlert(title: "Photo upload failed", message: "photo uploading failed, please try again")
+                               //self.showAlert(title: "Photo upload failed", message: "photo uploading failed, please try again")
+                                QPAlert(self).showError(message: "Photo uploading failed, please try again")
                             }
                         }
                     }else { //upload area info to the database
@@ -353,27 +354,33 @@ extension UIViewController {
     
     func showAlert(title: String, message: String) // Error alert for uploading images
     {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(defaultAction)
-        present(alertController, animated: true, completion: nil)
+        QPAlert(self).showAlert(title: title, message:message, onOK: nil)
+//        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//        alertController.addAction(defaultAction)
+//        present(alertController, animated: true, completion: nil)
     }
     
     
     
     func showErrorAlert()
     {
-        let alertController = UIAlertController(title: "Sorry", message: "Something went wrong, please try again", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(defaultAction)
-        present(alertController, animated: true, completion: nil)
+        QPAlert(self).showAlert(title: "Sorry", message: "Something went wrong, please try again", onOK: nil)
+        
+//        let alertController = UIAlertController(title: "Sorry", message: "Something went wrong, please try again", preferredStyle: .alert)
+//        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//        alertController.addAction(defaultAction)
+//        present(alertController, animated: true, completion: nil)
+        
     }
     
     func showConfirmationAlert()
     {
-        let alertController = UIAlertController(title: "Confirm submition", message: "The area has been added", preferredStyle: .alert)
-        alertController.addAction(.init(title: "Ok", style: .cancel, handler: nil))
-        present(alertController, animated: true, completion: nil)
+        QPAlert(self).showAlert(title: "Confirm submition", message: "The area has been added", onOK: nil)
+        
+//        let alertController = UIAlertController(title: "Confirm submition", message: "The area has been added", preferredStyle: .alert)
+//        alertController.addAction(.init(title: "Ok", style: .cancel, handler: nil))
+//        present(alertController, animated: true, completion: nil)
     }
     
 }

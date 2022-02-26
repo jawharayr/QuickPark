@@ -224,10 +224,10 @@ class MyParkingsVC: UIViewController {
     func checkIfTimeOver(end:Double)->Bool{
         let isValidTime = UtilitiesManager.sharedIntance.checkIfTimeIsValid(endTime: Date.init(timeIntervalSince1970: end))
         if isValidTime{
-           return false
+            return false
         }else{
             // remove data from firebase
-           return true
+            return true
         }
     }
     
@@ -300,13 +300,17 @@ class MyParkingsVC: UIViewController {
     
     
     @IBAction func EndParking(_ sender: Any) {
-        
-        
-        UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "Are you sure?", title: "End Parking?", buttons: ["YES","cancel"]) { index in
-            if index == 0{
+        QPAlert(self).showAlert(title:"End Parking.", message: "Are you sure?" , buttons:  ["Yes","cancel"]) { _, index in
+            if index == 0 {
                 self.calculateTime()
             }
         }
+        
+//        UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "Are you sure?", title: "End Parking?", buttons: ["YES","cancel"]) { index in
+//            if index == 0{
+//                self.calculateTime()
+//            }
+//        }
     }
     
     
@@ -365,9 +369,9 @@ class MyParkingsVC: UIViewController {
         let hour = totalSeconds / 3600
         let minute = totalSeconds / 60 % 60
         let second = totalSeconds % 60
-
-               // return formated string
-               return String(format: "%02i:%02i:%02i", hour, minute, second)
+        
+        // return formated string
+        return String(format: "%02i:%02i:%02i", hour, minute, second)
     }
     
     /* func removeConstraint() {
