@@ -10,6 +10,9 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 import SVProgressHUD
+
+let K_acceptableNameCharactors = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+
 class RegViewController: UIViewController {
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -35,8 +38,10 @@ class RegViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
+
         nameField.layer.masksToBounds = false
+        nameField.delegate = self
         nameField.layer.shadowRadius = 4.0
         nameField.layer.shadowColor = UIColor.lightGray.cgColor
         nameField.layer.shadowOffset = CGSize (width: 1.0, height: 1.0)
@@ -68,7 +73,6 @@ class RegViewController: UIViewController {
         
         
         
-        super.viewDidLoad()
         //passOfRegField.enablePasswordToggle()
         // Do any additional setup after loading the view.
         // textFieldEmail.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
@@ -87,20 +91,22 @@ class RegViewController: UIViewController {
         self.passOfRegField?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         self.confirmPas?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
+    
     @objc func textFieldDidChange(textField: UITextField){
         if textField == nameField {
-            self.validateNameField()
+           _ = self.validateNameField()
         }
         if textField == emailField {
-            self.emailValidation()
+            _ = self.emailValidation()
         }
         if textField == passOfRegField {
-            self.passwordValidation()
+           _ =  self.passwordValidation()
         }
         if textField == confirmPas {
-            self.passwordValidation()
+           _ = self.confirmPasswordValidation
         }
     }
+    
     func validate() -> Bool {
         passwordLabel.isHidden = true
         confirmLabel?.isHidden = true
@@ -108,68 +114,60 @@ class RegViewController: UIViewController {
         emailLabel.isHidden = true
         
         var isValid = true
-        let name = nameField?.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
-        let email = emailField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        let password = passOfRegField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        let password2 = confirmPas?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+//        let email = emailField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+//        let password = passOfRegField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+//        let password2 = confirmPas?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
-        // Name Validations
-        if name.isEmpty {
-            nameLabel.isHidden = false
-            nameLabel.attributedText = NSAttributedString(string: "please enter your Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+        if self.validateNameField() == false  {
             nameField.shake()
             isValid = false
         }
-        if !name.isAlphanumeric || name.count < 3 && !name.isEmpty {
-            nameLabel.isHidden = false
-            nameLabel.attributedText = NSAttributedString(string: "Name should have alphabets and min 3 characters", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-            nameField.shake()
-            isValid = false
-        }
-        
-        // Email Validations
-        if email.isEmpty {
-            emailLabel.isHidden = false
-            emailLabel.attributedText = NSAttributedString(string: "Please enter your email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+        if self.emailValidation() == false  {
             emailField.shake()
             isValid = false
         }
-        if !email.isValidEmail && !email.isEmpty {
-            emailLabel.isHidden = false
-            emailLabel.attributedText = NSAttributedString(string: "Please enter your valid email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-            emailField.shake()
-            isValid = false
-        }
-        
-        // Password Validations
-        if password.isEmpty {
-            passwordLabel.isHidden = false
-            passwordLabel.attributedText = NSAttributedString(string: "Please enter Your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+        if self.passwordValidation() == false {
             passOfRegField.shake()
             isValid = false
         }
-        if password2.isEmpty {
-            confirmLabel?.isHidden = false
-            confirmLabel?.attributedText = NSAttributedString(string: "Please confirm Your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+        
+        if self.confirmPasswordValidation() == false {
             confirmPas.shake()
             isValid = false
         }
         
-        if !password.isEmpty && !password2.isEmpty {
-            if password != password2 {
-                confirmLabel?.isHidden = false
-                confirmLabel?.attributedText = NSAttributedString(string: "Passwords do not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-                confirmPas.shake()
-                isValid = false
-            }
-        }
         
-        if !password.isValidPassword {
-            passwordLabel.isHidden = false
-            passwordLabel.attributedText = NSAttributedString(string: "Please enter valid password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-            passOfRegField.shake()
-            isValid = false
-        }
+
+        
+//        // Password Validations
+//        if password.isEmpty {
+//            passwordLabel.isHidden = false
+//            passwordLabel.attributedText = NSAttributedString(string: "Please enter Your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+//            passOfRegField.shake()
+//            isValid = false
+//        }
+//        if password2.isEmpty {
+//            confirmLabel?.isHidden = false
+//            confirmLabel?.attributedText = NSAttributedString(string: "Please confirm Your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+//            confirmPas.shake()
+//            isValid = false
+//        }
+//
+//        if !password.isEmpty && !password2.isEmpty {
+//            if password != password2 {
+//                confirmLabel?.isHidden = false
+//                confirmLabel?.attributedText = NSAttributedString(string: "Passwords do not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+//                confirmPas.shake()
+//                isValid = false
+//            }
+//        }
+//
+//        if !password.isValidPassword {
+//            passwordLabel.isHidden = false
+//            passwordLabel.attributedText = NSAttributedString(string: "Please enter valid password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+//            passOfRegField.shake()
+//            isValid = false
+//        }
         
         return isValid
     }
@@ -179,7 +177,7 @@ class RegViewController: UIViewController {
         
         let name = nameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let pass = passOfRegField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let pass = passOfRegField.text!
         
         SVProgressHUD.show()
         FBAuth.register(email: email, password: pass) { user, error in
@@ -195,9 +193,7 @@ class RegViewController: UIViewController {
         let userdata = ["email": email, "name": name]
         print (userdata)
         database.collection("users").document(email).setData(userdata){(error) in
-            //that line was => addDocument(data : ["name" : name , "email" : email]) { (error) in
             if error != nil {
-                //
             }
         }
     }
@@ -216,7 +212,7 @@ class RegViewController: UIViewController {
 
 extension String {
     var isAlphanumeric: Bool {
-        let regex = try! NSRegularExpression(pattern: "[^a-zA-Z] [^a-zA-Z]", options: [])
+        let regex = try! NSRegularExpression(pattern: "[^a-zA-Z][ ][^a-zA-Z]", options: [])///^[a-z ,.'-]+$/i
         if regex.firstMatch(in: self, options: [], range: NSMakeRange(0, self.count)) != nil {
             return false
         }else{
@@ -231,8 +227,6 @@ extension String {
         if (self.isEmpty){return false}
         let passRegEx = "^(?=.*[0-9])(?=.*[a-z]).{6,}$"
 
-        //let passRegEx = "^(?=.*[A-Z])(?=.*[@$!%*?&#])(?=.*[0-9])(?=.*[a-z]).{8,}$"
-        
         let passwordTest=NSPredicate(format: "SELF MATCHES %@", passRegEx);
         return passwordTest.evaluate(with: self)
     }
@@ -258,81 +252,92 @@ extension UITextField {
 }
 
 extension RegViewController {
-    
-    func validateNameField() {
-        let name = nameField.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
-        // Name Validations
-        var isValid = true
+    func validateNameField() -> Bool {
+        let name = nameField.text ?? ""//?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
         if name.isEmpty {
             nameLabel.isHidden = false
             nameLabel.attributedText = NSAttributedString(string: "Please enter your name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-            isValid = false
+            return false
+            
         }
-        if !name.isAlphanumeric || name.count < 3 && !name.isEmpty {
+        if !name.isAlphanumeric || name.count < 3 {
             nameLabel.isHidden = false
             nameLabel.attributedText = NSAttributedString(string: "Name should have alphabets and min 3 characters", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-            isValid = false
+            return false
+            
         }
-        if !name.isEmpty && name.count >= 3 && name.isAlphanumeric {
-            nameLabel.isHidden = true
+        if !name.isAlphanumeric || name.count > 32 {
+            nameLabel.isHidden = false
+            nameLabel.attributedText = NSAttributedString(string: "Name should have alphabets and max 32 characters", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
+            
         }
-        
-        if name.isEmpty {
-            nameLabel.isHidden = true
-        }
+        nameLabel.isHidden = true
+        return true
     }
     
-    func emailValidation() {
+    func emailValidation() -> Bool {
         // Email Validations
-        let email = emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let email = emailField.text ?? ""
         if email.isEmpty {
             emailLabel.isHidden = false
             emailLabel.attributedText = NSAttributedString(string: "Please enter your email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
         }
         if !email.isValidEmail && !email.isEmpty {
             emailLabel.isHidden = false
             emailLabel.attributedText = NSAttributedString(string: "Please enter your valid email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
         }
         if email.isValidEmail && !email.isEmpty {
             emailLabel.isHidden = true
         }
-        if email.isEmpty {
-            emailLabel.isHidden = true
-        }
+        return true
     }
     
-    func passwordValidation() {
-        let password = passOfRegField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        let password2 = confirmPas.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        
-        // Password Validations
-        if !password.isEmpty && !password2.isEmpty {
-            if password != password2 {
-                confirmLabel?.isHidden = false
-                confirmLabel?.attributedText = NSAttributedString(string: "Password does not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-            }
-        }
-        
+    func passwordValidation() -> Bool {
+        let password = passOfRegField.text ?? ""
         if !password.isValidPassword {
             passwordLabel.isHidden = false
             passwordLabel.attributedText = NSAttributedString(string: "Please enter valid password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
         }
         
-        if !password.isEmpty && !password2.isEmpty && (password == password2) && password.isValidPassword {
-            passwordLabel.isHidden = true
-            confirmLabel?.isHidden = true
-        }
-        if password.isValidPassword {
-            passwordLabel.isHidden = true
-        }
-        if password.isEmpty {
-            passwordLabel.isHidden = true
-        }
-        if password2.isEmpty {
-            confirmLabel?.isHidden = true
-        }
+
+        passwordLabel.isHidden = true
+        return true
     }
     
+    func confirmPasswordValidation() -> Bool {
+        let password = passOfRegField.text ?? ""
+        let password2 = confirmPas.text ?? ""
+        
+        // Password Validations
+        if password2.isEmpty {
+            confirmLabel?.isHidden = false
+            confirmLabel?.attributedText = NSAttributedString(string: "Please enter confirm password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
+        }
+        if password != password2 {
+            confirmLabel?.isHidden = false
+            confirmLabel?.attributedText = NSAttributedString(string: "Password does not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
+        }
+        
+        confirmLabel?.isHidden = true
+        return true
+    }
 }
 
 
+
+extension RegViewController : UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == nameField {
+            let cs = CharacterSet.init(charactersIn: K_acceptableNameCharactors).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            return (string == filtered)
+        }
+        return true
+    }
+}

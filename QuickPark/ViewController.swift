@@ -174,7 +174,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             // remove data from firebase
             UserDefaults.standard.set(false, forKey: "start")
-            UtilitiesManager.sharedIntance.showAlert(view: self, title:"Oops", message: "You are late reservation was cancelled by server.")
+            //UtilitiesManager.sharedIntance.showAlert(view: self, title:"Oops", message: "You are late reservation was cancelled by server.")
+            
+            QPAlert(self).showError(message: "You are late, reservation was cancelled by server.")
+            
             RESERVATIONS.child(uid).removeValue()
             guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
             self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
@@ -236,7 +239,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }else{
             // remove data from firebase
             UserDefaults.standard.set(false, forKey: "start")
-            UtilitiesManager.sharedIntance.showAlert(view: self, title:"Oops", message: "You are late reservation was cancelled by server.")
+            //UtilitiesManager.sharedIntance.showAlert(view: self, title:"Oops", message: "You are late reservation was cancelled by server.")
+            QPAlert(self).showError(message: "You are late, reservation was cancelled by server.")
             RESERVATIONS.child(uid).removeValue()
         }
         
@@ -395,7 +399,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if viewLoader.isHidden == false{
-            UtilitiesManager.sharedIntance.showAlert(view: self, title: "Oops", message: "You already have an reservertion.")
+            //UtilitiesManager.sharedIntance.showAlert(view: self, title: "Oops", message: "You already have an reservertion.")
+            QPAlert(self).showError(message: "You already have an reservertion.")
             return
         }
         
