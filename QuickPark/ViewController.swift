@@ -332,7 +332,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
                 let dictionary = snapshot.value as? NSDictionary
                 var area = Area(areaname: dictionary?["areaname"] as? String ?? "",
-                                loactionLat: "\(dictionary?["loactionLat"] as? Double ?? 0)",
+                                loactionLat: "\(dictionary?["locationLat"] as? Double ?? 0)",
                                 locationLong: "\(dictionary?["locationLong"] as? Double ?? 0)",
                                 spotNo: "", logo: dictionary?["areaImage"] as? String ?? "" ,distance: 0)
                 

@@ -242,11 +242,12 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBC-0K-b0U">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="800"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddNewAreaHeader" translatesAutoresizingMaskIntoConstraints="NO" id="8yp-C8-KvV">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="140"/>
-                                                <color key="backgroundColor" red="0.96862745100000003" green="0.99215686270000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8yp-C8-KvV">
+                                                <rect key="frame" x="0.0" y="-92" width="390" height="232"/>
+                                                <color key="backgroundColor" red="0.0039215686269999999" green="0.56078431370000004" blue="0.80784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="0.0039215686269999999" green="0.56078431370000004" blue="0.80784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="140" id="C6m-Ah-APK"/>
+                                                    <constraint firstAttribute="height" constant="232" id="C6m-Ah-APK"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Area Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="97t-P8-NjI">
@@ -385,7 +386,7 @@
                                             <constraint firstAttribute="height" constant="800" id="aEq-MC-2cf"/>
                                             <constraint firstItem="YXY-wO-htH" firstAttribute="top" secondItem="bvd-r0-sUj" secondAttribute="bottom" constant="24" id="b4u-Vn-7aK"/>
                                             <constraint firstItem="2fr-Hk-v9A" firstAttribute="leading" secondItem="Yba-fL-Zpk" secondAttribute="leading" id="cLV-73-p3r"/>
-                                            <constraint firstItem="8yp-C8-KvV" firstAttribute="top" secondItem="hBC-0K-b0U" secondAttribute="top" id="cbU-Lv-eDj"/>
+                                            <constraint firstItem="8yp-C8-KvV" firstAttribute="top" secondItem="hBC-0K-b0U" secondAttribute="top" constant="-92" id="cbU-Lv-eDj"/>
                                             <constraint firstItem="2fr-Hk-v9A" firstAttribute="top" secondItem="F6h-yw-FAm" secondAttribute="bottom" constant="14" id="eTs-71-4D2"/>
                                             <constraint firstItem="sSw-3j-ktG" firstAttribute="leading" secondItem="Yba-fL-Zpk" secondAttribute="leading" id="fnD-Ub-buD"/>
                                             <constraint firstItem="97t-P8-NjI" firstAttribute="top" secondItem="8yp-C8-KvV" secondAttribute="bottom" constant="54" id="frF-BX-gPD"/>
@@ -547,7 +548,6 @@
     </scenes>
     <resources>
         <image name="-support-50-removebg-preview" width="50" height="50"/>
-        <image name="AddNewAreaHeader" width="897.318359375" height="556.9752197265625"/>
         <image name="car" catalog="system" width="128" height="93"/>
         <image name="logout-58" width="58" height="58"/>
         <systemColor name="systemBackgroundColor">

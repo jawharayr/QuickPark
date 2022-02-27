@@ -34,6 +34,7 @@ class AdminHomeListVC: UIViewController {
         getParkings()
         
     }
+   
     private func getParkings() {
         let ref = Database.database().reference()
         ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
