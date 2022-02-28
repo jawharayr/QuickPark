@@ -168,8 +168,17 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: StartTimePicker.date, to: EndTimePicker.date)
         print(hourAndMinutes)
         
+        
         // Calculate price, the formula is just an example
-        let price = hourAndMinutes.hour! * 15 + hourAndMinutes.minute! * 15 / 60
+        var minutesPrice = 0
+        if ( hourAndMinutes.minute! == 0 ){
+            minutesPrice = 0
+        }
+        else {
+            minutesPrice = 15
+        }
+        
+        let price = hourAndMinutes.hour! * 15 + minutesPrice
         TotalPrice.text = String(price) + "SAR"
         
         
