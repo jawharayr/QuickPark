@@ -146,8 +146,8 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "validate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -162,8 +162,8 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "validateNameField()"
             landmarkType = "7">
          </BreakpointContent>
@@ -178,10 +178,10 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
-            landmarkName = "validateNameField()"
-            landmarkType = "7">
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -194,8 +194,8 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "regPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -210,9 +210,9 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
-            landmarkName = "confirmPasswordValidation()"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "passwordValidation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -226,10 +226,26 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
-            landmarkName = "passwordValidation()"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "emailValidation()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9F87DD21-88CF-4368-9C94-59182698821D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QuickPark/Auth/RegViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "isValidPassword"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
