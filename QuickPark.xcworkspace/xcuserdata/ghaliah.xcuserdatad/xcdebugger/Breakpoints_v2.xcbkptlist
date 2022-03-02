@@ -180,8 +180,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "235"
             endingLineNumber = "235"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "validateNameField()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -212,7 +212,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "283"
             endingLineNumber = "283"
-            landmarkName = "passwordValidation()"
+            landmarkName = "confirmPasswordValidation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -228,7 +228,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "271"
             endingLineNumber = "271"
-            landmarkName = "emailValidation()"
+            landmarkName = "passwordValidation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
