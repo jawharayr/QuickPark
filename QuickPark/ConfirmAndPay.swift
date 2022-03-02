@@ -12,18 +12,22 @@ import FirebaseAuth
 
 class ConfirmAndPay: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var DueationLabel: UILabel!
+
+   
+    @IBOutlet weak var PriceView: UIView!
     @IBOutlet weak var StartTimeTxt: UITextField!
     @IBOutlet weak var EndTimeTxt: UITextField!
     @IBOutlet weak var StartWithView: UIView!
     @IBOutlet weak var TotalPrice: UILabel!
     
     @IBOutlet weak var DoneButton: UIButton!
-    @IBOutlet weak var PriceView: UIView!
     @IBOutlet weak var EndWithView: UIView!
     @IBOutlet weak var AreaView: UIView!
     
     @IBOutlet weak var AreaLabel: UILabel!
     
+    @IBOutlet weak var DurationView: UIView!
     
     
     let StartTimePicker = UIDatePicker()
@@ -56,7 +60,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         AreaView.layer.cornerRadius = 20
         StartWithView.layer.cornerRadius = 20
         EndWithView.layer.cornerRadius = 20
-        PriceView.layer.cornerRadius = 20
+        PriceView.layer.cornerRadius = 40
         //shadow
         AreaView.layer.shadowColor = UIColor.black.cgColor
         AreaView.layer.shadowOpacity = 0.1
@@ -77,6 +81,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         PriceView.layer.shadowOpacity = 0.1
         PriceView.layer.shadowOffset = .zero
         PriceView.layer.shadowRadius = 10
+      
         DoneButton.layer.cornerRadius = 20
         
         //time picker
@@ -112,11 +117,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         // assign time picker to the txt field
         StartTimeTxt.inputView = StartTimePicker
         EndTimeTxt.inputView = EndTimePicker
-        
-        //time picker mode
-        /* StartTimePicker.datePickerMode = .time
-         EndTimePicker.datePickerMode = .time*/
-        
+    
         
         let calendar = Calendar.current
         //First range
@@ -180,30 +181,8 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         
         let price = hourAndMinutes.hour! * 15 + minutesPrice
         TotalPrice.text = String(price) + "SAR"
-        
-        
-        
-        
-        /*let starttimecal = StartTimeTxt.text!
-         let endtimecal = EndTimeTxt.text!
-         
-         let StartTo24 = starttimecal
-         let EndTo24 = endtimecal
-         let dateFormatter = DateFormatter()
-         dateFormatter.dateFormat = "h:mm a"
-         
-         let Stime = dateFormatter.date(from: StartTo24)
-         dateFormatter.dateFormat = "HH:mm"
-         //let STime24 = dateFormatter.string(from: Stime!)
-         print("24 hour formatted Date:",Stime)
-         let ETime = dateFormatter.date(from: EndTo24)
-         dateFormatter.dateFormat = "HH:mm"
-         //let ETime24 = dateFormatter.string(from: ETime!)
-         print("24 hour formatted Date:",ETime)*/
-        
-        
-        
-        
+        DurationView.isHidden = false
+        DueationLabel.text = ": \(hourAndMinutes.hour!)" + " hour " + "\(hourAndMinutes.minute!)" + " min"
     }
     
     @IBAction func btnContirmClicked(_ sender: Any) {
