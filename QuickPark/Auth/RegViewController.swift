@@ -101,7 +101,7 @@ class RegViewController: UIViewController {
            _ =  self.passwordValidation()
         }
         if textField == confirmPas {
-           _ = self.confirmPasswordValidation
+           _ = self.confirmPasswordValidation()
         }
     }
     
@@ -197,7 +197,6 @@ extension String {
     var isValidPassword: Bool {
         if (self.isEmpty){return false}
         let passRegEx = "^(?=.*[0-9])(?=.*[a-z]).{6,}$"
-
         let passwordTest=NSPredicate(format: "SELF MATCHES %@", passRegEx);
         return passwordTest.evaluate(with: self)
     }
