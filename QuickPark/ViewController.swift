@@ -16,10 +16,11 @@ import FirebaseAuth
 import grpc
 import SDWebImage
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
     //  let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
     
     
+    @IBOutlet weak var searchText: UITextField!
     
     
     //
@@ -39,6 +40,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lblCountDown: UILabel!
     @IBOutlet weak var viewLoader: UIView!
     @IBOutlet weak var ParkingsViews: UITableView!
+    var searching = false
     var initialRead = true
     var totalTime = 0
     var timer: Timer?
@@ -47,7 +49,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        searchText.addTarget(self, action: #selector(searchRecord), for: .editingChanged)
         ref = Database.database().reference()
         
         if Auth.auth().currentUser?.uid == nil{
@@ -67,14 +69,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         
     }
+    @objc func searchRecord(sender : UITextField){
+        self.searchedArea.removeAll()
+        let searchedData:Int=searchText.text!.count
+        if searchedData != 0 {
+            searching = true
+            for parking in parkings {
+                if let parkingToSearch = searchText.text {
+                    let range = parking.areaname.lowercased().range(of: parkingToSearch, options: .caseInsensitive, range: nil, locale: nil)
+                    if range != nil {
+                        self.searchedArea.append(parking)
+                    }
+                }
+            }
+        }else {
+            searchedArea = parkings
+            searching = false
+        }
+        ParkingsViews.reloadData()
+        }
     
     
     
     func setUI(){
         ParkingsViews?.delegate = self
         ParkingsViews?.dataSource = self
-        SearchTxt.delegate = self
-        
+      
         //making table view look good
         ParkingsViews?.separatorStyle = .none
         ParkingsViews?.showsVerticalScrollIndicator = false
@@ -297,25 +317,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     // MARK: - TextField
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let text = SearchTxt.text{
-            filterText(query: text+string)
-            
-        }
-        return true
-    }
-    func filterText( query:String){
-        searchedArea.removeAll()
-        for str in parkings {
-            if str.areaname.lowercased().starts(with: query.lowercased()){
-                searchedArea.append(str)
-            }
-        }
-        ParkingsViews.reloadData()
-        filtered = true
-        
-    }
-    
     private func requestLocationPermission(){
         locationManager = CLLocationManager()
         locationManager?.requestAlwaysAuthorization()
@@ -382,7 +383,7 @@ extension ViewController: CLLocationManagerDelegate{
     
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource{
+extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
@@ -391,12 +392,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         return 120
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !searchedArea.isEmpty{
+        if searching{
             return searchedArea.count
             
-        }
+        } else{
         
-        return filtered ? 0 : parkings.count
+            return parkings.count }
     }
     // هذي الميثود حقت الشاشه الصغيره اللي تطلع بعد مانضغط
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -461,31 +462,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         
         cell.Logos.sd_setImage(with: URL(string: parking.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
 
-        if searchedArea.count > 0 && indexPath.row < searchedArea.count {
+        if searching {
             let searchedAreaS = searchedArea[indexPath.row]
             cell.Label.text = searchedAreaS.areaname
         } else {
             cell.Label.text = parking.areaname
         }
-    /*
-        if !parking.imageURL.didLoad{
-            let child = storageRef.child("AreasImages/\(parking.areaname).png")
-            child.downloadURL { url, error in
-                print("Did fetch \("AreasImages/\(parking.areaname).png") url: ",url, ", with error: ",error?.localizedDescription)
-                self.parkings[indexPath.row].imageURL = ImageURL(url: url, didLoad: true)
-                tableView.reloadRows(at: [indexPath], with: .automatic)
-            }
-        }else{
-            cell.Logos.kf.setImage(with: parking.imageURL.url, placeholder: nil)
-            //
-        }*/
-        
-        
-        //            cell.Logos.kf.setImage(with: parking.imageURL, placeholder: UIImage(named: "King Saud University"))
-        
-        //cell.ParkingView.layer.cornerRadius = 20 //cell.ParkingView.frame.height / 2
-        //cell.Logos.layer.cornerRadius = 20 //cell.Logos.frame.height / 2
-        // let borderColor: UIColor =  (parkings[indexPath.row] == " ") ? .red : UIColor(red: 0/225, green: 144/255, blue: 205/255, alpha: 1) //
+    
         (parking.areaname == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
         
        
@@ -495,6 +478,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func addShadow(backgroundColor: UIColor = .white, cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 5, shadowOpacity: Float = 0.1, shadowPathInset: (dx: CGFloat, dy: CGFloat), shadowPathOffset: (dx: CGFloat, dy: CGFloat)) {
         
     }
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchText.resignFirstResponder()
+        return true
+    }
     
 }
