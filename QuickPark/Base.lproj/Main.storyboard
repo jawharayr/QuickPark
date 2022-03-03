@@ -352,6 +352,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <action selector="Pay:" destination="XGG-MK-n3x" eventType="touchUpInside" id="rDX-FW-wBq"/>
                                             <action selector="btnContirmClicked:" destination="il3-Gw-HOP" eventType="touchUpInside" id="s17-bV-oTN"/>
                                             <action selector="payTapped" destination="heH-7w-ABb" eventType="touchUpInside" id="Loc-Jm-yhJ"/>
                                         </connections>
@@ -403,6 +404,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Whv-6U-9Pw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="XGG-MK-n3x" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4174" y="-212"/>
         </scene>
@@ -1157,19 +1159,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgh-vX-zex">
-                                <rect key="frame" x="92" y="706" width="255" height="21"/>
+                                <rect key="frame" x="92" y="727" width="255" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QR" translatesAutoresizingMaskIntoConstraints="NO" id="aEP-AP-ADm">
-                                <rect key="frame" x="31" y="318" width="352" height="303"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="352" id="9DK-Ol-ePK"/>
-                                    <constraint firstAttribute="height" constant="303" id="hcs-A1-qVI"/>
-                                </constraints>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="BoW-f5-JMO">
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="BoW-f5-JMO">
                                 <rect key="frame" x="74" y="648.5" width="266" height="20"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="exclamationmark.octagon.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NPu-Ht-rpL">
@@ -1254,22 +1249,21 @@
                                     <action selector="skipTapped:" destination="9R5-1o-D4i" eventType="touchUpInside" id="dWV-DE-kOo"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q14-P3-cMM">
+                                <rect key="frame" x="53" y="316" width="314" height="263"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZWw-3X-s6Q"/>
                         <color key="backgroundColor" red="0.9450981021" green="0.9450981021" blue="0.9450981021" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Rgh-vX-zex" firstAttribute="leading" secondItem="ZWw-3X-s6Q" secondAttribute="leading" constant="92" id="45F-dE-7oO"/>
-                            <constraint firstItem="aEP-AP-ADm" firstAttribute="centerY" secondItem="Yso-OM-6Tx" secondAttribute="centerY" constant="21.5" id="8eY-i2-pjr"/>
                             <constraint firstItem="QIR-4o-Naq" firstAttribute="top" secondItem="ZWw-3X-s6Q" secondAttribute="top" constant="25" id="CFC-UT-TUf"/>
-                            <constraint firstItem="BoW-f5-JMO" firstAttribute="top" secondItem="aEP-AP-ADm" secondAttribute="bottom" constant="27.5" id="L4n-gP-Tfk"/>
                             <constraint firstItem="GDI-fl-8rb" firstAttribute="centerX" secondItem="Rgh-vX-zex" secondAttribute="centerX" id="UXA-Me-9Qa"/>
                             <constraint firstItem="Hhi-82-UpO" firstAttribute="leading" secondItem="ZWw-3X-s6Q" secondAttribute="leading" constant="20" id="aLG-uV-gjv"/>
                             <constraint firstItem="GDI-fl-8rb" firstAttribute="top" secondItem="De9-Rh-m0I" secondAttribute="bottom" constant="25" id="hbS-L2-j1E"/>
-                            <constraint firstItem="aEP-AP-ADm" firstAttribute="centerX" secondItem="Yso-OM-6Tx" secondAttribute="centerX" id="iug-9G-8E0"/>
                             <constraint firstAttribute="bottom" secondItem="Hhi-82-UpO" secondAttribute="bottom" constant="40" id="j5R-Fv-bwQ"/>
                             <constraint firstItem="ZWw-3X-s6Q" firstAttribute="bottom" secondItem="Rgh-vX-zex" secondAttribute="bottom" constant="135" id="lUI-dz-aRW"/>
-                            <constraint firstItem="Rgh-vX-zex" firstAttribute="top" secondItem="aEP-AP-ADm" secondAttribute="bottom" constant="85" id="rah-Hx-pTc"/>
-                            <constraint firstItem="BoW-f5-JMO" firstAttribute="centerX" secondItem="aEP-AP-ADm" secondAttribute="centerX" id="tLY-qE-qFG"/>
                             <constraint firstItem="ZWw-3X-s6Q" firstAttribute="trailing" secondItem="QIR-4o-Naq" secondAttribute="trailing" id="w1a-OB-7ew"/>
                             <constraint firstItem="ZWw-3X-s6Q" firstAttribute="trailing" secondItem="Rgh-vX-zex" secondAttribute="trailing" constant="67" id="xzo-QX-vkk"/>
                         </constraints>
@@ -1280,14 +1274,14 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="aEP-AP-ADm" id="yM9-X3-pOL"/>
+                        <outlet property="ExitQR" destination="q14-P3-cMM" id="Gbm-zx-axp"/>
                         <outlet property="lblCountDown" destination="uSC-iq-WC3" id="O6R-60-KAl"/>
                         <outlet property="viewLoader" destination="GDI-fl-8rb" id="CbH-W9-a1e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umk-Pt-wlP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3303" y="-212"/>
+            <point key="canvasLocation" x="3302.898550724638" y="-212.27678571428569"/>
         </scene>
         <!--Confirm And Pay-->
         <scene sceneID="rzJ-Ew-0fi">

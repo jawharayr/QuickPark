@@ -17,6 +17,8 @@ class QRCodeVC: UIViewController {
     @IBOutlet weak var lblCountDown: UILabel!
     @IBOutlet weak var viewLoader: UIView!
     
+    @IBOutlet weak var ExitQR: UIImageView!
+    
     var timer: Timer?
     var totalTime = 600
     var image:UIImage?
@@ -43,7 +45,7 @@ class QRCodeVC: UIViewController {
         }
         
         
-        //imageView.image = image
+        imageView.image = image
         // Do any additional setup after loading the view.
         startTimer()
         colour = UIColor(red: 0, green: 144/255, blue: 205/255, alpha: 1)
