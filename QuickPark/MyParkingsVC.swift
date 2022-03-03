@@ -341,9 +341,8 @@ class MyParkingsVC: UIViewController {
 //                self.calculateTime()
 //            }
 //        }
-    }
-    
-    
+
+}
     
     
     
@@ -535,7 +534,7 @@ class MyParkingsVC: UIViewController {
     }
     
     @IBOutlet weak var ActiveView: UICollectionViewFlowLayout!
-}
+
 // Past reservations
 extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     
@@ -555,7 +554,8 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "PastTableViewCell") as! PastTableViewCell
         let object = pastReservations[indexPath.row]
         cell.logo.image = UIImage(named: "King Saud University")
-        
+
+
         cell.Name.text = object.Name
         cell.Date.text = object.Date
         cell.ExtraCharges.text = object.ExtraCharge
