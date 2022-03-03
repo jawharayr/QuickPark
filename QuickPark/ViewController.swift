@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     //
     var parkings = [Area]()
     var searchedArea = [Area]()
+    var searchedLogos = [Area]()
     var filtered = false
     var waitingTime:Int? = 0
     
@@ -35,7 +36,8 @@ class ViewController: UIViewController {
     let storageRef = Storage.storage().reference()
     var ref:DatabaseReference!
     
-    @IBOutlet weak var SearchTxt: UITextField!
+ 
+    @IBOutlet weak var SearchTxt: UIView!
     @IBOutlet weak var ParkingView: UIView!
     @IBOutlet weak var lblCountDown: UILabel!
     @IBOutlet weak var viewLoader: UIView!
@@ -71,18 +73,22 @@ class ViewController: UIViewController {
     }
     @objc func searchRecord(sender : UITextField){
         self.searchedArea.removeAll()
+        self.searchedLogos.removeAll()
         let searchedData:Int=searchText.text!.count
         if searchedData != 0 {
             searching = true
+            
             for parking in parkings {
                 if let parkingToSearch = searchText.text {
                     let range = parking.areaname.lowercased().range(of: parkingToSearch, options: .caseInsensitive, range: nil, locale: nil)
                     if range != nil {
                         self.searchedArea.append(parking)
+                        self.searchedLogos.append(parking)
                     }
                 }
             }
         }else {
+            searchedLogos = parkings
             searchedArea = parkings
             searching = false
         }
@@ -460,13 +466,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
         let x = Double(String(format: "%.2f", dist )) ?? 0
         cell.Km.text = "\(x) km"
         
-        cell.Logos.sd_setImage(with: URL(string: parking.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
+        
 
         if searching {
             let searchedAreaS = searchedArea[indexPath.row]
             cell.Label.text = searchedAreaS.areaname
+            cell.Logos.sd_setImage(with: URL(string: searchedAreaS.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
         } else {
             cell.Label.text = parking.areaname
+            cell.Logos.sd_setImage(with: URL(string: parking.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
         }
     
         (parking.areaname == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
