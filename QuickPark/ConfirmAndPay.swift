@@ -180,7 +180,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         }
         
         let price = hourAndMinutes.hour! * 15 + minutesPrice
-        TotalPrice.text = String(price) + " SAR"
+        TotalPrice.text = String(price) + "SAR"
         DurationView.isHidden = false
         DueationLabel.text = ": \(hourAndMinutes.hour!)" + " hour " + "\(hourAndMinutes.minute!)" + " min"
     }
