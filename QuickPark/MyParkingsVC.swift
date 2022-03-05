@@ -335,11 +335,15 @@ class MyParkingsVC: UIViewController {
         let now = Date.init().addingMinutes(minutes: 1)
         
         if now.timeIntervalSince1970 > TimeInterval.init(endTime){
+            
             price = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime))) * 0.25
+            
             extra = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(endTime)), endTime: Int(now.timeIntervalSince1970)) * 0.25
             total = price + extra
         }else{
+            
             price = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime))) * 0.25
+            
             total = price
         }
         
