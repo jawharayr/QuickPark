@@ -297,7 +297,7 @@ extension RegViewController {
         
          if !password.isEmpty && (password == password2) {
                confirmLabel.isHidden = true
-             return false
+             return true
          }
         return true
     }
