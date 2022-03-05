@@ -23,6 +23,7 @@
 		22035FA727BB74AD00D1A3B5 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22035FA627BB74AD00D1A3B5 /* Auth.storyboard */; };
 		22035FA927BB75B500D1A3B5 /* SBSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035FA827BB75B500D1A3B5 /* SBSupport.swift */; };
 		22035FAB27BBCF2300D1A3B5 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035FAA27BBCF2300D1A3B5 /* Profile.swift */; };
+		2208F8AE27D3CCA400A5F9B1 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2208F8AD27D3CCA400A5F9B1 /* Notifications.swift */; };
 		225AB84827C7A75A003D4253 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB84727C7A759003D4253 /* UserProfileViewController.swift */; };
 		225AB85027C7A7C1003D4253 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB84D27C7A7C1003D4253 /* OnboardingViewController.swift */; };
 		225AB85127C7A7C1003D4253 /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB84E27C7A7C1003D4253 /* OnboardingSlide.swift */; };
@@ -99,6 +100,8 @@
 		22035FA627BB74AD00D1A3B5 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		22035FA827BB75B500D1A3B5 /* SBSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBSupport.swift; sourceTree = "<group>"; };
 		22035FAA27BBCF2300D1A3B5 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		2208F8AD27D3CCA400A5F9B1 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		2208F8AF27D3CD7200A5F9B1 /* QuickPark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickPark.entitlements; sourceTree = "<group>"; };
 		225AB84727C7A759003D4253 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		225AB84D27C7A7C1003D4253 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Onboarding/OnboardingViewController.swift; sourceTree = "<group>"; };
 		225AB84E27C7A7C1003D4253 /* OnboardingSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingSlide.swift; path = Onboarding/OnboardingSlide.swift; sourceTree = "<group>"; };
@@ -215,8 +218,10 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
+				2208F8AF27D3CD7200A5F9B1 /* QuickPark.entitlements */,
 				22035FA327BB726000D1A3B5 /* Resources */,
 				2272433A27C8CD6B00A35AF3 /* Loader.swift */,
+				2208F8AD27D3CCA400A5F9B1 /* Notifications.swift */,
 				2272433927C8CD6B00A35AF3 /* Utilities.swift */,
 				2272433127C8CD3800A35AF3 /* Constants.swift */,
 				2272432E27C8CD3800A35AF3 /* CountdownParkingVC.swift */,
@@ -588,6 +593,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2208F8AE27D3CCA400A5F9B1 /* Notifications.swift in Sources */,
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				225AB84827C7A75A003D4253 /* UserProfileViewController.swift in Sources */,
 				22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */,
@@ -812,9 +818,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuickPark/QuickPark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8XHA6PPHP7;
+				DEVELOPMENT_TEAM = ZS6WXPHW6X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickPark/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location permission needed to show you nearest parking to you.";
@@ -847,9 +854,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuickPark/QuickPark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8XHA6PPHP7;
+				DEVELOPMENT_TEAM = ZS6WXPHW6X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuickPark/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location permission needed to show you nearest parking to you.";
