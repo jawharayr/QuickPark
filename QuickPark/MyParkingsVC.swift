@@ -324,13 +324,15 @@ class MyParkingsVC: UIViewController {
     
     func calculateTime(){
         
-        
         var extra:Double = 0.0
         var price:Double = 0.0
         var total:Double = 0.0
-        var minOfResrevation:Double = 0.0
+        var minOfPrice:Double = 0.0
+        var minOfExtra:Double = 0.0
         
-        var test=0.0
+        var HoursofPrice=0.0
+        var HoursofExtra = 0.0
+        
         var isInteger = true
         
         let startTime = reservation.StartTime
@@ -341,22 +343,43 @@ class MyParkingsVC: UIViewController {
         
         if now.timeIntervalSince1970 > TimeInterval.init(endTime){
             
-            minOfResrevation = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime))) * 0.25
+            minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
             
-            extra = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(endTime)), endTime: Int(now.timeIntervalSince1970)) * 0.25
+            HoursofPrice = minOfPrice/60
+            isInteger = floor(HoursofPrice) == HoursofPrice // true
+            
+            if (isInteger){
+                price = HoursofPrice * 15
+            }
+            else{
+                price =  ( floor(HoursofPrice) * 15 ) + 15
+            }
+            
+            minOfExtra = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(endTime)), endTime: Int(now.timeIntervalSince1970))
+            
+            HoursofExtra = minOfExtra/60
+            isInteger = floor(HoursofExtra) == HoursofExtra // true if its integer
+            
+            if (isInteger){
+                extra = HoursofExtra * 15
+            }
+            else{
+                extra =  ( floor(HoursofExtra) * 15 ) + 15
+            }
+            
             total = price + extra
         }else{
             
-            minOfResrevation = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
+            minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
             
-            test = minOfResrevation/60
-            isInteger = floor(test) == test // true
+            HoursofPrice = minOfPrice/60
+            isInteger = floor(HoursofPrice) == HoursofPrice // true
             
             if (isInteger){
-                price = test * 15
+                price = HoursofPrice * 15
             }
             else{
-                price =  ( floor(test) * 15 ) + 15
+                price =  ( floor(HoursofPrice) * 15 ) + 15
             }
             
             total = price
