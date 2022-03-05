@@ -328,21 +328,36 @@ class MyParkingsVC: UIViewController {
         var extra:Double = 0.0
         var price:Double = 0.0
         var total:Double = 0.0
+        var minOfResrevation:Double = 0.0
+        
+        var test=0.0
+        var isInteger = true
         
         let startTime = reservation.StartTime
         let endTime = reservation.EndTime
         
         let now = Date.init().addingMinutes(minutes: 1)
         
+        
         if now.timeIntervalSince1970 > TimeInterval.init(endTime){
             
-            price = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime))) * 0.25
+            minOfResrevation = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime))) * 0.25
             
             extra = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(endTime)), endTime: Int(now.timeIntervalSince1970)) * 0.25
             total = price + extra
         }else{
             
-            price = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime))) * 0.25
+            minOfResrevation = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
+            
+            test = minOfResrevation/60
+            isInteger = floor(test) == test // true
+            
+            if (isInteger){
+                price = test * 15
+            }
+            else{
+                price =  ( floor(test) * 15 ) + 15
+            }
             
             total = price
         }
