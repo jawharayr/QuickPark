@@ -146,10 +146,10 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "validate()"
-            landmarkType = "7">
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "RegViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -162,9 +162,9 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "validateNameField()"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "shake(baseColor:numberOfShakes:revert:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -178,10 +178,10 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
-            landmarkName = "validateNameField()"
-            landmarkType = "7">
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "isValidPassword"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -194,9 +194,9 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "regPressed(_:)"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "validate()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -210,9 +210,9 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
-            landmarkName = "confirmPasswordValidation()"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "emailValidation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -226,10 +226,42 @@
             filePath = "QuickPark/Auth/RegViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
-            landmarkName = "passwordValidation()"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "validateNameField()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9F87DD21-88CF-4368-9C94-59182698821D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QuickPark/Auth/RegViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "RegViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "761F44D3-5297-4A5E-8550-70ED2F1CC879"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "QuickPark/AppProtocols/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

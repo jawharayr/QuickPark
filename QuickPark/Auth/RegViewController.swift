@@ -103,7 +103,7 @@ class RegViewController: UIViewController {
            _ =  self.passwordValidation()
         }
         if textField == confirmPas {
-           _ = self.confirmPasswordValidation
+           _ = self.confirmPasswordValidation()
         }
     }
     
