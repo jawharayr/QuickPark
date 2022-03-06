@@ -30,7 +30,7 @@ class QRCodeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       ExitQR.image = image
         ref = Database.database().reference()
         
         if Auth.auth().currentUser?.uid == nil{
@@ -45,7 +45,7 @@ class QRCodeVC: UIViewController {
         }
         
         
-        imageView.image = image
+       // imageView.image = image
         // Do any additional setup after loading the view.
         startTimer()
         colour = UIColor(red: 0, green: 144/255, blue: 205/255, alpha: 1)
@@ -54,6 +54,7 @@ class QRCodeVC: UIViewController {
     }
     
     
+
     
     // MARK: - CountDown_Timer
     private func startTimer() {

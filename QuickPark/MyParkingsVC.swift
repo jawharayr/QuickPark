@@ -318,7 +318,6 @@ class MyParkingsVC: UIViewController {
             vc.image = image
             navigationController?.pushViewController(vc, animated: true)
             
-    
         }
         
     }
@@ -342,9 +341,6 @@ class MyParkingsVC: UIViewController {
 //            }
 //        }
 
-}
-    
-    
     
     func calculateTime(){
         
@@ -420,7 +416,7 @@ class MyParkingsVC: UIViewController {
     //        }
     //    }
     
-    func generateQRCode(using string:String) -> UIImage? {
+  /*  func generateQRCode(using string:String) -> UIImage? {
         
         let data = string.data(using: String.Encoding.ascii)
         
@@ -433,7 +429,7 @@ class MyParkingsVC: UIViewController {
         }
         return nil
         
-    }
+    } */
     
     
     
@@ -446,8 +442,8 @@ class MyParkingsVC: UIViewController {
     //
     //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reservationCell", for: indexPath) as! ReservationCell
     //
-    ////        cell.Name.text = reservation.Name
-    ////        cell.Date.text = reservation.Date
+    //     cell.Name.text = reservation.Name
+    //       cell.Date.text = reservation.Date
     //        let ds = reservations[indexPath.row]
     //        cell.StartTime.text = TimeInterval.init(ds.StartTime).dateFromTimeinterval()
     //        cell.EndTime.text = TimeInterval.init(ds.EndTime).dateFromTimeinterval()
@@ -497,7 +493,8 @@ class MyParkingsVC: UIViewController {
     }
     
     
-    //    private func getReservations() {
+    
+    /*   private func getReservations() {
     //        ref.child("Reservations").child("UserID").observe(DataEventType.value, with: { [self] snapshots in
     //            print(snapshots.childrenCount)
     //
@@ -524,16 +521,15 @@ class MyParkingsVC: UIViewController {
     //            Active.reloadData()
     //            Past.reloadData()
     //        })
-    //    }
+    //    } */
     
     @objc func methodOfReceivedNotification(notification: Notification) {
         
         getIfAnyReservation()
-        
-        
     }
     
     @IBOutlet weak var ActiveView: UICollectionViewFlowLayout!
+}
 
 // Past reservations
 extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
@@ -568,3 +564,4 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     
     
 }
+

@@ -89,8 +89,30 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         let FirstViewController = ViewController()
         present(FirstViewController, animated: true, completion: nil)
         
+      /*  if let image = generateQRCode(using: "test"){
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
+              vc.image = image
+            navigationController?.pushViewController(vc, animated: true)
+    
+        }*/
+
     }
     
+   /*
+    func generateQRCode(using string:String) -> UIImage? {
+        
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator"){
+            filter.setValue( data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+            if let output = filter.outputImage?.transformed(by: transform){
+                return UIImage(ciImage: output)
+            }
+        }
+        return nil
+        
+    }*/
     
     func createTimePicker() {
         
@@ -196,6 +218,8 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         
         
     }
+    
+ 
     
     @IBAction func btnContirmClicked(_ sender: Any) {
         if startTimer.isEmpty || endTimer.isEmpty {
