@@ -16,6 +16,8 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var txtUserName : UITextField!
     @IBOutlet weak var txtEmail : UITextField!
     
+    @IBOutlet weak var changePassbtn: UIButton!
+    @IBOutlet weak var deletebtn: UIButton!
     
     @IBOutlet weak var labelEmailAlert: UILabel!
     @IBOutlet weak var labelFieldsAlert: UILabel!
@@ -23,7 +25,12 @@ class UserProfileViewController: UIViewController {
     
     var id = ""
     var email = ""
-    
+    let yourAttributes: [NSAttributedString.Key: Any] = [
+          .underlineStyle: NSUnderlineStyle.single.rawValue
+      ] // .double.rawValue, .thick.rawValue
+             
+      
+     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -41,6 +48,18 @@ class UserProfileViewController: UIViewController {
         self.txtEmail.text = email
 
         self.navigationController?.navigationBar.isHidden = true
+        
+         let deleteAttributeString = NSMutableAttributedString(
+            string: "Delete Account",
+            attributes: yourAttributes
+         )
+        
+        let changePassAttributeString = NSMutableAttributedString(
+           string: "Change Password",
+           attributes: yourAttributes
+        )
+        changePassbtn.setAttributedTitle(changePassAttributeString, for: .normal)
+        deletebtn.setAttributedTitle(deleteAttributeString, for: .normal)
 
     }
     
@@ -182,8 +201,9 @@ class UserProfileViewController: UIViewController {
                 
                 
             }else{
-                labelEmailAlert.text = "Please check your email"
                 labelEmailAlert.isHidden = false
+                labelEmailAlert.text = "Please check your email"
+              
                /* let alert = UIAlertController(title: "Ooopps", message: "Email validation failed", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                     
@@ -192,8 +212,9 @@ class UserProfileViewController: UIViewController {
             }
             
         }else{
-            labelFieldsAlert.text = "Please fill out all the information"
             labelFieldsAlert.isHidden = false
+            labelFieldsAlert.text = "Please fill out all the information"
+            
            /*let alert = UIAlertController(title: "Ooopps", message: "Fill out all the Fields and try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 
@@ -202,6 +223,39 @@ class UserProfileViewController: UIViewController {
             
         }
     }
+    
+    
+    // /*
+    @IBAction func deleteAccountPressed(_ sender: Any) {
+        QPAlert(self).showAlert(title: "Are you sure you want to delete your account?", message: "Your account will be deleted permenently and you won't be able to restore it", buttons: ["Cancel", "Yes"]) { _, index in
+            if index == 1 {
+                
+                var deleteEmail =  Auth.auth().currentUser!.uid
+                Auth.auth().currentUser?.delete()
+                
+                
+                if Auth.auth().currentUser != nil {
+                    deleteEmail = Auth.auth().currentUser!.email!
+                } else {
+                    print("user is not logged in")
+                    //User Not logged in
+                 }
+
+                
+                
+                // delete the document
+                Firestore.firestore().collection("users").document(deleteEmail).delete();
+                
+                FBAuth.logout { success, error in
+                    if success == false, let e = error {
+                        QPAlert(self).showError(message: e.localizedDescription)
+                    } else {
+                        SceneDelegate.sceneDelegate.setUpHome()
+                    }
+                } // end logout
+            }
+        }
+    } // */
     
     
 }

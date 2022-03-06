@@ -15,6 +15,7 @@ import SDWebImage
 class AdminHomeListVC: UIViewController {
     
     var parkings = [Area]()
+    var selectedArea : Area?
     
     @IBOutlet weak var ParkingView: UIView!
     
@@ -31,10 +32,16 @@ class AdminHomeListVC: UIViewController {
         SearchTxt.layer.shadowOpacity = 0.1
         SearchTxt.layer.shadowOffset = .zero
         SearchTxt.layer.shadowRadius = 10
-        getParkings()
+        
         
     }
    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.selectedArea = nil
+        getParkings()
+    }
+    
     private func getParkings() {
         let ref = Database.database().reference()
         ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
@@ -42,10 +49,13 @@ class AdminHomeListVC: UIViewController {
             parkings.removeAll()
             for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
                 let dictionary = snapshot.value as? NSDictionary
-                let area = Area(areaname: dictionary?["areaname"] as? String ?? "", loactionLat: "", locationLong: "", spotNo: "", logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0 )
+                let area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0  )
                 parkings.append(area)
+                
             }
             
+            
+            parkings = parkings.sorted { $0.areaname < $1.areaname}
             ParkingsViews.reloadData()
         })
     }
@@ -84,6 +94,30 @@ extension AdminHomeListVC: UITableViewDelegate, UITableViewDataSource{
     
     func addShadow(backgroundColor: UIColor = .white, cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 5, shadowOpacity: Float = 0.1, shadowPathInset: (dx: CGFloat, dy: CGFloat), shadowPathOffset: (dx: CGFloat, dy: CGFloat)) {
         
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            
+            let ref = Database.database().reference()
+            ref.child("Areas").child(self.parkings[indexPath.row].areaKey).removeValue { error, ref in
+                tableView.reloadData()
+            }
+        }
+        
+        let editAction = UIContextualAction(style: .normal, title: "Modify") {  (contextualAction, view, boolValue) in
+            self.selectedArea = self.parkings[indexPath.row]
+            self.performSegue(withIdentifier: "AddAreaViewController", sender: self)
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        
+        return swipeActions
     }
     
 }

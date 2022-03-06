@@ -14,7 +14,7 @@ import MobileCoreServices
 
 
 class AddAreaViewController: UIViewController {
-    
+    var thisArea : Area?
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var activityIndicatorBG: UIView = UIView()
     var activityIndicatorlabel : UILabel = UILabel()
@@ -25,11 +25,14 @@ class AddAreaViewController: UIViewController {
     @IBOutlet weak var lblAreaNameError : UILabel!
     @IBOutlet weak var lblParkingSpotError : UILabel!
     @IBOutlet weak var lblEmptyCheckError : UILabel!
+    @IBOutlet weak var lblLogoIsPicked: UILabel!
     
     @IBOutlet weak var AreaNameTextField: UITextField!
     @IBOutlet weak var SpotNoTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     var areaCoordinate:  CLLocationCoordinate2D? = nil
+    @IBOutlet weak var CancelBtn: UIButton!
+    
     
     var areaName: String = ""
     var spotNo: Int = 0
@@ -46,6 +49,7 @@ class AddAreaViewController: UIViewController {
 
         let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
         mapView.addGestureRecognizer(longTapGesture)
+        
         
         //For shadow and cornerRadius for AreaName textfield
         AreaNameTextField.layer.masksToBounds = false
@@ -92,7 +96,26 @@ class AddAreaViewController: UIViewController {
         
     }
     
-   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.thisArea == nil {
+            self.AreaNameTextField.text = ""
+            self.SpotNoTextField.text = ""
+        }else{
+            self.AreaNameTextField.text = self.thisArea?.areaname
+            self.SpotNoTextField.text = "\(self.thisArea?.spotNo ?? 0)"
+            let locationCoord = CLLocationCoordinate2D(latitude: self.thisArea?.locationLat ?? 0.0 , longitude: self.thisArea?.locationLong ?? 0.0)
+            addAnnotation(location: locationCoord)
+        }
+        
+    }
+    
+    
+    @IBAction func CancelAreaButton(_ sender: Any) {
+       // let vc = SBSupport.viewController(sbi: "sbi_TermsViewController", inStoryBoard: "AdminHomePage")
+       // self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     @IBAction func SaveAreaButton(_ sender: UIButton) {
         print("SaveAreaButton is pressed")
@@ -126,19 +149,26 @@ class AddAreaViewController: UIViewController {
                         FirebaseManager.shared.uploadImageToFirebaseStorage(imageName:"\(String(describing: areaLat))_\(String(describing: areaLong))_picture", imageToUpload: imageToUpload ) { (url, error) in
                             self.stopActivityIndicator()
                             if error == nil{
-                                let object: [String : Any] = ["areaname": self.areaName as Any ,"spotNo": self.spotNo, "loactionLat": "\(self.areaLat ?? 0.0)", "locationLong": "\(self.areaLong ?? 0.0)", "areaImage" : url]
-                                self.database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
+                                let object: [String : Any] = ["areaname": self.areaName as Any ,"spotNo": self.spotNo, "locationLat": self.areaLat ?? 0.0, "locationLong": self.areaLong ?? 0.0, "areaImage" : url]
+                                var areaKey = "Area_\(Int.random(in: 0..<100))"
+                                if self.thisArea != nil {
+                                    areaKey = self.thisArea?.areaKey ?? "Area_0000"
+                                }
+                                self.database.child("Areas").child(areaKey).setValue(object) { error, ref in
                                     self.navigationController?.popViewController(animated: true)
-                                }                    }else{
-                               //self.showAlert(title: "Photo upload failed", message: "photo uploading failed, please try again")
-                                QPAlert(self).showError(message: "Photo uploading failed, please try again")
+                                }                   }else{
+                               self.showAlert(title: "Photo upload failed", message: "photo uploading failed, please try again")
                             }
                         }
-                    }else { //upload area info to the database
-                        let object: [String : Any] = ["areaname": areaName as Any ,"spotNo": spotNo, "loactionLat": areaLat ?? 0.0, "locationLong": areaLong ?? 0.0, "areaImage" : ""]
-                        database.child("Areas").child("Area_\(Int.random(in: 0..<100))" ).setValue(object) { error, ref in
+                    }else {
+                        let object: [String : Any] = ["areaname": areaName as Any ,"spotNo": spotNo, "locationLat": areaLat ?? 0.0, "locationLong": areaLong ?? 0.0, "areaImage" : ""]
+                        
+                        var areaKey = "Area_\(Int.random(in: 0..<100))"
+                        if self.thisArea != nil {
+                            areaKey = self.thisArea?.areaKey ?? "Area_0000"
+                        }
+                        database.child("Areas").child(areaKey).setValue(object) { error, ref in
                             self.navigationController?.popViewController(animated: true)
-                            
                         }
                     }
 
@@ -240,11 +270,18 @@ class AddAreaViewController: UIViewController {
             pickerController.mediaTypes = [imageMediaType]
             pickerController.delegate = self
             present(pickerController, animated: true, completion: nil)
+            imageIsChosen()
+        
 
     }
     
     
-    
+    func imageIsChosen() {
+        if imageToUpload != nil {
+            self.lblLogoIsPicked.isHidden = false
+            self.lblLogoIsPicked.text = "Image has been chosen"
+        }
+    }
     
     @objc func longTap(sender: UIGestureRecognizer){ //save the user long tap on the map
         print("long tap")

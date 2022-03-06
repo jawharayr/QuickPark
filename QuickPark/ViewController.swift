@@ -338,14 +338,11 @@ class ViewController: UIViewController {
             parkings.removeAll()
             for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
                 let dictionary = snapshot.value as? NSDictionary
-                var area = Area(areaname: dictionary?["areaname"] as? String ?? "",
-                                loactionLat: "\(dictionary?["locationLat"] as? Double ?? 0)",
-                                locationLong: "\(dictionary?["locationLong"] as? Double ?? 0)",
-                                spotNo: "", logo: dictionary?["areaImage"] as? String ?? "" ,distance: 0)
+                var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0  )
                 
                 
                 
-                let location = CLLocation(latitude: Double(area.loactionLat) ?? 0,
+                let location = CLLocation(latitude: Double(area.locationLat) ?? 0,
                                           longitude: Double(area.locationLong) ?? 0)
                 if let currentLocation = currentLocation{
                     let distance = currentLocation.distance(from: location)/1000

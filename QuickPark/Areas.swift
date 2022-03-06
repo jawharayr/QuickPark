@@ -8,10 +8,11 @@
 import Foundation
 
 struct Area {
+    var areaKey: String
     var areaname: String
-    var loactionLat: String
-    var locationLong: String
-    var spotNo: String
+    var locationLat: Double
+    var locationLong: Double
+    var spotNo: Int
     var logo: String
     var distance: Double
     var imageURL: ImageURL = ImageURL(url: nil, didLoad: false)
