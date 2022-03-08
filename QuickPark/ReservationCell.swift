@@ -50,7 +50,7 @@ class ReservationCell: UICollectionViewCell {
     
     
     @objc func updateTimer() {
-        print(self.totalTime)
+        print("ReservationCell: ", self.totalTime)
         self.lblCountDown.text = UtilitiesManager.sharedIntance.timeFormatted(self.totalTime) // will show timer
         if totalTime != 0 {
             totalTime -= 1

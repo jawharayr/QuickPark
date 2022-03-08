@@ -189,7 +189,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         
         // Format and print in 12h format
         let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: StartTimePicker.date, to: EndTimePicker.date)
-        print(hourAndMinutes)
+        print("C&P: hourAndMinutes", hourAndMinutes)
         
         
         // Calculate price, the formula is just an example
@@ -220,7 +220,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
             
             
             let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: StartTimePicker.date, to: EndTimePicker.date)
-            print(hourAndMinutes)
+            print("C&P: hourAndMinutes", hourAndMinutes)
             let reservationId = UtilitiesManager.sharedIntance.getRandomString()
             let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false] as [String : Any]
             

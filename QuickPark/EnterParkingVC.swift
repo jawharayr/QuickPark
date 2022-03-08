@@ -8,8 +8,6 @@
 import UIKit
 
 class EnterParkingVC: UIViewController {
-    
-    
     @IBOutlet weak var imgQR : UIImageView!
     @IBOutlet weak var lblCountDown : UILabel!
     @IBOutlet weak var viewLoader: UIView!
@@ -124,7 +122,7 @@ class EnterParkingVC: UIViewController {
     }
     
     @objc func updateTimer() {
-        print(self.totalTime)
+        print("EPVC totalTime", self.totalTime)
         self.lblCountDown.text = self.timeFormatted(self.totalTime) // will show timer
         if totalTime != 0 {
             totalTime -= 1  // decrease counter timer

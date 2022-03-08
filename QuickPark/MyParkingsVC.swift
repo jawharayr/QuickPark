@@ -180,7 +180,7 @@ class MyParkingsVC: UIViewController {
     
     
     @objc func updateTimer() {
-        print(self.totalTime)
+        print("MyParkngVC", self.totalTime)
         self.lblCountDown.text = timeFormatted(self.totalTime) // will show timer
         if totalTime > 0 {
             

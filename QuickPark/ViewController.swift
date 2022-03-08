@@ -283,7 +283,7 @@ class ViewController: UIViewController {
     }
     
     @objc func updateTimer() {
-        print(self.totalTime)
+        print("Home: totalTime", self.totalTime)
         self.lblCountDown.text = self.timeFormatted(self.totalTime) // will show timer
         if totalTime > 0 {
             if UserDefaults.standard.bool(forKey: "isOverTime"){
