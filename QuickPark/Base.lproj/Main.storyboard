@@ -832,9 +832,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iip-mc-Axh">
-                                <rect key="frame" x="67" y="433.5" width="239.5" height="29"/>
+                                <rect key="frame" x="67" y="433.5" width="280" height="29"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="There is no reservation.">
+                                    <fragment content="There is no reservation">
                                         <attributes>
                                             <color key="NSColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" metaFont="system" size="24"/>
@@ -1131,6 +1131,7 @@
                         <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="grI-v6-uxD" firstAttribute="top" secondItem="TCl-8G-CYf" secondAttribute="bottom" constant="18" id="0I2-6k-D8g"/>
+                            <constraint firstItem="iip-mc-Axh" firstAttribute="centerX" secondItem="BhD-dZ-YKd" secondAttribute="centerX" id="1Ra-QX-SLR"/>
                             <constraint firstItem="grI-v6-uxD" firstAttribute="top" secondItem="TCl-8G-CYf" secondAttribute="bottom" constant="18" id="2ki-mv-O7J"/>
                             <constraint firstItem="grI-v6-uxD" firstAttribute="leading" secondItem="zs6-ht-Uyf" secondAttribute="leading" constant="20" id="6OF-aJ-HEd"/>
                             <constraint firstItem="zs6-ht-Uyf" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bV0-aP-nTA" secondAttribute="trailing" symbolic="YES" id="7GL-6S-HQx"/>
@@ -1147,6 +1148,7 @@
                             <constraint firstItem="GYc-D5-70g" firstAttribute="top" secondItem="TCl-8G-CYf" secondAttribute="bottom" constant="20" id="Snh-Tw-sNa"/>
                             <constraint firstItem="TCl-8G-CYf" firstAttribute="leading" secondItem="zs6-ht-Uyf" secondAttribute="leading" constant="30" id="TCD-Wy-4ej"/>
                             <constraint firstItem="bV0-aP-nTA" firstAttribute="leading" secondItem="BhD-dZ-YKd" secondAttribute="leadingMargin" id="caW-Ke-gES"/>
+                            <constraint firstItem="iip-mc-Axh" firstAttribute="centerX" secondItem="BhD-dZ-YKd" secondAttribute="centerX" id="fTg-bX-StF"/>
                             <constraint firstItem="BUA-6o-tTd" firstAttribute="leading" secondItem="BhD-dZ-YKd" secondAttribute="leading" id="h0q-Th-Glg"/>
                             <constraint firstItem="iip-mc-Axh" firstAttribute="leading" secondItem="zs6-ht-Uyf" secondAttribute="leading" constant="67" id="h7f-l9-dwc"/>
                             <constraint firstAttribute="trailing" secondItem="BUA-6o-tTd" secondAttribute="trailing" id="kve-hU-Dsz"/>

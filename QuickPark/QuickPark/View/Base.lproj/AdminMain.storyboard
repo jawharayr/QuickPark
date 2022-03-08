@@ -237,7 +237,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yve-lv-Yi5">
-                                <rect key="frame" x="0.0" y="88" width="390" height="756"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="849"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBC-0K-b0U">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="800"/>
@@ -424,6 +424,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pKt-v1-Usv"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="AreaNameTextField" destination="97t-P8-NjI" id="I4x-fG-6xJ"/>
                         <outlet property="SpotNoTextField" destination="Yba-fL-Zpk" id="nPG-6J-loS"/>

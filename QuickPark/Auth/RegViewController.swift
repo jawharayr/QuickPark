@@ -18,19 +18,17 @@ class RegViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var passOfRegField: UITextField!
     
+    @IBOutlet weak var passOfRegField: UITextField!
     @IBOutlet weak var confirmPas: UITextField!
     
     @IBAction func goTermsPressed(_ sender: Any) {
         
     }
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    
-    @IBOutlet weak var confirmLabel: UILabel?
+    @IBOutlet weak var confirmLabel: UILabel!
     
     @IBAction func goToLogPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "GoToLog", sender: nil)
@@ -76,7 +74,7 @@ class RegViewController: UIViewController {
         //passOfRegField.enablePasswordToggle()
         // Do any additional setup after loading the view.
         // textFieldEmail.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
-        confirmLabel?.isHidden = true
+        confirmLabel.isHidden = true
         passwordLabel.isHidden = true
         emailLabel.isHidden = true
         nameLabel.isHidden = true
@@ -109,7 +107,7 @@ class RegViewController: UIViewController {
     
     func validate() -> Bool {
         passwordLabel.isHidden = true
-        confirmLabel?.isHidden = true
+        confirmLabel.isHidden = true
         nameLabel.isHidden = true
         emailLabel.isHidden = true
         
@@ -138,36 +136,7 @@ class RegViewController: UIViewController {
         
         
 
-        
-//        // Password Validations
-//        if password.isEmpty {
-//            passwordLabel.isHidden = false
-//            passwordLabel.attributedText = NSAttributedString(string: "Please enter Your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-//            passOfRegField.shake()
-//            isValid = false
-//        }
-//        if password2.isEmpty {
-//            confirmLabel?.isHidden = false
-//            confirmLabel?.attributedText = NSAttributedString(string: "Please confirm Your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-//            confirmPas.shake()
-//            isValid = false
-//        }
-//
-//        if !password.isEmpty && !password2.isEmpty {
-//            if password != password2 {
-//                confirmLabel?.isHidden = false
-//                confirmLabel?.attributedText = NSAttributedString(string: "Passwords do not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-//                confirmPas.shake()
-//                isValid = false
-//            }
-//        }
-//
-//        if !password.isValidPassword {
-//            passwordLabel.isHidden = false
-//            passwordLabel.attributedText = NSAttributedString(string: "Please enter valid password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-//            passOfRegField.shake()
-//            isValid = false
-//        }
+
         
         return isValid
     }
@@ -186,7 +155,7 @@ class RegViewController: UIViewController {
             if let e = error, user == nil {
                 QPAlert(self).showError(message: e.localizedDescription)
             } else {
-                QPAlert(self).showError(message: "Registered Successfully.")
+                QPAlert(self).showError(message: "Registered Successfully.") //duration?
                 SceneDelegate.sceneDelegate.setUpHome()
             }
         }
@@ -228,10 +197,10 @@ extension String {
     var isValidPassword: Bool {
         if (self.isEmpty){return false}
         let passRegEx = "^(?=.*[0-9])(?=.*[a-z]).{6,}$"
-
         let passwordTest=NSPredicate(format: "SELF MATCHES %@", passRegEx);
         return passwordTest.evaluate(with: self)
     }
+
     
 }
 extension UITextField {
@@ -264,13 +233,13 @@ extension RegViewController {
         }
         if !name.isAlphanumeric || name.count < 3 {
             nameLabel.isHidden = false
-            nameLabel.attributedText = NSAttributedString(string: "Name should have alphabets and min 3 characters", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            nameLabel.attributedText = NSAttributedString(string: "Name should have alphabets and min 3 letters characters", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             return false
             
         }
         if !name.isAlphanumeric || name.count > 32 {
             nameLabel.isHidden = false
-            nameLabel.attributedText = NSAttributedString(string: "Name should have alphabets and max 32 characters", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            nameLabel.attributedText = NSAttributedString(string: "Name should have alphabets and max 32 letters characters", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             return false
             
         }
@@ -316,21 +285,37 @@ extension RegViewController {
         
         // Password Validations
         if password2.isEmpty {
-            confirmLabel?.isHidden = false
-            confirmLabel?.attributedText = NSAttributedString(string: "Please enter confirm password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            confirmLabel.isHidden = false
+            confirmLabel.attributedText = NSAttributedString(string: "Please enter confirm password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             return false
         }
         if password != password2 {
-            confirmLabel?.isHidden = false
-            confirmLabel?.attributedText = NSAttributedString(string: "Password does not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            confirmLabel.isHidden = false
+            confirmLabel.attributedText = NSAttributedString(string: "Password does not match", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             return false
         }
         
-        confirmLabel?.isHidden = true
+         if !password.isEmpty && (password == password2) {
+               confirmLabel.isHidden = true
+             return false
+         }
         return true
     }
-}
 
+//        if !password.isEmpty && !password2.isEmpty && (password == password2) {
+//            passwordLabel.isHidden = true
+//            confirmLabel.isHidden = true
+//        }
+//
+//
+////            if password == password2 && !password2.isEmpty && !password.isEmpty  {
+////                confirmLabel?.isHidden = true
+////            }
+//        return true
+
+            
+        
+  }
 
 
 extension RegViewController : UITextFieldDelegate {
