@@ -14,16 +14,21 @@ class EnterParkingVC: UIViewController {
     @IBOutlet weak var lblCountDown : UILabel!
     @IBOutlet weak var viewLoader: UIView!
     
+    @IBOutlet weak var EntryQR: UIImageView!
+    
     var timer: Timer?
     var totalTime = 900
     var endTimer = ""
     var waitingTime:Int? = 0
     var reservation:Reservation!
-    
+    var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     //   imgQR.image = image
+    
+
+
         // Do any additional setup after loading the view.
         colour = UIColor(red: 0, green: 144/255, blue: 205/255, alpha: 1)
         startActivityAnimating(padding: 2, isFromOnView: false, view: self.viewLoader,width: 100,height: 100)
@@ -93,8 +98,8 @@ class EnterParkingVC: UIViewController {
             self.present(vc, animated: true, completion: nil)
         }
     }
-
-  
+ 
+    
     @IBAction func btnSkip(_ sender:Any){
         
         UserDefaults.standard.set(true, forKey: "start")
