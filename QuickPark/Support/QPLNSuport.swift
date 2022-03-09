@@ -11,7 +11,7 @@ import UIKit
 import SwiftUI
 
 
-class QPLocalNotificationSupport {
+class QPLNSupport {
     
     static func requestAuthorizarion (vc:UIViewController, complition:@escaping (Bool, String)->Void) {
         let center = UNUserNotificationCenter.current()
@@ -51,5 +51,33 @@ class QPLocalNotificationSupport {
                 break
             }
         }
+    }
+    
+    static func add(_ identifier:String,
+                                after:TimeInterval,
+                                title:String,
+                                detail:String,
+                                userInfo:[String:Any]) {
+        let c = UNMutableNotificationContent()
+        c.title = title
+        c.body = detail
+        c.categoryIdentifier = "k_ParkingNotification"
+        c.userInfo = userInfo
+        c.sound = UNNotificationSound.defaultCritical
+        
+        let t = UNTimeIntervalNotificationTrigger(timeInterval: after, repeats: false)
+        let ln = UNNotificationRequest(identifier: identifier, content: c, trigger: t)
+        
+        UNUserNotificationCenter.current().add(ln) { error in
+            print("Error adding notification: ", error?.localizedDescription ?? "No Error")
+        }
+    }
+    
+    static func remove(_ identifier:String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
+    
+    static func removeAllDelivered() {
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
 }
