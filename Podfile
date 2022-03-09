@@ -24,6 +24,10 @@ target 'QuickPark' do
   pod 'SVProgressHUD'
   pod 'IQKeyboardManagerSwift'
   
+  #PayPal Pods
+  
+  pod 'Braintree'
+  
   target 'QuickParkTests' do
 #    inherit! :search_paths
 #    pod 'Firebase/Core'
