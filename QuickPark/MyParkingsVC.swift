@@ -29,19 +29,11 @@ class MyParkingsVC: UIViewController {
     var reservation:Reservation!
     var timer:Timer!
     
-    
-    
     @IBOutlet weak var StartTime: UILabel!
     @IBOutlet weak var EndTime: UILabel!
     @IBOutlet weak var area: UILabel!
-    
-    
     @IBOutlet weak var btnEnd: UIButton!
     @IBOutlet weak var lblCountDown: UILabel!
-    
-    
-    
-    
     @IBOutlet weak var viewLoader: UIView!
     
     

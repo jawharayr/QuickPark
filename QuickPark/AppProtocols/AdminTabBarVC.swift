@@ -11,7 +11,7 @@ class AdminTabBarVC: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        QPLocalNotificationSupport.requestAuthorizarion(vc: self) { success, message in
+        QPLNSupport.requestAuthorizarion(vc: self) { success, message in
             print(success, message)
         }
         
