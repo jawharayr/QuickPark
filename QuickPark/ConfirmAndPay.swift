@@ -9,6 +9,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
+let K_ReservationTimer : TimeInterval = 900 //Time interval
 
 class ConfirmAndPay: UIViewController, UITextFieldDelegate {
     
@@ -224,6 +225,11 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
             let reservationId = UtilitiesManager.sharedIntance.getRandomString()
             let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false] as [String : Any]
             
+            QPLNSupport.add(reservationId,
+                            after: K_ReservationTimer,
+                            title: "Your reservation was canceled.",
+                            detail: "because reservation time of 15 min was expired.",
+                            userInfo: paramas)
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
             vc.endTimer = self.endTimer
