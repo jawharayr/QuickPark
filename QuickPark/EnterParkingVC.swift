@@ -64,11 +64,8 @@ class EnterParkingVC: UIViewController {
     
     func getStartTime15(){
         let start = TimeInterval.init(reservation.StartTime)
-        
         let enddate = Date.init(timeIntervalSince1970: start).addingMinutes(minutes: 15)
         let end = enddate.timeIntervalSince1970
-        
-        
         let isValidTime = UtilitiesManager.sharedIntance.checkIfTimeIsValid(endTime: Date.init(timeIntervalSince1970: end))
         if isValidTime{
             self.totalTime = Int(UtilitiesManager.sharedIntance.getTimerValue(start: Date(), endtime: Date.init(timeIntervalSince1970: end)))
@@ -76,7 +73,6 @@ class EnterParkingVC: UIViewController {
             startTimer()
         }else{
             UserDefaults.standard.set(false, forKey: "start")
-            
             NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
             self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
         }
@@ -104,6 +100,8 @@ class EnterParkingVC: UIViewController {
         
         NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+        
+        cancelParkingReservatinNotification()
     }
     
     
@@ -113,6 +111,10 @@ class EnterParkingVC: UIViewController {
         
         NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+    }
+    
+    func cancelParkingReservatinNotification() {
+        QPLNSupport.remove(reservation.id)
     }
     
     // MARK: - Timer
