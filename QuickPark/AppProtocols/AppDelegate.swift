@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Braintree
 import Firebase
 import IQKeyboardManagerSwift
 
