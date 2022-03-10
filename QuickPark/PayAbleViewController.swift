@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseStorage
 
 class PayAbleViewController: UIViewController {
 
@@ -29,10 +31,20 @@ class PayAbleViewController: UIViewController {
         lblTotal.text = total + " SAR"
         mainView.layer.cornerRadius = 20
     }
-    
+    private let database = Database.database().reference()
 
     @IBAction func payTapped(){
-        if let image = generateQRCode(using: "test"){
+       
+        let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
+        print("My unique QR code: ",unique)
+        if let image = generateQRCode(using: unique){
+            
+            let object: [String : Any] = ["isScanned":false]
+            
+            database.child("QRCode").child(unique).setValue(object) { error, ref in
+                print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription)
+            }
+            
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
             vc.image = image
             vc.reservation = self.reservation

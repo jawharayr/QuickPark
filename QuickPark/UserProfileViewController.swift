@@ -196,9 +196,30 @@ class UserProfileViewController: UIViewController {
         
         if str == "true"
         {
-            
-            if (self.isValidEmail(self.txtEmail.text ?? "") ) {
+            let newEmail = txtEmail.text ?? ""
+            if (self.isValidEmail(newEmail) ) {
                 
+                let database = Firestore.firestore()
+                let userdata = ["email": newEmail, "name": txtUserName.text ?? ""]
+                print (userdata)
+                
+                if let currentEmail = Auth.auth().currentUser?.email{
+                    database.collection("users").document(currentEmail).delete()
+                }
+                database.collection("users").document(newEmail).setData(userdata){(error) in
+                    if let error = error{
+                        print("Error occured while writing new user data. Error= ",error.localizedDescription)
+                    }else{
+                        print("Did update user data successfully.")
+                    }
+                }
+                Auth.auth().currentUser?.updateEmail(to: newEmail, completion: { error in
+                    if let error = error{
+                        print("Error occured while updated Auth.auth().currentUser email. Error= ",error.localizedDescription)
+                    }else{
+                        print("User email updated successfully to: ",newEmail)
+                    }
+                })
                 
             }else{
                 labelEmailAlert.isHidden = false
@@ -232,6 +253,7 @@ class UserProfileViewController: UIViewController {
                 
                 var deleteEmail =  Auth.auth().currentUser!.uid
                 Auth.auth().currentUser?.delete()
+
                 
                 
                 if Auth.auth().currentUser != nil {

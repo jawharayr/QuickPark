@@ -25,7 +25,7 @@ class EnterParkingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   imgQR.image = image
+        imgQR.image = image
     
 
 

@@ -311,16 +311,39 @@ class MyParkingsVC: UIViewController {
         }
         }
     }
+
     
     @IBAction func Pay(_ sender: Any) {
-        if let image = generateQRCode(using: "test"){
+        
+        let x = String(Int.random(in: 1000...6000))
+        
+        if let image = generateQRCode(using: x){
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
             vc.image = image
             navigationController?.pushViewController(vc, animated: true)
-            
         }
         
-    }
+    /*    let object: [String : Any] = [" ":  as Any ]
+        var ExitQR = "ExitQR_\(x)"
+        if self.thisQRCode != nil {
+            ExitQR = self.thisQRCode?.ExitQR ?? " ExitQR_0000"
+        }
+        
+        if {
+        database.child("QRcode").child(invalid).setValue(object) { error, ref in
+            self.navigationController?.popViewController(animated: true) } }
+        
+            else{
+                database.child("QRcode").child(valid).child(ExitQR)setValue(object) { error, ref in
+                    self.navigationController?.popViewController(animated: true) }
+            }
+                */
+                
+            
+        }
+
+        
+    
     func generateQRCode(using string:String) -> UIImage? {
             
             let data = string.data(using: String.Encoding.ascii)
@@ -571,8 +594,8 @@ class MyParkingsVC: UIViewController {
     }
     
     @IBOutlet weak var ActiveView: UICollectionViewFlowLayout!
-}
 
+}
 // Past reservations
 extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     

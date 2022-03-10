@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
-
+import Firebase
 
 class ConfirmAndPay: UIViewController, UITextFieldDelegate {
     
@@ -207,7 +207,22 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         DueationLabel.text = ": \(hourAndMinutes.hour!)" + " hour " + "\(hourAndMinutes.minute!)" + " min"
     }
     
- 
+    func generateQRCode(using string:String) -> UIImage? {
+        
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator"){
+            filter.setValue( data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+            if let output = filter.outputImage?.transformed(by: transform){
+                return UIImage(ciImage: output)
+            }
+        }
+        return nil
+        
+    }
+    
+    private let database = Database.database().reference()
     
     @IBAction func btnContirmClicked(_ sender: Any) {
         if startTimer.isEmpty || endTimer.isEmpty {
@@ -224,20 +239,34 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
             let reservationId = UtilitiesManager.sharedIntance.getRandomString()
             let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false] as [String : Any]
             
-            
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
-            vc.endTimer = self.endTimer
-            vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName])
-            self.present(vc, animated: true, completion: {
-                RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
-                if self.parking.areaname == "King Saud University"{
-                    self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
-                    UserDefaults.standard.set("Area_23", forKey: "parkingArea")
-                }else{
-                    self.ref.child("Areas").child("Area_88").child("isAvailable").setValue(false)
-                    UserDefaults.standard.set("Area_88", forKey: "parkingArea")
+            let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
+            print("My unique QR code: ",unique)
+            if let image = generateQRCode(using: unique){
+                
+                let object: [String : Any] = ["isScanned":false]
+                
+                database.child("QRCode").child(unique).setValue(object) { error, ref in
+                    print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription)
                 }
-            })
+                
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
+                vc.image = image
+                vc.endTimer = self.endTimer
+                vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName])
+                self.present(vc, animated: true, completion: {
+                    RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
+                    if self.parking.areaname == "King Saud University"{
+                        self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
+                        UserDefaults.standard.set("Area_23", forKey: "parkingArea")
+                    }else{
+                        self.ref.child("Areas").child("Area_88").child("isAvailable").setValue(false)
+                        UserDefaults.standard.set("Area_88", forKey: "parkingArea")
+                    }
+                })
+        
+            }
+            
+            
         }
         
         

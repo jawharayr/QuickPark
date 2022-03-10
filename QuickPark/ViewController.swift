@@ -19,7 +19,7 @@ import SDWebImage
 class ViewController: UIViewController {
     //  let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
     
-    
+
     @IBOutlet weak var searchText: UITextField!
     
     
@@ -53,6 +53,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         searchText.addTarget(self, action: #selector(searchRecord), for: .editingChanged)
         ref = Database.database().reference()
+   //     imgQR.image = image
         
         if Auth.auth().currentUser?.uid == nil{
             if  UserDefaults.standard.string(forKey: "uid") == nil{
@@ -71,6 +72,10 @@ class ViewController: UIViewController {
         
         
     }
+    
+    
+    
+    
     @objc func searchRecord(sender : UITextField){
         self.searchedArea.removeAll()
         self.searchedLogos.removeAll()
@@ -357,13 +362,14 @@ class ViewController: UIViewController {
             ParkingsViews.reloadData()
         })
     }
-    
+    var image: UIImage?
     @IBAction func btnGoToTimer(_ sender:Any){
         stopTimer()
         if UserDefaults.standard.bool(forKey: "start"){
             self.tabBarController?.selectedIndex = 1
         }else{
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
+            vc.image = image
             vc.reservation = self.reservation
             self.present(vc, animated: true, completion: nil)
         }
