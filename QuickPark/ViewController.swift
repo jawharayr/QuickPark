@@ -20,7 +20,6 @@ import Braintree
 class ViewController: UIViewController {
     
     
-    
     //for paypal
     var braintreeClient: BTAPIClient!
     
@@ -75,6 +74,10 @@ class ViewController: UIViewController {
         
         //Paypal
         braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
+        
+        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+          //      payPalDriver.viewControllerPresentingDelegate = self
+          //      payPalDriver.appSwitchDelegate = self // Optional
         
     }
     @objc func searchRecord(sender : UITextField){
