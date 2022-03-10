@@ -15,14 +15,14 @@ import SwiftUI
 import FirebaseAuth
 import grpc
 import SDWebImage
-import BraintreePayPal
+import Braintree
 
 class ViewController: UIViewController {
     
     
     
     //for paypal
-    var braintreeClient: BTAPIClient?
+    var braintreeClient: BTAPIClient!
     
     @IBOutlet weak var searchText: UITextField!
     
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         
         
         //Paypal
-        braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")!
+        braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
         
     }
     @objc func searchRecord(sender : UITextField){
