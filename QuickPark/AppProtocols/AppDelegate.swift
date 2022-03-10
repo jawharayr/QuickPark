@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-      //  BTAppSwitch.setReturnURLScheme("G3.QuickPark.payments")
+        BTAppContextSwitcher.setReturnURLScheme("G3.QuickPark.payments")
         
         FirebaseApp.configure()
         IQKeyboardManager.shared.enable = true
@@ -48,12 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-  /*  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if url.scheme?.localizedCaseInsensitiveCompare("G3.QuickPark.payments") == .orderedSame {
-                return BTAppSwitch.handleOpen(url, options: options)
-            }
-            return false
-    } */
+   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+       if url.scheme?.localizedCaseInsensitiveCompare("G3.QuickPark.payments") == .orderedSame {
+               return BTAppContextSwitcher.handleOpenURL(url)
+           }
+           return false
+    }
 
 }
 
