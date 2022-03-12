@@ -21,7 +21,7 @@ struct Reservation {
     var area:String
     var userName:String
     var isCompleted:Bool
-    
+    var qrcode:String
     
     
     
@@ -37,6 +37,7 @@ struct Reservation {
         self.area = dict["area"] as? String ?? ""
         self.isCompleted = dict["isCompleted"] as? Bool ?? false
         self.userName = dict["userName"] as? String ?? ""
+        self.qrcode = dict["qrcode"] as? String ?? ""
     }
     
     

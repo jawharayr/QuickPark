@@ -37,7 +37,7 @@ class PayAbleViewController: UIViewController {
        
         let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
         print("My unique QR code: ",unique)
-        if let image = generateQRCode(using: unique){
+        if let image = UIImage.generateQRCode(using: unique){
             
             let object: [String : Any] = ["isScanned":false]
             
@@ -56,19 +56,58 @@ class PayAbleViewController: UIViewController {
     }
     
     
-    func generateQRCode(using string:String) -> UIImage? {
-        
-        let data = string.data(using: String.Encoding.ascii)
-        
-        if let filter = CIFilter(name: "CIQRCodeGenerator"){
-            filter.setValue( data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-            if let output = filter.outputImage?.transformed(by: transform){
-                return UIImage(ciImage: output)
-            }
-        }
-        return nil
-        
-    }
+//    func generateQRCode(using string:String) -> UIImage? {
+//        
+//        let data = string.data(using: String.Encoding.ascii)
+//        
+//        if let filter = CIFilter(name: "CIQRCodeGenerator"){
+//            filter.setValue( data, forKey: "inputMessage")
+//            let transform = CGAffineTransform(scaleX: 3, y: 3)
+//            if let output = filter.outputImage?.transformed(by: transform){
+//                return UIImage(ciImage: output)
+//            }
+//        }
+//        return nil
+//        
+//    }
+}
+extension CIImage {
+  var transparent: CIImage? {
+    return inverted?.blackTransparent
+  }
+
+  var inverted: CIImage? {
+    guard let invertedColorFilter = CIFilter(name: "CIColorInvert") else { return nil }
+    invertedColorFilter.setValue(self, forKey: "image")
+    return invertedColorFilter.outputImage
+  }
+
+  var blackTransparent: CIImage? {
+    guard let blackTransparentCIFilter = CIFilter(name: "CIMaskToAlpha") else { return nil }
+    blackTransparentCIFilter.setValue(self, forKey: "image")
+    return blackTransparentCIFilter.outputImage
+  }
+
+  func tinted(using color: UIColor) -> CIImage?
+  {
+    guard
+    let transparentQRImage = transparent,
+    let filter = CIFilter(name: "CIMultiplyCompositing"),
+    let colorFilter = CIFilter(name: "CIConstantColorGenerator") else { return nil }
+
+    let ciColor = CIColor(color: color)
+    colorFilter.setValue(ciColor, forKey: kCIInputColorKey)
+    let colorImage = colorFilter.outputImage
+    filter.setValue(colorImage, forKey: kCIInputImageKey)
+    filter.setValue(transparentQRImage, forKey: kCIInputBackgroundImageKey)
+    return filter.outputImage!
+  }
     
+    func addLogo(with image: CIImage) -> CIImage? {
+        guard let combinedFilter = CIFilter(name: "CISourceOverCompositing") else { return nil }
+        let centerTransform = CGAffineTransform(translationX: extent.midX - (image.extent.size.width / 2), y: extent.midY - (image.extent.size.height / 2))
+        combinedFilter.setValue(image.transformed(by: centerTransform), forKey: "image")
+        combinedFilter.setValue(self, forKey: "inputBackgroundImage")
+        return combinedFilter.outputImage!
+    }
 }

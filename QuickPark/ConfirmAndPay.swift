@@ -207,20 +207,20 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         DueationLabel.text = ": \(hourAndMinutes.hour!)" + " hour " + "\(hourAndMinutes.minute!)" + " min"
     }
     
-    func generateQRCode(using string:String) -> UIImage? {
-        
-        let data = string.data(using: String.Encoding.ascii)
-        
-        if let filter = CIFilter(name: "CIQRCodeGenerator"){
-            filter.setValue( data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-            if let output = filter.outputImage?.transformed(by: transform){
-                return UIImage(ciImage: output)
-            }
-        }
-        return nil
-        
-    }
+//    func generateQRCode(using string:String) -> UIImage? {
+//        
+//        let data = string.data(using: String.Encoding.ascii)
+//        
+//        if let filter = CIFilter(name: "CIQRCodeGenerator"){
+//            filter.setValue( data, forKey: "inputMessage")
+//            let transform = CGAffineTransform(scaleX: 3, y: 3)
+//            if let output = filter.outputImage?.transformed(by: transform){
+//                return UIImage(ciImage: output)
+//            }
+//        }
+//        return nil
+//        
+//    }
     
     private let database = Database.database().reference()
     
@@ -236,12 +236,15 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
             
             let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: StartTimePicker.date, to: EndTimePicker.date)
             print(hourAndMinutes)
-            let reservationId = UtilitiesManager.sharedIntance.getRandomString()
-            let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false] as [String : Any]
             
             let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
+            
+            let reservationId = UtilitiesManager.sharedIntance.getRandomString()
+            let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false,"qrcode": unique] as [String : Any]
+            
+            
             print("My unique QR code: ",unique)
-            if let image = generateQRCode(using: unique){
+            if let image = UIImage.generateQRCode(using: unique){
                 
                 let object: [String : Any] = ["isScanned":false]
                 
@@ -252,7 +255,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
                 vc.image = image
                 vc.endTimer = self.endTimer
-                vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName])
+                vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"qrcode": unique])
                 self.present(vc, animated: true, completion: {
                     RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
                     if self.parking.areaname == "King Saud University"{

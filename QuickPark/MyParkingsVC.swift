@@ -317,7 +317,7 @@ class MyParkingsVC: UIViewController {
         
         let x = String(Int.random(in: 1000...6000))
         
-        if let image = generateQRCode(using: x){
+        if let image = UIImage.generateQRCode(using: x){
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
             vc.image = image
             navigationController?.pushViewController(vc, animated: true)
@@ -344,20 +344,20 @@ class MyParkingsVC: UIViewController {
 
         
     
-    func generateQRCode(using string:String) -> UIImage? {
-            
-            let data = string.data(using: String.Encoding.ascii)
-            
-            if let filter = CIFilter(name: "CIQRCodeGenerator"){
-                filter.setValue( data, forKey: "inputMessage")
-                let transform = CGAffineTransform(scaleX: 3, y: 3)
-                if let output = filter.outputImage?.transformed(by: transform){
-                    return UIImage(ciImage: output)
-                }
-            }
-            return nil
-            
-        }
+//    func generateQRCode(using string:String) -> UIImage? {
+//            
+//            let data = string.data(using: String.Encoding.ascii)
+//            
+//            if let filter = CIFilter(name: "CIQRCodeGenerator"){
+//                filter.setValue( data, forKey: "inputMessage")
+//                let transform = CGAffineTransform(scaleX: 3, y: 3)
+//                if let output = filter.outputImage?.transformed(by: transform){
+//                    return UIImage(ciImage: output)
+//                }
+//            }
+//            return nil
+//            
+//        }
 //        UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "Are you sure?", title: "End Parking?", buttons: ["YES","cancel"]) { index in
 //            if index == 0{
 //                self.calculateTime()

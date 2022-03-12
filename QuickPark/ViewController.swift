@@ -368,8 +368,9 @@ class ViewController: UIViewController {
         if UserDefaults.standard.bool(forKey: "start"){
             self.tabBarController?.selectedIndex = 1
         }else{
+            guard let qrcodeImage = UIImage.generateQRCode(using: reservation.qrcode) else{return}
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
-            vc.image = image
+            vc.image = qrcodeImage
             vc.reservation = self.reservation
             self.present(vc, animated: true, completion: nil)
         }
@@ -433,6 +434,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay") as! ConfirmAndPay
                         viewController.parking = self.parkings[indexPath.row]
+                        viewController.areaName = areaname
                         if #available(iOS 15.0, *) {
                             if let presentationController = viewController.presentationController as? UISheetPresentationController {
                                 presentationController.detents = [.medium()]

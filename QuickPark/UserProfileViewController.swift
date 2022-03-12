@@ -29,8 +29,8 @@ class UserProfileViewController: UIViewController {
           .underlineStyle: NSUnderlineStyle.single.rawValue
       ] // .double.rawValue, .thick.rawValue
              
-      
-     
+ 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -59,7 +59,7 @@ class UserProfileViewController: UIViewController {
            attributes: yourAttributes
         )
         changePassbtn.setAttributedTitle(changePassAttributeString, for: .normal)
-        deletebtn.setAttributedTitle(deleteAttributeString, for: .normal)
+      //  deletebtn.setAttributedTitle(deleteAttributeString, for: .normal)
 
     }
     
