@@ -76,31 +76,36 @@ class ViewController: UIViewController {
         braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
         
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-            payPalDriver.viewControllerPresentingDelegate = self
-        
-        // Specify the transaction amount here. "2.32" is used in this example.
-                let request = BTPayPalRequest(amount: "15")
-                request.currencyCode = "USD" // Optional; see BTPayPalRequest.h for more options
-
-                payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
-                    if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-                        print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-
-                        // Access additional information
-                        let email = tokenizedPayPalAccount.email
-                        let firstName = tokenizedPayPalAccount.firstName
-                        let lastName = tokenizedPayPalAccount.lastName
-                        let phone = tokenizedPayPalAccount.phone
-
-                        // See BTPostalAddress.h for details
-                        let billingAddress = tokenizedPayPalAccount.billingAddress
-                        let shippingAddress = tokenizedPayPalAccount.shippingAddress
-                    } else if let error = error {
-                        // Handle error here...
-                    } else {
-                        // Buyer canceled payment approval
-                    }
+        if let btClient = braintreeClient {
+            let payPalDriver = BTPayPalDriver(apiClient: btClient)
+            
+            let request = BTPayPalCheckoutRequest(amount: total)
+            request.currencyCode = "USD"
+            
+            payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
+                if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                    print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+                    
+                    
+                    let email = tokenizedPayPalAccount.email
+                    let firstName = tokenizedPayPalAccount.firstName
+                    let lastName = tokenizedPayPalAccount.lastName
+                    let phone = tokenizedPayPalAccount.phone
+                    
+                    let billingAddress = tokenizedPayPalAccount.billingAddress
+                    let shippingAddress = tokenizedPayPalAccount.shippingAddress
+                    
+                    success(email ?? "")
+                } else if let error = error {
+                    
+                    print(error.localizedDescription)
+                    failure(error)
+                } else {
+                    
+                    
                 }
+            }
+        }
         
     }
     @objc func searchRecord(sender : UITextField){
