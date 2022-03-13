@@ -93,3 +93,16 @@ class PayAbleViewController: UIViewController {
     
 }
 }
+
+// PayPal
+
+extension ViewController: BTViewControllerPresentingDelegate{
+    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+}
