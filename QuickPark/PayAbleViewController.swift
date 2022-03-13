@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Braintree
 
 class PayAbleViewController: UIViewController {
 
@@ -21,6 +22,9 @@ class PayAbleViewController: UIViewController {
     var extra = ""
     var reservation:Reservation!
     
+    //for paypal
+    var braintreeClient: BTAPIClient!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,19 +32,46 @@ class PayAbleViewController: UIViewController {
         lblExtra.text = extra + " SAR"
         lblTotal.text = total + " SAR"
         mainView.layer.cornerRadius = 20
+        
+        
+        //Paypal
+        braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
     }
     
 
     @IBAction func payTapped(){
-        if let image = generateQRCode(using: "test"){
+       /* if let image = generateQRCode(using: "test"){
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
             vc.image = image
             vc.reservation = self.reservation
             vc.modalPresentationStyle = .overFullScreen
-            self.present(vc, animated: true, completion: nil)
+            self.present(vc, animated: true, completion: nil) */
             
-    
-        }
+            
+            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+            if let btClient = braintreeClient {
+                let request = BTPayPalCheckoutRequest(amount: total)
+                        request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
+
+                        payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
+                            if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                                print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+
+                                // Access additional information
+                                let email = tokenizedPayPalAccount.email
+                                let firstName = tokenizedPayPalAccount.firstName
+                                let lastName = tokenizedPayPalAccount.lastName
+                                let phone = tokenizedPayPalAccount.phone
+
+                                // See BTPostalAddress.h for details
+                                let billingAddress = tokenizedPayPalAccount.billingAddress
+                                let shippingAddress = tokenizedPayPalAccount.shippingAddress
+                            } else if let error = error {
+                                // Handle error here...
+                            } else {
+                                // Buyer canceled payment approval
+                            }
+                        }
     }
     
     

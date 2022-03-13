@@ -72,40 +72,8 @@ class ViewController: UIViewController {
         getIfAnyReservation()
         
         
-        //Paypal
-        braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
         
-        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-        if let btClient = braintreeClient {
-            let payPalDriver = BTPayPalDriver(apiClient: btClient)
-            
-            let request = BTPayPalCheckoutRequest(amount: total)
-            request.currencyCode = "USD"
-            
-            payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
-                if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-                    print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-                    
-                    
-                    let email = tokenizedPayPalAccount.email
-                    let firstName = tokenizedPayPalAccount.firstName
-                    let lastName = tokenizedPayPalAccount.lastName
-                    let phone = tokenizedPayPalAccount.phone
-                    
-                    let billingAddress = tokenizedPayPalAccount.billingAddress
-                    let shippingAddress = tokenizedPayPalAccount.shippingAddress
-                    
-                    success(email ?? "")
-                } else if let error = error {
-                    
-                    print(error.localizedDescription)
-                    failure(error)
-                } else {
-                    
-                    
-                }
-            }
-        }
+        
         
     }
     @objc func searchRecord(sender : UITextField){
