@@ -15,14 +15,11 @@ import SwiftUI
 import FirebaseAuth
 import grpc
 import SDWebImage
-import Braintree
 
 class ViewController: UIViewController {
     
     
-    //for paypal
-    var braintreeClient: BTAPIClient!
-    
+
     @IBOutlet weak var searchText: UITextField!
     
     
@@ -70,8 +67,6 @@ class ViewController: UIViewController {
         
         setUI()
         getIfAnyReservation()
-        
-        
         
         
         
@@ -495,16 +490,4 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
     
 }
 
-// payPal
-extension ViewController: BTViewControllerPresentingDelegate{
-    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
-        present(viewController, animated: true, completion: nil)
-    }
-    
-    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-    }
-    
-    
-}
 
