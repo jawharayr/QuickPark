@@ -19,11 +19,9 @@ import SDWebImage
 class ViewController: UIViewController {
     
     
-
     @IBOutlet weak var searchText: UITextField!
     
     
-    //
     var parkings = [Area]()
     var searchedArea = [Area]()
     var searchedLogos = [Area]()
