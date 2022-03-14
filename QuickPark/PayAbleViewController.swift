@@ -69,6 +69,7 @@ class PayAbleViewController: UIViewController {
                                 
                             } else if let error = error {
                                 // Handle error here...
+                                print(error)
                             } else {
                                 // Buyer canceled payment approval
                             }
