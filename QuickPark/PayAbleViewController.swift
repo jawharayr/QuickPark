@@ -34,6 +34,8 @@ class PayAbleViewController: UIViewController {
         mainView.layer.cornerRadius = 20
         
         
+        //Paypal
+       braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
         
     }
     
@@ -45,11 +47,10 @@ class PayAbleViewController: UIViewController {
             vc.reservation = self.reservation
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true, completion: nil) */
-            
-            //Paypal
-           braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
+        
+        
             let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-            if let btClient = braintreeClient {
+        // payPalDriver.BTViewControllerPresentingDelegatev = self //causes an error!
                 let request = BTPayPalCheckoutRequest(amount: total)
                         request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
 
@@ -73,7 +74,6 @@ class PayAbleViewController: UIViewController {
                             } else {
                                 // Buyer canceled payment approval
                             }
-                        }
     }
     
     
