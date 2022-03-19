@@ -7,6 +7,8 @@
 
 import UIKit
 
+let K_parkingEndNotifiactionBefore : TimeInterval = 1830//600
+
 class EnterParkingVC: UIViewController {
     @IBOutlet weak var imgQR : UIImageView!
     @IBOutlet weak var lblCountDown : UILabel!
@@ -89,26 +91,33 @@ class EnterParkingVC: UIViewController {
             }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "CountdownParkingVC") as! CountdownParkingVC
             vc.endTimer = self.endTimer
+            vc.reservation = self.reservation
             self.present(vc, animated: true, completion: nil)
         }
     }
- 
     
-    @IBAction func btnSkip(_ sender:Any){
-        
+    @IBAction func btnSkip(_ sender:Any) {
         UserDefaults.standard.set(true, forKey: "start")
-        
         NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
         
+        //cancelin starting 15 min notification
         cancelParkingReservatinNotification()
+
+        //Adding notification to trigger before 10 min of parking end.
+        let notificationTime = reservation.EndTime - K_parkingEndNotifiactionBefore
+        let t = Date(timeIntervalSince1970: notificationTime).timeIntervalSinceNow
+        print("reservation.EndTime", reservation.EndTime,    "notificationTime",notificationTime, "t", t)
+        QPLNSupport.add(reservation.id,
+                        after: t,
+                        title: "Alert",
+                        detail: "Your parking will end in \(K_parkingEndNotifiactionBefore/60) minutes.",
+                        userInfo: reservation.dictionary)
+        
     }
     
-    
     @IBAction func btnExist(_ sender:Any){
-        
         UserDefaults.standard.set(false, forKey: "start")
-        
         NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
@@ -118,7 +127,6 @@ class EnterParkingVC: UIViewController {
     }
     
     // MARK: - Timer
-    
     private func startTimer() {
         self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
