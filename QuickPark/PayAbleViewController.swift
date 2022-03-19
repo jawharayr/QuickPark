@@ -44,7 +44,7 @@ class PayAbleViewController: UIViewController {
         }
         
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-        // payPalDriver.viewControllerPresentingDelegatev = self //causes an error!
+        // payPalDriver.viewControllerPresentingDelegate = self //causes an error!
         let request = BTPayPalCheckoutRequest(amount: total)
         request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
 
