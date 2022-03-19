@@ -300,7 +300,8 @@ class MyParkingsVC: UIViewController {
         QPAlert(self).showAlert(title:"End Parking.", message: "Are you sure?" , buttons:  ["Yes","cancel"]) { _, index in
             if index == 0 {
                 self.calculateTime()
-        }
+                QPLNSupport.remove(self.reservation.id)
+            }
         }
     }
     
@@ -314,25 +315,25 @@ class MyParkingsVC: UIViewController {
         
     }
     func generateQRCode(using string:String) -> UIImage? {
-            
-            let data = string.data(using: String.Encoding.ascii)
-            
-            if let filter = CIFilter(name: "CIQRCodeGenerator"){
-                filter.setValue( data, forKey: "inputMessage")
-                let transform = CGAffineTransform(scaleX: 3, y: 3)
-                if let output = filter.outputImage?.transformed(by: transform){
-                    return UIImage(ciImage: output)
-                }
+        
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator"){
+            filter.setValue( data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+            if let output = filter.outputImage?.transformed(by: transform){
+                return UIImage(ciImage: output)
             }
-            return nil
-            
         }
-//        UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "Are you sure?", title: "End Parking?", buttons: ["YES","cancel"]) { index in
-//            if index == 0{
-//                self.calculateTime()
-//            }
-//        }
-
+        return nil
+        
+    }
+    //        UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "Are you sure?", title: "End Parking?", buttons: ["YES","cancel"]) { index in
+    //            if index == 0{
+    //                self.calculateTime()
+    //            }
+    //        }
+    
     
     func calculateTime(){
         
@@ -450,20 +451,20 @@ class MyParkingsVC: UIViewController {
     //        }
     //    }
     
-  /*  func generateQRCode(using string:String) -> UIImage? {
-        
-        let data = string.data(using: String.Encoding.ascii)
-        
-        if let filter = CIFilter(name: "CIQRCodeGenerator"){
-            filter.setValue( data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-            if let output = filter.outputImage?.transformed(by: transform){
-                return UIImage(ciImage: output)
-            }
-        }
-        return nil
-        
-    } */
+    /*  func generateQRCode(using string:String) -> UIImage? {
+     
+     let data = string.data(using: String.Encoding.ascii)
+     
+     if let filter = CIFilter(name: "CIQRCodeGenerator"){
+     filter.setValue( data, forKey: "inputMessage")
+     let transform = CGAffineTransform(scaleX: 3, y: 3)
+     if let output = filter.outputImage?.transformed(by: transform){
+     return UIImage(ciImage: output)
+     }
+     }
+     return nil
+     
+     } */
     
     
     
@@ -529,33 +530,33 @@ class MyParkingsVC: UIViewController {
     
     
     /*   private func getReservations() {
-    //        ref.child("Reservations").child("UserID").observe(DataEventType.value, with: { [self] snapshots in
-    //            print(snapshots.childrenCount)
-    //
-    //            reservations.removeAll()
-    //            pastReservations.removeAll()
-    //            for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
-    //                let dictionary = snapshot.value as? NSDictionary
-    //                let reservation = Reservation(id:dictionary?["id"] as? String ?? "missing Id",Name: dictionary?["Name"] as? String ?? "", Date: dictionary?["Date"] as? String ?? "" , StartTime: dictionary?["StartTime"] as? String ?? "", EndTime: dictionary?["EndTime"] as? String ?? "", Price: dictionary?["Price"] as? String ?? "", ExtraCharge: dictionary?["ExtraCharge"] as? String ?? "", isActive: dictionary?["isActive"] as? Bool ?? false)
-    //                if (reservation.isActive) {
-    //                    reservations.append(reservation)
-    //                }else{
-    //                    pastReservations.append(reservation)
-    //                }
-    //
-    //            }
-    //
-    //            if (reservations.isEmpty) {
-    //                EmptyLabel.isHidden = false
-    //                EndParking.isHidden = true
-    //                Active.isHidden = true
-    //                ActiveView.collectionView?.isHidden = true
-    //            }
-    //
-    //            Active.reloadData()
-    //            Past.reloadData()
-    //        })
-    //    } */
+     //        ref.child("Reservations").child("UserID").observe(DataEventType.value, with: { [self] snapshots in
+     //            print(snapshots.childrenCount)
+     //
+     //            reservations.removeAll()
+     //            pastReservations.removeAll()
+     //            for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
+     //                let dictionary = snapshot.value as? NSDictionary
+     //                let reservation = Reservation(id:dictionary?["id"] as? String ?? "missing Id",Name: dictionary?["Name"] as? String ?? "", Date: dictionary?["Date"] as? String ?? "" , StartTime: dictionary?["StartTime"] as? String ?? "", EndTime: dictionary?["EndTime"] as? String ?? "", Price: dictionary?["Price"] as? String ?? "", ExtraCharge: dictionary?["ExtraCharge"] as? String ?? "", isActive: dictionary?["isActive"] as? Bool ?? false)
+     //                if (reservation.isActive) {
+     //                    reservations.append(reservation)
+     //                }else{
+     //                    pastReservations.append(reservation)
+     //                }
+     //
+     //            }
+     //
+     //            if (reservations.isEmpty) {
+     //                EmptyLabel.isHidden = false
+     //                EndParking.isHidden = true
+     //                Active.isHidden = true
+     //                ActiveView.collectionView?.isHidden = true
+     //            }
+     //
+     //            Active.reloadData()
+     //            Past.reloadData()
+     //        })
+     //    } */
     
     @objc func methodOfReceivedNotification(notification: Notification) {
         
@@ -584,8 +585,8 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "PastTableViewCell") as! PastTableViewCell
         let object = pastReservations[indexPath.row]
         cell.logo.image = UIImage(named: "King Saud University")
-
-
+        
+        
         cell.Name.text = object.Name
         cell.Date.text = object.Date
         cell.ExtraCharges.text = object.ExtraCharge

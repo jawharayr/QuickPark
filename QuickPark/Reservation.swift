@@ -22,9 +22,6 @@ struct Reservation {
     var userName:String
     var isCompleted:Bool
     
-    
-    
-    
     init(dict:[String:Any]) {
         self.id = dict["id"] as? String ?? ""
         self.Name = dict["Name"] as? String ?? ""
@@ -39,5 +36,17 @@ struct Reservation {
         self.userName = dict["userName"] as? String ?? ""
     }
     
-    
+    var dictionary : [String:Any] {
+        return ["id":id,
+         "Name":Name,
+         "Date":Date,
+         "StartTime":StartTime,
+         "EndTime":EndTime,
+         "Price":Price,
+         "ExtraCharge":ExtraCharge,
+         "isActive":isActive,
+         "area":area,
+         "userName":userName,
+         "isCompleted":isCompleted]
+    }
 }

@@ -54,10 +54,10 @@ class QPLNSupport {
     }
     
     static func add(_ identifier:String,
-                                after:TimeInterval,
-                                title:String,
-                                detail:String,
-                                userInfo:[String:Any]) {
+                    after:TimeInterval,
+                    title:String,
+                    detail:String,
+                    userInfo:[String:Any]) {
         let c = UNMutableNotificationContent()
         c.title = title
         c.body = detail

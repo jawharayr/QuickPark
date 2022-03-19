@@ -77,7 +77,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         PriceView.layer.shadowOpacity = 0.1
         PriceView.layer.shadowOffset = .zero
         PriceView.layer.shadowRadius = 10
-      
+        
         DoneButton.layer.cornerRadius = 20
         
         //time picker
@@ -90,30 +90,30 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         let FirstViewController = ViewController()
         present(FirstViewController, animated: true, completion: nil)
         
-      /*  if let image = generateQRCode(using: "test"){
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
-              vc.image = image
-            navigationController?.pushViewController(vc, animated: true)
-    
-        }*/
-
+        /*  if let image = generateQRCode(using: "test"){
+         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
+         vc.image = image
+         navigationController?.pushViewController(vc, animated: true)
+         
+         }*/
+        
     }
     
-   /*
-    func generateQRCode(using string:String) -> UIImage? {
-        
-        let data = string.data(using: String.Encoding.ascii)
-        
-        if let filter = CIFilter(name: "CIQRCodeGenerator"){
-            filter.setValue( data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-            if let output = filter.outputImage?.transformed(by: transform){
-                return UIImage(ciImage: output)
-            }
-        }
-        return nil
-        
-    }*/
+    /*
+     func generateQRCode(using string:String) -> UIImage? {
+     
+     let data = string.data(using: String.Encoding.ascii)
+     
+     if let filter = CIFilter(name: "CIQRCodeGenerator"){
+     filter.setValue( data, forKey: "inputMessage")
+     let transform = CGAffineTransform(scaleX: 3, y: 3)
+     if let output = filter.outputImage?.transformed(by: transform){
+     return UIImage(ciImage: output)
+     }
+     }
+     return nil
+     
+     }*/
     
     func createTimePicker() {
         
@@ -135,7 +135,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         // assign time picker to the txt field
         StartTimeTxt.inputView = StartTimePicker
         EndTimeTxt.inputView = EndTimePicker
-    
+        
         
         let calendar = Calendar.current
         //First range
@@ -203,22 +203,28 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         DueationLabel.text = ": \(hourAndMinutes.hour!)" + " hour " + "\(hourAndMinutes.minute!)" + " min"
     }
     
- 
     
-    @IBAction func btnContirmClicked(_ sender: Any) {
+    
+    @IBAction func btnConfirmParkingAndPayClicked(_ sender: Any) {
         if startTimer.isEmpty || endTimer.isEmpty {
             QPAlert(self).showError(message: "Select start and End Time to continue.")
-            //UtilitiesManager.sharedIntance.showAlert(view: self, title: "Oops", message: "Select start and End Time to continue.")
         }else{
             let df = DateFormatter()
             df.dateFormat = "d MMM yyyy"
             let dateStr = df.string(from: Date())
             
-            
             let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: StartTimePicker.date, to: EndTimePicker.date)
             print("C&P: hourAndMinutes", hourAndMinutes)
             let reservationId = UtilitiesManager.sharedIntance.getRandomString()
-            let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false] as [String : Any]
+            let paramas = ["id":reservationId,
+                           "Date":dateStr,
+                           "EndTime":EndTimePicker.date.timeIntervalSince1970,
+                           "ExtraCharge":"0",
+                           "Name":"user_name",
+                           "Price":TotalPrice.text ?? 0,
+                           "StartTime":StartTimePicker.date.timeIntervalSince1970,
+                           "area":areaName,
+                           "isCompleted":false] as [String : Any]
             
             QPLNSupport.add(reservationId,
                             after: K_ReservationTimer,
@@ -228,7 +234,14 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
             vc.endTimer = self.endTimer
-            vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName])
+            vc.reservation = Reservation.init(dict: ["id":reservationId,
+                                                     "Date":dateStr,
+                                                     "EndTime":EndTimePicker.date.timeIntervalSince1970,
+                                                     "ExtraCharge":"0",
+                                                     "Name":"user_name",
+                                                     "Price":TotalPrice.text ?? 0,
+                                                     "StartTime":StartTimePicker.date.timeIntervalSince1970,
+                                                     "area":areaName])
             self.present(vc, animated: true, completion: {
                 RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
                 if self.parking.areaname == "King Saud University"{
@@ -240,8 +253,6 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
                 }
             })
         }
-        
-        
     }
     
     
