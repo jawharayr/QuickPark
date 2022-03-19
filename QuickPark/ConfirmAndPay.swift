@@ -14,20 +14,15 @@ let K_ReservationTimer : TimeInterval = 900 //Time interval
 class ConfirmAndPay: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var DueationLabel: UILabel!
-
-   
     @IBOutlet weak var PriceView: UIView!
     @IBOutlet weak var StartTimeTxt: UITextField!
     @IBOutlet weak var EndTimeTxt: UITextField!
     @IBOutlet weak var StartWithView: UIView!
     @IBOutlet weak var TotalPrice: UILabel!
-    
     @IBOutlet weak var DoneButton: UIButton!
     @IBOutlet weak var EndWithView: UIView!
     @IBOutlet weak var AreaView: UIView!
-    
     @IBOutlet weak var AreaLabel: UILabel!
-    
     @IBOutlet weak var DurationView: UIView!
     
     

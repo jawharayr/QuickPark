@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     let storageRef = Storage.storage().reference()
     var ref:DatabaseReference!
     
- 
+    
     @IBOutlet weak var SearchTxt: UIView!
     @IBOutlet weak var ParkingView: UIView!
     @IBOutlet weak var lblCountDown: UILabel!
@@ -93,14 +93,14 @@ class ViewController: UIViewController {
             searching = false
         }
         ParkingsViews.reloadData()
-        }
+    }
     
     
     
     func setUI(){
         ParkingsViews?.delegate = self
         ParkingsViews?.dataSource = self
-      
+        
         //making table view look good
         ParkingsViews?.separatorStyle = .none
         ParkingsViews?.showsVerticalScrollIndicator = false
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
         //        self.totalTime = UtilitiesManager.sharedIntance.retriveTimer()
         //        self.viewLoader.isHidden = false
         //        startTimer()
-    
+        
         
         
     }
@@ -156,7 +156,7 @@ class ViewController: UIViewController {
         }else if checkIfTimeOver(end: reservation.EndTime) {
             playOverTimer()
         }else {
-//            setCustomExecution(date: Date.init(timeIntervalSince1970: TimeInterval.init(reservation.StartTime)))
+            //            setCustomExecution(date: Date.init(timeIntervalSince1970: TimeInterval.init(reservation.StartTime)))
             viewLoader.isHidden = false
             lblCountDown.text = "Wait to start"
         }
@@ -168,17 +168,17 @@ class ViewController: UIViewController {
     func checkIfTimeOver(end:Double)->Bool{
         let isValidTime = UtilitiesManager.sharedIntance.checkIfTimeIsValid(endTime: Date.init(timeIntervalSince1970: end))
         if isValidTime{
-           return false
+            return false
         }else{
             // remove data from firebase
-           return true
+            return true
         }
     }
     
     
     @objc func methodOfReceivedNotification(notification: Notification) {
         
-       
+        
         viewLoader.isHidden = true
         getIfAnyReservation()
         
@@ -211,54 +211,39 @@ class ViewController: UIViewController {
             guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
             self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
             UserDefaults.standard.removeObject(forKey: "parkingArea")
-//
+            //
         }
-        
-        
     }
-    
-    
     
     func playOverTimer(){
         let start = TimeInterval.init(reservation.StartTime)
         let end = TimeInterval.init(reservation.EndTime)
         
-            stopTimer()
+        stopTimer()
         UserDefaults.standard.set(true, forKey: "isOverTime")
-        
         self.totalTime = Int(UtilitiesManager.sharedIntance.getTimerValue(start: Date.init(timeIntervalSince1970: end), endtime: Date()))
-        
-            self.viewLoader.isHidden = false
-            startTimer()
-        
-        
+        self.viewLoader.isHidden = false
+        startTimer()
     }
     
     
     
     
-//    func setCustomExecution(date:Date){
-//        let timer = Timer(fireAt: date, interval: 0, target: self, selector: #selector(runCode), userInfo: nil, repeats: false)
-//        RunLoop.main.add(timer, forMode: .common)
-//
-//    }
+    //    func setCustomExecution(date:Date){
+    //        let timer = Timer(fireAt: date, interval: 0, target: self, selector: #selector(runCode), userInfo: nil, repeats: false)
+    //        RunLoop.main.add(timer, forMode: .common)
+    //
+    //    }
     
-//    @objc func runCode(){
-//        NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
-//    }
+    //    @objc func runCode(){
+    //        NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+    //    }
     
     
     func getStartTime15(){
-        
-        
         let start = TimeInterval.init(reservation.StartTime)
-        
         let enddate = Date.init(timeIntervalSince1970: start).addingMinutes(minutes: 15)
-        
-        
         let end = enddate.timeIntervalSince1970
-        
-        
         let isValidTime = UtilitiesManager.sharedIntance.checkIfTimeIsValid(endTime: Date.init(timeIntervalSince1970: end))
         if isValidTime{
             self.totalTime = Int(UtilitiesManager.sharedIntance.getTimerValue(start: Date(), endtime: Date.init(timeIntervalSince1970: end)))
@@ -272,12 +257,9 @@ class ViewController: UIViewController {
             QPAlert(self).showError(message: "You are late, reservation was cancelled by server.")
             RESERVATIONS.child(uid).removeValue()
         }
-        
-        
     }
     
     // MARK: - Timer
-    
     private func startTimer() {
         self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
@@ -287,11 +269,11 @@ class ViewController: UIViewController {
         self.lblCountDown.text = self.timeFormatted(self.totalTime) // will show timer
         if totalTime > 0 {
             if UserDefaults.standard.bool(forKey: "isOverTime"){
-                 totalTime += 1
+                totalTime += 1
             }else{
                 totalTime -= 1
             }
-              // decrease counter timer
+            // decrease counter timer
         } else {
             
             if !UserDefaults.standard.bool(forKey: "start"){
@@ -310,9 +292,9 @@ class ViewController: UIViewController {
         let hour = totalSeconds / 3600
         let minute = totalSeconds / 60 % 60
         let second = totalSeconds % 60
-
-               // return formated string
-               return String(format: "%02i:%02i:%02i", hour, minute, second)
+        
+        // return formated string
+        return String(format: "%02i:%02i:%02i", hour, minute, second)
     }
     
     func stopTimer(){
@@ -369,7 +351,7 @@ class ViewController: UIViewController {
         }
         
         //NotificationCenter.default.post(name: Notification.Name("timr"), object: self.totalTime)
-       
+        
         
     }
     
@@ -399,7 +381,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
             return searchedArea.count
             
         } else{
-        
+            
             return parkings.count }
     }
     // هذي الميثود حقت الشاشه الصغيره اللي تطلع بعد مانضغط
@@ -462,9 +444,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
         let dist = parking.distance/1000
         let x = Double(String(format: "%.2f", dist )) ?? 0
         cell.Km.text = "\(x) km"
-        
-        
-
         if searching {
             let searchedAreaS = searchedArea[indexPath.row]
             cell.Label.text = searchedAreaS.areaname
@@ -473,13 +452,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
             cell.Label.text = parking.areaname
             cell.Logos.sd_setImage(with: URL(string: parking.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
         }
-    
+        
         (parking.areaname == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
-        
-       
         return cell
-        
     }
+    
     func addShadow(backgroundColor: UIColor = .white, cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 5, shadowOpacity: Float = 0.1, shadowPathInset: (dx: CGFloat, dy: CGFloat), shadowPathOffset: (dx: CGFloat, dy: CGFloat)) {
         
     }
