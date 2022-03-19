@@ -60,7 +60,6 @@
 		308C5F1AD399A833DEB5A971 /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3737C60B2847E9A665E397D9 /* Pods_QuickPark_QuickParkUITests.framework */; };
 		8AF1139216390073BF4DE7A8 /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C839002DB8DAD150EC1595DA /* Pods_QuickPark.framework */; };
 		95288E2727DEC3E70044FF78 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
-		9571767527D8EC2C005710EF /* BraintreePayPal in Frameworks */ = {isa = PBXBuildFile; productRef = 9571767427D8EC2C005710EF /* BraintreePayPal */; };
 		CB765ECB39E8A6581B030CC2 /* Pods_QuickPark_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F39A33127FFA8614BC37CA69 /* Pods_QuickPark_QuickParkTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -151,7 +150,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9571767527D8EC2C005710EF /* BraintreePayPal in Frameworks */,
 				8AF1139216390073BF4DE7A8 /* Pods_QuickPark.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,7 +340,6 @@
 			);
 			name = QuickPark;
 			packageProductDependencies = (
-				9571767427D8EC2C005710EF /* BraintreePayPal */,
 			);
 			productName = QuickPark;
 			productReference = 04DD469727A4621200342200 /* QuickPark.app */;
@@ -421,7 +418,6 @@
 			);
 			mainGroup = 04DD468E27A4621200342200;
 			packageReferences = (
-				9571767327D8EC2C005710EF /* XCRemoteSwiftPackageReference "braintree_ios" */,
 			);
 			productRefGroup = 04DD469827A4621200342200 /* Products */;
 			projectDirPath = "";
@@ -1000,25 +996,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		9571767327D8EC2C005710EF /* XCRemoteSwiftPackageReference "braintree_ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/braintree/braintree_ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		9571767427D8EC2C005710EF /* BraintreePayPal */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9571767327D8EC2C005710EF /* XCRemoteSwiftPackageReference "braintree_ios" */;
-			productName = BraintreePayPal;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 04DD468F27A4621200342200 /* Project object */;
 }

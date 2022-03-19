@@ -25,28 +25,27 @@ target 'QuickPark' do
   pod 'IQKeyboardManagerSwift'
   
   #PayPal Pods
-  
   pod 'Braintree'
   
   target 'QuickParkTests' do
-#    inherit! :search_paths
-#    pod 'Firebase/Core'
-#    pod 'Firebase/Database'
-#    pod 'Firebase/Crashlytics'
+    #    inherit! :search_paths
+    #    pod 'Firebase/Core'
+    #    pod 'Firebase/Database'
+    #    pod 'Firebase/Crashlytics'
   end
   
   target 'QuickParkUITests' do
-#    pod 'Firebase/Core'
-#    pod 'Firebase/Database'
-#    pod 'Firebase/Crashlytics'
+    #    pod 'Firebase/Core'
+    #    pod 'Firebase/Database'
+    #    pod 'Firebase/Crashlytics'
   end
   
   
   
-#  project = Xcodeproj::Project.open "./QuickPark.xcodeproj"
-#  project.targets.each do |t|
-#  target t.name do
-#      common_pods
-#  end
+  #  project = Xcodeproj::Project.open "./QuickPark.xcodeproj"
+  #  project.targets.each do |t|
+  #  target t.name do
+  #      common_pods
+  #  end
   
 end
