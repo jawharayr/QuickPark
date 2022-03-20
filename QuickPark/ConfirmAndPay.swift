@@ -9,7 +9,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-let K_ReservationTimer : TimeInterval = 900 //Time interval
+let K_ReservationTimer : TimeInterval = 10 //Time interval (first not) should be 900
 
 class ConfirmAndPay: UIViewController, UITextFieldDelegate {
     

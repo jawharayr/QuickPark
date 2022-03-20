@@ -7,7 +7,7 @@
 
 import UIKit
 
-let K_parkingEndNotifiactionBefore : TimeInterval = 1830//600
+let K_parkingEndNotifiactionBefore : TimeInterval = 1830//600 sec not, should be 600
 
 class EnterParkingVC: UIViewController {
     @IBOutlet weak var imgQR : UIImageView!
@@ -111,7 +111,8 @@ class EnterParkingVC: UIViewController {
         QPLNSupport.add(reservation.id,
                         after: t,
                         title: "Alert",
-                        detail: "Your parking will end in \(K_parkingEndNotifiactionBefore/60) minutes.",
+//                        detail: "Your parking will end in \(K_parkingEndNotifiactionBefore/60) minutes.",
+                        detail: "Your parking will end in 10 minutes.",
                         userInfo: reservation.dictionary)
         
     }
