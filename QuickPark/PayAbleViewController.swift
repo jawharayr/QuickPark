@@ -44,7 +44,7 @@ class PayAbleViewController: UIViewController {
         }
         
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-        // payPalDriver.viewControllerPresentingDelegate = self //causes an error!
+      //   payPalDriver.viewControllerPresentingDelegate = self //causes an error!
         let request = BTPayPalCheckoutRequest(amount: total)
         request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
 
@@ -86,13 +86,12 @@ class PayAbleViewController: UIViewController {
 
 // PayPal
 
-extension ViewController: BTViewControllerPresentingDelegate{
+extension PayAbleViewController: BTViewControllerPresentingDelegate{
     func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
-        present(viewController, animated: true, completion: nil)
+        
     }
     
     func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
-        viewController.dismiss(animated: true, completion: nil)
+        
     }
-    
 }
