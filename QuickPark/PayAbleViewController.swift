@@ -44,10 +44,9 @@ class PayAbleViewController: UIViewController {
         }
         
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-      //   payPalDriver.viewControllerPresentingDelegate = self //causes an error!
         let request = BTPayPalCheckoutRequest(amount: total)
         request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
-
+        
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
             if let tokenizedPayPalAccount = tokenizedPayPalAccount {
                 print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
