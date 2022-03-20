@@ -35,13 +35,13 @@ class PayAbleViewController: UIViewController {
     }
     
     @IBAction func payTapped(){
-        if let image = generateQRCode(using: "test"){
+    /*    if let image = generateQRCode(using: "test"){
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
             vc.image = image
             vc.reservation = self.reservation
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true, completion: nil)
-        }
+        } */
         
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
         let request = BTPayPalCheckoutRequest(amount: total)
