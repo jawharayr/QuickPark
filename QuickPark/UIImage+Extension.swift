@@ -11,7 +11,7 @@ import UIKit
 extension UIImage{
     
     static func generateQRCode(using string:String) -> UIImage? {
-        
+        guard !string.isEmpty else{return nil}
         let data = string.data(using: String.Encoding.ascii)
         
         if let filter = CIFilter(name: "CIQRCodeGenerator"){

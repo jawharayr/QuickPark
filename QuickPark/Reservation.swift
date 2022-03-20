@@ -22,7 +22,7 @@ struct Reservation {
     var userName:String
     var isCompleted:Bool
     var qrcode:String
-    
+    var isScanned:Bool = false
     
     
     init(dict:[String:Any]) {
@@ -38,6 +38,7 @@ struct Reservation {
         self.isCompleted = dict["isCompleted"] as? Bool ?? false
         self.userName = dict["userName"] as? String ?? ""
         self.qrcode = dict["qrcode"] as? String ?? ""
+        self.isScanned = dict["isScanned"] as? Bool ?? false
     }
     
     

@@ -240,7 +240,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
             let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
             
             let reservationId = UtilitiesManager.sharedIntance.getRandomString()
-            let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false,"qrcode": unique] as [String : Any]
+            let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false,"qrcode": unique,"isScanned":false] as [String : Any]
             
             
             print("My unique QR code: ",unique)
@@ -254,6 +254,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
                 
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
                 vc.image = image
+                vc.qrcode = unique
                 vc.endTimer = self.endTimer
                 vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"qrcode": unique])
                 self.present(vc, animated: true, completion: {

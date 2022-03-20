@@ -10,6 +10,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
+
 class UserProfileViewController: UIViewController {
 
     
@@ -21,26 +22,43 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet weak var labelEmailAlert: UILabel!
     @IBOutlet weak var labelFieldsAlert: UILabel!
+    @IBOutlet weak var LabelNameAlert: UILabel!
+    
     var ref = Database.database().reference().child("users")
     
     var id = ""
     var email = ""
+    private var name = ""
     let yourAttributes: [NSAttributedString.Key: Any] = [
           .underlineStyle: NSUnderlineStyle.single.rawValue
       ] // .double.rawValue, .thick.rawValue
              
  
+    
+    @IBAction func cancelAction(_ sender: Any) {
+        if !(txtUserName.text != name || txtEmail.text != email){return}
+        let alert = UIAlertController(title: "Cancel", message: "Are you sure you want to cancel changes?", preferredStyle: .alert)
+        alert.addAction(.init(title: "Discard Changes", style: .destructive, handler: { _ in
+            self.txtUserName.text = self.name
+            self.txtEmail.text = self.email
+        }))
+        alert.addAction(.init(title: "Close", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        
+        txtUserName.delegate = self
         labelEmailAlert.isHidden = true
         labelFieldsAlert.isHidden = true
+        LabelNameAlert.isHidden = true
         userLoggedIn()
         
         getName { (name) in
                     if let name = name {
+                        self.name = name
                         self.txtUserName.text = name
                         print("success in getting name")
                     }
@@ -48,7 +66,7 @@ class UserProfileViewController: UIViewController {
         self.txtEmail.text = email
 
         self.navigationController?.navigationBar.isHidden = true
-        
+        self.setupViews()
          let deleteAttributeString = NSMutableAttributedString(
             string: "Delete Account",
             attributes: yourAttributes
@@ -63,6 +81,25 @@ class UserProfileViewController: UIViewController {
 
     }
     
+    @IBAction func changePasswordAction(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    func setupViews() {
+        self.txtUserName?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        self.txtEmail?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+         }
+
+    @objc func textFieldDidChange(textField: UITextField){
+        if textField == txtUserName {
+            _ = self.isValidName(txtUserName.text ?? " ")
+        }
+        if textField == txtEmail {
+            _ = self.EmailValidation(txtEmail.text ?? " ")
+        }
+
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -160,18 +197,53 @@ class UserProfileViewController: UIViewController {
     //Will get called on confirm password textfield eye button clicked
     
     
-    
-    
-    
-    
-    
-    
-    
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+    func EmailValidation(_ email: String) -> Bool {
+        labelEmailAlert.isHidden = true
+        let Uemail = txtEmail.text ?? ""
+        if Uemail.isEmpty {
+            labelEmailAlert.isHidden = false
+            labelEmailAlert.attributedText = NSAttributedString(string: "Please Enter your email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
+        }
+        if !Uemail.isValidEmail && !Uemail.isEmpty {
+            labelEmailAlert.isHidden = false
+            labelEmailAlert.attributedText = NSAttributedString(string: "Please Enter valid email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
+        }
+        if Uemail.isValidEmail && !Uemail.isEmpty {
+            labelEmailAlert.isHidden = true
+        }
+      //  return true }
+     let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
+    }
+    
+    func isValidName(_ text: String) -> Bool {
+//        let name = nameField.text ?? ""//?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
+        let name = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if name.isEmpty {
+            LabelNameAlert.isHidden = false
+            LabelNameAlert.attributedText = NSAttributedString(string: "Please enter your name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
+            
+        }
+        if !name.isAlphanumeric || name.count < 3 {
+            LabelNameAlert.isHidden = false
+            LabelNameAlert.attributedText = NSAttributedString(string: "Name should have alphabets and min 3 letters characters", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
+            
+        }
+        if !name.isAlphanumeric || name.count > 32 {
+            LabelNameAlert.isHidden = false
+            LabelNameAlert.attributedText = NSAttributedString(string: "Name should have alphabets and max 32 letters characters", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
+            
+        }
+        LabelNameAlert.isHidden = true
+       // labelFieldsAlert.isHidden = true
+        return true
     }
     
     
@@ -184,55 +256,91 @@ class UserProfileViewController: UIViewController {
         if nameString == "" || emailString == ""  {
             return "false"
         }
-        
         return "true"
     }
     
  
+    private func authUser(completion: @escaping (_ error:String?)->()){
+        let alert = UIAlertController(title: "Password", message: "Please enter your password to confirm new changes.", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "Enter your password"
+            textField.isSecureTextEntry = true
+        }
+        alert.addAction(.init(title: "Save", style: .default, handler: { _ in
+            guard let email = Auth.auth().currentUser?.email,let password = alert.textFields?.first?.text else{return}
+            Auth.auth().signIn(withEmail: email, password: password) { authRes, error in
+                if let error = error{
+                    completion(error.localizedDescription)
+                }else if authRes != nil{
+                    completion(nil)
+                }else{
+                    completion("Unexpected error")
+                }
+            }
+        }))
+        alert.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    private func alertUser(title:String?, body: String?){
+        let alert = UIAlertController(title: title, message: body, preferredStyle: .alert)
+        alert.addAction(.init(title: "Close", style: .cancel, handler: nil))
+        self.present(alert,animated: true)
+    }
     
     @IBAction func saveProfileBtn(_ sender: UIButton) {
-        
+        if !(txtUserName.text != name || txtEmail.text != email){return}
         let str = self.validateFields()
-        
+        labelEmailAlert.isHidden = true
         if str == "true"
         {
             let newEmail = txtEmail.text ?? ""
-            if (self.isValidEmail(newEmail) ) {
-                
-                let database = Firestore.firestore()
-                let userdata = ["email": newEmail, "name": txtUserName.text ?? ""]
-                print (userdata)
-                
-                if let currentEmail = Auth.auth().currentUser?.email{
-                    database.collection("users").document(currentEmail).delete()
-                }
-                database.collection("users").document(newEmail).setData(userdata){(error) in
-                    if let error = error{
-                        print("Error occured while writing new user data. Error= ",error.localizedDescription)
-                    }else{
-                        print("Did update user data successfully.")
-                    }
-                }
-                Auth.auth().currentUser?.updateEmail(to: newEmail, completion: { error in
-                    if let error = error{
-                        print("Error occured while updated Auth.auth().currentUser email. Error= ",error.localizedDescription)
-                    }else{
-                        print("User email updated successfully to: ",newEmail)
-                    }
-                })
-                
-            }else{
-                labelEmailAlert.isHidden = false
-                labelEmailAlert.text = "Please check your email"
-              
-               /* let alert = UIAlertController(title: "Ooopps", message: "Email validation failed", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            let newName = txtUserName.text ?? ""
+            if (self.isValidName(newName) ){
+                if (self.EmailValidation(newEmail) ){
                     
-                }))
-                self.present(alert, animated: true, completion: nil) */
+                    authUser { error in
+                        if let error = error{
+                            self.alertUser(title: "Error", body: error)
+                        }else{
+                            let database = Firestore.firestore()
+                            let userdata = ["email": newEmail, "name": self.txtUserName.text ?? ""]
+                            print (userdata)
+                            
+                            if let currentEmail = Auth.auth().currentUser?.email{
+                                database.collection("users").document(currentEmail).delete()
+                            }
+                            database.collection("users").document(newEmail).setData(userdata){(error) in
+                                if let error = error{
+                                    print("Error occured while writing new user data. Error= ",error.localizedDescription)
+                                }else{
+                                    print("Did update user data successfully.")
+                                }
+                            }
+                            Auth.auth().currentUser?.updateEmail(to: newEmail, completion: { error in
+                                if let error = error{
+                                    self.alertUser(title: "Error", body: error.localizedDescription)
+                                }else{
+                                    self.alertUser(title: "Information updated", body: "Your Profile information has been updated successfully.")
+                                }
+                            })
+                        }
+                    }
+                    
+                }else{
+                //   EmailValidation(txtEmail.text ?? " ")
+                    labelEmailAlert.isHidden = false
+                    labelEmailAlert.text = "Please check your email"
+                  
+                   /* let alert = UIAlertController(title: "Ooopps", message: "Email validation failed", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                        
+                    }))
+                    self.present(alert, animated: true, completion: nil) */
+                }
             }
-            
-        }else{
+        }
+        if name.isEmpty && email.isEmpty {
             labelFieldsAlert.isHidden = false
             labelFieldsAlert.text = "Please fill out all the information"
             
@@ -282,3 +390,15 @@ class UserProfileViewController: UIViewController {
     
 }
 
+extension UserProfileViewController: UITextFieldDelegate{
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == txtUserName {
+            let cs = CharacterSet.init(charactersIn: K_acceptableNameCharactors).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            return (string == filtered)
+        }
+        return true
+    }
+    
+}

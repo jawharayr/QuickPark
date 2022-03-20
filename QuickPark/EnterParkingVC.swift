@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class EnterParkingVC: UIViewController {
     
@@ -22,17 +23,35 @@ class EnterParkingVC: UIViewController {
     var waitingTime:Int? = 0
     var reservation:Reservation!
     var image: UIImage?
+    var qrcode:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imgQR.image = image
-    
+        if let qrcode = qrcode{
+            track(qrcode: qrcode)
+        }
 
 
         // Do any additional setup after loading the view.
         colour = UIColor(red: 0, green: 144/255, blue: 205/255, alpha: 1)
         startActivityAnimating(padding: 2, isFromOnView: false, view: self.viewLoader,width: 100,height: 100)
         checkIfTimeIsValid()
+    }
+    
+    func track(qrcode code: String){
+        Database.database().reference().child("QRCode").child(code).observe(.value) { dataSnap in
+            if dataSnap.exists(){
+                guard let reserDict = dataSnap.value as? [String:Any] else{return}
+              //  print("Iterating on QRCode dictionary: ",reserDict)
+                if let isScanned = reserDict["isScanned"] as? Bool, isScanned{
+                    UserDefaults.standard.set(true, forKey: "start")
+                    NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                    self.dismiss(animated: false, completion: nil)
+                }
+            }
+        }
+//        Database.database().reference().child("QRCode").child(code).observeSingleEvent(of: .value, with: )
     }
     
     
@@ -62,8 +81,7 @@ class EnterParkingVC: UIViewController {
         NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
     }
     
-    
-    
+ 
     func getStartTime15(){
         let start = TimeInterval.init(reservation.StartTime)
         
@@ -100,11 +118,12 @@ class EnterParkingVC: UIViewController {
     }
  
     
+    
     @IBAction func btnSkip(_ sender:Any){
         
-        UserDefaults.standard.set(true, forKey: "start")
-        
-        NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+//        UserDefaults.standard.set(true, forKey: "start")
+//
+//        NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
     
