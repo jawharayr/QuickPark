@@ -257,6 +257,9 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
                 vc.qrcode = unique
                 vc.endTimer = self.endTimer
                 vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"qrcode": unique])
+                vc.qrcodeDidScan = { [weak self] in
+                    self?.dismiss(animated: false, completion: nil)
+                }
                 self.present(vc, animated: true, completion: {
                     RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
                     if self.parking.areaname == "King Saud University"{

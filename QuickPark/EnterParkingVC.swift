@@ -16,6 +16,7 @@ class EnterParkingVC: UIViewController {
     @IBOutlet weak var viewLoader: UIView!
     
     @IBOutlet weak var EntryQR: UIImageView!
+    var qrcodeDidScan:(()->())?
     
     var timer: Timer?
     var totalTime = 900
@@ -48,6 +49,7 @@ class EnterParkingVC: UIViewController {
                     UserDefaults.standard.set(true, forKey: "start")
                     NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
                     self.dismiss(animated: false, completion: nil)
+                    self.qrcodeDidScan?()
                 }
             }
         }
