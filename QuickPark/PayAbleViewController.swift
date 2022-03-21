@@ -33,6 +33,19 @@ class PayAbleViewController: UIViewController {
     }
     private let database = Database.database().reference()
 
+    func track(qrcode code: String){
+        Database.database().reference().child("QRCode").child(code).observe(.value) { dataSnap in
+            if dataSnap.exists(){
+                guard let reserDict = dataSnap.value as? [String:Any] else{return}
+              //  print("Iterating on QRCode dictionary: ",reserDict)
+                if let isScanned = reserDict["isScanned"] as? Bool, isScanned{
+                    self.dismiss(animated: false, completion: nil)
+                }
+            }
+        }
+//        Database.database().reference().child("QRCode").child(code).observeSingleEvent(of: .value, with: )
+    }
+    
     @IBAction func payTapped(){
        
         let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
@@ -48,6 +61,7 @@ class PayAbleViewController: UIViewController {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
             vc.image = image
             vc.reservation = self.reservation
+            vc.exitQRCode = unique
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true, completion: nil)
             

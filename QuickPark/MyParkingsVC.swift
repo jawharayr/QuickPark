@@ -313,6 +313,7 @@ class MyParkingsVC: UIViewController {
     }
 
     
+    
     @IBAction func Pay(_ sender: Any) {
         
         let x = String(Int.random(in: 1000...6000))
