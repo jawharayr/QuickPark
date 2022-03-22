@@ -18,10 +18,9 @@ import SDWebImage
 
 class ViewController: UIViewController {
     
-    
+
     @IBOutlet weak var searchText: UITextField!
-    
-    
+
     var parkings = [Area]()
     var searchedArea = [Area]()
     var searchedLogos = [Area]()
@@ -51,6 +50,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         searchText.addTarget(self, action: #selector(searchRecord), for: .editingChanged)
         ref = Database.database().reference()
+   //     imgQR.image = image
         
         if Auth.auth().currentUser?.uid == nil{
             if  UserDefaults.standard.string(forKey: "uid") == nil{
@@ -69,6 +69,10 @@ class ViewController: UIViewController {
         
         
     }
+    
+    
+    
+    
     @objc func searchRecord(sender : UITextField){
         self.searchedArea.removeAll()
         self.searchedLogos.removeAll()
@@ -127,7 +131,17 @@ class ViewController: UIViewController {
                 for (k,_) in reserDict{
                     let res = Reservation.init(dict: reserDict[k] as! [String : Any])
                     if !res.isCompleted{
-                        self.reservation = res
+                        
+//                        if res.isScanned{
+                            self.reservation = res
+//                        }else{
+                        if !res.isScanned, res.qrcode.count > 0 {
+                            print("Will track QRCode: ",res.qrcode)
+                            print("Reservation reference: ",dataSnap.ref,"\n url=",dataSnap.ref.url)
+                            self.track(qrcode: res.qrcode,ref: dataSnap.ref,resId: k)
+                        }
+//                        }
+                        
                         break
                     }else{
                         self.reservation = nil
@@ -143,8 +157,54 @@ class ViewController: UIViewController {
         })
     }
     
+    func track(qrcode code: String,ref: DatabaseReference,resId:String){
+        Database.database().reference().child("QRCode").child(code).observe(.value) { dataSnap in
+            if dataSnap.exists(){
+                let reserDict = dataSnap.value as! [String:Any]
+              //  print("Iterating on QRCode dictionary: ",reserDict)
+                if let isScanned = reserDict["isScanned"] as? Bool, isScanned{
+                 //   print("isScanned=true, we should update reservation data")
+                    ref.child(resId).updateChildValues(["isScanned":true])
+                    
+         //         self.reservation.isScanned = true
+                    ref.child(resId).observeSingleEvent(of: .value) { resSnap in
+                        let dict = resSnap.value as? [String:Any] ?? [:]
+                        print("Reservation after update: ",dict)
+                        let res = Reservation.init(dict: dict)
+                        self.reservation = res
+//                        self.checkIfTimeIsValid()
+                        UserDefaults.standard.set(true, forKey: "start")
+                        NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+//                        self.checkIfTimeIsValid()
+                    }
+                    
+//                    if let dict = ref.value(forKeyPath: resId) as? [String:Any]{
+//
+//                    }
+//                    RESERVATIONS.child(self.uid).observeSingleEvent(of: .value, with: { dataSnap in
+//                        if dataSnap.exists(){
+//                            let reserDict = dataSnap.value as! [String:Any]
+//                            for (k,_) in reserDict{
+//                                let res = Reservation.init(dict: reserDict[k] as! [String : Any])
+//                                if res.qrcode == code{
+//                                    print("Should update isSCanned in: ",dataSnap)
+//                                    dataSnap.setValue(true, forKeyPath: "isScanned")
+//                                    break
+//                                }
+//                                self.reservation = res
+//                                self.checkIfTimeIsValid()
+//                            }
+//                        }
+//                    })
+                }
+            }
+        }
+//        Database.database().reference().child("QRCode").child(code).observeSingleEvent(of: .value, with: )
+    }
+    
     func checkIfTimeIsValid(){
         viewLoader.isHidden = true
+        
         if UtilitiesManager.sharedIntance.checkIfTimeIsValidToStart(start: Date.init(timeIntervalSince1970: TimeInterval.init(reservation.StartTime)), end: Date.init(timeIntervalSince1970: TimeInterval.init(reservation.EndTime))){
             if UserDefaults.standard.bool(forKey: "start"){
                 self.getStartTime()
@@ -325,8 +385,8 @@ class ViewController: UIViewController {
                 let location = CLLocation(latitude: Double(area.locationLat) ?? 0,
                                           longitude: Double(area.locationLong) ?? 0)
                 if let currentLocation = currentLocation{
-                    let distance = currentLocation.distance(from: location)/1000
-                    let distanceString = Double(String(format: "%.2f", distance)) ?? 0
+                    let distance = currentLocation.distance(from: location)//1000
+                    let distanceString = Double(String(format: "%.4f", distance)) ?? 0
                     let newDistance = Double(distanceString) ?? 0
                     area.distance = newDistance
                 }
@@ -337,13 +397,16 @@ class ViewController: UIViewController {
             ParkingsViews.reloadData()
         })
     }
-    
+    var image: UIImage?
     @IBAction func btnGoToTimer(_ sender:Any){
         stopTimer()
         if UserDefaults.standard.bool(forKey: "start"){
             self.tabBarController?.selectedIndex = 1
         }else{
+            guard let qrcodeImage = UIImage.generateQRCode(using: reservation.qrcode) else{return}
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
+            vc.image = qrcodeImage
+            vc.qrcode = reservation.qrcode
             vc.reservation = self.reservation
             self.present(vc, animated: true, completion: nil)
         }
@@ -407,6 +470,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay") as! ConfirmAndPay
                         viewController.parking = self.parkings[indexPath.row]
+                        viewController.areaName = areaname
                         if #available(iOS 15.0, *) {
                             if let presentationController = viewController.presentationController as? UISheetPresentationController {
                                 presentationController.detents = [.medium()]
@@ -439,9 +503,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
         let parking = parkings[indexPath.row]
-        let dist = parking.distance/1000
-        let x = Double(String(format: "%.2f", dist )) ?? 0
-        cell.Km.text = "\(x) km"
+
+//        let dist = parking.distance/1000
+        let dist = parking.distance
+        if dist < 1000{
+            let x = Double(String(Int(dist))) ?? 0
+            cell.Km.text = "\(x) m"
+        }else{
+            let x = Double(String(format: "%.2f", dist/1000 )) ?? 0
+            cell.Km.text = "\(x) km"
+        }
+        
+
+
         if searching {
             let searchedAreaS = searchedArea[indexPath.row]
             cell.Label.text = searchedAreaS.areaname

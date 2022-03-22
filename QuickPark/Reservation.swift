@@ -21,6 +21,9 @@ struct Reservation {
     var area:String
     var userName:String
     var isCompleted:Bool
+    var qrcode:String
+    var isScanned:Bool = false
+    
     
     init(dict:[String:Any]) {
         self.id = dict["id"] as? String ?? ""
@@ -34,19 +37,9 @@ struct Reservation {
         self.area = dict["area"] as? String ?? ""
         self.isCompleted = dict["isCompleted"] as? Bool ?? false
         self.userName = dict["userName"] as? String ?? ""
+        self.qrcode = dict["qrcode"] as? String ?? ""
+        self.isScanned = dict["isScanned"] as? Bool ?? false
     }
     
-    var dictionary : [String:Any] {
-        return ["id":id,
-         "Name":Name,
-         "Date":Date,
-         "StartTime":StartTime,
-         "EndTime":EndTime,
-         "Price":Price,
-         "ExtraCharge":ExtraCharge,
-         "isActive":isActive,
-         "area":area,
-         "userName":userName,
-         "isCompleted":isCompleted]
-    }
+    
 }

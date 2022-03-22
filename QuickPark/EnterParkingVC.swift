@@ -6,33 +6,55 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
-let K_parkingEndNotifiactionBefore : TimeInterval = 1830//600 sec not, should be 600
+let K_parkingEndNotifiactionBefore : TimeInterval = 600 //1830//600 sec not, should be 600
 
 class EnterParkingVC: UIViewController {
     @IBOutlet weak var imgQR : UIImageView!
     @IBOutlet weak var lblCountDown : UILabel!
     @IBOutlet weak var viewLoader: UIView!
+    var reservation : Reservation!
     
     @IBOutlet weak var EntryQR: UIImageView!
+    var qrcodeDidScan:(()->())?
     
     var timer: Timer?
     var totalTime = 900
     var endTimer = ""
     var waitingTime:Int? = 0
-    var reservation:Reservation!
+    
     var image: UIImage?
+    var qrcode:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   imgQR.image = image
-    
+        imgQR.image = image
+        if let qrcode = qrcode{
+            track(qrcode: qrcode)
+        }
 
 
         // Do any additional setup after loading the view.
         colour = UIColor(red: 0, green: 144/255, blue: 205/255, alpha: 1)
         startActivityAnimating(padding: 2, isFromOnView: false, view: self.viewLoader,width: 100,height: 100)
         checkIfTimeIsValid()
+    }
+    
+    func track(qrcode code: String){
+        Database.database().reference().child("QRCode").child(code).observe(.value) { dataSnap in
+            if dataSnap.exists(){
+                guard let reserDict = dataSnap.value as? [String:Any] else{return}
+              //  print("Iterating on QRCode dictionary: ",reserDict)
+                if let isScanned = reserDict["isScanned"] as? Bool, isScanned{
+                    UserDefaults.standard.set(true, forKey: "start")
+                    NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                    self.dismiss(animated: false, completion: nil)
+                    self.qrcodeDidScan?()
+                }
+            }
+        }
+//        Database.database().reference().child("QRCode").child(code).observeSingleEvent(of: .value, with: )
     }
     
     
@@ -62,8 +84,7 @@ class EnterParkingVC: UIViewController {
         NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
     }
     
-    
-    
+ 
     func getStartTime15(){
         let start = TimeInterval.init(reservation.StartTime)
         let enddate = Date.init(timeIntervalSince1970: start).addingMinutes(minutes: 15)
@@ -96,9 +117,11 @@ class EnterParkingVC: UIViewController {
         }
     }
     
+
     @IBAction func btnSkip(_ sender:Any) {
         UserDefaults.standard.set(true, forKey: "start")
         NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
         
         //cancelin starting 15 min notification
@@ -108,13 +131,14 @@ class EnterParkingVC: UIViewController {
         let notificationTime = reservation.EndTime - K_parkingEndNotifiactionBefore
         let t = Date(timeIntervalSince1970: notificationTime).timeIntervalSinceNow
         print("reservation.EndTime", reservation.EndTime,    "notificationTime",notificationTime, "t", t)
+        
+        
         QPLNSupport.add(reservation.id,
                         after: t,
                         title: "Alert",
-//                        detail: "Your parking will end in \(K_parkingEndNotifiactionBefore/60) minutes.",
-                        detail: "Your parking will end in 10 minutes.",
-                        userInfo: reservation.dictionary)
-        
+                        detail: "Your parking will end in \(K_parkingEndNotifiactionBefore/60) minutes.",
+//                        detail: "Your parking will end in 10 minutes.",
+                        userInfo:[:])
     }
     
     @IBAction func btnExist(_ sender:Any){

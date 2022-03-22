@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import Firebase
 
 let K_ReservationTimer : TimeInterval = 10 //Time interval (first not) should be 900
 
@@ -203,8 +204,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
         DueationLabel.text = ": \(hourAndMinutes.hour!)" + " hour " + "\(hourAndMinutes.minute!)" + " min"
     }
     
-    
-    
+    private let database = Database.database().reference()
     @IBAction func btnConfirmParkingAndPayClicked(_ sender: Any) {
         if startTimer.isEmpty || endTimer.isEmpty {
             QPAlert(self).showError(message: "Select start and End Time to continue.")
@@ -213,7 +213,9 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
             df.dateFormat = "d MMM yyyy"
             let dateStr = df.string(from: Date())
             
+            let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
             let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: StartTimePicker.date, to: EndTimePicker.date)
+
             print("C&P: hourAndMinutes", hourAndMinutes)
             let reservationId = UtilitiesManager.sharedIntance.getRandomString()
             let paramas = ["id":reservationId,
@@ -232,26 +234,38 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
                             detail: "because reservation time of 15 min was expired.",
                             userInfo: paramas)
             
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
-            vc.endTimer = self.endTimer
-            vc.reservation = Reservation.init(dict: ["id":reservationId,
-                                                     "Date":dateStr,
-                                                     "EndTime":EndTimePicker.date.timeIntervalSince1970,
-                                                     "ExtraCharge":"0",
-                                                     "Name":"user_name",
-                                                     "Price":TotalPrice.text ?? 0,
-                                                     "StartTime":StartTimePicker.date.timeIntervalSince1970,
-                                                     "area":areaName])
-            self.present(vc, animated: true, completion: {
-                RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
-                if self.parking.areaname == "King Saud University"{
-                    self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
-                    UserDefaults.standard.set("Area_23", forKey: "parkingArea")
-                }else{
-                    self.ref.child("Areas").child("Area_88").child("isAvailable").setValue(false)
-                    UserDefaults.standard.set("Area_88", forKey: "parkingArea")
+            print("My unique QR code: ",unique)
+            if let image = UIImage.generateQRCode(using: unique){
+                
+                let object: [String : Any] = ["isScanned":false]
+                
+                database.child("QRCode").child(unique).setValue(object) { error, ref in
+                    print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription)
                 }
-            })
+                
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
+                vc.image = image
+                vc.qrcode = unique
+                vc.endTimer = self.endTimer
+                vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"qrcode": unique])
+                vc.qrcodeDidScan = { [weak self] in
+                    self?.dismiss(animated: false, completion: nil)
+
+                }
+                self.present(vc, animated: true, completion: {
+                    RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
+                    if self.parking.areaname == "King Saud University"{
+                        self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
+                        UserDefaults.standard.set("Area_23", forKey: "parkingArea")
+                    }else{
+                        self.ref.child("Areas").child("Area_88").child("isAvailable").setValue(false)
+                        UserDefaults.standard.set("Area_88", forKey: "parkingArea")
+                    }
+                })
+        
+            }
+            
+            
         }
     }
     
