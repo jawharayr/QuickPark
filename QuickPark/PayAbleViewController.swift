@@ -7,6 +7,7 @@
 
 import UIKit
 import Braintree
+import FirebaseDatabase
 
 class PayAbleViewController: UIViewController {
     @IBOutlet weak var lblPrice:UILabel!
@@ -18,6 +19,8 @@ class PayAbleViewController: UIViewController {
     var total = ""
     var extra = ""
     var reservation:Reservation!
+    
+    private let database = Database.database().reference()
     
     //for paypal
     var braintreeClient: BTAPIClient!
@@ -34,6 +37,24 @@ class PayAbleViewController: UIViewController {
         braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
     }
     
+    func openExitQRCodePage(){
+        let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
+        print("My unique QR code: ",unique)
+        if let image = generateQRCode(using: unique){
+            
+            let object: [String : Any] = ["isScanned":false]
+            database.child("QRCode").child(unique).setValue(object) { error, ref in
+                print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription)
+            }
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
+            vc.image = image
+            vc.reservation = self.reservation
+            vc.exitQRCode = unique
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func payTapped(){
     /*    if let image = generateQRCode(using: "test"){
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
@@ -43,10 +64,11 @@ class PayAbleViewController: UIViewController {
             self.present(vc, animated: true, completion: nil)
         } */
         
+        // openExitQRCodePage()
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
         let request = BTPayPalCheckoutRequest(amount: total)
         request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
-        
+
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
             if let tokenizedPayPalAccount = tokenizedPayPalAccount {
                 print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
@@ -55,7 +77,7 @@ class PayAbleViewController: UIViewController {
                 let firstName = tokenizedPayPalAccount.firstName
                 let lastName = tokenizedPayPalAccount.lastName
                 let phone = tokenizedPayPalAccount.phone
-                
+
                 // See BTPostalAddress.h for details
                 let billingAddress = tokenizedPayPalAccount.billingAddress
                 let shippingAddress = tokenizedPayPalAccount.shippingAddress

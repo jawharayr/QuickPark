@@ -22,6 +22,7 @@ class QRCodeVC: UIViewController {
     var timer: Timer?
     var totalTime = 600
     var image:UIImage?
+    var exitQRCode:String!
     var reservation:Reservation!
     
     
@@ -44,7 +45,7 @@ class QRCodeVC: UIViewController {
             uid = Auth.auth().currentUser!.uid
         }
         
-        
+        track(qrcode: exitQRCode)
        // imageView.image = image
         // Do any additional setup after loading the view.
         startTimer()
@@ -98,6 +99,17 @@ class QRCodeVC: UIViewController {
         finishParking()
     }
     
+    func track(qrcode code: String){
+        Database.database().reference().child("QRCode").child(code).observe(.value) { dataSnap in
+            if dataSnap.exists(){
+                guard let reserDict = dataSnap.value as? [String:Any] else{return}
+                if let isScanned = reserDict["isScanned"] as? Bool, isScanned{
+                    RESERVATIONS.child(self.uid).child(self.reservation.id).updateChildValues(["isExitScanned":true])
+                    self.finishParking()
+                }
+            }
+        }
+    }
     
     func finishParking(){
         
