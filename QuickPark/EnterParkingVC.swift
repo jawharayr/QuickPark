@@ -8,12 +8,13 @@
 import UIKit
 import FirebaseDatabase
 
-let K_parkingEndNotifiactionBefore : TimeInterval = 1830//600 sec not, should be 600
+let K_parkingEndNotifiactionBefore : TimeInterval = 600 //1830//600 sec not, should be 600
 
 class EnterParkingVC: UIViewController {
     @IBOutlet weak var imgQR : UIImageView!
     @IBOutlet weak var lblCountDown : UILabel!
     @IBOutlet weak var viewLoader: UIView!
+    var reservation : Reservation!
     
     @IBOutlet weak var EntryQR: UIImageView!
     var qrcodeDidScan:(()->())?
@@ -22,7 +23,7 @@ class EnterParkingVC: UIViewController {
     var totalTime = 900
     var endTimer = ""
     var waitingTime:Int? = 0
-    var reservation:Reservation!
+    
     var image: UIImage?
     var qrcode:String?
     
@@ -130,13 +131,14 @@ class EnterParkingVC: UIViewController {
         let notificationTime = reservation.EndTime - K_parkingEndNotifiactionBefore
         let t = Date(timeIntervalSince1970: notificationTime).timeIntervalSinceNow
         print("reservation.EndTime", reservation.EndTime,    "notificationTime",notificationTime, "t", t)
+        
+        
         QPLNSupport.add(reservation.id,
                         after: t,
                         title: "Alert",
-//                        detail: "Your parking will end in \(K_parkingEndNotifiactionBefore/60) minutes.",
-                        detail: "Your parking will end in 10 minutes.",
-                        userInfo: reservation.dictionary)
-        
+                        detail: "Your parking will end in \(K_parkingEndNotifiactionBefore/60) minutes.",
+//                        detail: "Your parking will end in 10 minutes.",
+                        userInfo:[:])
     }
     
     @IBAction func btnExist(_ sender:Any){

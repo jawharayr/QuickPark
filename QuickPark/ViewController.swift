@@ -135,7 +135,7 @@ class ViewController: UIViewController {
 //                        if res.isScanned{
                             self.reservation = res
 //                        }else{
-                        if !res.isScanned{
+                        if !res.isScanned, res.qrcode.count > 0 {
                             print("Will track QRCode: ",res.qrcode)
                             print("Reservation reference: ",dataSnap.ref,"\n url=",dataSnap.ref.url)
                             self.track(qrcode: res.qrcode,ref: dataSnap.ref,resId: k)

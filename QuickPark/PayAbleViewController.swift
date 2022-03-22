@@ -39,7 +39,6 @@ class PayAbleViewController: UIViewController {
         braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
     }
     
-    private let database = Database.database().reference()
     
     func track(qrcode code: String){
         Database.database().reference().child("QRCode").child(code).observe(.value) { dataSnap in
@@ -75,52 +74,52 @@ class PayAbleViewController: UIViewController {
         }
     }
     
-    func openExitQRCodePage(){
-        let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
-        print("My unique QR code: ",unique)
-        if let image = generateQRCode(using: unique){
-            
-            let object: [String : Any] = ["isScanned":false]
-            database.child("QRCode").child(unique).setValue(object) { error, ref in
-                print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription)
-            }
-        }
-    }
+//    func openExitQRCodePage(){
+//        let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
+//        print("My unique QR code: ",unique)
+//        if let image = generateQRCode(using: unique){
+//
+//            let object: [String : Any] = ["isScanned":false]
+//            database.child("QRCode").child(unique).setValue(object) { error, ref in
+//                print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription)
+//            }
+//        }
+//    }
     
-    @IBAction func payTapped(){
-        /*    if let image = generateQRCode(using: "test"){
-         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
-         vc.image = image
-         vc.reservation = self.reservation
-         vc.modalPresentationStyle = .overFullScreen
-         self.present(vc, animated: true, completion: nil)
-         } */
-        
-        // openExitQRCodePage()
-        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-        let request = BTPayPalCheckoutRequest(amount: total)
-        request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
-        
-        payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
-            if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-                print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-                // Access additional information
-                let email = tokenizedPayPalAccount.email
-                let firstName = tokenizedPayPalAccount.firstName
-                let lastName = tokenizedPayPalAccount.lastName
-                let phone = tokenizedPayPalAccount.phone
-                
-                // See BTPostalAddress.h for details
-                let billingAddress = tokenizedPayPalAccount.billingAddress
-                let shippingAddress = tokenizedPayPalAccount.shippingAddress
-            } else if let error = error {
-                // Handle error here...
-                print(error)
-            } else {
-                // Buyer canceled payment approval
-            }
-        }
-    }
+//    @IBAction func payTapped(){
+//        /*    if let image = generateQRCode(using: "test"){
+//         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
+//         vc.image = image
+//         vc.reservation = self.reservation
+//         vc.modalPresentationStyle = .overFullScreen
+//         self.present(vc, animated: true, completion: nil)
+//         } */
+//
+//        // openExitQRCodePage()
+//        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+//        let request = BTPayPalCheckoutRequest(amount: total)
+//        request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
+//
+//        payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
+//            if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+//                print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+//                // Access additional information
+//                let email = tokenizedPayPalAccount.email
+//                let firstName = tokenizedPayPalAccount.firstName
+//                let lastName = tokenizedPayPalAccount.lastName
+//                let phone = tokenizedPayPalAccount.phone
+//
+//                // See BTPostalAddress.h for details
+//                let billingAddress = tokenizedPayPalAccount.billingAddress
+//                let shippingAddress = tokenizedPayPalAccount.shippingAddress
+//            } else if let error = error {
+//                // Handle error here...
+//                print(error)
+//            } else {
+//                // Buyer canceled payment approval
+//            }
+//        }
+//    }
     
     
     //    =======

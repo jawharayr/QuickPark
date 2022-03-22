@@ -53,6 +53,8 @@
 		2272433B27C8CD6B00A35AF3 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433927C8CD6B00A35AF3 /* Utilities.swift */; };
 		2272433C27C8CD6B00A35AF3 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272433A27C8CD6B00A35AF3 /* Loader.swift */; };
 		22825ADC27CA0625002F49A0 /* QPAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22825ADB27CA0625002F49A0 /* QPAlert.swift */; };
+		2291945C27E9FCEF00E78016 /* QPLNSuport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291945B27E9FCEF00E78016 /* QPLNSuport.swift */; };
+		2291945E27E9FE0300E78016 /* HideViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291945D27E9FE0300E78016 /* HideViews.swift */; };
 		22A0757127A925DC00658889 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757027A925DC00658889 /* RegViewController.swift */; };
 		22A0757327A9260500658889 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757227A9260500658889 /* LogViewController.swift */; };
 		22A0757527A9261E00658889 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757427A9261E00658889 /* HomePageViewController.swift */; };
@@ -131,6 +133,8 @@
 		2272433927C8CD6B00A35AF3 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = AllLoader/Utilities.swift; sourceTree = "<group>"; };
 		2272433A27C8CD6B00A35AF3 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Loader.swift; path = AllLoader/Loader.swift; sourceTree = "<group>"; };
 		22825ADB27CA0625002F49A0 /* QPAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QPAlert.swift; sourceTree = "<group>"; };
+		2291945B27E9FCEF00E78016 /* QPLNSuport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QPLNSuport.swift; sourceTree = "<group>"; };
+		2291945D27E9FE0300E78016 /* HideViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideViews.swift; sourceTree = "<group>"; };
 		22A0757027A925DC00658889 /* RegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewController.swift; sourceTree = "<group>"; };
 		22A0757227A9260500658889 /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		22A0757427A9261E00658889 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
+				2291945D27E9FE0300E78016 /* HideViews.swift */,
 				22035FA327BB726000D1A3B5 /* Resources */,
 				2272433A27C8CD6B00A35AF3 /* Loader.swift */,
 				2272433927C8CD6B00A35AF3 /* Utilities.swift */,
@@ -292,6 +297,7 @@
 		22035FA427BB728300D1A3B5 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				2291945B27E9FCEF00E78016 /* QPLNSuport.swift */,
 				22035FA127BB724600D1A3B5 /* FBSupport.swift */,
 				22035FA827BB75B500D1A3B5 /* SBSupport.swift */,
 				22035FAA27BBCF2300D1A3B5 /* Profile.swift */,
@@ -621,6 +627,7 @@
 				226C1D0427BE682400D11E24 /* VCMore.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 				226C1D1427BE85A800D11E24 /* PastTableViewCell.swift in Sources */,
+				2291945C27E9FCEF00E78016 /* QPLNSuport.swift in Sources */,
 				2272433C27C8CD6B00A35AF3 /* Loader.swift in Sources */,
 				95CED68527DD04D800223275 /* UIImage+Extension.swift in Sources */,
 				2272433427C8CD3900A35AF3 /* CountdownParkingVC.swift in Sources */,
@@ -634,6 +641,7 @@
 				225AB85827C7A806003D4253 /* UserDefaults+Extension.swift in Sources */,
 				22035FAB27BBCF2300D1A3B5 /* Profile.swift in Sources */,
 				2272433727C8CD3900A35AF3 /* Constants.swift in Sources */,
+				2291945E27E9FE0300E78016 /* HideViews.swift in Sources */,
 				22825ADC27CA0625002F49A0 /* QPAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

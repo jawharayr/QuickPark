@@ -215,7 +215,7 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
             
             let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
             let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: StartTimePicker.date, to: EndTimePicker.date)
-            
+
             print("C&P: hourAndMinutes", hourAndMinutes)
             let reservationId = UtilitiesManager.sharedIntance.getRandomString()
             let paramas = ["id":reservationId,
@@ -243,65 +243,41 @@ class ConfirmAndPay: UIViewController, UITextFieldDelegate {
                     print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription)
                 }
                 
-                //                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
-                //                vc.image = image
-                //                vc.qrcode = unique
-                //                vc.endTimer = self.endTimer
-                //                vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"qrcode": unique])
-                //                vc.qrcodeDidScan = { [weak self] in
-                //                    self?.dismiss(animated: false, completion: nil)
-                //=======
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
                 vc.image = image
                 vc.qrcode = unique
                 vc.endTimer = self.endTimer
-                
-                vc.reservation = Reservation.init(dict: ["id":reservationId,
-                                                         "Date":dateStr,
-                                                         "EndTime":EndTimePicker.date.timeIntervalSince1970,
-                                                         "ExtraCharge":"0",
-                                                         "Name":"user_name",
-                                                         "Price":TotalPrice.text ?? 0,
-                                                         "StartTime":StartTimePicker.date.timeIntervalSince1970,
-                                                         "area":areaName])
+                vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"qrcode": unique])
                 vc.qrcodeDidScan = { [weak self] in
                     self?.dismiss(animated: false, completion: nil)
-                    self.present(vc, animated: true, completion: {
-                        RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
-                        if self.parking.areaname == "King Saud University"{
-                            self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
-                            UserDefaults.standard.set("Area_23", forKey: "parkingArea")
-                        }else{
-                            self.ref.child("Areas").child("Area_88").child("isAvailable").setValue(false)
-                            UserDefaults.standard.set("Area_88", forKey: "parkingArea")
-                            //>>>>>>> main
-                        }
-                        self.present(vc, animated: true, completion: {
-                            RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
-                            if self.parking.areaname == "King Saud University"{
-                                self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
-                                UserDefaults.standard.set("Area_23", forKey: "parkingArea")
-                            }else{
-                                self.ref.child("Areas").child("Area_88").child("isAvailable").setValue(false)
-                                UserDefaults.standard.set("Area_88", forKey: "parkingArea")
-                            }
-                        })
-                        
+
+                }
+                self.present(vc, animated: true, completion: {
+                    RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
+                    if self.parking.areaname == "King Saud University"{
+                        self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
+                        UserDefaults.standard.set("Area_23", forKey: "parkingArea")
+                    }else{
+                        self.ref.child("Areas").child("Area_88").child("isAvailable").setValue(false)
+                        UserDefaults.standard.set("Area_88", forKey: "parkingArea")
                     }
-                    
-                    
-                    }
-                    }
-                    
-                    
-                    /*
-                     // MARK: - Navigation
-                     
-                     // In a storyboard-based application, you will often want to do a little preparation before navigation
-                     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                     // Get the new view controller using segue.destination.
-                     // Pass the selected object to the new view controller.
-                     }
-                     */
-                    
-                    }
+                })
+        
+            }
+            
+            
+        }
+    }
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+}
