@@ -9,7 +9,7 @@ import UIKit
 import NVActivityIndicatorView
 
 class CountdownParkingVC: UIViewController, UITabBarControllerDelegate {
-    
+    var reservation : Reservation!
     @IBOutlet weak var viewLoader:UIView!
     @IBOutlet weak var viewExtraLoader:UIView!
     
@@ -92,9 +92,9 @@ class CountdownParkingVC: UIViewController, UITabBarControllerDelegate {
     @IBAction func btnEndParking(_ sender:Any){
         stopTimer()
         calculateAmount()
-        
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
         self.present(vc, animated: true, completion: nil)
+        QPLNSupport.remove(self.reservation.id)
     }
     
     @IBAction func btnExist(_ sender:Any){
@@ -102,8 +102,5 @@ class CountdownParkingVC: UIViewController, UITabBarControllerDelegate {
         NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
-    
-    
-    
     
 }

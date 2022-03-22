@@ -50,7 +50,7 @@ class ReservationCell: UICollectionViewCell {
     
     
     @objc func updateTimer() {
-        print(self.totalTime)
+        print("ReservationCell: ", self.totalTime)
         self.lblCountDown.text = UtilitiesManager.sharedIntance.timeFormatted(self.totalTime) // will show timer
         if totalTime != 0 {
             totalTime -= 1
@@ -131,6 +131,7 @@ class ReservationCell: UICollectionViewCell {
         QPAlert(mainVC).showAlert(title:"End Parking.", message: "Are you sure?" , buttons:  ["Yes","cancel"]) { _, index in
             if index == 0{
                 self.calculateTime()
+                QPLNSupport.remove(self.reservation.id)
             }
         }
         
@@ -140,10 +141,6 @@ class ReservationCell: UICollectionViewCell {
 //            }
 //        }
     }
-    
-    
-    
-    
     
     func calculateTime(){
         
