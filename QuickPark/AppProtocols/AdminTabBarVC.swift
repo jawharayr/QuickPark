@@ -11,6 +11,10 @@ class AdminTabBarVC: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        QPLNSupport.requestAuthorizarion(vc: self) { success, message in
+            print(success, message)
+        }
+        
         self.delegate = self
         
 //        let appearance = UITabBarAppearance()

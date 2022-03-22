@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Braintree
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -78,5 +79,14 @@ extension SceneDelegate {
     func setRootViewController(_ vc:UIViewController) {
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        URLContexts.forEach { context in
+            if context.url.scheme?.localizedCaseInsensitiveCompare("com.your-company.your-app.payments") == .orderedSame {
+                //BTAppSwitch.handleOpenURLContext(context)
+                BTAppContextSwitcher.handleOpenURL(context.url)
+            }
+        }
     }
 }

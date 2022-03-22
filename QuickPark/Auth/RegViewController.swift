@@ -37,7 +37,7 @@ class RegViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         nameField.layer.masksToBounds = false
         nameField.delegate = self
         nameField.layer.shadowRadius = 4.0
@@ -92,16 +92,16 @@ class RegViewController: UIViewController {
     
     @objc func textFieldDidChange(textField: UITextField){
         if textField == nameField {
-           _ = self.validateNameField()
+            _ = self.validateNameField()
         }
         if textField == emailField {
             _ = self.emailValidation()
         }
         if textField == passOfRegField {
-           _ =  self.passwordValidation()
+            _ =  self.passwordValidation()
         }
         if textField == confirmPas {
-           _ = self.confirmPasswordValidation()
+            _ = self.confirmPasswordValidation()
         }
     }
     
@@ -112,10 +112,6 @@ class RegViewController: UIViewController {
         emailLabel.isHidden = true
         
         var isValid = true
-//        let email = emailField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-//        let password = passOfRegField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-//        let password2 = confirmPas?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        
         if self.validateNameField() == false  {
             nameField.shake()
             isValid = false
@@ -128,21 +124,16 @@ class RegViewController: UIViewController {
             passOfRegField.shake()
             isValid = false
         }
-        
         if self.confirmPasswordValidation() == false {
             confirmPas.shake()
             isValid = false
         }
-        
-        
-
-
-        
         return isValid
     }
     
     @IBAction func regPressed(_ sender: Any) {
         if validate() == false {return}
+        
         let emailLower = emailField.text!.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         print (emailLower)
         let name = nameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -200,7 +191,7 @@ extension String {
         let passwordTest=NSPredicate(format: "SELF MATCHES %@", passRegEx);
         return passwordTest.evaluate(with: self)
     }
-
+    
     
 }
 extension UITextField {
@@ -274,7 +265,6 @@ extension RegViewController {
             return false
         }
         
-
         passwordLabel.isHidden = true
         return true
     }
@@ -295,27 +285,14 @@ extension RegViewController {
             return false
         }
         
-         if !password.isEmpty && (password == password2) {
-               confirmLabel.isHidden = true
-             return false
-         }
+        if !password.isEmpty && (password == password2) {
+            confirmLabel.isHidden = true
+            return false
+        }
         return true
     }
-
-//        if !password.isEmpty && !password2.isEmpty && (password == password2) {
-//            passwordLabel.isHidden = true
-//            confirmLabel.isHidden = true
-//        }
-//
-//
-////            if password == password2 && !password2.isEmpty && !password.isEmpty  {
-////                confirmLabel?.isHidden = true
-////            }
-//        return true
-
-            
-        
-  }
+    
+}
 
 
 extension RegViewController : UITextFieldDelegate {
