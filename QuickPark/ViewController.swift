@@ -17,13 +17,11 @@ import grpc
 import SDWebImage
 
 class ViewController: UIViewController {
-    //  let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
     
     
     @IBOutlet weak var searchText: UITextField!
     
     
-    //
     var parkings = [Area]()
     var searchedArea = [Area]()
     var searchedLogos = [Area]()
@@ -466,3 +464,5 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
     }
     
 }
+
+

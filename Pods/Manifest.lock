@@ -344,6 +344,17 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.7):
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
+  - Braintree (5.7.0):
+    - Braintree/Card (= 5.7.0)
+    - Braintree/Core (= 5.7.0)
+    - Braintree/PayPal (= 5.7.0)
+  - Braintree/Card (5.7.0):
+    - Braintree/Core
+  - Braintree/Core (5.7.0)
+  - Braintree/PayPal (5.7.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+  - Braintree/PayPalDataCollector (5.7.0)
   - CodableFirebase (0.2.1)
   - Firebase/Analytics (8.11.0):
     - Firebase/Core
@@ -518,6 +529,7 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - Braintree
   - CodableFirebase
   - Firebase/Analytics
   - Firebase/Auth
@@ -538,6 +550,7 @@ SPEC REPOS:
   trunk:
     - abseil
     - BoringSSL-GRPC
+    - Braintree
     - CodableFirebase
     - Firebase
     - FirebaseAnalytics
@@ -569,6 +582,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
+  Braintree: a07e057d41b78092c1bfa4ffe2c0d46bd1dea626
   CodableFirebase: 0bf201991eeec35eb9fcd987d271ea463cf34a80
   Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
   FirebaseAnalytics: 4e4b13031034e6561ed3bd1d47b6fdabbd6487c6
@@ -597,6 +611,6 @@ SPEC CHECKSUMS:
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: fba5284661606e7645afa7baae3b9756f1f1baf3
+PODFILE CHECKSUM: c9b4be21566b4cdac6c9af5710734b2fda2d13a2
 
 COCOAPODS: 1.11.2
