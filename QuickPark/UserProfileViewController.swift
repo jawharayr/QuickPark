@@ -321,7 +321,7 @@ class UserProfileViewController: UIViewController {
                                 if let error = error{
                                     self.alertUser(title: "Error", body: error.localizedDescription)
                                 }else{
-                                    self.alertUser(title: "Information updated", body: "Your Profile information has been updated successfully.")
+                                    self.alertUser(title: "Information updated", body: "Your account information has been updated successfully.")
                                 }
                             })
                         }
