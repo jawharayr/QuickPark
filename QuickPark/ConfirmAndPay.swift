@@ -139,6 +139,8 @@ class ConfirmAndPay: UIViewController {
        
     }
     
+    private let database = Database.database().reference()
+
     @IBAction func btnContirmClicked(_ sender: Any) {
         if startTimer.isEmpty || endTimer.isEmpty {
             QPAlert(self).showError(message: "Select start and End Time to continue.")
@@ -151,14 +153,31 @@ class ConfirmAndPay: UIViewController {
             
             let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: StartTimePicker.date, to: EndTimePicker.date)
             print(hourAndMinutes)
+            
+            let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
+            
             let reservationId = UtilitiesManager.sharedIntance.getRandomString()
             let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false] as [String : Any]
             
+            print("My unique QR code: ",unique)
+            if let image = UIImage.generateQRCode(using: unique){
+                
+                let object: [String : Any] = ["isScanned":false]
+                
+                database.child("QRCode").child(unique).setValue(object) { error, ref in
+                    print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription) }
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
+            vc.image = image
+            vc.qrcode = unique
             vc.endTimer = self.endTimer
             vc.reservation = Reservation.init(dict: ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName])
-            self.present(vc, animated: true, completion: {
+           
+                vc.qrcodeDidScan = { [weak self] in
+                    self?.dismiss(animated: false, completion: nil)
+                }
+                
+                self.present(vc, animated: true, completion: {
                 RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
                 if self.parking.areaname == "King Saud University"{
                     self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
@@ -186,7 +205,8 @@ class ConfirmAndPay: UIViewController {
      }
      */
     
-}
+    }}
+    
 extension Date {
     func add(years: Int = 0) -> Date? {
         let components = DateComponents(year: years, month: 0, day: 0, hour: 0, minute: 0, second: 0)

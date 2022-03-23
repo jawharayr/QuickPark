@@ -349,11 +349,12 @@ class ViewController: UIViewController {
                 let location = CLLocation(latitude: Double(area.locationLat) ?? 0,
                                           longitude: Double(area.locationLong) ?? 0)
                 if let currentLocation = currentLocation{
-                    let distance = currentLocation.distance(from: location)/1000
-                    let distanceString = Double(String(format: "%.2f", distance)) ?? 0
+                    let distance = currentLocation.distance(from: location)//1000
+                    let distanceString = Double(String(format: "%.4f", distance)) ?? 0
                     let newDistance = Double(distanceString) ?? 0
                     area.distance = newDistance
                 }
+                
                 
                 parkings.append(area)
             }
@@ -463,9 +464,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
         let parking = parkings[indexPath.row]
-        let dist = parking.distance/1000
-        let x = Double(String(format: "%.2f", dist )) ?? 0
-        cell.Km.text = "\(x) km"
+//        let dist = parking.distance/1000
+        let dist = parking.distance
+        if dist < 1000{
+            let x = Double(String(Int(dist))) ?? 0
+            cell.Km.text = "\(x) m"
+        }else{
+            let x = Double(String(format: "%.2f", dist/1000 )) ?? 0
+            cell.Km.text = "\(x) km"
+        }
+        
         
         
 
