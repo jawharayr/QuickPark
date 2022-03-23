@@ -52,15 +52,71 @@ class PayAbleViewController: UIViewController {
         }
         //        Database.database().reference().child("QRCode").child(code).observeSingleEvent(of: .value, with: )
     }
+//    
+//    @IBAction func payTapped(){
+//        
+//        let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
+//        print("My unique QR code: ",unique)
+//        if let image = UIImage.generateQRCode(using: unique){
+//            
+//            let object: [String : Any] = ["isScanned":false]
+//            
+//            database.child("QRCode").child(unique).setValue(object) { error, ref in
+//                print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription)
+//            }
+//            
+//            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
+//            vc.image = image
+//            vc.reservation = self.reservation
+//            vc.exitQRCode = unique
+//            vc.modalPresentationStyle = .overFullScreen
+//            self.present(vc, animated: true, completion: nil)
+//        }
+//    }
     
     @IBAction func payTapped(){
-        
+        /*    if let image = generateQRCode(using: "test"){
+         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
+         vc.image = image
+         vc.reservation = self.reservation
+         vc.modalPresentationStyle = .overFullScreen
+         self.present(vc, animated: true, completion: nil)
+         } */
+
+        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+        let request = BTPayPalCheckoutRequest(amount: total)
+        request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
+
+        payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
+            if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+                // Access additional information
+                let email = tokenizedPayPalAccount.email
+                let firstName = tokenizedPayPalAccount.firstName
+                let lastName = tokenizedPayPalAccount.lastName
+                let phone = tokenizedPayPalAccount.phone
+
+                // See BTPostalAddress.h for details
+                let billingAddress = tokenizedPayPalAccount.billingAddress
+                let shippingAddress = tokenizedPayPalAccount.shippingAddress
+                
+                self.openExitQRCodePage()
+            } else if let error = error {
+                // Handle error here...
+                print(error)
+            } else {
+                // Buyer canceled payment approval
+            }
+        }
+    }
+    
+    
+    func openExitQRCodePage(){
         let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
         print("My unique QR code: ",unique)
-        if let image = UIImage.generateQRCode(using: unique){
+        if let image = generateQRCode(using: unique){
             
             let object: [String : Any] = ["isScanned":false]
-            
             database.child("QRCode").child(unique).setValue(object) { error, ref in
                 print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription)
             }
@@ -73,83 +129,19 @@ class PayAbleViewController: UIViewController {
             self.present(vc, animated: true, completion: nil)
         }
     }
-    
-//    func openExitQRCodePage(){
-//        let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
-//        print("My unique QR code: ",unique)
-//        if let image = generateQRCode(using: unique){
-//
-//            let object: [String : Any] = ["isScanned":false]
-//            database.child("QRCode").child(unique).setValue(object) { error, ref in
-//                print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription)
-//            }
-//        }
-//    }
-    
-//    @IBAction func payTapped(){
-//        /*    if let image = generateQRCode(using: "test"){
-//         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
-//         vc.image = image
-//         vc.reservation = self.reservation
-//         vc.modalPresentationStyle = .overFullScreen
-//         self.present(vc, animated: true, completion: nil)
-//         } */
-//
-//        // openExitQRCodePage()
-//        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-//        let request = BTPayPalCheckoutRequest(amount: total)
-//        request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
-//
-//        payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
-//            if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-//                print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-//                // Access additional information
-//                let email = tokenizedPayPalAccount.email
-//                let firstName = tokenizedPayPalAccount.firstName
-//                let lastName = tokenizedPayPalAccount.lastName
-//                let phone = tokenizedPayPalAccount.phone
-//
-//                // See BTPostalAddress.h for details
-//                let billingAddress = tokenizedPayPalAccount.billingAddress
-//                let shippingAddress = tokenizedPayPalAccount.shippingAddress
-//            } else if let error = error {
-//                // Handle error here...
-//                print(error)
-//            } else {
-//                // Buyer canceled payment approval
-//            }
-//        }
-//    }
-    
-    
-    //    =======
-    //
-    //        func openExitQRCodePage(){
-    //            let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
-    //            print("My unique QR code: ",unique)
-    //            if let image = generateQRCode(using: unique){
-    //
-    //                let object: [String : Any] = ["isScanned":false]
-    //                database.child("QRCode").child(unique).setValue(object) { error, ref in
-    //                    print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription)
-    //                }
-    //    >>>>>>> main
-    //
-    //<<<<<<< HEAD
-    //    func generateQRCode(using string:String) -> UIImage? {
-    //
-    //        let data = string.data(using: String.Encoding.ascii)
-    //
-    //        if let filter = CIFilter(name: "CIQRCodeGenerator"){
-    //            filter.setValue( data, forKey: "inputMessage")
-    //            let transform = CGAffineTransform(scaleX: 3, y: 3)
-    //            if let output = filter.outputImage?.transformed(by: transform){
-    //                return UIImage(ciImage: output)
-    //            }
-    //        }
-    //        return nil
-    //
-    //    }
+            
+    func generateQRCode(using string:String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator"){
+            filter.setValue( data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+            if let output = filter.outputImage?.transformed(by: transform){
+                return UIImage(ciImage: output)
+            }
+        }
+        return nil
+    }
 }
 extension CIImage {
     var transparent: CIImage? {
@@ -188,19 +180,6 @@ extension CIImage {
         combinedFilter.setValue(image.transformed(by: centerTransform), forKey: "image")
         combinedFilter.setValue(self, forKey: "inputBackgroundImage")
         return combinedFilter.outputImage!
-        
-        func generateQRCode(using string:String) -> UIImage? {
-            let data = string.data(using: String.Encoding.ascii)
-            
-            if let filter = CIFilter(name: "CIQRCodeGenerator"){
-                filter.setValue( data, forKey: "inputMessage")
-                let transform = CGAffineTransform(scaleX: 3, y: 3)
-                if let output = filter.outputImage?.transformed(by: transform){
-                    return UIImage(ciImage: output)
-                }
-            }
-            return nil
-        }
     }
 }
 

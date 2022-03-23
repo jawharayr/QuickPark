@@ -14,7 +14,7 @@
             <objects>
                 <navigationController id="41E-A9-t18" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="car" catalog="system" selectedImage="car" id="ns4-PZ-7VQ">
-                        <color key="badgeColor" red="0.0039215686269999999" green="0.56078431370000004" blue="0.80784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="R5n-st-IAS">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
@@ -36,8 +36,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.0039215686269999999" green="0.56078431370000004" blue="0.80784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.0" green="0.56470588239999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.96078437569999997" green="0.96078437569999997" blue="0.96078437569999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="selectedImageTintColor" red="0.2470588088" green="0.55686277149999996" blue="0.78823530669999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
@@ -509,7 +509,8 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1ow-TP-hnk"/>
-                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="zcW-qg-uEi" firstAttribute="bottom" secondItem="1ow-TP-hnk" secondAttribute="bottom" constant="83" id="AHW-sY-gIA"/>
                             <constraint firstItem="zcW-qg-uEi" firstAttribute="leading" secondItem="1ow-TP-hnk" secondAttribute="leading" id="En3-tg-crT"/>
@@ -1018,13 +1019,16 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aze-xr-9GF"/>
+        <segue reference="JPb-9a-idl"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="-support-50-removebg-preview" width="50" height="50"/>
         <image name="car" catalog="system" width="128" height="93"/>
         <image name="logout-58" width="58" height="58"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
