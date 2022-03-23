@@ -17,6 +17,12 @@
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
+		1FE81F6527EB381D00F8D142 /* AdminEditAreaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6427EB381D00F8D142 /* AdminEditAreaVC.swift */; };
+		1FE81F6727EB38E800F8D142 /* AdminCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6627EB38E800F8D142 /* AdminCustomCell.swift */; };
+		1FE81F6927EB390D00F8D142 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6827EB390D00F8D142 /* DataManager.swift */; };
+		1FE81F6B27EB393800F8D142 /* BiggerMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6A27EB393800F8D142 /* BiggerMapView.swift */; };
+		1FE81F6D27EB395800F8D142 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6C27EB395800F8D142 /* LocationSearchTable.swift */; };
+		1FE81F6F27EB3AC600F8D142 /* HowToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6E27EB3AC600F8D142 /* HowToViewController.swift */; };
 		22035F9E27B6AD6800D1A3B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */; };
 		22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035F9F27B6B24E00D1A3B5 /* TVCResetPassword.swift */; };
 		22035FA227BB724600D1A3B5 /* FBSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035FA127BB724600D1A3B5 /* FBSupport.swift */; };
@@ -97,6 +103,12 @@
 		04DD46BB27A4621300342200 /* QuickParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITests.swift; sourceTree = "<group>"; };
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1FE81F6427EB381D00F8D142 /* AdminEditAreaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEditAreaVC.swift; sourceTree = "<group>"; };
+		1FE81F6627EB38E800F8D142 /* AdminCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCustomCell.swift; sourceTree = "<group>"; };
+		1FE81F6827EB390D00F8D142 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		1FE81F6A27EB393800F8D142 /* BiggerMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiggerMapView.swift; sourceTree = "<group>"; };
+		1FE81F6C27EB395800F8D142 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
+		1FE81F6E27EB3AC600F8D142 /* HowToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToViewController.swift; sourceTree = "<group>"; };
 		22035F9D27B6AD6700D1A3B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22035F9F27B6B24E00D1A3B5 /* TVCResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCResetPassword.swift; sourceTree = "<group>"; };
 		22035FA127BB724600D1A3B5 /* FBSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBSupport.swift; sourceTree = "<group>"; };
@@ -104,17 +116,17 @@
 		22035FA827BB75B500D1A3B5 /* SBSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBSupport.swift; sourceTree = "<group>"; };
 		22035FAA27BBCF2300D1A3B5 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		225AB84727C7A759003D4253 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
-		225AB84D27C7A7C1003D4253 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = Onboarding/OnboardingViewController.swift; sourceTree = "<group>"; };
-		225AB84E27C7A7C1003D4253 /* OnboardingSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingSlide.swift; path = Onboarding/OnboardingSlide.swift; sourceTree = "<group>"; };
-		225AB84F27C7A7C1003D4253 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingCollectionViewCell.swift; path = Onboarding/OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
-		225AB85327C7A805003D4253 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "Extensions/UIView+Extension.swift"; sourceTree = "<group>"; };
-		225AB85427C7A805003D4253 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extension.swift"; path = "Extensions/UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		225AB85527C7A806003D4253 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UserDefaults+Extension.swift"; path = "Extensions/UserDefaults+Extension.swift"; sourceTree = "<group>"; };
-		225AB85927C7B3FA003D4253 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = AppProtocols/CustomCell.swift; sourceTree = "<group>"; };
-		225AB85A27C7B3FA003D4253 /* AdminHomeListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminHomeListVC.swift; path = AppProtocols/AdminHomeListVC.swift; sourceTree = "<group>"; };
-		225AB85B27C7B3FA003D4253 /* AdminTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdminTabBarVC.swift; path = AppProtocols/AdminTabBarVC.swift; sourceTree = "<group>"; };
+		225AB84D27C7A7C1003D4253 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		225AB84E27C7A7C1003D4253 /* OnboardingSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
+		225AB84F27C7A7C1003D4253 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		225AB85327C7A805003D4253 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		225AB85427C7A805003D4253 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		225AB85527C7A806003D4253 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		225AB85927C7B3FA003D4253 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		225AB85A27C7B3FA003D4253 /* AdminHomeListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminHomeListVC.swift; sourceTree = "<group>"; };
+		225AB85B27C7B3FA003D4253 /* AdminTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminTabBarVC.swift; sourceTree = "<group>"; };
 		225AB85C27C7B3FA003D4253 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseManager.swift; path = AppProtocols/FirebaseManager.swift; sourceTree = "<group>"; };
-		225AB86127C7B41B003D4253 /* AddAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddAreaViewController.swift; path = Controller/AddAreaViewController.swift; sourceTree = "<group>"; };
+		225AB86127C7B41B003D4253 /* AddAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAreaViewController.swift; sourceTree = "<group>"; };
 		225AB86927C7B796003D4253 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = QuickPark/View/Base.lproj/AdminMain.storyboard; sourceTree = "<group>"; };
 		226C1D0327BE682400D11E24 /* VCMore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCMore.swift; sourceTree = "<group>"; };
 		226C1D0827BE85A800D11E24 /* ReservationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationCell.swift; sourceTree = "<group>"; };
@@ -223,6 +235,9 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
+				1FE81F7127EB41F100F8D142 /* General */,
+				1FE81F7027EB41BB00F8D142 /* Design Consisetncy */,
+				1FE81F6327EB379000F8D142 /* AdminSide */,
 				2291945D27E9FE0300E78016 /* HideViews.swift */,
 				22035FA327BB726000D1A3B5 /* Resources */,
 				2272433A27C8CD6B00A35AF3 /* Loader.swift */,
@@ -231,21 +246,9 @@
 				2272432E27C8CD3800A35AF3 /* CountdownParkingVC.swift */,
 				2272432D27C8CD3800A35AF3 /* EnterParkingVC.swift */,
 				2272432F27C8CD3800A35AF3 /* PayAbleViewController.swift */,
-				2272433027C8CD3800A35AF3 /* VCAdminMore.swift */,
 				226C1D0B27BE85A800D11E24 /* ConfirmAndPay.swift */,
-				225AB86127C7B41B003D4253 /* AddAreaViewController.swift */,
-				225AB85A27C7B3FA003D4253 /* AdminHomeListVC.swift */,
-				225AB85B27C7B3FA003D4253 /* AdminTabBarVC.swift */,
-				225AB85927C7B3FA003D4253 /* CustomCell.swift */,
 				225AB85C27C7B3FA003D4253 /* FirebaseManager.swift */,
-				225AB85327C7A805003D4253 /* UIView+Extension.swift */,
-				225AB85427C7A805003D4253 /* UIViewController+Extension.swift */,
-				225AB85527C7A806003D4253 /* UserDefaults+Extension.swift */,
-				225AB84F27C7A7C1003D4253 /* OnboardingCollectionViewCell.swift */,
-				225AB84E27C7A7C1003D4253 /* OnboardingSlide.swift */,
-				225AB84D27C7A7C1003D4253 /* OnboardingViewController.swift */,
 				225AB84727C7A759003D4253 /* UserProfileViewController.swift */,
-				226C1D1127BE85A800D11E24 /* Areas.swift */,
 				226C1D1027BE85A800D11E24 /* MyParkingsVC.swift */,
 				226C1D0927BE85A800D11E24 /* PastTableViewCell.swift */,
 				226C1D0F27BE85A800D11E24 /* QRCodeVC.swift */,
@@ -279,6 +282,46 @@
 			path = QuickParkUITests;
 			sourceTree = "<group>";
 		};
+		1FE81F6327EB379000F8D142 /* AdminSide */ = {
+			isa = PBXGroup;
+			children = (
+				225AB86827C7B796003D4253 /* AdminMain.storyboard */,
+				225AB85A27C7B3FA003D4253 /* AdminHomeListVC.swift */,
+				225AB85B27C7B3FA003D4253 /* AdminTabBarVC.swift */,
+				2272433027C8CD3800A35AF3 /* VCAdminMore.swift */,
+				225AB86127C7B41B003D4253 /* AddAreaViewController.swift */,
+				1FE81F6427EB381D00F8D142 /* AdminEditAreaVC.swift */,
+				1FE81F6627EB38E800F8D142 /* AdminCustomCell.swift */,
+				1FE81F6827EB390D00F8D142 /* DataManager.swift */,
+				1FE81F6A27EB393800F8D142 /* BiggerMapView.swift */,
+				1FE81F6C27EB395800F8D142 /* LocationSearchTable.swift */,
+			);
+			path = AdminSide;
+			sourceTree = "<group>";
+		};
+		1FE81F7027EB41BB00F8D142 /* Design Consisetncy */ = {
+			isa = PBXGroup;
+			children = (
+				225AB85927C7B3FA003D4253 /* CustomCell.swift */,
+				225AB85327C7A805003D4253 /* UIView+Extension.swift */,
+				225AB85427C7A805003D4253 /* UIViewController+Extension.swift */,
+				225AB85527C7A806003D4253 /* UserDefaults+Extension.swift */,
+			);
+			path = "Design Consisetncy";
+			sourceTree = "<group>";
+		};
+		1FE81F7127EB41F100F8D142 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				1FE81F6E27EB3AC600F8D142 /* HowToViewController.swift */,
+				225AB84F27C7A7C1003D4253 /* OnboardingCollectionViewCell.swift */,
+				225AB84E27C7A7C1003D4253 /* OnboardingSlide.swift */,
+				225AB84D27C7A7C1003D4253 /* OnboardingViewController.swift */,
+				226C1D1127BE85A800D11E24 /* Areas.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		22035FA327BB726000D1A3B5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,7 +331,6 @@
 				226C1D1D27BE85B700D11E24 /* Main.storyboard */,
 				04DD46A527A4621300342200 /* LaunchScreen.storyboard */,
 				22035FA627BB74AD00D1A3B5 /* Auth.storyboard */,
-				225AB86827C7B796003D4253 /* AdminMain.storyboard */,
 				22D7793B27C90E7B00BC4677 /* Misclenious.storyboard */,
 			);
 			name = Resources;
@@ -605,6 +647,8 @@
 				22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */,
 				225AB86227C7B41C003D4253 /* AddAreaViewController.swift in Sources */,
 				225AB85F27C7B3FA003D4253 /* AdminTabBarVC.swift in Sources */,
+				1FE81F6F27EB3AC600F8D142 /* HowToViewController.swift in Sources */,
+				1FE81F6927EB390D00F8D142 /* DataManager.swift in Sources */,
 				2272433627C8CD3900A35AF3 /* VCAdminMore.swift in Sources */,
 				226C1D1927BE85A800D11E24 /* Reservation.swift in Sources */,
 				951624D427E51B2000CA4675 /* ChangePasswordVC.swift in Sources */,
@@ -623,8 +667,11 @@
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
 				2272433327C8CD3900A35AF3 /* EnterParkingVC.swift in Sources */,
 				2272433527C8CD3900A35AF3 /* PayAbleViewController.swift in Sources */,
+				1FE81F6B27EB393800F8D142 /* BiggerMapView.swift in Sources */,
 				22035FA227BB724600D1A3B5 /* FBSupport.swift in Sources */,
 				226C1D0427BE682400D11E24 /* VCMore.swift in Sources */,
+				1FE81F6D27EB395800F8D142 /* LocationSearchTable.swift in Sources */,
+				1FE81F6527EB381D00F8D142 /* AdminEditAreaVC.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 				226C1D1427BE85A800D11E24 /* PastTableViewCell.swift in Sources */,
 				2291945C27E9FCEF00E78016 /* QPLNSuport.swift in Sources */,
@@ -636,6 +683,7 @@
 				22A0757127A925DC00658889 /* RegViewController.swift in Sources */,
 				225AB85627C7A806003D4253 /* UIView+Extension.swift in Sources */,
 				22C1C4CB27B6993A00866DA4 /* TermsViewController.swift in Sources */,
+				1FE81F6727EB38E800F8D142 /* AdminCustomCell.swift in Sources */,
 				226C1D1C27BE85A800D11E24 /* Areas.swift in Sources */,
 				225AB85127C7A7C1003D4253 /* OnboardingSlide.swift in Sources */,
 				225AB85827C7A806003D4253 /* UserDefaults+Extension.swift in Sources */,

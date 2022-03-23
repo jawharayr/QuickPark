@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
-
+import SVProgressHUD
 
 class QRCodeVC: UIViewController {
     
@@ -104,6 +104,12 @@ class QRCodeVC: UIViewController {
             if dataSnap.exists(){
                 guard let reserDict = dataSnap.value as? [String:Any] else{return}
                 if let isScanned = reserDict["isScanned"] as? Bool, isScanned{
+                    if let vc = self.view.window?.rootViewController {
+                        QPAlert(vc).showAlert(message:"Your reservation has been ended successfully")
+                    }
+                    
+                    SVProgressHUD.showSuccess(withStatus: "Your reservation has been ended successfully")
+                    
                     RESERVATIONS.child(self.uid).child(self.reservation.id).updateChildValues(["isExitScanned":true])
                     self.finishParking()
                 }
@@ -114,7 +120,7 @@ class QRCodeVC: UIViewController {
     func finishParking(){
         
         
-        RESERVATIONS.child(self.uid).child(reservation.id).child("ExtraCharge").setValue(reservation.ExtraCharge) { err, data in
+        RESERVATIONS.child(self.uid).child(reservation.id).child("ExtraCharge").setValue(   reservation.ExtraCharge) { err, data in
             if err == nil{
                 RESERVATIONS.child(self.uid).child(self.reservation.id).child("isCompleted").setValue(true) { err, data in
                     if err == nil{
@@ -126,7 +132,11 @@ class QRCodeVC: UIViewController {
                                 UserDefaults.standard.set(false, forKey: "start")
                                 UserDefaults.standard.removeObject(forKey: "parkingArea")
                                 NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
-                                self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+                                if let w = self.view.window {
+                                    w.rootViewController?.dismiss(animated: false, completion: nil)
+                                } else {
+                                    self.dismiss(animated: false, completion: nil)
+                                }
                             }
                         }
                         

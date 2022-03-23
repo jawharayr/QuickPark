@@ -22,7 +22,7 @@ class TVCMore : UITableViewController {
         case 0: //Call Feature
             break;
         case 1: //Show Obboarding
-            if let vc = SBSupport.viewController(sbi: "sbi_OnboardingViewController", inStoryBoard: "Misclenious") as? OnboardingViewController {
+            if let vc = SBSupport.viewController(sbi: "sbi_HowToViewController", inStoryBoard: "Misclenious") as? HowToViewController {
                 vc.fromViewController = "more"
                 self.navigationController?.pushViewController(vc, animated: true)
             }
