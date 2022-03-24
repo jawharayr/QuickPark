@@ -134,6 +134,11 @@ class ViewController: UIViewController {
                     let res = Reservation.init(dict: reserDict[k] as! [String : Any])
                     if !res.isCompleted{
                         self.reservation = res
+//                        if !res.isScanned, !res.qrcode.isEmpty{
+//                            print("Will track QRCode: ",res.qrcode)
+//                            print("Reservation reference: ",dataSnap.ref,"\n url=",dataSnap.ref.url)
+//                            self.track(qrcode: res.qrcode,ref: dataSnap.ref,resId: k)
+//                        }
                         break
                     }else{
                         self.reservation = nil
@@ -147,6 +152,25 @@ class ViewController: UIViewController {
                 }
             }
         })
+    }
+    
+    func track(qrcode code: String,ref: DatabaseReference,resId:String){
+        Database.database().reference().child("QRCode").child(code).observe(.value) { dataSnap in
+            if dataSnap.exists(){
+                let reserDict = dataSnap.value as! [String:Any]
+                if let isScanned = reserDict["isScanned"] as? Bool, isScanned{
+                    ref.child(resId).updateChildValues(["isScanned":true])
+                    ref.child(resId).observeSingleEvent(of: .value) { resSnap in
+                        let dict = resSnap.value as? [String:Any] ?? [:]
+                        print("Reservation after update: ",dict)
+                        let res = Reservation.init(dict: dict)
+                        self.reservation = res
+                        UserDefaults.standard.set(true, forKey: "start")
+                        NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                    }
+                }
+            }
+        }
     }
     
     func checkIfTimeIsValid(){
@@ -368,7 +392,12 @@ class ViewController: UIViewController {
         if UserDefaults.standard.bool(forKey: "start"){
             self.tabBarController?.selectedIndex = 1
         }else{
+            guard let qrcodeImage = UIImage.generateQRCode(using: reservation.qrcode) else{
+                print("Couldn't generate image using: ",reservation.qrcode)
+                return}
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
+            vc.image = qrcodeImage
+            vc.qrcode = reservation.qrcode
             vc.reservation = self.reservation
             self.present(vc, animated: true, completion: nil)
         }
@@ -432,6 +461,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay") as! ConfirmAndPay
                         viewController.parking = self.parkings[indexPath.row]
+                        viewController.areaName = areaname
                         if #available(iOS 15.0, *) {
                             if let presentationController = viewController.presentationController as? UISheetPresentationController {
                                 presentationController.detents = [.medium()]

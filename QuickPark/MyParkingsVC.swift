@@ -16,6 +16,7 @@ class MyParkingsVC: UIViewController {
     
     @IBOutlet weak var SegmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var EQRCode: UIButton!
     //    @IBOutlet weak var viewLoader: UIView!
     //    @IBOutlet weak var lblCountDown: UILabel!
     
@@ -56,6 +57,7 @@ class MyParkingsVC: UIViewController {
         super.viewWillAppear(animated)
         // Do any additional setup after loading the view.
         //        getReservations()
+        getIfAnyReservation()
     }
     
     override func viewDidLoad() {
@@ -83,7 +85,7 @@ class MyParkingsVC: UIViewController {
         Past.delegate = self
         Past.dataSource = self
         
-        getIfAnyReservation()
+//        getIfAnyReservation()
         
         Active.layer.cornerRadius = 20
         Active.layer.shadowOpacity = 0.1
@@ -92,7 +94,18 @@ class MyParkingsVC: UIViewController {
         
     }
     
-    
+    func track(qrcode code: String){
+        Database.database().reference().child("QRCode").child(code).observe(.value) { dataSnap in
+            if dataSnap.exists(){
+                guard let reserDict = dataSnap.value as? [String:Any] else{return}
+              //  print("Iterating on QRCode dictionary: ",reserDict)
+                if let isScanned = reserDict["isScanned"] as? Bool{
+                    self.EQRCode.isHidden = isScanned
+                }
+            }
+        }
+//        Database.database().reference().child("QRCode").child(code).observeSingleEvent(of: .value, with: )
+    }
     
     func getIfAnyReservation(){
         
@@ -106,6 +119,7 @@ class MyParkingsVC: UIViewController {
         pastReservations.removeAll()
         self.clearData()
         Past.reloadData()
+
         RESERVATIONS.child(uid).observeSingleEvent(of: .value) { dataSnap in
             if dataSnap.exists(){
                 let reserDict = dataSnap.value as! [String:Any]
@@ -113,6 +127,9 @@ class MyParkingsVC: UIViewController {
                     let res = Reservation.init(dict: reserDict[k] as! [String : Any])
                     if !res.isCompleted{
                         self.reservation = res
+                        if !res.qrcode.isEmpty{
+                            self.track(qrcode: res.qrcode)
+                        }
                         break
                     }else{
                         self.pastReservations.append(res)
@@ -150,6 +167,7 @@ class MyParkingsVC: UIViewController {
         StartTime.text = TimeInterval.init(reservation.StartTime).dateFromTimeinterval()
         EndTime.text = TimeInterval.init(reservation.EndTime).dateFromTimeinterval()
         area.text = reservation.area
+        print("Will set area name= ",reservation.area)
         if !reservation.isCompleted{
             checkIfTimeIsValid()
         }
@@ -313,6 +331,16 @@ class MyParkingsVC: UIViewController {
     }
 
     
+    @IBAction func EntryQRCode(_ sender: Any) {
+        guard let qrcodeImage = UIImage.generateQRCode(using: reservation.qrcode) else{
+            print("Couldn't generate image using: ",reservation.qrcode)
+            return}
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
+        vc.image = qrcodeImage
+        vc.qrcode = reservation.qrcode
+        vc.reservation = self.reservation
+        self.present(vc, animated: true, completion: nil)
+    }
     
     @IBAction func Pay(_ sender: Any) {
         

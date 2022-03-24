@@ -56,15 +56,6 @@ class UserProfileViewController: UIViewController {
         LabelNameAlert.isHidden = true
         userLoggedIn()
         
-        getName { (name) in
-                    if let name = name {
-                        self.name = name
-                        self.txtUserName.text = name
-                        print("success in getting name")
-                    }
-                }
-        self.txtEmail.text = email
-
         self.navigationController?.navigationBar.isHidden = true
         self.setupViews()
          let deleteAttributeString = NSMutableAttributedString(
@@ -103,7 +94,14 @@ class UserProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        getName { (name) in
+                    if let name = name {
+                        self.name = name
+                        self.txtUserName.text = name
+                        print("success in getting name")
+                    }
+                }
+        self.txtEmail.text = email
         
         
         //For shadow and cornerRadius for Name textfield
@@ -291,7 +289,6 @@ class UserProfileViewController: UIViewController {
     @IBAction func saveProfileBtn(_ sender: UIButton) {
         if !(txtUserName.text != name || txtEmail.text != email){return}
         let str = self.validateFields()
-        labelEmailAlert.isHidden = true
         if str == "true"
         {
             let newEmail = txtEmail.text ?? ""

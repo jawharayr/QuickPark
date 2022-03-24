@@ -94,14 +94,25 @@ class ChangePasswordVC: UIViewController {
         let password = passwordTextField.text ?? ""
         let confirmPassword = confirmPasswordTextField.text ?? ""
         
-        if !password.isValidPassword || !confirmPassword.isValidPassword {
+        if password.isEmpty {
+            errorLabel.isHidden = false
+            errorLabel.attributedText = NSAttributedString(string: "Please enter a new password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
+        }
+        if !password.isValidPassword {
             errorLabel.isHidden = false
             errorLabel.attributedText = NSAttributedString(string: "Please enter valid password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             return false
         }
+        errorLabel.isHidden = true
         if confirmPassword.isEmpty {
-            errorLabel.isHidden = false
-            errorLabel.attributedText = NSAttributedString(string: "Please enter confirm password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            ConfirmPasswordLabel.isHidden = false
+            ConfirmPasswordLabel.attributedText = NSAttributedString(string: "Please enter confirm password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            return false
+        }
+        if !confirmPassword.isValidPassword {
+            ConfirmPasswordLabel.isHidden = false
+            ConfirmPasswordLabel.attributedText = NSAttributedString(string: "Please enter valid confirm password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             return false
         }
         if password != confirmPassword {

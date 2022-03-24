@@ -157,7 +157,8 @@ class ConfirmAndPay: UIViewController {
             let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
             
             let reservationId = UtilitiesManager.sharedIntance.getRandomString()
-            let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false] as [String : Any]
+//            let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false] as [String : Any]
+            let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false,"qrcode": unique,"isScanned":false] as [String : Any]
             
             print("My unique QR code: ",unique)
             if let image = UIImage.generateQRCode(using: unique){
