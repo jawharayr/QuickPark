@@ -19,6 +19,10 @@ class AdminTabBarVC: UITabBarController, UITabBarControllerDelegate {
 ////        appearance.stackedLayoutAppearance.selected.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 16)
 //        tabBar.standardAppearance = appearance
         
+        QPLNSupport.requestAuthorizarion(vc: self) { success, message in
+            print(success, message)
+        }
+        
         let bgView = UIView()
         bgView.backgroundColor = .white
         bgView.layer.cornerRadius = 32

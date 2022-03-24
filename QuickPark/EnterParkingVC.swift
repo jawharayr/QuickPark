@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseDatabase
 
+let K_NotificationEndParkingBefore : TimeInterval = 1830//600 sec not, should be 600
+
 class EnterParkingVC: UIViewController {
     
     
@@ -50,6 +52,9 @@ class EnterParkingVC: UIViewController {
                     NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
                     self.dismiss(animated: false, completion: nil)
                     self.qrcodeDidScan?()
+                    
+                    //Addded end parking notification. This function will also remove the end parking notification
+                    self.addEndOFParkingNotification()
                 }
             }
         }
@@ -127,6 +132,27 @@ class EnterParkingVC: UIViewController {
 //
 //        NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+    }
+    
+    func cancelParkingReservatinNotification() {
+        QPLNSupport.remove(reservation.id)
+    }
+    
+    
+    func addEndOFParkingNotification() {
+        //cancelin starting 15 min notification
+        cancelParkingReservatinNotification()
+        
+        //Adding notification to trigger before 10 min of parking end.
+        let notificationTime = reservation.EndTime - K_NotificationEndParkingBefore
+        let t = Date(timeIntervalSince1970: notificationTime).timeIntervalSinceNow
+        print("reservation.EndTime", reservation.EndTime,    "notificationTime",notificationTime, "t", t)
+        
+        QPLNSupport.add(reservation.id,
+                        after: t,
+                        title: "Alert",
+                        detail: "Your parking will end in \(K_NotificationEndParkingBefore/60) minutes.",
+                        userInfo:[:])
     }
     
     
@@ -211,7 +237,7 @@ class EnterParkingVC: UIViewController {
 //import UIKit
 //import FirebaseDatabase
 //
-//let K_parkingEndNotifiactionBefore : TimeInterval = 600 //1830//600 sec not, should be 600
+
 //
 //class EnterParkingVC: UIViewController {
 //    @IBOutlet weak var imgQR : UIImageView!
@@ -331,7 +357,7 @@ class EnterParkingVC: UIViewController {
 //        cancelParkingReservatinNotification()
 //
 //        //Adding notification to trigger before 10 min of parking end.
-//        let notificationTime = reservation.EndTime - K_parkingEndNotifiactionBefore
+//        let notificationTime = reservation.EndTime - K_NotificationEndParkingBefore
 //        let t = Date(timeIntervalSince1970: notificationTime).timeIntervalSinceNow
 //        print("reservation.EndTime", reservation.EndTime,    "notificationTime",notificationTime, "t", t)
 //
@@ -339,7 +365,7 @@ class EnterParkingVC: UIViewController {
 //        QPLNSupport.add(reservation.id,
 //                        after: t,
 //                        title: "Alert",
-//                        detail: "Your parking will end in \(K_parkingEndNotifiactionBefore/60) minutes.",
+//                        detail: "Your parking will end in \(K_NotificationEndParkingBefore/60) minutes.",
 ////                        detail: "Your parking will end in 10 minutes.",
 //                        userInfo:[:])
 //    }

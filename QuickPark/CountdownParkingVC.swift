@@ -94,7 +94,6 @@ class CountdownParkingVC: UIViewController, UITabBarControllerDelegate {
         calculateAmount()
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
         self.present(vc, animated: true, completion: nil)
-        QPLNSupport.remove(self.reservation.id)
     }
     
     @IBAction func btnExist(_ sender:Any){

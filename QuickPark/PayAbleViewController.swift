@@ -47,6 +47,7 @@ class PayAbleViewController: UIViewController {
                 //  print("Iterating on QRCode dictionary: ",reserDict)
                 if let isScanned = reserDict["isScanned"] as? Bool, isScanned{
                     self.dismiss(animated: false, completion: nil)
+                    QPLNSupport.remove(self.reservation.id)
                 }
             }
         }
@@ -85,6 +86,7 @@ class PayAbleViewController: UIViewController {
 
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
         let request = BTPayPalCheckoutRequest(amount: total)
+        //let request = BTPayPalCheckoutRequest(amount: "90")//test line
         request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
 
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in

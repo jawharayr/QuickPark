@@ -10,6 +10,9 @@ import FirebaseDatabase
 import FirebaseAuth
 
 
+let K_NotificationReservationTimer : TimeInterval = 10//900 //Time interval
+
+
 class ConfirmAndPay: UIViewController {
     
     @IBOutlet weak var DueationLabel: UILabel!
@@ -167,8 +170,15 @@ class ConfirmAndPay: UIViewController {
                 
                 database.child("QRCode").child(unique).setValue(object) { error, ref in
                     print("Error wihle saving QRCode to Firebase. Error= ",error?.localizedDescription) }
+                
             
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
+                QPLNSupport.add(reservationId,
+                                after: K_NotificationReservationTimer,
+                                title: "Your reservation was canceled.",
+                                detail: "because reservation time of 15 min was expired.",
+                                userInfo:paramas)
+
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EnterParkingVC") as! EnterParkingVC
             vc.image = image
             vc.qrcode = unique
             vc.endTimer = self.endTimer
