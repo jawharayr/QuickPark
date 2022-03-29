@@ -273,7 +273,7 @@ extension ConfirmAndPay: UITextFieldDelegate {
         formatter.dateStyle = .none
         formatter.timeStyle = .short
         let startTime = max(StartTimePicker.date, currentTime)
-        let endTime2 = startDateTime.add(minutes: 30) ?? calendar.date(byAdding: DateComponents(minute: 30), to: formatter.date(from: StartTimeTxt.text!)!)!
+        let endTime2 = EndTimePicker.date
         let hourAndMinutes = Calendar.current.dateComponents([.hour, .minute], from: startTime, to: endTime2)
         switch textField {
         case self.StartTimeTxt:

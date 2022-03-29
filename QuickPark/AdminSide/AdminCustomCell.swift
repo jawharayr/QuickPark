@@ -20,14 +20,14 @@ class AdminCustomCell: UITableViewCell {
         self.BackView.layer.cornerRadius = 20
         self.BackView.layer.borderColor = UIColor.white.cgColor
         self.BackView.layer.masksToBounds = true
-        //self.BackView.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 1.5)
+        self.BackView.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 1.5)
 
         self.MainView.layer.shadowOpacity = 0.18
         self.MainView.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.MainView.layer.shadowRadius = 6
         self.MainView.layer.shadowColor = UIColor.black.cgColor
         self.MainView.layer.masksToBounds = false
-        self.MainView.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 1.0)
+        self.MainView.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 2.0)
         
     }
     

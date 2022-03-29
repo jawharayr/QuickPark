@@ -140,7 +140,6 @@ class EnterParkingVC: UIViewController {
     
     
     func addEndOFParkingNotification() {
-        //cancelin starting 15 min notification
         cancelParkingReservatinNotification()
         
         //Adding notification to trigger before 10 min of parking end.
