@@ -22,6 +22,7 @@ class TVCMore : UITableViewController {
         
         switch indexPath.row {
         case 0: //Call Feature
+            handleChatBtnPress()
             break;
         case 1: //Show Obboarding
             if let vc = SBSupport.viewController(sbi: "sbi_HowToViewController", inStoryBoard: "Misclenious") as? HowToViewController {
@@ -57,9 +58,8 @@ class TVCMore : UITableViewController {
     }
     
     
-    @IBAction func handleChatBtnPress(_ sender: Any) {
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        Client.shared.set(user:  .init(id:String((0..<100).map{ _ in letters.randomElement()! })), token: .development) { result in
+     func handleChatBtnPress() {
+        Client.shared.set(user:  .init(id: .random()), token: .development) { result in
             switch result {
             case .success:
                 print ("chat user successe")
@@ -76,7 +76,7 @@ class TVCMore : UITableViewController {
                 
             }
         }
-        
+         print("printing bk ----")
         let chatVC = ChatViewController()
         chatVC.presenter = .init(channel: channel)
         chatVC.title = "Support"
@@ -93,4 +93,11 @@ class TVCMore : UITableViewController {
 
 
 
+}
+
+extension String {
+    static func random(length: Int = 10) -> String {
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0..<length).map{ _ in letters.randomElement()! })
+    }
 }

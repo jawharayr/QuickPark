@@ -17,6 +17,7 @@ class VCAdminMore : UITableViewController {
         
         switch indexPath.row {
         case 0: //Call Feature
+            handleAgentChatPress()
             break;
         case 1: //logout
             logout()
@@ -41,7 +42,8 @@ class VCAdminMore : UITableViewController {
     }
     
     
-    @IBAction func handleAgentChatPress(_ sender: Any) {
+     func handleAgentChatPress() {
+        
         
         Client.shared.set(user: .init(id: "Agent"), token: .development) { result in
                    switch result {
