@@ -52,6 +52,7 @@ class MyParkingsVC: UIViewController {
     @IBOutlet weak var Past: UITableView!
     
     
+    @IBOutlet weak var cancelResrvation: UIImageView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,8 +65,6 @@ class MyParkingsVC: UIViewController {
         super.viewDidLoad()
         
         clearData()
-        
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
         
