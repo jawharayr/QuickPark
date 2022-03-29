@@ -517,16 +517,41 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - Nuke (8.4.1)
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
   - paper-onboarding (6.1.5)
   - ProgressHUD (13.6)
   - PromisesObjC (2.0.0)
+  - RxCocoa (5.1.3):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxGesture (3.0.2):
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
+  - RxRelay (5.1.3):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.3)
   - SDWebImage (5.12.3):
     - SDWebImage/Core (= 5.12.3)
   - SDWebImage/Core (5.12.3)
+  - SnapKit (5.0.1)
+  - Starscream (4.0.4)
+  - StreamChat (2.6.9):
+    - Nuke (~> 8.4)
+    - RxGesture (~> 3.0)
+    - SnapKit (~> 5.0)
+    - StreamChatCore (= 2.6.9)
+    - SwiftyGif (~> 5.2.0)
+  - StreamChatClient (2.6.9):
+    - Starscream (~> 4.0)
+  - StreamChatCore (2.6.9):
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
+    - StreamChatClient (= 2.6.9)
   - SVProgressHUD (2.2.5)
+  - SwiftyGif (5.2.0)
 
 DEPENDENCIES:
   - Braintree
@@ -544,6 +569,7 @@ DEPENDENCIES:
   - paper-onboarding
   - ProgressHUD
   - SDWebImage (~> 5.0)
+  - StreamChat (~> 2.1)
   - SVProgressHUD
 
 SPEC REPOS:
@@ -572,12 +598,23 @@ SPEC REPOS:
     - Kingfisher
     - leveldb-library
     - nanopb
+    - Nuke
     - NVActivityIndicatorView
     - paper-onboarding
     - ProgressHUD
     - PromisesObjC
+    - RxCocoa
+    - RxGesture
+    - RxRelay
+    - RxSwift
     - SDWebImage
+    - SnapKit
+    - Starscream
+    - StreamChat
+    - StreamChatClient
+    - StreamChatCore
     - SVProgressHUD
+    - SwiftyGif
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -604,13 +641,24 @@ SPEC CHECKSUMS:
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  Nuke: d780e3507a86b86c589ab3cc5cd302d5456f06fb
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   paper-onboarding: fede1799b1da6988f3788e3b71654583c6f3bce1
   ProgressHUD: 4bdaa0d2ddf676b23324b199f9facffb5c3a1620
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
+  RxGesture: d6bd7447ca3a596c7a9702a6a2b6a2bb5d8bae54
+  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
+  RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  StreamChat: 6ac5d89e8b08868efd59c2c0344e93bc8ab75a5f
+  StreamChatClient: a272ef0ac26918e08de615a73ea8cdddcde30209
+  StreamChatCore: 78e58df134fc7faa30d5263060f0fa9e150e42eb
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyGif: b85c6b33a9411859d9e1db998b6a8214aea942df
 
-PODFILE CHECKSUM: c9b4be21566b4cdac6c9af5710734b2fda2d13a2
+PODFILE CHECKSUM: 2e2442a32a8be0085cb3115cd1d0b2a3b2a7bc86
 
 COCOAPODS: 1.11.2

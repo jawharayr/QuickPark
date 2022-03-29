@@ -573,6 +573,9 @@
                                                             </fragment>
                                                         </attributedString>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="handleAgentChatPress:" destination="YYi-V1-YUq" eventType="touchUpInside" id="1QU-Wd-byv"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="-support-50-removebg-preview" translatesAutoresizingMaskIntoConstraints="NO" id="2dm-Yh-jF5">
                                                     <rect key="frame" x="24" y="9" width="44" height="44"/>

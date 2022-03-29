@@ -18,6 +18,8 @@ target 'QuickPark' do
   pod 'SDWebImage', '~> 5.0'
   pod 'Kingfisher'
   pod 'NVActivityIndicatorView'
+
+pod 'StreamChat', '~> 2.1'
   
   #Other Pods
   pod 'CodableFirebase'

@@ -17,6 +17,7 @@
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
+		1F3C553327F2D19400E8A7EC /* UserChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C553227F2D19400E8A7EC /* UserChatVC.swift */; };
 		1FE81F6527EB381D00F8D142 /* AdminEditAreaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6427EB381D00F8D142 /* AdminEditAreaVC.swift */; };
 		1FE81F6727EB38E800F8D142 /* AdminCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6627EB38E800F8D142 /* AdminCustomCell.swift */; };
 		1FE81F6927EB390D00F8D142 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6827EB390D00F8D142 /* DataManager.swift */; };
@@ -103,6 +104,7 @@
 		04DD46BB27A4621300342200 /* QuickParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITests.swift; sourceTree = "<group>"; };
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1F3C553227F2D19400E8A7EC /* UserChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChatVC.swift; sourceTree = "<group>"; };
 		1FE81F6427EB381D00F8D142 /* AdminEditAreaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEditAreaVC.swift; sourceTree = "<group>"; };
 		1FE81F6627EB38E800F8D142 /* AdminCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCustomCell.swift; sourceTree = "<group>"; };
 		1FE81F6827EB390D00F8D142 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
+				1F3C553127F2D0BD00E8A7EC /* OnlineChat */,
 				1FE81F7127EB41F100F8D142 /* General */,
 				1FE81F7027EB41BB00F8D142 /* Design Consisetncy */,
 				1FE81F6327EB379000F8D142 /* AdminSide */,
@@ -280,6 +283,14 @@
 				04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */,
 			);
 			path = QuickParkUITests;
+			sourceTree = "<group>";
+		};
+		1F3C553127F2D0BD00E8A7EC /* OnlineChat */ = {
+			isa = PBXGroup;
+			children = (
+				1F3C553227F2D19400E8A7EC /* UserChatVC.swift */,
+			);
+			path = OnlineChat;
 			sourceTree = "<group>";
 		};
 		1FE81F6327EB379000F8D142 /* AdminSide */ = {
@@ -663,6 +674,7 @@
 				22035FA927BB75B500D1A3B5 /* SBSupport.swift in Sources */,
 				2272433B27C8CD6B00A35AF3 /* Utilities.swift in Sources */,
 				225AB86027C7B3FA003D4253 /* FirebaseManager.swift in Sources */,
+				1F3C553327F2D19400E8A7EC /* UserChatVC.swift in Sources */,
 				225AB85027C7A7C1003D4253 /* OnboardingViewController.swift in Sources */,
 				04DD469B27A4621200342200 /* AppDelegate.swift in Sources */,
 				2272433327C8CD3900A35AF3 /* EnterParkingVC.swift in Sources */,

@@ -9,6 +9,8 @@ import UIKit
 import Braintree
 import Firebase
 import IQKeyboardManagerSwift
+import StreamChatClient
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,7 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else{
             _ = Auth.auth().currentUser!.uid
         }
-        
+        Client.configureShared(.init(apiKey: "2d2x2ynsxfxp6readzfq7zrwxgwmspx27ptq3fz2rutkvn6qw5sgzpt4sgd7czr7", logOptions: .info))
+
         return true
     }
     

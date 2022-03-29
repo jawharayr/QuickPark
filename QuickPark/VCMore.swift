@@ -7,6 +7,8 @@
 
 import UIKit
 import SVProgressHUD
+import StreamChat
+import StreamChatClient
 
 class TVCMore : UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +55,37 @@ class TVCMore : UITableViewController {
             }
         }
     }
+    
+    
+    @IBAction func handleChatBtnPress(_ sender: Any) {
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        Client.shared.set(user:  .init(id:String((0..<100).map{ _ in letters.randomElement()! })), token: .development) { result in
+            switch result {
+            case .success:
+                print ("chat user successe")
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        let uid = Client.shared.user.id
+        let channel = Client.shared.channel(type: .messaging, id: "support-\(uid)")
+        channel.extraData = ChannelExtraData(name: "\(uid) support")
+        channel.create { _ in
+            channel.add(user: .init(id: "Agent")) { _ in
+                
+            }
+        }
+        
+        let chatVC = ChatViewController()
+        chatVC.presenter = .init(channel: channel)
+        chatVC.title = "Support"
+        
+        let navigation = UINavigationController(rootViewController: chatVC)
+        
+        self.present(navigation, animated: true, completion: {
+            
+        })
 }
 
 
@@ -60,3 +93,4 @@ class TVCMore : UITableViewController {
 
 
 
+}

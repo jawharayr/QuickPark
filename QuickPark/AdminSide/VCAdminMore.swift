@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import SVProgressHUD
+import StreamChat
+import StreamChatClient
 
 class VCAdminMore : UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -37,6 +39,23 @@ class VCAdminMore : UITableViewController {
             }
         }
     }
+    
+    
+    @IBAction func handleAgentChatPress(_ sender: Any) {
+        
+        Client.shared.set(user: .init(id: "Agent"), token: .development) { result in
+                   switch result {
+                   case .success:
+                       let channelsVC = ChannelsViewController()
+                       channelsVC.title = "Support Queue"
+                       channelsVC.presenter = .init(filter: .equal("type", to: "messaging"))
+                       self.navigationController?.pushViewController(channelsVC, animated: true)
+                   case .failure(let error):
+                       print(error)
+                   }
+               }
+           }
+    
 }
 
 
