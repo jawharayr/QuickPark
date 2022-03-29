@@ -26,6 +26,7 @@ target 'QuickPark' do
   
   #PayPal Pods
   pod 'Braintree'
+  pod 'MessageKit'
   
   target 'QuickParkTests' do
     #    inherit! :search_paths
