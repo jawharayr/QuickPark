@@ -20,6 +20,12 @@ class TVCMore : UITableViewController {
         
         switch indexPath.row {
         case 0: //Call Feature
+            //hcta feature
+            
+            if let vc = SBSupport.viewController(sbi: "sbi_VCChat", inStoryBoard: "Chat") as? VCChat {
+                //vc.fromViewController = "more"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             break;
         case 1: //Show Obboarding
             if let vc = SBSupport.viewController(sbi: "sbi_HowToViewController", inStoryBoard: "Misclenious") as? HowToViewController {
