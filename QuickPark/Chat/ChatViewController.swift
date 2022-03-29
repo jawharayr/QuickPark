@@ -35,6 +35,20 @@ class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDat
         loadChat()
         
     }
+            func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+
+                let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUser.displayName!)
+                
+                  //messages.append(message)
+                  insertNewMessage(message)
+                  save(message)
+    
+                  inputBar.inputTextView.text = ""
+                  messagesCollectionView.reloadData()
+                  messagesCollectionView.scrollToBottom(animated: true)
+            }
+    
+    
     func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
         return .zero
     }
