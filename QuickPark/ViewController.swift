@@ -21,8 +21,6 @@ class ViewController: UIViewController {
     
     
     @IBOutlet weak var searchText: UITextField!
-    
-    
     //
     var parkings = [Area]()
     var searchedArea = [Area]()
@@ -421,6 +419,7 @@ extension ViewController: CLLocationManagerDelegate{
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }

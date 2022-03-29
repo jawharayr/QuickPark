@@ -8,22 +8,22 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
-
+import MapKit
 
 let K_NotificationReservationTimer : TimeInterval = 10//900 //Time interval
 
 
 class ConfirmAndPay: UIViewController {
     
+  
     @IBOutlet weak var DueationLabel: UILabel!
-
-   
     @IBOutlet weak var PriceView: UIView!
     @IBOutlet weak var StartTimeTxt: UITextField!
     @IBOutlet weak var EndTimeTxt: UITextField!
     @IBOutlet weak var StartWithView: UIView!
     @IBOutlet weak var TotalPrice: UILabel!
     
+    @IBOutlet weak var GoToLocation: UIView!
     @IBOutlet weak var DoneButton: UIButton!
     @IBOutlet weak var EndWithView: UIView!
     @IBOutlet weak var AreaView: UIView!
@@ -62,10 +62,12 @@ class ConfirmAndPay: UIViewController {
             uid = Auth.auth().currentUser!.uid
         }
         
+        
        // AreaView.layer.cornerRadius = 20
         StartWithView.layer.cornerRadius = 20
         EndWithView.layer.cornerRadius = 20
         PriceView.layer.cornerRadius = 40
+        GoToLocation.layer.cornerRadius = 20
         //shadow
         //AreaView.layer.shadowColor = UIColor.black.cgColor
         //AreaView.layer.shadowOpacity = 0.1
@@ -86,6 +88,11 @@ class ConfirmAndPay: UIViewController {
         PriceView.layer.shadowOpacity = 0.1
         PriceView.layer.shadowOffset = .zero
         PriceView.layer.shadowRadius = 10
+        //
+        GoToLocation.layer.shadowColor = UIColor.black.cgColor
+        GoToLocation.layer.shadowOpacity = 0.1
+        GoToLocation.layer.shadowOffset = .zero
+        GoToLocation.layer.shadowRadius = 10
       
         DoneButton.layer.cornerRadius = 20
         
@@ -100,6 +107,30 @@ class ConfirmAndPay: UIViewController {
         present(FirstViewController, animated: true, completion: nil)
         
     }
+    @IBAction func GoToLocation(_ sender: Any) {
+        let ref = Database.database().reference()
+        ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
+            for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
+                let dictionary = snapshot.value as? NSDictionary
+                var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
+                if(areaName == area.areaname){
+                let locationLat:CLLocationDegrees = area.locationLat
+                let locationLong:CLLocationDegrees = area.locationLong
+                print(locationLat)
+                    print(locationLong)
+                    let regionDistance:CLLocationDistance = 1000
+                    let coordinates = CLLocationCoordinate2DMake(locationLat, locationLong)
+                    let regionspam = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+                    let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionspam.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionspam.span)]
+                    let placemark = MKPlacemark(coordinate: coordinates)
+                    let mapItem = MKMapItem(placemark: placemark)
+                    mapItem.name = areaName
+                    mapItem.openInMaps(launchOptions: options)
+                }
+                                             // longitude: Double(area.locationLong) ?? 0)
+               
+      
+            }})}
     
     
     func createTimePicker() {
