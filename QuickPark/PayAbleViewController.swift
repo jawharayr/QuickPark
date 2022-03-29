@@ -17,6 +17,7 @@ class PayAbleViewController: UIViewController {
     @IBOutlet weak var lblTotal:UILabel!
     @IBOutlet weak var mainView:UIView!
     
+    @IBOutlet weak var KSULabel: UILabel!
     var price = ""
     var total = ""
     var extra = ""
@@ -33,6 +34,11 @@ class PayAbleViewController: UIViewController {
         lblPrice.text = price + " SAR"
         lblExtra.text = extra + " SAR"
         lblTotal.text = total + " SAR"
+        if reservation.area == ""{
+            KSULabel.text = "King Saud University"
+        }else {
+            KSULabel.text = reservation.area
+        }
         mainView.layer.cornerRadius = 20
         
         //Paypal
