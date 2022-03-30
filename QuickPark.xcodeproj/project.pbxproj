@@ -238,8 +238,11 @@
 				1FE81F7127EB41F100F8D142 /* General */,
 				1FE81F7027EB41BB00F8D142 /* Design Consisetncy */,
 				1FE81F6327EB379000F8D142 /* AdminSide */,
-				2291945D27E9FE0300E78016 /* HideViews.swift */,
 				22035FA327BB726000D1A3B5 /* Resources */,
+				22035FA527BB731100D1A3B5 /* AppProtocols */,
+				22035FA427BB728300D1A3B5 /* Support */,
+				22A0756F27A9257D00658889 /* Auth */,
+				2291945D27E9FE0300E78016 /* HideViews.swift */,
 				2272433A27C8CD6B00A35AF3 /* Loader.swift */,
 				2272433927C8CD6B00A35AF3 /* Utilities.swift */,
 				2272433127C8CD3800A35AF3 /* Constants.swift */,
@@ -256,9 +259,6 @@
 				226C1D0827BE85A800D11E24 /* ReservationCell.swift */,
 				226C1D0327BE682400D11E24 /* VCMore.swift */,
 				951624D327E51B2000CA4675 /* ChangePasswordVC.swift */,
-				22035FA527BB731100D1A3B5 /* AppProtocols */,
-				22035FA427BB728300D1A3B5 /* Support */,
-				22A0756F27A9257D00658889 /* Auth */,
 				04DD469E27A4621200342200 /* ViewController.swift */,
 				95CED68427DD04D800223275 /* UIImage+Extension.swift */,
 			);
@@ -891,7 +891,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -926,7 +926,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
