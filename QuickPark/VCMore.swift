@@ -60,11 +60,46 @@ class TVCMore : UITableViewController {
         }
     }
     
+    func handleChatBtnPress() {
+       Client.shared.set(user:  .init(id: .random()), token: .development) { result in
+           switch result {
+           case .success:
+               print ("chat user successe")
+           case .failure(let error):
+               print(error)
+           }
+       }
+       
+       let uid = Client.shared.user.id
+       let channel = Client.shared.channel(type: .messaging, id: "support-\(uid)")
+       channel.extraData = ChannelExtraData(name: "\(uid) support")
+       channel.create { _ in
+           channel.add(user: .init(id: "Agent")) { _ in
+               
+           }
+       }
+        print("printing bk ----")
+       let chatVC = ChatViewController()
+       chatVC.presenter = .init(channel: channel)
+       chatVC.title = "Support"
+       
+       let navigation = UINavigationController(rootViewController: chatVC)
+       
+       self.present(navigation, animated: true, completion: {
+           
+       })
+}
+    
     
 }
 
 
-
+extension String {
+    static func random(length: Int = 10) -> String {
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0..<length).map{ _ in letters.randomElement()! })
+    }
+}
 
 
 
