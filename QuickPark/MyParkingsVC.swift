@@ -1,6 +1,4 @@
 //
-//  My/Users/deema/Downloads/QuickPark 2/QuickPark/Base.lproj/Main.storyboardParkingsVC.swift
-//  QuickPark
 //
 //  Created by Deema on 03/07/1443 AH.
 
@@ -15,6 +13,7 @@ import SDWebImage
 
 class MyParkingsVC: UIViewController {
     
+    @IBOutlet weak var PastTable: UITableView!
     @IBOutlet weak var SegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var EQRCode: UIButton!
@@ -633,7 +632,9 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        PastTable.backgroundColor = UIColor("#F5F5F5")
         return 60
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -730,3 +731,26 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     func addShadow(backgroundColor: UIColor = .white, cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 5, shadowOpacity: Float = 0.1, shadowPathInset: (dx: CGFloat, dy: CGFloat), shadowPathOffset: (dx: CGFloat, dy: CGFloat)) {
         
     } }
+
+extension UIColor {
+  
+  convenience init(_ hex: String, alpha: CGFloat = 1.0) {
+    var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    
+    if cString.hasPrefix("#") { cString.removeFirst() }
+    
+    if cString.count != 6 {
+      self.init("F5F5F5") // return red color for wrong hex input
+      return
+    }
+    
+    var rgbValue: UInt64 = 0
+    Scanner(string: cString).scanHexInt64(&rgbValue)
+    
+    self.init(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+              green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+              blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+              alpha: alpha)
+  }
+
+}
