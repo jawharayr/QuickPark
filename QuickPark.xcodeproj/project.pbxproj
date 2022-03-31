@@ -17,6 +17,7 @@
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
+		1F3C553627F630C600E8A7EC /* AdminChatRoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C553527F630C600E8A7EC /* AdminChatRoster.swift */; };
 		1FE81F6527EB381D00F8D142 /* AdminEditAreaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6427EB381D00F8D142 /* AdminEditAreaVC.swift */; };
 		1FE81F6727EB38E800F8D142 /* AdminCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6627EB38E800F8D142 /* AdminCustomCell.swift */; };
 		1FE81F6927EB390D00F8D142 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6827EB390D00F8D142 /* DataManager.swift */; };
@@ -108,6 +109,8 @@
 		04DD46BB27A4621300342200 /* QuickParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITests.swift; sourceTree = "<group>"; };
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1F3C553427F626AB00E8A7EC /* QuickPark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickPark.entitlements; sourceTree = "<group>"; };
+		1F3C553527F630C600E8A7EC /* AdminChatRoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminChatRoster.swift; sourceTree = "<group>"; };
 		1FE81F6427EB381D00F8D142 /* AdminEditAreaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEditAreaVC.swift; sourceTree = "<group>"; };
 		1FE81F6627EB38E800F8D142 /* AdminCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCustomCell.swift; sourceTree = "<group>"; };
 		1FE81F6827EB390D00F8D142 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -245,11 +248,12 @@
 		04DD469927A4621200342200 /* QuickPark */ = {
 			isa = PBXGroup;
 			children = (
+				1F3C553427F626AB00E8A7EC /* QuickPark.entitlements */,
+				22035FA527BB731100D1A3B5 /* AppProtocols */,
+				22035FA327BB726000D1A3B5 /* Resources */,
 				1FE81F7127EB41F100F8D142 /* General */,
 				1FE81F7027EB41BB00F8D142 /* Design Consisetncy */,
 				1FE81F6327EB379000F8D142 /* AdminSide */,
-				22035FA327BB726000D1A3B5 /* Resources */,
-				22035FA527BB731100D1A3B5 /* AppProtocols */,
 				22035FA427BB728300D1A3B5 /* Support */,
 				22A0756F27A9257D00658889 /* Auth */,
 				2228409427F38EBE00FE2E5C /* Controllers */,
@@ -380,9 +384,10 @@
 			isa = PBXGroup;
 			children = (
 				2228409B27F392EF00FE2E5C /* Chat.swift */,
+				2228409A27F392EF00FE2E5C /* Message.swift */,
 				2228409C27F392F000FE2E5C /* ChatUser.swift */,
 				2228409D27F392F000FE2E5C /* ChatViewController.swift */,
-				2228409A27F392EF00FE2E5C /* Message.swift */,
+				1F3C553527F630C600E8A7EC /* AdminChatRoster.swift */,
 				2228409727F38EF800FE2E5C /* Chat.storyboard */,
 			);
 			path = Chat;
@@ -674,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3C553627F630C600E8A7EC /* AdminChatRoster.swift in Sources */,
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				225AB84827C7A75A003D4253 /* UserProfileViewController.swift in Sources */,
 				22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */,
@@ -912,6 +918,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuickPark/QuickPark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZS6WXPHW6X;
@@ -947,6 +954,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuickPark/QuickPark.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZS6WXPHW6X;
