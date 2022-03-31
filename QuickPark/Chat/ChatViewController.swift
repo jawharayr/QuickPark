@@ -14,16 +14,16 @@ class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDat
     private var docReference: DocumentReference?
     
     var messages: [Message] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = user2Name ?? "Chat"
-
+        
         navigationItem.largeTitleDisplayMode = .never
         maintainPositionOnKeyboardFrameChanged = true
         scrollsToLastItemOnKeyboardBeginsEditing = true
-
+        
         messageInputBar.inputTextView.tintColor = .systemBlue
         messageInputBar.sendButton.setTitleColor(.systemTeal, for: .normal)
         
@@ -32,38 +32,41 @@ class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDat
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
-        loadChat()
+        if FBAuth.isAdmin {
+            user2Name = "Admin"
+            user2ImgUrl = "_"
+            user2UID = "LK9udFovdVMiANGTTy45JqF7DDT2"
+        }
         
+        loadChat()
     }
     
     // MARK: - Custom messages handlers
     
     func createNewChat() {
         let users = [self.currentUser.uid, self.user2UID]
-         let data: [String: Any] = [
-             "users":users
-         ]
-         
-         let db = Firestore.firestore().collection("Chats")
-         db.addDocument(data: data) { (error) in
-             if let error = error {
-                 print("Unable to create chat! \(error)")
-                 return
-             } else {
-                 self.loadChat()
-             }
-         }
+        let data: [String: Any] = [
+            "users":users
+        ]
+        
+        let db = Firestore.firestore().collection("Chats")
+        db.addDocument(data: data) { (error) in
+            if let error = error {
+                print("Unable to create chat! \(error)")
+                return
+            } else {
+                self.loadChat()
+            }
+        }
     }
     
     func loadChat() {
         
         //Fetch all the chats which has current user in it
         let db = Firestore.firestore().collection("Chats")
-                .whereField("users", arrayContains: Auth.auth().currentUser?.uid ?? "Not Found User 1")
-        
+            .whereField("users", arrayContains: Auth.auth().currentUser?.uid ?? "Not Found User 1")
         
         db.getDocuments { (chatQuerySnap, error) in
-            
             if let error = error {
                 print("Error: \(error)")
                 return
@@ -81,31 +84,28 @@ class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDat
                 else if queryCount >= 1 {
                     //Chat(s) found for currentUser
                     for doc in chatQuerySnap!.documents {
-                        
-                        let chat = Chat(dictionary: doc.data())
+                        guard let chat = Chat(dictionary: doc.data()) else {continue}
                         //Get the chat which has user2 id
-                        if (chat?.users.contains(self.user2UID!))! {
-                            
+                        if (chat.users.contains(self.user2UID!)) {
                             self.docReference = doc.reference
                             //fetch it's thread collection
-                             doc.reference.collection("thread")
+                            doc.reference.collection("thread")
                                 .order(by: "created", descending: false)
                                 .addSnapshotListener(includeMetadataChanges: true, listener: { (threadQuery, error) in
-                            if let error = error {
-                                print("Error: \(error)")
-                                return
-                            } else {
-                                self.messages.removeAll()
-                                    for message in threadQuery!.documents {
-
-                                        let msg = Message(dictionary: message.data())
-                                        self.messages.append(msg!)
-                                        print("Data: \(msg?.content ?? "No message found")")
+                                    if let error = error {
+                                        print("Error: \(error)")
+                                        return
+                                    } else {
+                                        self.messages.removeAll()
+                                        for message in threadQuery!.documents {
+                                            let msg = Message(dictionary: message.data())
+                                            self.messages.append(msg!)
+                                            print("Data: \(msg?.content ?? "No message found")")
+                                        }
+                                        self.messagesCollectionView.reloadData()
+                                        self.messagesCollectionView.scrollToLastItem(at: .bottom, animated: true)
                                     }
-                                self.messagesCollectionView.reloadData()
-                                self.messagesCollectionView.scrollToLastItem(at: .bottom, animated: true)
-                            }
-                            })
+                                })
                             return
                         } //end of if
                     } //end of for
@@ -119,10 +119,8 @@ class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDat
     
     
     private func insertNewMessage(_ message: Message) {
-        
         messages.append(message)
         messagesCollectionView.reloadData()
-        
         DispatchQueue.main.async {
             self.messagesCollectionView.scrollToLastItem(at: .bottom, animated: true)
         }
@@ -152,18 +150,22 @@ class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDat
     
     // MARK: - InputBarAccessoryViewDelegate
     
-            func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-
-                let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUser.displayName!)
-                
-                  //messages.append(message)
-                  insertNewMessage(message)
-                  save(message)
-    
-                  inputBar.inputTextView.text = ""
-                  messagesCollectionView.reloadData()
-                  messagesCollectionView.scrollToBottom(animated: true)
-            }
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        
+        let message = Message(id: UUID().uuidString,
+                              content: text,
+                              created: Timestamp(),
+                              senderID: currentUser.uid,
+                              senderName: currentUser.displayName ?? "_")
+        
+        //messages.append(message)
+        insertNewMessage(message)
+        save(message)
+        
+        inputBar.inputTextView.text = ""
+        messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToBottom(animated: true)
+    }
     
     
     // MARK: - MessagesDataSource
@@ -200,7 +202,7 @@ class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDat
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return isFromCurrentSender(message: message) ? .blue: .lightGray
     }
-
+    
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         
         if message.sender.senderId == currentUser.uid {
@@ -213,12 +215,12 @@ class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDat
             }
         }
     }
-
+    
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
-
+        
         let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight: .bottomLeft
         return .bubbleTail(corner, .curved)
-
+        
     }
     
 }
