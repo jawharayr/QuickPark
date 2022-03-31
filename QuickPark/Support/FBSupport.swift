@@ -20,6 +20,15 @@ struct FBAuth {
         return Auth.auth().currentUser
     }
     
+    static var isAdmin : Bool {
+        if let user = FBAuth.currentUser {
+            if user.email == "qpadminpro@gmail.com" {
+                return true
+            }
+        }
+        return false
+    }
+    
     static var uid:String {
         get {
             if let cu = FBAuth.currentUser {
