@@ -60,7 +60,7 @@ extension SceneDelegate {
      
     func setUpHome () {
         print ("FBAuth.currentUser = " , FBAuth.currentUser)
-        if let user = FBAuth.currentUser{
+        if let user = FBAuth.currentUser {
             if user.email == "qpadminpro@gmail.com" {
                 //load admin
                 let htb = SBSupport.viewController(sbi: "sbi_adminTabBarViewController", inStoryBoard: "AdminMain")

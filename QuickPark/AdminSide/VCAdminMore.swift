@@ -38,12 +38,6 @@ class VCAdminMore : UITableViewController {
             }
         }
     }
-    
-   
-        
-    
-    
-    
 }
 
 
