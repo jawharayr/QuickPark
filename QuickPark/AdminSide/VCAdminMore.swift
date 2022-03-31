@@ -15,7 +15,7 @@ class VCAdminMore : UITableViewController {
         
         switch indexPath.row {
         case 0: //Call Feature
-            handleAgentChatPress()
+            
             break;
         case 1: //logout
             logout()
@@ -39,21 +39,7 @@ class VCAdminMore : UITableViewController {
         }
     }
     
-    func handleAgentChatPress() {
-
-
-            Client.shared.set(user: .init(id: "Agent"), token: .development) { result in
-                       switch result {
-                       case .success:
-                           let channelsVC = ChannelsViewController()
-                           channelsVC.title = "Support Queue"
-                           channelsVC.presenter = .init(filter: .equal("type", to: "messaging"))
-                           self.navigationController?.pushViewController(channelsVC, animated: true)
-                       case .failure(let error):
-                           print(error)
-                       }
-                   }
-               }
+   
         
     
     
