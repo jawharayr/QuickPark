@@ -15,13 +15,21 @@ struct Message {
     var created: Timestamp
     var senderID: String
     var senderName: String
+    var imagePath: String?
+
     var dictionary: [String: Any] {
-        return [
-            "id": id,
-            "content": content,
-            "created": created,
-            "senderID": senderID,
-            "senderName":senderName]
+        get {
+            var d = [
+                "id": id,
+                "content": content,
+                "created": created,
+                "senderID": senderID,
+                "senderName":senderName] as [String : Any]
+            if let ip = imagePath {
+                d["imagePath"] = ip
+            }
+            return d
+        }
     }
 }
 
@@ -33,23 +41,27 @@ extension Message {
               let senderID = dictionary["senderID"] as? String,
               let senderName = dictionary["senderName"] as? String
         else {return nil}
-        self.init(id: id, content: content, created: created, senderID: senderID, senderName:senderName)
+        let imagePath = dictionary["imagePath"] as? String
+        self.init(id: id, content: content, created: created, senderID: senderID, senderName:senderName, imagePath:imagePath)
     }
 }
 
 extension Message: MessageType {
-    
     var sender: SenderType {
         return ChatUser(senderId: senderID, displayName: senderName)
     }
-    
     var messageId: String {
         return id
     }
     var sentDate: Date {
         return created.dateValue()
     }
+    
     var kind: MessageKind {
+//        if let ip = imagePath, let url = URL(string: ip) {
+//            return .photo(MediaItem.):
+//        }
+        
         return .text(content)
     }
 }
