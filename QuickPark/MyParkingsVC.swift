@@ -21,15 +21,12 @@ class MyParkingsVC: UIViewController {
     //    @IBOutlet weak var lblCountDown: UILabel!
     
     
-    
-    
     var totalTime = 0
     var uid = ""
     var pastReservations = [Reservation]()
     var ref:DatabaseReference!
     var reservation:Reservation!
     var timer:Timer!
-    
     
     
     @IBOutlet weak var StartTime: UILabel!
@@ -41,8 +38,6 @@ class MyParkingsVC: UIViewController {
     @IBOutlet weak var lblCountDown: UILabel!
     
     
-    
-    
     @IBOutlet weak var viewLoader: UIView!
     
     
@@ -50,9 +45,6 @@ class MyParkingsVC: UIViewController {
     @IBOutlet weak var EmptyLabel: UILabel!
     @IBOutlet weak var Active: UIView!
     @IBOutlet weak var Past: UITableView!
-    
-    
-    @IBOutlet weak var cancelResrvation: UIImageView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -91,6 +83,10 @@ class MyParkingsVC: UIViewController {
         Active.layer.shadowOffset = .zero
         Active.layer.shadowRadius = 10
         
+    }
+    
+    // cancel resrvation by the user SPRINT #3
+    @IBAction func cancelResrevation(_ sender: Any) {
     }
     
     func track(qrcode code: String){
