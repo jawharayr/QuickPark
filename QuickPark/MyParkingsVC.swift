@@ -87,9 +87,34 @@ class MyParkingsVC: UIViewController {
     
     // cancel resrvation by the user SPRINT #3
     @IBAction func cancelResrevation(_ sender: Any) {
-        let timeToCancel = TimeInterval.init(reservation.StartTime) + ( 15 * 60 )
-        let calendar = Calendar.current
-
+      //  let timeToCancel = TimeInterval.init(reservation.StartTime) + ( 15 * 60 )
+       // let calendar = Calendar.current
+        
+        let end = TimeInterval.init(reservation.EndTime)
+        
+        let isInvalidTime = UtilitiesManager.sharedIntance.checkIfTimeIsValid(endTime: Date.init(timeIntervalSince1970: end))
+        
+        if isInvalidTime{
+            QPAlert(self).showError(message: "Sorry! you can't cancel your reservation now.")
+        }else{
+            
+            QPAlert(self).showAlert(title: "Are you sure you want to cancel your resrevation?", message: nil, buttons: ["Cancel", "Yes"]) { _, index in
+                if index == 1 {
+                   // remove data from firebase
+                   UserDefaults.standard.set(false, forKey: "start")
+            
+                   QPAlert(self).showError(message: "Your reservation got cancelled succssfully")
+            
+                    RESERVATIONS.child(self.uid).removeValue()
+                   guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
+                   self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
+                   UserDefaults.standard.removeObject(forKey: "parkingArea")
+                }
+        }
+        
+        }
+        
+        
     /* if (calendar < timeToCancel ){
         
      QPAlert(self).showAlert(title: "Are you sure you want to cancel your resrevation?", message: nil, buttons: ["Cancel", "Yes"]) { _, index in
@@ -107,7 +132,7 @@ class MyParkingsVC: UIViewController {
      }
       
     }else {
-        QPAlert(self).showError(message: "You are late, end your reservation by click on 'end parking' ")
+        QPAlert(self).showError(message: "Sorry! you can't cancel your reservation now.")
       } */
     
     }
