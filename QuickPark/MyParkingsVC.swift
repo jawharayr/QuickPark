@@ -87,7 +87,17 @@ class MyParkingsVC: UIViewController {
     
     // cancel resrvation by the user SPRINT #3
     @IBAction func cancelResrevation(_ sender: Any) {
+        let timeToCancel = TimeInterval.init(reservation.StartTime) + ( 15 * 60 )
+        let calendar = Calendar.current
+
+       /* if (calendar < timeToCancel ){
         
+        
+         }else {
+        
+        
+         } */
+    
     }
     
     func track(qrcode code: String){
