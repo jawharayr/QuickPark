@@ -92,7 +92,7 @@ class MyParkingsVC: UIViewController {
 
     /* if (calendar < timeToCancel ){
         
-     QPAlert(self).showAlert(title: "Are you sure you want to log out?", message: nil, buttons: ["Cancel", "Yes"]) { _, index in
+     QPAlert(self).showAlert(title: "Are you sure you want to cancel your resrevation?", message: nil, buttons: ["Cancel", "Yes"]) { _, index in
          if index == 1 {
             // remove data from firebase
             UserDefaults.standard.set(false, forKey: "start")
@@ -107,9 +107,8 @@ class MyParkingsVC: UIViewController {
      }
       
     }else {
-        
-        
-         } */
+        QPAlert(self).showError(message: "You are late, end your reservation by click on 'end parking' ")
+      } */
     
     }
     
