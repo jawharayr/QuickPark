@@ -28,7 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 _ = UserDefaults.standard.string(forKey: "uid")!
             }
         }else{
-            _ = Auth.auth().currentUser!.uid
+            let pushManager = PushNotificationManager(userID: Auth.auth().currentUser!.uid)
+               pushManager.registerForPushNotifications()
         }
         
         return true
@@ -64,6 +65,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // when app is onpen and in foregroud
         completionHandler(.alert)
     }
+    
   
 }
 
