@@ -7,9 +7,12 @@ import SDWebImage
 
 class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
     var currentUser: User = Auth.auth().currentUser!
+    var otherUser : FBSUser
     var user2Name: String?
     var user2ImgUrl: String?
     var user2UID: String?
+    
+    let pmManager = PushNotificationManager(userID: user2UID)
     
     private var docReference: DocumentReference?
     
@@ -165,6 +168,9 @@ class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDat
         inputBar.inputTextView.text = ""
         messagesCollectionView.reloadData()
         messagesCollectionView.scrollToBottom(animated: true)
+        
+        
+        
     }
     
     
