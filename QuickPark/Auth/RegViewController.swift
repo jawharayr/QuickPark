@@ -148,14 +148,14 @@ class RegViewController: UIViewController {
             } else {
                 QPAlert(self).showError(message: "Registered Successfully.") //duration?
                 SceneDelegate.sceneDelegate.setUpHome()
-            }
-        }
-        
-        let database = Firestore.firestore()
-        let userdata = ["email": email, "name": name]
-        print (userdata)
-        database.collection("users").document(email).setData(userdata){(error) in
-            if error != nil {
+                let database = Firestore.firestore()
+                let userdata = ["email": email, "name": name]
+                print (userdata)
+                database.collection("users").document(email).setData(userdata){(error) in
+                    if let e = error {
+                        print ("Error = ", e)
+                    }
+                }
             }
         }
     }
