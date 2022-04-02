@@ -58,9 +58,26 @@ class ReservationDetailsVC: UIViewController {
         let z = x + y
         let d = String(z)
         Total.text = d + " SAR"
+        
+        
+        // Initialization code
+        self.DetView.layer.borderWidth = 1
+        self.DetView.layer.cornerRadius = 20
+        self.DetView.layer.borderColor = UIColor.white.cgColor
+        self.DetView.layer.masksToBounds = true
+
+        self.DetView.layer.shadowOpacity = 0.18
+        self.DetView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.DetView.layer.shadowColor = UIColor.black.cgColor
+        self.DetView.layer.masksToBounds = false
+
+          self.DetView.layer.cornerRadius = 15
     }
     
+    
 
+    @IBOutlet weak var DetView: UIView!
+    
 
 
     override func viewWillAppear(_ animated: Bool) {

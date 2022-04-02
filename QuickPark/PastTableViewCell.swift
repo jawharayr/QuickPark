@@ -30,8 +30,7 @@ class PastTableViewCell: UITableViewCell {
      //   self.BackView.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 1.0)
     //    self.PastView.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 1.0)
     //    self.MainView.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 1.0)
-  
-        self.BackView.layer.cornerRadius = 15
+          self.BackView.layer.cornerRadius = 15
 
 
     }
