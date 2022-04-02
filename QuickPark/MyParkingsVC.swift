@@ -90,10 +90,23 @@ class MyParkingsVC: UIViewController {
         let timeToCancel = TimeInterval.init(reservation.StartTime) + ( 15 * 60 )
         let calendar = Calendar.current
 
-       /* if (calendar < timeToCancel ){
+    /* if (calendar < timeToCancel ){
         
-        
-         }else {
+     QPAlert(self).showAlert(title: "Are you sure you want to log out?", message: nil, buttons: ["Cancel", "Yes"]) { _, index in
+         if index == 1 {
+            // remove data from firebase
+            UserDefaults.standard.set(false, forKey: "start")
+     
+            QPAlert(self).showError(message: "Your reservation got cancelled succssfully")
+     
+            RESERVATIONS.child(uid).removeValue()
+            guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
+            self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
+            UserDefaults.standard.removeObject(forKey: "parkingArea")
+         }
+     }
+      
+    }else {
         
         
          } */
