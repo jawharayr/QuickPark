@@ -133,6 +133,10 @@ class MyParkingsVC: UIViewController {
                         break
                     }else{
                         self.pastReservations.append(res)
+                        self.pastReservations = self.pastReservations.sorted(by:{$1.StartTime < $0.StartTime })
+                      //  self.Past.reloadData()
+
+                
                     }
                 }
                 self.Past.reloadData()
@@ -477,7 +481,9 @@ class MyParkingsVC: UIViewController {
         }else{
             // Past
             Active.isHidden = true
+            ViewAC.isHidden = true
             Past.isHidden = false
+            
             EmptyLabel.isHidden = true
         }
     }
