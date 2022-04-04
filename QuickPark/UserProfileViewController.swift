@@ -350,9 +350,40 @@ class UserProfileViewController: UIViewController {
         }
     }
     
+    @IBAction func deleteAccountPressed(_ sender: Any) {
+        QPAlert(self).showAlert(title: "Are you sure you want to delete your account?", message: "Your account will be deleted permenently and you won't be able to restore it", buttons: ["Cancel", "Yes"]) { _, index in
+            if index == 1 {
+                
+                var deleteEmail =  Auth.auth().currentUser!.uid
+                Auth.auth().currentUser?.delete()
+
+                
+                
+                if Auth.auth().currentUser != nil {
+                    deleteEmail = Auth.auth().currentUser!.email!
+                } else {
+                    print("user is not logged in")
+                    //User Not logged in
+                 }
+
+                
+                
+                // delete the document
+                Firestore.firestore().collection("users").document(deleteEmail).delete();
+                
+                FBAuth.logout { success, error in
+                    if success == false, let e = error {
+                        QPAlert(self).showError(message: e.localizedDescription)
+                    } else {
+                        SceneDelegate.sceneDelegate.setUpHome()
+                    }
+                } // end logout
+            }
+        }
+    }
     
     // /*
-    @IBAction func deleteAccountPressed(_ sender: Any) {
+  /*  @IBAction func deleteAccountPressed(_ sender: Any) {
         QPAlert(self).showAlert(title: "Are you sure you want to delete your account?", message: "Your account will be deleted permenently and you won't be able to restore it", buttons: ["Cancel", "Yes"]) { _, index in
             if index == 1 {
                 

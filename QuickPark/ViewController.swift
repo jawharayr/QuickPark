@@ -36,6 +36,7 @@ class ViewController: UIViewController {
     var ref:DatabaseReference!
     
  
+    @IBOutlet weak var NoResults: UILabel!
     @IBOutlet weak var SearchTxt: UIView!
     @IBOutlet weak var ParkingView: UIView!
     @IBOutlet weak var lblCountDown: UILabel!
@@ -95,6 +96,9 @@ class ViewController: UIViewController {
             searching = false
         }
         ParkingsViews.reloadData()
+        if searchedArea.count < 0 {
+            NoResults.isHidden = false
+        }
         }
     
     
