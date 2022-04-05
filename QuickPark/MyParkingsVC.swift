@@ -89,7 +89,7 @@ class MyParkingsVC: UIViewController {
     // cancel resrvation by the user SPRINT #3
     @IBAction func cancelResrevation(_ sender: Any) {
         
-        UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "You want to cancel your booking?", title: "Are you sure", buttons: ["YES","NO"]) { [self] index in
+        UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "You want to cancel your booking?", title: "Are you sure", buttons: ["Yes","No"]) { [self] index in
             if index == 0{
                     // remove data from firebase
                     UserDefaults.standard.set(false, forKey: "start")
