@@ -7,12 +7,12 @@ import SDWebImage
 
 class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
     var currentUser: User = Auth.auth().currentUser!
-    var otherUser : FBSUser
+    var otherUser : FBSUser!
     var user2Name: String?
     var user2ImgUrl: String?
     var user2UID: String?
     
-    let pmManager = PushNotificationManager(userID: user2UID)
+    let pushSender = PushNotificationSender()
     
     private var docReference: DocumentReference?
     
@@ -171,6 +171,8 @@ class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDat
         
         
         
+        
+        
     }
     
     
@@ -226,7 +228,6 @@ class VCChat: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDat
         
         let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight: .bottomLeft
         return .bubbleTail(corner, .curved)
-        
     }
     
 }
