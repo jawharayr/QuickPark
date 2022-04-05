@@ -50,7 +50,9 @@ class ViewController: UIViewController {
     var reservation: Reservation!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        NoResults.isHidden = true
         searchText.addTarget(self, action: #selector(searchRecord), for: .editingChanged)
         ref = Database.database().reference()
         
@@ -96,9 +98,7 @@ class ViewController: UIViewController {
             searching = false
         }
         ParkingsViews.reloadData()
-        if searchedArea.count < 0 {
-            NoResults.isHidden = false
-        }
+       
         }
     
     
@@ -433,11 +433,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching{
-            return searchedArea.count
-            
-        } else{
-        
-            return parkings.count }
+            if searchedArea.count == 0 {
+                NoResults.isHidden = false }
+                return searchedArea.count
+            } else{
+                NoResults.isHidden = true
+            return parkings.count
+                
+            }
     }
     // هذي الميثود حقت الشاشه الصغيره اللي تطلع بعد مانضغط
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -526,6 +529,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
             cell.Km.text = "\(x) km"
             
         }
+       
     
         (parking.areaname == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
         
