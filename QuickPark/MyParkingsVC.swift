@@ -17,6 +17,7 @@ class MyParkingsVC: UIViewController {
     @IBOutlet weak var SegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var EQRCode: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     //    @IBOutlet weak var viewLoader: UIView!
     //    @IBOutlet weak var lblCountDown: UILabel!
     
@@ -87,53 +88,20 @@ class MyParkingsVC: UIViewController {
     
     // cancel resrvation by the user SPRINT #3
     @IBAction func cancelResrevation(_ sender: Any) {
-      //  let timeToCancel = TimeInterval.init(reservation.StartTime) + ( 15 * 60 )
-       // let calendar = Calendar.current
         
-        let end = TimeInterval.init(reservation.EndTime)
-        
-        let isInvalidTime = UtilitiesManager.sharedIntance.checkIfTimeIsValid(endTime: Date.init(timeIntervalSince1970: end))
-        
-        if isInvalidTime{
-            QPAlert(self).showError(message: "Sorry! you can't cancel your reservation now.")
-        }else{
-            
-            QPAlert(self).showAlert(title: "Are you sure you want to cancel your resrevation?", message: nil, buttons: ["Cancel", "Yes"]) { _, index in
-                if index == 1 {
-                   // remove data from firebase
-                   UserDefaults.standard.set(false, forKey: "start")
-            
-                   QPAlert(self).showError(message: "Your reservation got cancelled succssfully")
-            
-                    RESERVATIONS.child(self.uid).removeValue()
-                   guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
-                   self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
-                   UserDefaults.standard.removeObject(forKey: "parkingArea")
+        UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "You want to cancel your booking?", title: "Are you sure", buttons: ["YES","NO"]) { [self] index in
+            if index == 0{
+                    // remove data from firebase
+                    UserDefaults.standard.set(false, forKey: "start")
+                guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
+                self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
+                UserDefaults.standard.removeObject(forKey: "parkingArea")
+                    RESERVATIONS.child(uid).removeValue()
+                NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
                 }
-        }
-        
-        }
-        
-        
-    /* if (calendar < timeToCancel ){
-        
-     QPAlert(self).showAlert(title: "Are you sure you want to cancel your resrevation?", message: nil, buttons: ["Cancel", "Yes"]) { _, index in
-         if index == 1 {
-            // remove data from firebase
-            UserDefaults.standard.set(false, forKey: "start")
-     
-            QPAlert(self).showError(message: "Your reservation got cancelled succssfully")
-     
-            RESERVATIONS.child(uid).removeValue()
-            guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
-            self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
-            UserDefaults.standard.removeObject(forKey: "parkingArea")
-         }
-     }
-      
-    }else {
-        QPAlert(self).showError(message: "Sorry! you can't cancel your reservation now.")
-      } */
+                
+                
+            }
     
     }
     
@@ -144,6 +112,7 @@ class MyParkingsVC: UIViewController {
               //  print("Iterating on QRCode dictionary: ",reserDict)
                 if let isScanned = reserDict["isScanned"] as? Bool{
                     self.EQRCode.isHidden = isScanned
+                    self.cancelButton.isHidden = isScanned
                 }
             }
         }
