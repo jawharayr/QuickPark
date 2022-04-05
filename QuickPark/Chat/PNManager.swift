@@ -12,7 +12,7 @@ import UIKit
 import UserNotifications
 
 class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenterDelegate {
-    let userID: String
+    let userID: String //email is used as fiestore user Id
     init(userID: String) {
         self.userID = userID
         super.init()
@@ -40,6 +40,7 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
     func updateFirestorePushTokenIfNeeded() {
         if let token = Messaging.messaging().fcmToken {
             let usersRef = Firestore.firestore().collection("users").document(userID)
+            
             usersRef.setData(["fcmToken": token], merge: true)
         }
     }
