@@ -28,8 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 _ = UserDefaults.standard.string(forKey: "uid")!
             }
         }else{
-            let pushManager = PushNotificationManager(userID: Auth.auth().currentUser!.uid)
-               pushManager.registerForPushNotifications()
+            if let email =  Auth.auth().currentUser?.email {
+                let pushManager = PushNotificationManager(userID: email)//email is used as user id
+                pushManager.registerForPushNotifications()
+            }
         }
         
         return true
