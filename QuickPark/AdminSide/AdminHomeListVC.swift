@@ -183,16 +183,24 @@ extension AdminHomeListVC: UITableViewDelegate, UITableViewDataSource{
            
         
         
-        let editAction = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
+       /* let editAction = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
             self.selectedArea = self.parkings[indexPath.row]
             let sender: Area? = self.parkings[indexPath.row]
 
             self.performSegue(withIdentifier: "GoToAdminEditAreaVC", sender: sender)
-        }
+        } */
         
-        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
         
         return swipeActions
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedArea = self.parkings[indexPath.row]
+        let sender: Area? = self.parkings[indexPath.row]
+
+        self.performSegue(withIdentifier: "GoToAdminEditAreaVC", sender: sender)
+        
     }
     
 }
