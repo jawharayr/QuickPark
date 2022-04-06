@@ -17,10 +17,9 @@ class MyParkingsVC: UIViewController {
     @IBOutlet weak var SegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var EQRCode: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     //    @IBOutlet weak var viewLoader: UIView!
     //    @IBOutlet weak var lblCountDown: UILabel!
-    
-    
     
     
     var totalTime = 0
@@ -29,7 +28,6 @@ class MyParkingsVC: UIViewController {
     var ref:DatabaseReference!
     var reservation:Reservation!
     var timer:Timer!
-    
     
     
     @IBOutlet weak var StartTime: UILabel!
@@ -41,8 +39,6 @@ class MyParkingsVC: UIViewController {
     @IBOutlet weak var lblCountDown: UILabel!
     
     
-    
-    
     @IBOutlet weak var viewLoader: UIView!
     
     
@@ -50,8 +46,6 @@ class MyParkingsVC: UIViewController {
     @IBOutlet weak var EmptyLabel: UILabel!
     @IBOutlet weak var Active: UIView!
     @IBOutlet weak var Past: UITableView!
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,8 +58,6 @@ class MyParkingsVC: UIViewController {
         super.viewDidLoad()
         
         clearData()
-        
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
         
@@ -94,6 +86,25 @@ class MyParkingsVC: UIViewController {
         
     }
     
+    // cancel resrvation by the user SPRINT #3
+    @IBAction func cancelResrevation(_ sender: Any) {
+        
+        UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "You want to cancel your booking?", title: "Are you sure", buttons: ["Yes","No"]) { [self] index in
+            if index == 0{
+                    // remove data from firebase
+                    UserDefaults.standard.set(false, forKey: "start")
+                guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
+                self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
+                UserDefaults.standard.removeObject(forKey: "parkingArea")
+                    RESERVATIONS.child(uid).removeValue()
+                NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                }
+                
+                
+            }
+    
+    }
+    
     func track(qrcode code: String){
         Database.database().reference().child("QRCode").child(code).observe(.value) { dataSnap in
             if dataSnap.exists(){
@@ -101,6 +112,7 @@ class MyParkingsVC: UIViewController {
               //  print("Iterating on QRCode dictionary: ",reserDict)
                 if let isScanned = reserDict["isScanned"] as? Bool{
                     self.EQRCode.isHidden = isScanned
+                    self.cancelButton.isHidden = isScanned
                 }
             }
         }
