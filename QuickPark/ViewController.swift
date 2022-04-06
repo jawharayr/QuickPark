@@ -136,6 +136,7 @@ class ViewController: UIViewController {
                     let res = Reservation.init(dict: reserDict[k] as! [String : Any])
                     if !res.isCompleted{
                         self.reservation = res
+                        
 //                        if !res.isScanned, !res.qrcode.isEmpty{
 //                            print("Will track QRCode: ",res.qrcode)
 //                            print("Reservation reference: ",dataSnap.ref,"\n url=",dataSnap.ref.url)
