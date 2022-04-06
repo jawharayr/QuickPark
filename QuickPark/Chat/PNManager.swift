@@ -47,7 +47,6 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
         print("Firebase registration token: \(fcmToken)")
     }
 
-
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingDelegate) {
         print("Received data message: \(remoteMessage.description)")
         updateFirestorePushTokenIfNeeded()
