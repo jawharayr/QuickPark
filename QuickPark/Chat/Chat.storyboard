@@ -12,7 +12,7 @@
         <!--Chat View Controller-->
         <scene sceneID="VHe-IV-iG5">
             <objects>
-                <viewController storyboardIdentifier="sbi_ChatViewController" id="3bN-b6-ayb" customClass="ChatViewController" customModule="AOUN" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sbi_ChatViewController" id="3bN-b6-ayb" customClass="ChatViewController" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mOT-1g-lID">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPe-7u-ba7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="255" y="-70"/>
+            <point key="canvasLocation" x="253.62318840579712" y="-70.3125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IyF-qE-Umz">
@@ -49,7 +49,7 @@
         <!--Chat Roster-->
         <scene sceneID="ugM-Q6-utY">
             <objects>
-                <viewController storyboardIdentifier="sbi_chatRoster" id="A6s-tm-6Jq" customClass="VCChatRoster" customModule="AOUN" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sbi_chatRoster" id="A6s-tm-6Jq" customClass="VCChatRoster" customModule="QuickPark" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BN0-Et-J7w">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
