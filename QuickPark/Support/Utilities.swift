@@ -10,7 +10,7 @@ import UIKit
 
 class UtilitiesManager{
     static let sharedIntance = UtilitiesManager()
-
+    
     //save_Timer in user default
     
     func saveTimer(time:String){
@@ -20,20 +20,20 @@ class UtilitiesManager{
     func retriveTimer() -> Int{
         guard let time = UserDefaults.standard.string(forKey: "time") else{return 0}
         
-            //let time = time
-            //h:mm a
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "h:mm a"
-            let timeDate = dateFormatter.date(from: time)!
-            let calendar = Calendar.current
-            let timeComponents = calendar.dateComponents([.hour, .minute], from: timeDate)
-            let nowComponents = calendar.dateComponents([.hour, .minute], from: Date())
-            
-            let difference = calendar.dateComponents([.minute], from: nowComponents, to: timeComponents).minute!
+        //let time = time
+        //h:mm a
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        let timeDate = dateFormatter.date(from: time)!
+        let calendar = Calendar.current
+        let timeComponents = calendar.dateComponents([.hour, .minute], from: timeDate)
+        let nowComponents = calendar.dateComponents([.hour, .minute], from: Date())
         
-//            self.totalTime = difference * 60
-//            startTimer()
-            //print("difference",difference)
+        let difference = calendar.dateComponents([.minute], from: nowComponents, to: timeComponents).minute!
+        
+        //            self.totalTime = difference * 60
+        //            startTimer()
+        //print("difference",difference)
         
         return difference * 60
     }
@@ -76,8 +76,8 @@ class UtilitiesManager{
     }
     
     func getRandomString(_ length: Int? = 20) -> String {
-      let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-      return String((0..<length!).map{ _ in letters.randomElement()! })
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0..<length!).map{ _ in letters.randomElement()! })
     }
     
     
@@ -86,10 +86,10 @@ class UtilitiesManager{
         let end = Date(timeIntervalSince1970: TimeInterval(endTime))
         
         let formatter = DateComponentsFormatter()
-            formatter.allowedUnits = [.second]
+        formatter.allowedUnits = [.second]
         formatter.unitsStyle = .positional
-            let difference = formatter.string(from: std, to: end) ?? "0"
-            print("Time To cover",difference,"\n")
+        let difference = formatter.string(from: std, to: end) ?? "0"
+        print("Time To cover",difference,"\n")
         
         return Double(difference) ?? 0.0
         
@@ -100,10 +100,10 @@ class UtilitiesManager{
         let end = Date(timeIntervalSince1970: TimeInterval(endTime))
         
         let formatter = DateComponentsFormatter()
-            formatter.allowedUnits = [.minute]
+        formatter.allowedUnits = [.minute]
         formatter.unitsStyle = .positional
-            let difference = formatter.string(from: std, to: end) ?? "0"
-            print("Time To cover",difference,"\n")
+        let difference = formatter.string(from: std, to: end) ?? "0"
+        print("Time To cover",difference,"\n")
         
         return Double(difference) ?? 0.0
         
@@ -118,9 +118,9 @@ class UtilitiesManager{
     
     
     func getTimerValue(start:Date,endtime:Date) -> TimeInterval {
-            return endtime.timeIntervalSinceReferenceDate - start.timeIntervalSinceReferenceDate
+        return endtime.timeIntervalSinceReferenceDate - start.timeIntervalSinceReferenceDate
     }
-   
+    
     
     func checkIfTimeIsEarly(start:Date)->Bool{
         let now = Date.init()
@@ -129,7 +129,7 @@ class UtilitiesManager{
         }else{
             return false
         }
-
+        
     }
     
     func checkIfTimeIsValid(endTime:Date)->Bool{
@@ -139,7 +139,7 @@ class UtilitiesManager{
         }else{
             return true
         }
-
+        
     }
     
     func checkIfTimeIsValidToStart(start:Date,end:Date)->Bool{
@@ -153,7 +153,7 @@ class UtilitiesManager{
         }else{
             return false
         }
-
+        
     }
     
     func removeTimer(){
@@ -161,41 +161,40 @@ class UtilitiesManager{
     }
     
     
-   
     
-//    func showAlert(view: UIViewController, title: String, message: String) {
-//            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { action in
-//            })
-//            alert.addAction(defaultAction)
-//            DispatchQueue.main.async(execute: {
-//                view.present(alert, animated: true)
-//            })
-//        }
-
+    
+    //    func showAlert(view: UIViewController, title: String, message: String) {
+    //            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    //            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { action in
+    //            })
+    //            alert.addAction(defaultAction)
+    //            DispatchQueue.main.async(execute: {
+    //                view.present(alert, animated: true)
+    //            })
+    //        }
+    
     
 }
 
 
 extension TimeInterval{
-
-        func hoursMinutesFromTimeInterval() -> String {
-
-            let time = NSInteger(self)
-            let minutes = (time / 60) % 60
-            let hours = (time / 3600)
-
-            return String(format: "%0.2d:%0.2d:%0.2d.%0.3d",hours,minutes)
-
-        }
+    func hoursMinutesFromTimeInterval() -> String {
+        
+        let time = NSInteger(self)
+        let minutes = (time / 60) % 60
+        let hours = (time / 3600)
+        
+        return String(format: "%0.2d:%0.2d:%0.2d.%0.3d",hours,minutes)
+        
+    }
     
     func dateFromTimeinterval() -> String {
-
+        
         let df = DateFormatter()
         df.dateFormat = "hh:mm a d MMM"
         let date = Date.init(timeIntervalSince1970: self)
         return df.string(from: date)
-
+        
     }
 }
 
@@ -203,5 +202,29 @@ extension TimeInterval{
 extension Date {
     func addingMinutes(minutes: Int) -> Date {
         return Calendar.current.date(byAdding: .minute, value: minutes, to: self)!
+    }
+    
+    func displayString () -> String {
+        let dateFormat = DateFormatter()
+        dateFormat.dateStyle = .medium
+        dateFormat.timeStyle = .short
+        dateFormat.locale = Locale.current
+        return dateFormat.string(from: self)
+    }
+    
+    var dateString : String {
+        get {
+            let df = DateFormatter()
+            df.dateStyle = .medium
+            return df.string(from: self)
+        }
+    }
+    
+    var timeString : String {
+        get {
+            let df = DateFormatter()
+            df.timeStyle = .short
+            return df.string(from: self)
+        }
     }
 }
