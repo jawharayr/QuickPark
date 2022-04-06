@@ -68,6 +68,7 @@
 		22D7793C27C90E7B00BC4677 /* Misclenious.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D7793B27C90E7B00BC4677 /* Misclenious.storyboard */; };
 		767C69F0BADB1D16D264A072 /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99AE9BE334362AC37178F98C /* Pods_QuickPark.framework */; };
 		951624D427E51B2000CA4675 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951624D327E51B2000CA4675 /* ChangePasswordVC.swift */; };
+		95B3376D27F464830002FEB5 /* ReservationDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B3376C27F464830002FEB5 /* ReservationDetailsVC.swift */; };
 		95CED68527DD04D800223275 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CED68427DD04D800223275 /* UIImage+Extension.swift */; };
 		A5D6C4EA0D50682787E2F740 /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EB836C061FE053519655DB /* Pods_QuickPark_QuickParkUITests.framework */; };
 		AC636D8542DF3B499EAB5564 /* Pods_QuickPark_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 102FDB0F3535DBCDB5856444 /* Pods_QuickPark_QuickParkTests.framework */; };
@@ -159,6 +160,7 @@
 		78428E37E1C1793BA5A15194 /* Pods-QuickPark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.debug.xcconfig"; sourceTree = "<group>"; };
 		78A91C55AF3389C3DC3D183F /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
 		951624D327E51B2000CA4675 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
+		95B3376C27F464830002FEB5 /* ReservationDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailsVC.swift; sourceTree = "<group>"; };
 		95CED68427DD04D800223275 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		99AE9BE334362AC37178F98C /* Pods_QuickPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3EB836C061FE053519655DB /* Pods_QuickPark_QuickParkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark_QuickParkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,6 +252,7 @@
 				225AB84727C7A759003D4253 /* UserProfileViewController.swift */,
 				226C1D1027BE85A800D11E24 /* MyParkingsVC.swift */,
 				226C1D0927BE85A800D11E24 /* PastTableViewCell.swift */,
+				95B3376C27F464830002FEB5 /* ReservationDetailsVC.swift */,
 				226C1D0F27BE85A800D11E24 /* QRCodeVC.swift */,
 				226C1D0E27BE85A800D11E24 /* Reservation.swift */,
 				226C1D0827BE85A800D11E24 /* ReservationCell.swift */,
@@ -666,6 +669,7 @@
 				1FE81F6B27EB393800F8D142 /* BiggerMapView.swift in Sources */,
 				22035FA227BB724600D1A3B5 /* FBSupport.swift in Sources */,
 				226C1D0427BE682400D11E24 /* VCMore.swift in Sources */,
+				95B3376D27F464830002FEB5 /* ReservationDetailsVC.swift in Sources */,
 				1FE81F6D27EB395800F8D142 /* LocationSearchTable.swift in Sources */,
 				1FE81F6527EB381D00F8D142 /* AdminEditAreaVC.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,

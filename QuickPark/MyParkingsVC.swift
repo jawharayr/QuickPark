@@ -1,6 +1,4 @@
 //
-//  My/Users/deema/Downloads/QuickPark 2/QuickPark/Base.lproj/Main.storyboardParkingsVC.swift
-//  QuickPark
 //
 //  Created by Deema on 03/07/1443 AH.
 
@@ -11,9 +9,11 @@ import FirebaseDatabase
 import Foundation
 import FirebaseAuth
 import SwiftUI
+import SDWebImage
 
 class MyParkingsVC: UIViewController {
     
+    @IBOutlet weak var PastTable: UITableView!
     @IBOutlet weak var SegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var EQRCode: UIButton!
@@ -56,7 +56,6 @@ class MyParkingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         clearData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
@@ -128,11 +127,12 @@ class MyParkingsVC: UIViewController {
         ViewAC.isHidden = true
         EmptyLabel.isHidden = false
         reservation = nil
-        pastReservations.removeAll()
+     //   pastReservations.removeAll()
         self.clearData()
         Past.reloadData()
 
         RESERVATIONS.child(uid).observeSingleEvent(of: .value) { dataSnap in
+            self.pastReservations.removeAll()
             if dataSnap.exists(){
                 let reserDict = dataSnap.value as! [String:Any]
                 for (k,_) in reserDict{
@@ -145,6 +145,10 @@ class MyParkingsVC: UIViewController {
                         break
                     }else{
                         self.pastReservations.append(res)
+                        self.pastReservations = self.pastReservations.sorted(by:{$1.StartTime < $0.StartTime })
+                      //  self.Past.reloadData()
+
+                
                     }
                 }
                 self.Past.reloadData()
@@ -489,7 +493,9 @@ class MyParkingsVC: UIViewController {
         }else{
             // Past
             Active.isHidden = true
+            ViewAC.isHidden = true
             Past.isHidden = false
+            
             EmptyLabel.isHidden = true
         }
     }
@@ -639,13 +645,18 @@ class MyParkingsVC: UIViewController {
 }
 // Past reservations
 extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
+
+
+    
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        PastTable.backgroundColor = UIColor("#F5F5F5")
         return 60
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220
+        return 147
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pastReservations.count
@@ -655,19 +666,109 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PastTableViewCell") as! PastTableViewCell
         let object = pastReservations[indexPath.row]
-        cell.logo.image = UIImage(named: "King Saud University")
-
-
-        cell.Name.text = object.Name
-        cell.Date.text = object.Date
-        cell.ExtraCharges.text = object.ExtraCharge
+     // cell.viewDetails.tag = indexPath.row
+     // cell.logo.image = UIImage(named: "King Saud University")
+        cell.Logo.sd_setImage(with: URL(string: object.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
+        cell.Name.text = object.area
+     // cell.Date.text = object.Date
+     // cell.ExtraCharges.text = object.ExtraCharge
         cell.Price.text = object.Price
         cell.StartTime.text = TimeInterval.init(object.StartTime).dateFromTimeinterval()
-        cell.EndTime.text = TimeInterval.init(object.EndTime).dateFromTimeinterval()
+     // cell.EndTime.text = TimeInterval.init(object.EndTime).dateFromTimeinterval()
+        cell.layer.cornerRadius = 20;
+        cell.layer.masksToBounds = true;
+        
+        let ref = Database.database().reference()
+        ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
+            print(snapshots.childrenCount)
+            
+            for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
+                let dictionary = snapshot.value as? NSDictionary
+                var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
+    
+                if cell.Name.text == area.areaname {
+                    cell.Logo.sd_setImage(with: URL(string: area.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
+//                    ReservationDetailsVC.Logo.sd_setImage(with: URL(string: area.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
+                }
+            }
+        })
+        
+      /*  if viewDetails.isTouchInside {
+    let vc = storyboard?.instantiateViewController(withIdentifier: "ReservationDetailsVC") as? ReservationDetailsVC
+          //  vc?.image = UIImage(named: names[indexPath.row] )!
+        vc?.areaname = object.area
+        vc?.date = object.Date
+        vc?.Stime = object.StartTime
+        vc?.Etime = object.EndTime
+        vc?.price = object.Price
+        vc?.extra = object.ExtraCharge
+       // vc?.total =  vc?.extra ?? " " +  vc?.price
+    navigationController?.pushViewController(vc!, animated: true) }*/
         
         return cell
+        
     }
     
-    
-}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+   
 
+////        self.selectedRes = self.pastReservations[indexPath.row]
+////        let sender: Reservation? = self.pastReservations[indexPath.row]
+////        self.performSegue(withIdentifier: "GoToViewDetails", sender: sender)
+//
+ let vc = self.storyboard?.instantiateViewController(withIdentifier: "ReservationDetailsVC") as? ReservationDetailsVC
+    let obj = self.pastReservations[indexPath.row]
+     vc?.areaname = obj.area
+     vc?.date = obj.Date
+    vc?.Stime = obj.StartTime
+    vc?.Etime = obj.EndTime
+    vc?.price = obj.Price
+    vc?.extra = obj.ExtraCharge
+       // vc?.total =  vc?.price
+        
+        
+        let ref = Database.database().reference()
+        ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
+            print(snapshots.childrenCount)
+            
+            for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
+                let dictionary = snapshot.value as? NSDictionary
+                var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
+    
+                if vc?.areaname == area.areaname {
+                    vc?.Logo.sd_setImage(with: URL(string: area.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
+//                    ReservationDetailsVC.Logo.sd_setImage(with: URL(string: area.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
+                }
+            }
+        })
+        
+    navigationController?.pushViewController(vc!, animated: true)
+        
+    }
+    
+    func addShadow(backgroundColor: UIColor = .white, cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 5, shadowOpacity: Float = 0.1, shadowPathInset: (dx: CGFloat, dy: CGFloat), shadowPathOffset: (dx: CGFloat, dy: CGFloat)) {
+        
+    } }
+
+extension UIColor {
+  
+  convenience init(_ hex: String, alpha: CGFloat = 1.0) {
+    var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    
+    if cString.hasPrefix("#") { cString.removeFirst() }
+    
+    if cString.count != 6 {
+      self.init("F5F5F5") // return red color for wrong hex input
+      return
+    }
+    
+    var rgbValue: UInt64 = 0
+    Scanner(string: cString).scanHexInt64(&rgbValue)
+    
+    self.init(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+              green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+              blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+              alpha: alpha)
+  }
+
+}
