@@ -21,8 +21,6 @@ class ViewController: UIViewController {
     
     
     @IBOutlet weak var searchText: UITextField!
-    
-    
     //
     var parkings = [Area]()
     var searchedArea = [Area]()
@@ -38,6 +36,7 @@ class ViewController: UIViewController {
     var ref:DatabaseReference!
     
  
+    @IBOutlet weak var NoResults: UILabel!
     @IBOutlet weak var SearchTxt: UIView!
     @IBOutlet weak var ParkingView: UIView!
     @IBOutlet weak var lblCountDown: UILabel!
@@ -51,7 +50,9 @@ class ViewController: UIViewController {
     var reservation: Reservation!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        NoResults.isHidden = true
         searchText.addTarget(self, action: #selector(searchRecord), for: .editingChanged)
         ref = Database.database().reference()
         
@@ -97,6 +98,7 @@ class ViewController: UIViewController {
             searching = false
         }
         ParkingsViews.reloadData()
+       
         }
     
     
@@ -134,6 +136,7 @@ class ViewController: UIViewController {
                     let res = Reservation.init(dict: reserDict[k] as! [String : Any])
                     if !res.isCompleted{
                         self.reservation = res
+                        
 //                        if !res.isScanned, !res.qrcode.isEmpty{
 //                            print("Will track QRCode: ",res.qrcode)
 //                            print("Reservation reference: ",dataSnap.ref,"\n url=",dataSnap.ref.url)
@@ -421,6 +424,7 @@ extension ViewController: CLLocationManagerDelegate{
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
@@ -430,11 +434,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching{
-            return searchedArea.count
-            
-        } else{
-        
-            return parkings.count }
+            if searchedArea.count == 0 {
+                NoResults.isHidden = false }
+                return searchedArea.count
+            } else{
+                NoResults.isHidden = true
+            return parkings.count
+                
+            }
     }
     // هذي الميثود حقت الشاشه الصغيره اللي تطلع بعد مانضغط
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -523,6 +530,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
             cell.Km.text = "\(x) km"
             
         }
+       
     
         (parking.areaname == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
         
