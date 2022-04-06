@@ -9,7 +9,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import MapKit
-
+import CoreLocation
 let K_NotificationReservationTimer : TimeInterval = 10//900 //Time interval
 
 
@@ -108,29 +108,31 @@ class ConfirmAndPay: UIViewController {
         
     }
     @IBAction func GoToLocation(_ sender: Any) {
-        let ref = Database.database().reference()
-        ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
-            for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
-                let dictionary = snapshot.value as? NSDictionary
-                var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
-                if(areaName == area.areaname){
-                let locationLat:CLLocationDegrees = area.locationLat
-                let locationLong:CLLocationDegrees = area.locationLong
-                print(locationLat)
-                    print(locationLong)
-                    let regionDistance:CLLocationDistance = 1000
-                    let coordinates = CLLocationCoordinate2DMake(locationLat, locationLong)
-                    let regionspam = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
-                    let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionspam.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionspam.span)]
-                    let placemark = MKPlacemark(coordinate: coordinates)
-                    let mapItem = MKMapItem(placemark: placemark)
-                    mapItem.name = areaName
-                    mapItem.openInMaps(launchOptions: options)
-                }
-                                             // longitude: Double(area.locationLong) ?? 0)
-               
-      
-            }})}
+                   let ref = Database.database().reference()
+            ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
+                for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
+                    let dictionary = snapshot.value as? NSDictionary
+                    var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
+                    if(areaName == area.areaname){
+                    let locationLat:CLLocationDegrees = area.locationLat
+                    let locationLong:CLLocationDegrees = area.locationLong
+                    print(locationLat)
+                        print(locationLong)
+                        let regionDistance:CLLocationDistance = 1000
+                        let coordinates = CLLocationCoordinate2DMake(locationLat, locationLong)
+                        let regionspam = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+                        let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionspam.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionspam.span)]
+                        let placemark = MKPlacemark(coordinate: coordinates)
+                        let mapItem = MKMapItem(placemark: placemark)
+                        mapItem.name = areaName
+                        mapItem.openInMaps(launchOptions: options)
+                    }
+                                                 // longitude: Double(area.locationLong) ?? 0)
+                   
+          
+                }})}
+          
+        
     
     
     func createTimePicker() {
