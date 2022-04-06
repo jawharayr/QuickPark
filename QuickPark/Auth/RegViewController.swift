@@ -148,6 +148,15 @@ class RegViewController: UIViewController {
                 return
             }
             
+            //set dispplay name
+            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+            changeRequest?.displayName = name
+            changeRequest?.commitChanges(completion: { error in
+                if let e = error {
+                    print ("Error = ", e)
+                }
+            })
+            
             QPAlert(self).showError(message: "Registered Successfully.") //duration?
             SceneDelegate.sceneDelegate.setUpHome()
             let database = Firestore.firestore()
