@@ -23,7 +23,7 @@ extension Chat {
     }
     
     func loadOtherUser(_ complition:@escaping(QPUser)->()) {
-        guard let uid = Auth.auth().currentUser?.email, let otherUserID = (self.users.filter { $0 != uid}).last else {
+        guard let uid = Auth.auth().currentUser?.uid, let otherUserID = (self.users.filter { $0 != uid}).last else {
             return
         }
         
@@ -148,6 +148,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate 
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
+        
         loadChat()
         
         if let mcl = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
@@ -222,6 +223,11 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate 
                                         return
                                     } else {
                                         self.messages.removeAll()
+                                        if FBAuth.isAdmin == false {
+                                            let initialMessage = Message(id: "OM1", content: "Support Team will contact you shortly!. Please specify your issue in detail.", created: Timestamp(date: Date()), senderID: self.otherUser.uid, senderName: "", isRead: true)
+                                            self.messages.append(initialMessage)
+                                            self.messagesCollectionView.reloadData()
+                                        }
                                         for message in threadQuery!.documents {
                                             var msg = Message(dictionary: message.data())
                                             if msg?.senderID != self.currentUser.uid && msg?.isRead == false {
@@ -291,7 +297,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate 
                 guard let user = querySnapshot?.documents.first, let fcmToken = user["fcmToken"] as? String else {
                     return
                 }
-                PushNotificationSender.sendPushNotification(to: fcmToken, title: "New message", body: "\(self.currentUser.displayName) sent you a message.")
+                PushNotificationSender.sendPushNotification(to: fcmToken, title: "New message", body: "\(self.currentUser.displayName ?? "Support Team") sent you a message.")
             }
         }
     }
