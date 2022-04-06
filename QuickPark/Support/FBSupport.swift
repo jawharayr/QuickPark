@@ -17,7 +17,7 @@ struct QPUser : Codable {
 
 
 struct KServerValues {
-    static let admin = QPUser(name: "Admin", email: "qpadminpro@gmail.com", uid: "LK9udFovdVMiANGTTy45JqF7DDT2")
+    static let admin = QPUser(name: "Support Team", email: "qpadminpro@gmail.com", uid: "LK9udFovdVMiANGTTy45JqF7DDT2")
 }
 
 struct FBSupport  {
@@ -94,7 +94,7 @@ struct FBAuth {
 struct FBSUser {
     static var admin : ChatUser {
         get {
-            return ChatUser(senderId: "LK9udFovdVMiANGTTy45JqF7DDT2", displayName: "Admin")
+            return ChatUser(senderId: "LK9udFovdVMiANGTTy45JqF7DDT2", displayName: "Support Team")
         }
     }
     
