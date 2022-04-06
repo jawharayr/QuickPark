@@ -31,10 +31,7 @@
 		22035FA927BB75B500D1A3B5 /* SBSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035FA827BB75B500D1A3B5 /* SBSupport.swift */; };
 		22035FAB27BBCF2300D1A3B5 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22035FAA27BBCF2300D1A3B5 /* Profile.swift */; };
 		2228409827F38EF800FE2E5C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2228409727F38EF800FE2E5C /* Chat.storyboard */; };
-		2228409E27F392F000FE2E5C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228409A27F392EF00FE2E5C /* Message.swift */; };
-		2228409F27F392F000FE2E5C /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228409B27F392EF00FE2E5C /* Chat.swift */; };
-		222840A027F392F000FE2E5C /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228409C27F392F000FE2E5C /* ChatUser.swift */; };
-		222840A127F392F000FE2E5C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228409D27F392F000FE2E5C /* ChatViewController.swift */; };
+		222840A127F392F000FE2E5C /* VCChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228409D27F392F000FE2E5C /* VCChat.swift */; };
 		225AB84827C7A75A003D4253 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB84727C7A759003D4253 /* UserProfileViewController.swift */; };
 		225AB85027C7A7C1003D4253 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB84D27C7A7C1003D4253 /* OnboardingViewController.swift */; };
 		225AB85127C7A7C1003D4253 /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AB84E27C7A7C1003D4253 /* OnboardingSlide.swift */; };
@@ -126,10 +123,7 @@
 		22035FA827BB75B500D1A3B5 /* SBSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SBSupport.swift; sourceTree = "<group>"; };
 		22035FAA27BBCF2300D1A3B5 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		2228409727F38EF800FE2E5C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
-		2228409A27F392EF00FE2E5C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		2228409B27F392EF00FE2E5C /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
-		2228409C27F392F000FE2E5C /* ChatUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
-		2228409D27F392F000FE2E5C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		2228409D27F392F000FE2E5C /* VCChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCChat.swift; sourceTree = "<group>"; };
 		225AB84727C7A759003D4253 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		225AB84D27C7A7C1003D4253 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		225AB84E27C7A7C1003D4253 /* OnboardingSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
@@ -387,14 +381,11 @@
 		2228409927F392D800FE2E5C /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				2228409B27F392EF00FE2E5C /* Chat.swift */,
-				2228409A27F392EF00FE2E5C /* Message.swift */,
-				2228409C27F392F000FE2E5C /* ChatUser.swift */,
-				2228409D27F392F000FE2E5C /* ChatViewController.swift */,
-				1F3C553527F630C600E8A7EC /* AdminChatRoster.swift */,
-				2228409727F38EF800FE2E5C /* Chat.storyboard */,
 				7132474727F7BCD900FC1F66 /* PNSender.swift */,
 				7132474927F7BDD900FC1F66 /* PNManager.swift */,
+				1F3C553527F630C600E8A7EC /* AdminChatRoster.swift */,
+				2228409D27F392F000FE2E5C /* VCChat.swift */,
+				2228409727F38EF800FE2E5C /* Chat.storyboard */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -689,7 +680,6 @@
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				225AB84827C7A75A003D4253 /* UserProfileViewController.swift in Sources */,
 				22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */,
-				2228409E27F392F000FE2E5C /* Message.swift in Sources */,
 				225AB86227C7B41C003D4253 /* AddAreaViewController.swift in Sources */,
 				225AB85F27C7B3FA003D4253 /* AdminTabBarVC.swift in Sources */,
 				1FE81F6F27EB3AC600F8D142 /* HowToViewController.swift in Sources */,
@@ -699,7 +689,6 @@
 				951624D427E51B2000CA4675 /* ChangePasswordVC.swift in Sources */,
 				225AB85D27C7B3FA003D4253 /* CustomCell.swift in Sources */,
 				225AB85727C7A806003D4253 /* UIViewController+Extension.swift in Sources */,
-				2228409F27F392F000FE2E5C /* Chat.swift in Sources */,
 				226C1D1327BE85A800D11E24 /* ReservationCell.swift in Sources */,
 				226C1D1A27BE85A800D11E24 /* QRCodeVC.swift in Sources */,
 				22A0757327A9260500658889 /* LogViewController.swift in Sources */,
@@ -719,7 +708,6 @@
 				226C1D0427BE682400D11E24 /* VCMore.swift in Sources */,
 				1FE81F6D27EB395800F8D142 /* LocationSearchTable.swift in Sources */,
 				1FE81F6527EB381D00F8D142 /* AdminEditAreaVC.swift in Sources */,
-				222840A027F392F000FE2E5C /* ChatUser.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
 				226C1D1427BE85A800D11E24 /* PastTableViewCell.swift in Sources */,
 				2291945C27E9FCEF00E78016 /* QPLNSuport.swift in Sources */,
@@ -739,7 +727,7 @@
 				22035FAB27BBCF2300D1A3B5 /* Profile.swift in Sources */,
 				2272433727C8CD3900A35AF3 /* Constants.swift in Sources */,
 				2291945E27E9FE0300E78016 /* HideViews.swift in Sources */,
-				222840A127F392F000FE2E5C /* ChatViewController.swift in Sources */,
+				222840A127F392F000FE2E5C /* VCChat.swift in Sources */,
 				22825ADC27CA0625002F49A0 /* QPAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
