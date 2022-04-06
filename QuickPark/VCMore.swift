@@ -22,9 +22,9 @@ class TVCMore : UITableViewController {
         case 0: //Call Feature
             //hcta feature
             
-            if let vc = SBSupport.viewController(sbi: "sbi_VCChat", inStoryBoard: "Chat") as? VCChat {
-                //vc.fromViewController = "more"
+            if let vc = SBSupport.viewController(sbi: "sbi_ChatViewController", inStoryBoard: "Chat") as? ChatViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
+                vc.otherUser = FBSUser.admin
             }
             break;
         case 1: //Show Obboarding
