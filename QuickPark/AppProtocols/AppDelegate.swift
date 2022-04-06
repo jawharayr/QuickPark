@@ -60,14 +60,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-
-extension AppDelegate: UNUserNotificationCenterDelegate {
-  
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // when app is onpen and in foregroud
-        completionHandler(.alert)
-    }
-    
-  
-}
-
