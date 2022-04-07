@@ -6,19 +6,11 @@
 //
 import UIKit
 
-class AdminTabBarVC: UITabBarController, UITabBarControllerDelegate {
-    
+class QPVCTabBar: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.delegate = self
-        
-//        let appearance = UITabBarAppearance()
-//        appearance.shadowColor = .white
-////        appearance.stackedLayoutAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 16)
-////        appearance.stackedLayoutAppearance.selected.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 16)
-//        tabBar.standardAppearance = appearance
-        
         QPLNSupport.requestAuthorizarion(vc: self) { success, message in
             print(success, message)
         }
@@ -37,30 +29,32 @@ class AdminTabBarVC: UITabBarController, UITabBarControllerDelegate {
         bgView.layer.shadowOffset = CGSize(width: 3, height: 3)
         bgView.layer.shadowOpacity = 0.5
         
-        //Keeping code heree if we want to use custom images later
-//        for (idx, vc) in viewControllers!.enumerated() {
-//            vc.tabBarItem.image = UIImage(named: "tabbar_\(idx)")?.withRenderingMode(.alwaysOriginal)
-//            vc.tabBarItem.selectedImage = UIImage(named: "tabbar_\(idx)_selected")?.withRenderingMode(.alwaysOriginal)
-//            vc.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-//        }
-        
-        
         tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("newMessage"), object: nil)
+    }
+    
+    @objc func methodOfReceivedNotification(notification: Notification) {
+        if let vcs = self.viewControllers {
+            vcs.last?.tabBarItem.badgeValue = " "
+        }
     }
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        
         print("Selected item")
+        if let vcs = self.viewControllers, self.selectedIndex ==  vcs.count {
+            item.badgeValue = nil
+        }
     }
     
     // UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
         print("Selected view controller")
+        if let vcs = self.viewControllers {
+            vcs.last?.tabBarItem.badgeValue = nil 
+        }
     }
-    
-    
 }
 
 
