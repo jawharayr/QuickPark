@@ -5,23 +5,27 @@ import MessageKit
 import FirebaseFirestore
 
 //MARK: -
-struct Chat {
-    var users: [String]
+class Chat {
+    let users: [String]
     var dictionary: [String: Any] {
         return ["users": users]
     }
     
     var documentID:String?
-    var otherUser : User?
+    var otherUser : QPUser?
     var unreadCount : Int?
+    
+    init(dictionary: [String:Any]) {
+        if let chatUsers = dictionary["users"] as? [String] {
+            users = chatUsers
+        }
+        else {
+            users = []
+        }
+    }
 }
 
 extension Chat {
-    init?(dictionary: [String:Any]) {
-        guard let chatUsers = dictionary["users"] as? [String] else {return nil}
-        self.init(users: chatUsers)
-    }
-    
     func loadOtherUser(_ complition:@escaping(QPUser)->()) {
         guard let uid = Auth.auth().currentUser?.uid, let otherUserID = (self.users.filter { $0 != uid}).last else {
             return
@@ -37,6 +41,7 @@ extension Chat {
                 let email = (user["email"] as? String) ?? ""
                 let uid = (user["uid"] as? String) ?? ""
                 let ou = QPUser(name: name, email: email, uid: uid)
+                self.otherUser = ou
                 complition(ou)
             }
         }
@@ -79,16 +84,26 @@ struct Message {
     var senderID: String
     var senderName: String
     var isRead : Bool
+    var imagePath : String?
+    
     var dictionary: [String: Any] {
-        return [
-            "id": id,
-            "content": content,
-            "created": created,
-            "senderID": senderID,
-            "senderName":senderName,
-            "isRead": isRead
-        ]
+        get {
+            var d : [String : Any] = [
+                "id": id,
+                "content": content,
+                "created": created,
+                "senderID": senderID,
+                "senderName":senderName,
+                "isRead": isRead,
+            ]
+            if let ip = imagePath {
+                d["imagePath"] = ip
+            }
+            return d
+        }
+        
     }
+
 }
 
 extension Message {
@@ -100,13 +115,35 @@ extension Message {
               let senderName = dictionary["senderName"] as? String,
               let isRead = dictionary["isRead"] as? Bool
         else {return nil}
-        self.init(id: id, content: content, created: created, senderID: senderID, senderName:senderName, isRead  : isRead)
+        if let imagePath = dictionary["imagePath"] as? String {
+            self.init(id: id, content: content, created: created, senderID: senderID, senderName:senderName, isRead  : isRead, imagePath:imagePath)
+        } else {
+            self.init(id: id, content: content, created: created, senderID: senderID, senderName:senderName, isRead  : isRead)
+        }
+    }
+}
+
+private struct ImageMediaItem: MediaItem {
+    var url: URL?
+    var image: UIImage?
+    var placeholderImage: UIImage
+    var size: CGSize
+
+    init(image: UIImage) {
+        self.image = image
+        self.size = CGSize(width: 240, height: 240)
+        self.placeholderImage = UIImage()
+    }
+
+    init(imageURL: URL) {
+        self.url = imageURL
+        self.size = CGSize(width: 240, height: 240)
+        self.placeholderImage = UIImage(named: "angle-mask") ?? UIImage()
     }
 }
 
 //MARK: -
 extension Message: MessageType {
-    
     var sender: SenderType {
         return ChatUser(senderId: senderID, displayName: senderName)
     }
@@ -118,12 +155,32 @@ extension Message: MessageType {
         return created.dateValue()
     }
     var kind: MessageKind {
-        return .text(content)
+        get {
+            //print()
+            if let ip = imagePath, let u = URL(string: ip) {
+                return .photo(ImageMediaItem(imageURL: u))
+            }
+            return .text(content)
+        }
     }
 }
 
+extension UIImageView {
+  func load(url: URL) {
+    DispatchQueue.global().async { [weak self] in
+        if let data = try? Data(contentsOf: url) {
+            if let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self?.image = image
+                }
+            }
+        }
+     }
+   }
+ }
+
 //MARK: -
-class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate {
+class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate, UIAdaptivePresentationControllerDelegate {
     var currentUser = FBAuth.currentUser!
     var otherUser : ChatUser!
     private var docReference: DocumentReference?
@@ -142,12 +199,27 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate 
         messageInputBar.inputTextView.tintColor = .systemBlue
         messageInputBar.inputTextView.delegate = self
         messageInputBar.sendButton.setTitleColor(.systemTeal, for: .normal)
-        
         messageInputBar.delegate = self
+        
+        let image = UIImage(systemName: "plus.circle")
+        let button = InputBarButtonItem(frame: CGRect(origin: .zero, size: CGSize(width: 32, height: 32)))
+        let action = #selector(showImagePickerControllerActionSheet)
+        button.addTarget(self, action: action, for: .touchUpInside)
+        button.image = image
+        button.imageView?.contentMode = .scaleAspectFit
+
+        messageInputBar.setStackViewItems([button], forStack: .left, animated: false)
+        messageInputBar.setLeftStackViewWidthConstant(to: 50, animated: false)
+        messageInputBar.setRightStackViewWidthConstant(to: 50, animated: false)
+
+        messageInputBar.leftStackView.alignment = .center //HERE
+        messageInputBar.rightStackView.alignment = .center //HERE
+
+        reloadInputViews()
+        
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-        
         
         loadChat()
         
@@ -157,7 +229,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate 
             mcl.textMessageSizeCalculator.incomingAvatarSize = .zero
         }
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.newMessageListner?.remove()
@@ -210,10 +282,11 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate 
                     for doc in chatQuerySnap!.documents {
                         
                         let chat = Chat(dictionary: doc.data())
+                        
                         //Get the chat which has user2 id
-                        if ((chat!.users.contains(self.otherUser.uid))) {
-                            
+                        if ((chat.users.contains(self.otherUser.uid))) {
                             self.docReference = doc.reference
+                        
                             //fetch it's thread collection
                             self.newMessageListner = doc.reference.collection("thread")
                                 .order(by: "created", descending: false)
@@ -256,26 +329,15 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate 
     
     
     private func insertNewMessage(_ message: Message) {
-        
         messages.append(message)
-        messagesCollectionView.reloadData()
-        
         DispatchQueue.main.async {
+            self.messagesCollectionView.reloadData()
             self.messagesCollectionView.scrollToLastItem(at: .bottom, animated: true)
         }
     }
     
     private func save(_ message: Message) {
-        let data: [String: Any] = [
-            "content": message.content,
-            "created": message.created,
-            "id": message.id,
-            "senderID": message.senderID,
-            "senderName": message.senderName,
-            "isRead" : false
-        ]
-        
-        docReference?.collection("thread").addDocument(data: data, completion: { (error) in
+        docReference?.collection("thread").addDocument(data: message.dictionary, completion: { (error) in
             if let error = error {
                 print("Error Sending message: \(error)")
                 return
@@ -304,7 +366,6 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate 
     
     // MARK: - InputBarAccessoryViewDelegate
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        
         let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUser.displayName ?? "_", isRead: false)
         
         //messages.append(message)
@@ -397,5 +458,73 @@ extension ChatViewController : MessagesDataSource {
             ])
         }
         return nil
+    }
+    
+    func configureMediaMessageImageView(_ imageView: UIImageView,
+                                        for message: MessageType,
+                                        at indexPath: IndexPath,
+                                        in messagesCollectionView: MessagesCollectionView) {
+        /*acquire url for the image in my case i had a
+        custom type Message which stored  the image url */
+        guard
+            let msg = message as? Message,
+            let ip = msg.imagePath,
+            let url = URL(string: ip)
+        else { return }
+        imageView.load(url: url)
+    }
+}
+
+
+extension ChatViewController : UIImagePickerControllerDelegate , UINavigationControllerDelegate {
+    @objc  func showImagePickerControllerActionSheet()  {
+        let alertVC = UIAlertController(title: "Choose Your Image", message: nil, preferredStyle: .actionSheet)
+        let photoLibraryAction = UIAlertAction(title: "Choose From Library", style: .default) { [weak self] action in
+            self?.showImagePickerController(sourceType: .photoLibrary)
+        }
+        alertVC.addAction(photoLibraryAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default , handler: nil)
+        alertVC.addAction(cancelAction)
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    func showImagePickerController(sourceType: UIImagePickerController.SourceType){
+        let imgPicker = UIImagePickerController()
+        imgPicker.delegate = self
+        imgPicker.allowsEditing = true
+        imgPicker.sourceType = sourceType
+        imgPicker.presentationController?.delegate = self
+        inputAccessoryView?.isHidden = true
+        self.present(imgPicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[  UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            self.sendImageMessage(photo: editedImage)
+        }
+        else if let originImage = info[  UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.sendImageMessage(photo: originImage)
+        }
+        self.dismiss(animated: true, completion: nil)
+        inputAccessoryView?.isHidden = false
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+        inputAccessoryView?.isHidden = false
+    }
+    
+    func sendImageMessage( photo  : UIImage)  {
+        let path = "chat/pictures/\(UUID()).jpeg"
+        FBUploadManager.upload(photo, path: path) { path, error in
+            guard let p = path else {
+                print ("Error = ", error ?? "Error")
+                return
+            }
+            let message = Message(id: UUID().uuidString, content: "", created: Timestamp(), senderID: self.currentUser.uid, senderName: self.currentUser.displayName ?? "_", isRead: false, imagePath: p)
+            self.save(message)
+            self.insertNewMessage(message)
+        }
     }
 }

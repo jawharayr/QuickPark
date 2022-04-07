@@ -472,7 +472,6 @@ extension AnimatedImageView {
         }
         
         deinit {
-            resetAnimatedFrames()
             GraphicsContext.end()
         }
 

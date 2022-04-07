@@ -24,7 +24,6 @@
 #include <string>
 
 #include "absl/strings/string_view.h"
-#include "absl/types/optional.h"
 
 namespace firebase {
 namespace firestore {
@@ -83,10 +82,7 @@ class DocumentKey {
   const ResourcePath& path() const;
 
   /** Returns true if the document is in the specified collection_id. */
-  bool HasCollectionId(absl::string_view collection_id) const;
-
-  /** Returns the collection_id, if this document key has one. */
-  absl::optional<std::string> GetCollectionId() const;
+  bool HasCollectionId(const std::string& collection_id) const;
 
  private:
   // This is an optimization to make passing DocumentKey around cheaper (it's

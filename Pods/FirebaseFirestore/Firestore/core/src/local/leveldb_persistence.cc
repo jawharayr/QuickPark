@@ -114,6 +114,7 @@ LevelDbPersistence::LevelDbPersistence(std::unique_ptr<leveldb::DB> db,
   target_cache_ = absl::make_unique<LevelDbTargetCache>(this, &serializer_);
   document_cache_ =
       absl::make_unique<LevelDbRemoteDocumentCache>(this, &serializer_);
+  index_manager_ = absl::make_unique<LevelDbIndexManager>(this);
   reference_delegate_ =
       absl::make_unique<LevelDbLruReferenceDelegate>(this, lru_params);
   bundle_cache_ = absl::make_unique<LevelDbBundleCache>(this, &serializer_);
@@ -224,11 +225,11 @@ void LevelDbPersistence::Shutdown() {
   db_.reset();
 }
 
-LevelDbMutationQueue* LevelDbPersistence::GetMutationQueue(
-    const credentials::User& user, IndexManager* manager) {
+LevelDbMutationQueue* LevelDbPersistence::GetMutationQueueForUser(
+    const credentials::User& user) {
   users_.insert(user.uid());
-  current_mutation_queue_ = absl::make_unique<LevelDbMutationQueue>(
-      user, this, dynamic_cast<LevelDbIndexManager*>(manager), &serializer_);
+  current_mutation_queue_ =
+      absl::make_unique<LevelDbMutationQueue>(user, this, &serializer_);
   return current_mutation_queue_.get();
 }
 
@@ -240,11 +241,7 @@ LevelDbRemoteDocumentCache* LevelDbPersistence::remote_document_cache() {
   return document_cache_.get();
 }
 
-LevelDbIndexManager* LevelDbPersistence::GetIndexManager(
-    const credentials::User& user) {
-  users_.insert(user.uid());
-  index_manager_ =
-      absl::make_unique<LevelDbIndexManager>(user, this, &serializer_);
+LevelDbIndexManager* LevelDbPersistence::index_manager() {
   return index_manager_.get();
 }
 
@@ -254,14 +251,6 @@ LevelDbLruReferenceDelegate* LevelDbPersistence::reference_delegate() {
 
 LevelDbBundleCache* LevelDbPersistence::bundle_cache() {
   return bundle_cache_.get();
-}
-
-LevelDbDocumentOverlayCache* LevelDbPersistence::GetDocumentOverlayCache(
-    const User& user) {
-  users_.insert(user.uid());
-  current_document_overlay_cache_ =
-      absl::make_unique<LevelDbDocumentOverlayCache>(user, this, &serializer_);
-  return current_document_overlay_cache_.get();
 }
 
 void LevelDbPersistence::RunInternal(absl::string_view label,

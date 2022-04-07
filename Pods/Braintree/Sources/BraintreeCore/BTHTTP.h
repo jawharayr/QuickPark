@@ -3,6 +3,7 @@
 @class BTHTTPErrors;
 @class BTHTTPResponse;
 @class BTJSON;
+@class BTPayPalIDToken;
 @class BTCacheDateValidator;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -50,6 +51,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param clientToken A client token
 */
 - (instancetype)initWithClientToken:(BTClientToken *)clientToken;
+
+/**
+ A convenience initializer to initialize `BTHTTP` with a PayPal ID Token
+
+ @param payPalIDToken A PayPal ID Token
+*/
+- (instancetype)initWithPayPalIDToken:(BTPayPalIDToken *)payPalIDToken;
 
 - (NSString *)userAgentString;
 - (NSString *)acceptString;

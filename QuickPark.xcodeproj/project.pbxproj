@@ -17,7 +17,7 @@
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
-		1F3C553627F630C600E8A7EC /* AdminChatRoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C553527F630C600E8A7EC /* AdminChatRoster.swift */; };
+		1F3C553627F630C600E8A7EC /* VCChatRoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3C553527F630C600E8A7EC /* VCChatRoster.swift */; };
 		1FE81F6527EB381D00F8D142 /* AdminEditAreaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6427EB381D00F8D142 /* AdminEditAreaVC.swift */; };
 		1FE81F6727EB38E800F8D142 /* AdminCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6627EB38E800F8D142 /* AdminCustomCell.swift */; };
 		1FE81F6927EB390D00F8D142 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE81F6827EB390D00F8D142 /* DataManager.swift */; };
@@ -69,6 +69,8 @@
 		22A0757527A9261E00658889 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A0757427A9261E00658889 /* HomePageViewController.swift */; };
 		22C1C4CB27B6993A00866DA4 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C1C4CA27B6993A00866DA4 /* TermsViewController.swift */; };
 		22D7793C27C90E7B00BC4677 /* Misclenious.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D7793B27C90E7B00BC4677 /* Misclenious.storyboard */; };
+		22EC709A27FF7A65005438BC /* FBImageSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EC709927FF7A65005438BC /* FBImageSupport.swift */; };
+		22EC709C27FF81DC005438BC /* ReservationDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EC709B27FF81DB005438BC /* ReservationDetailsVC.swift */; };
 		3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */; };
 		7132474827F7BCD900FC1F66 /* PNSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132474727F7BCD900FC1F66 /* PNSender.swift */; };
 		7132474A27F7BDD900FC1F66 /* PNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132474927F7BDD900FC1F66 /* PNManager.swift */; };
@@ -109,7 +111,7 @@
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F3C553427F626AB00E8A7EC /* QuickPark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickPark.entitlements; sourceTree = "<group>"; };
-		1F3C553527F630C600E8A7EC /* AdminChatRoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminChatRoster.swift; sourceTree = "<group>"; };
+		1F3C553527F630C600E8A7EC /* VCChatRoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCChatRoster.swift; sourceTree = "<group>"; };
 		1FE81F6427EB381D00F8D142 /* AdminEditAreaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEditAreaVC.swift; sourceTree = "<group>"; };
 		1FE81F6627EB38E800F8D142 /* AdminCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCustomCell.swift; sourceTree = "<group>"; };
 		1FE81F6827EB390D00F8D142 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -161,6 +163,8 @@
 		22A0757427A9261E00658889 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		22C1C4CA27B6993A00866DA4 /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		22D7793B27C90E7B00BC4677 /* Misclenious.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Misclenious.storyboard; sourceTree = "<group>"; };
+		22EC709927FF7A65005438BC /* FBImageSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBImageSupport.swift; sourceTree = "<group>"; };
+		22EC709B27FF81DB005438BC /* ReservationDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationDetailsVC.swift; sourceTree = "<group>"; };
 		36CD72A8001F0AEED8AEF9AA /* Pods-QuickPark-QuickParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkTests.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkTests/Pods-QuickPark-QuickParkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3B2E8B9214F8CFF56EFAB53E /* Pods_QuickPark_QuickParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark_QuickParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 		22035FA427BB728300D1A3B5 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				22EC709927FF7A65005438BC /* FBImageSupport.swift */,
 				95CED68427DD04D800223275 /* UIImage+Extension.swift */,
 				2291945B27E9FCEF00E78016 /* QPLNSuport.swift */,
 				22035FA127BB724600D1A3B5 /* FBSupport.swift */,
@@ -360,6 +365,7 @@
 		2228409427F38EBE00FE2E5C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				22EC709B27FF81DB005438BC /* ReservationDetailsVC.swift */,
 				04DD469E27A4621200342200 /* ViewController.swift */,
 				2272432E27C8CD3800A35AF3 /* CountdownParkingVC.swift */,
 				2272432D27C8CD3800A35AF3 /* EnterParkingVC.swift */,
@@ -383,7 +389,7 @@
 			children = (
 				7132474727F7BCD900FC1F66 /* PNSender.swift */,
 				7132474927F7BDD900FC1F66 /* PNManager.swift */,
-				1F3C553527F630C600E8A7EC /* AdminChatRoster.swift */,
+				1F3C553527F630C600E8A7EC /* VCChatRoster.swift */,
 				2228409D27F392F000FE2E5C /* VCChat.swift */,
 				2228409727F38EF800FE2E5C /* Chat.storyboard */,
 			);
@@ -676,9 +682,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F3C553627F630C600E8A7EC /* AdminChatRoster.swift in Sources */,
+				1F3C553627F630C600E8A7EC /* VCChatRoster.swift in Sources */,
 				04DD469F27A4621200342200 /* ViewController.swift in Sources */,
 				225AB84827C7A75A003D4253 /* UserProfileViewController.swift in Sources */,
+				22EC709C27FF81DC005438BC /* ReservationDetailsVC.swift in Sources */,
 				22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */,
 				225AB86227C7B41C003D4253 /* AddAreaViewController.swift in Sources */,
 				225AB85F27C7B3FA003D4253 /* AdminTabBarVC.swift in Sources */,
@@ -709,6 +716,7 @@
 				1FE81F6D27EB395800F8D142 /* LocationSearchTable.swift in Sources */,
 				1FE81F6527EB381D00F8D142 /* AdminEditAreaVC.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
+				22EC709A27FF7A65005438BC /* FBImageSupport.swift in Sources */,
 				226C1D1427BE85A800D11E24 /* PastTableViewCell.swift in Sources */,
 				2291945C27E9FCEF00E78016 /* QPLNSuport.swift in Sources */,
 				2272433C27C8CD6B00A35AF3 /* Loader.swift in Sources */,
