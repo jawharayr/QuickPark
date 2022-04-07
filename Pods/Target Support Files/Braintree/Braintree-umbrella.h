@@ -30,6 +30,7 @@
 #import "BTJSON.h"
 #import "BTLogger.h"
 #import "BTPaymentMethodNonce.h"
+#import "BTPayPalIDToken.h"
 #import "BTPostalAddress.h"
 #import "BTPreferredPaymentMethods.h"
 #import "BTPreferredPaymentMethodsResult.h"

@@ -61,5 +61,6 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
                                     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
          print("Push notification received in foreground.")
          completionHandler([.alert, .sound, .badge])
+        NotificationCenter.default.post(name: Notification.Name("newMessage"), object: nil)
     }
 }

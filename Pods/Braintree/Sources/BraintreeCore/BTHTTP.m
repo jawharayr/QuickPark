@@ -10,11 +10,13 @@
 #import <Braintree/BTHTTPErrors.h>
 #import <Braintree/BTJSON.h>
 #import <Braintree/BTURLUtils.h>
+#import <Braintree/BTPayPalIDToken.h>
 #else
 #import <BraintreeCore/BTClientToken.h>
 #import <BraintreeCore/BTHTTPErrors.h>
 #import <BraintreeCore/BTJSON.h>
 #import <BraintreeCore/BTURLUtils.h>
+#import <BraintreeCore/BTPayPalIDToken.h>
 #endif
 
 @interface BTHTTP () <NSURLSessionDelegate>
@@ -76,6 +78,10 @@
 
 - (instancetype)initWithClientToken:(BTClientToken *)clientToken {
     return [self initWithBaseURL:[clientToken.json[@"clientApiUrl"] asURL] authorizationFingerprint:clientToken.authorizationFingerprint];
+}
+
+- (instancetype)initWithPayPalIDToken:(BTPayPalIDToken *)payPalIDToken {
+    return [self initWithBaseURL:payPalIDToken.baseBraintreeURL authorizationFingerprint:payPalIDToken.token];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone {

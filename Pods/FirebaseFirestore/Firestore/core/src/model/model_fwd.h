@@ -74,7 +74,6 @@ class MutationBatch;
 class MutationBatchResult;
 class MutationResult;
 class ObjectValue;
-class Overlay;
 class PatchMutation;
 class Precondition;
 class SetMutation;
