@@ -143,19 +143,31 @@ class RegViewController: UIViewController {
         SVProgressHUD.show()
         FBAuth.register(email: email, password: pass) { user, error in
             SVProgressHUD.dismiss()
-            if let e = error, user == nil {
-                QPAlert(self).showError(message: e.localizedDescription)
-            } else {
-                QPAlert(self).showError(message: "Registered Successfully.") //duration?
-                SceneDelegate.sceneDelegate.setUpHome()
+            guard let thisUser = user else {
+                QPAlert(self).showError(message: error?.localizedDescription ?? "Unknown Error!")
+                return
             }
-        }
-        
-        let database = Firestore.firestore()
-        let userdata = ["email": email, "name": name]
-        print (userdata)
-        database.collection("users").document(email).setData(userdata){(error) in
-            if error != nil {
+            
+            //set dispplay name
+            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+            changeRequest?.displayName = name
+            changeRequest?.commitChanges(completion: { error in
+                if let e = error {
+                    print ("Error = ", e)
+                }
+            })
+            
+            QPAlert(self).showError(message: "Registered Successfully.") //duration?
+            SceneDelegate.sceneDelegate.setUpHome()
+            let database = Firestore.firestore()
+            let userdata : [String: Any] = ["email": email,
+                                            "name": name,
+                                            "uid": thisUser.uid]
+            print (userdata)
+            database.collection("users").document(email).setData(userdata){(error) in
+                if let e = error {
+                    print ("Error = ", e)
+                }
             }
         }
     }

@@ -12,6 +12,7 @@ target 'QuickPark' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
+  pod 'Firebase/Messaging'
   pod 'Kingfisher'
   pod 'ProgressHUD'
   pod 'paper-onboarding'
@@ -26,6 +27,7 @@ target 'QuickPark' do
   
   #PayPal Pods
   pod 'Braintree'
+  pod 'MessageKit'
   
   target 'QuickParkTests' do
     #    inherit! :search_paths

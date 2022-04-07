@@ -9,6 +9,17 @@ import Firebase
 import UIKit
 import SVProgressHUD
 
+struct QPUser : Codable {
+    let name : String
+    let email : String
+    let uid : String
+}
+
+
+struct KServerValues {
+    static let admin = QPUser(name: "Support Team", email: "qpadminpro@gmail.com", uid: "LK9udFovdVMiANGTTy45JqF7DDT2")
+}
+
 struct FBSupport  {
     struct Collections {
         static let profile = "Profile"
@@ -18,6 +29,15 @@ struct FBSupport  {
 struct FBAuth {
     static var currentUser : User? {
         return Auth.auth().currentUser
+    }
+    
+    static var isAdmin : Bool {
+        if let user = FBAuth.currentUser {
+            if user.email == KServerValues.admin.email {
+                return true
+            }
+        }
+        return false
     }
     
     static var uid:String {
@@ -46,7 +66,6 @@ struct FBAuth {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let  e = error {
                 SVProgressHUD.showError(withStatus: e.localizedDescription)
-                
             }else{
                 SVProgressHUD.showSuccess(withStatus: "Logged in..")
                 complition(authResult?.user, error)
@@ -73,5 +92,13 @@ struct FBAuth {
 
 //MARK:
 struct FBSUser {
-    //func save
+    static var admin : ChatUser {
+        get {
+            return ChatUser(senderId: "LK9udFovdVMiANGTTy45JqF7DDT2", displayName: "Support Team")
+        }
+    }
+    
+    static var currrentUser : User {
+        return Auth.auth().currentUser!
+    }
 }

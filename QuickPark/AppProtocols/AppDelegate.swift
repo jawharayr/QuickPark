@@ -28,7 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 _ = UserDefaults.standard.string(forKey: "uid")!
             }
         }else{
-            _ = Auth.auth().currentUser!.uid
+            if let email =  Auth.auth().currentUser?.email {
+                let pushManager = PushNotificationManager(userID: email)//email is used as user id
+                pushManager.registerForPushNotifications()
+            }
         }
         
         return true
@@ -57,13 +60,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-
-extension AppDelegate: UNUserNotificationCenterDelegate {
-  
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // when app is onpen and in foregroud
-        completionHandler(.alert)
-    }
-  
-}
-

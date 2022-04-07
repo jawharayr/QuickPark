@@ -20,6 +20,12 @@ class TVCMore : UITableViewController {
         
         switch indexPath.row {
         case 0: //Call Feature
+            //hcta feature
+            
+            if let vc = SBSupport.viewController(sbi: "sbi_ChatViewController", inStoryBoard: "Chat") as? ChatViewController {
+                self.navigationController?.pushViewController(vc, animated: true)
+                vc.otherUser = FBSUser.admin
+            }
             break;
         case 1: //Show Obboarding
             if let vc = SBSupport.viewController(sbi: "sbi_HowToViewController", inStoryBoard: "Misclenious") as? HowToViewController {
@@ -53,6 +59,9 @@ class TVCMore : UITableViewController {
             }
         }
     }
+    
+    
+    
 }
 
 

@@ -15,7 +15,11 @@ class VCAdminMore : UITableViewController {
         
         switch indexPath.row {
         case 0: //Call Feature
+            if let vc = SBSupport.viewController(sbi: "sbi_chatRoster", inStoryBoard: "Chat") as? VCChatRoster {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             break;
+            
         case 1: //logout
             logout()
             break;
