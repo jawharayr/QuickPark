@@ -11,7 +11,7 @@ import FirebaseAuth
 import MapKit
 import CoreLocation
 import StoreKit
-let K_NotificationReservationTimer : TimeInterval = 10//900 //Time interval
+let K_NotificationReservationTimer : TimeInterval = 900//10 //Time interval
 
 
 class ConfirmAndPay: UIViewController {
@@ -48,9 +48,10 @@ class ConfirmAndPay: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         StartTimeTxt.delegate = self
         EndTimeTxt.delegate = self
+        ref = Database.database().reference()
+
         if Auth.auth().currentUser?.uid == nil{
             if  UserDefaults.standard.string(forKey: "uid") == nil{
                 uid = UtilitiesManager.sharedIntance.getRandomString()
