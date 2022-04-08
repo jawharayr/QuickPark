@@ -101,21 +101,6 @@ class MyParkingsVC: UIViewController {
                 NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
             }
         }
-        
-        
-       /* UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "You want to cancel your booking?", title: "Are you sure", buttons: ["Yes","No"]) { [self] index in
-            if index == 0{
-                    // remove data from firebase
-                    UserDefaults.standard.set(false, forKey: "start")
-                guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
-                self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
-                UserDefaults.standard.removeObject(forKey: "parkingArea")
-                RESERVATIONS.child(uid).removeValue()
-                NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
-                }
-                
-                
-            } */
     
     }
     
