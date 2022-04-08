@@ -51,7 +51,6 @@ class MyParkingsVC: UIViewController {
         // Do any additional setup after loading the view.
         //        getReservations()
         getIfAnyReservation()
-        SegmentedControl.selectedSegmentIndex = 0
         Past.backgroundColor = UIColor("#F5F5F5")
         self.PastLabel.isHidden = true
 
@@ -60,7 +59,6 @@ class MyParkingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         clearData()
-        SegmentedControl.selectedSegmentIndex = 0
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
         
@@ -99,7 +97,7 @@ class MyParkingsVC: UIViewController {
                 guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
                 self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
                 UserDefaults.standard.removeObject(forKey: "parkingArea")
-                    RESERVATIONS.child(uid).removeValue()
+                RESERVATIONS.child(uid).removeValue()
                 NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
                 }
                 
