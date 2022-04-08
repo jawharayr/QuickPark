@@ -71,7 +71,7 @@ class QRCodeVC: UIViewController {
     }
     
     @objc func updateTimer() {
-        print("QRCodeVC:tt", self.totalTime)
+       // print("QRCodeVC:tt", self.totalTime)
         self.lblCountDown.text = self.timeFormatted(self.totalTime) // will show timer
         if totalTime != 0 {
             totalTime -= 1  // decrease counter timer
