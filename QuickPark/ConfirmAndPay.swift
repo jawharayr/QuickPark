@@ -10,6 +10,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import MapKit
 import CoreLocation
+import StoreKit
 let K_NotificationReservationTimer : TimeInterval = 10//900 //Time interval
 
 
@@ -32,6 +33,7 @@ class ConfirmAndPay: UIViewController {
     
     @IBOutlet weak var DurationView: UIView!
     
+    @IBOutlet weak var GotoLocation: UIButton!
     
     let StartTimePicker = UIDatePicker()
     let EndTimePicker = UIDatePicker()
@@ -49,8 +51,6 @@ class ConfirmAndPay: UIViewController {
         
         StartTimeTxt.delegate = self
         EndTimeTxt.delegate = self
-        ref = Database.database().reference()
-        
         if Auth.auth().currentUser?.uid == nil{
             if  UserDefaults.standard.string(forKey: "uid") == nil{
                 uid = UtilitiesManager.sharedIntance.getRandomString()
@@ -108,32 +108,67 @@ class ConfirmAndPay: UIViewController {
         
     }
     @IBAction func GoToLocation(_ sender: Any) {
-                   let ref = Database.database().reference()
-            ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
-                for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
-                    let dictionary = snapshot.value as? NSDictionary
-                    var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
-                    if(areaName == area.areaname){
-                    let locationLat:CLLocationDegrees = area.locationLat
-                    let locationLong:CLLocationDegrees = area.locationLong
-                    print(locationLat)
-                        print(locationLong)
-                        let regionDistance:CLLocationDistance = 1000
-                        let coordinates = CLLocationCoordinate2DMake(locationLat, locationLong)
-                        let regionspam = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
-                        let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionspam.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionspam.span)]
-                        let placemark = MKPlacemark(coordinate: coordinates)
-                        let mapItem = MKMapItem(placemark: placemark)
-                        mapItem.name = areaName
-                        mapItem.openInMaps(launchOptions: options)
-                    }
-                                                 // longitude: Double(area.locationLong) ?? 0)
-                   
+        Take()
+    }
+    @objc func Take(){
+        ref = Database.database().reference()
+        ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
+            print(snapshots.childrenCount)
+            
+            for (_,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
+                let dictionary = snapshot.value as? NSDictionary
+                let area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
+                if(areaName == area.areaname){
+                                   let locationLat:CLLocationDegrees = area.locationLat
+                                   let locationLong:CLLocationDegrees = area.locationLong
+                                   print(locationLat)
+                    print(locationLong)
+                    present(in: self, sourceView: self.view, locationLat: locationLat, locationLong: locationLong,areaName:areaName)
           
-                }})}
-          
-        
+    }
+              //  present(self, animated: (GoToLocation != nil))
+    } })
+            }
+  
     
+    func present(in viewController: UIViewController, sourceView: UIView,locationLat:CLLocationDegrees,locationLong:CLLocationDegrees,areaName:String) {
+      let actionSheet = UIAlertController(title: "Open Location", message: "Choose an app to open direction", preferredStyle: .actionSheet)
+      actionSheet.addAction(UIAlertAction(title: "Google Maps", style: .default, handler: { _ in
+          // Pass the coordinate inside this URL
+          let url = URL(string: "comgooglemaps://?daddr="+String(locationLat)+","+String(locationLong)+")&directionsmode=driving&zoom=14&views=traffic")!
+          if UIApplication.shared.canOpenURL(url){
+              UIApplication.shared.open(url, options: [:], completionHandler: nil)
+          }
+          else{
+              let vc = SKStoreProductViewController()
+              vc.loadProduct(withParameters: [SKStoreProductParameterITunesItemIdentifier: NSNumber(value: 585027354)], completionBlock: nil)
+              self.present(vc, animated: true)
+          }
+      }))//google maps
+      actionSheet.addAction(UIAlertAction(title: "Apple Maps", style: .default, handler: { _ in
+          // Pass the coordinate that you want here
+
+          let regionDistance:CLLocationDistance = 1000
+                                  let coordinates = CLLocationCoordinate2DMake(locationLat, locationLong)
+                                  let regionspam = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+                                  let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionspam.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionspam.span)]
+                                  let placemark = MKPlacemark(coordinate: coordinates)
+                                  let mapItem = MKMapItem(placemark: placemark)
+                                  mapItem.name = areaName
+          if mapItem.openInMaps(launchOptions: options){
+              //
+          }else {
+              let vc = SKStoreProductViewController()
+              vc.loadProduct(withParameters: [SKStoreProductParameterITunesItemIdentifier: NSNumber(value: 915056765)], completionBlock: nil)
+              self.present(vc, animated: true)
+          }
+      }))//apple maps
+      actionSheet.popoverPresentationController?.sourceRect = sourceView.bounds
+      actionSheet.popoverPresentationController?.sourceView = sourceView
+      actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+      viewController.present(actionSheet, animated: true, completion: nil)
+      
+  }
     
     func createTimePicker() {
         
@@ -336,9 +371,10 @@ extension ConfirmAndPay: UITextFieldDelegate {
             minutesPrice = 15
         }
         let price = hourAndMinutes.hour! * 15 + minutesPrice
-        TotalPrice.text = String(price) + " SAR"
+        TotalPrice.text = String(price) + "SAR"
         DurationView.isHidden = false
         DueationLabel.text = ": \(hourAndMinutes.hour!)" + " hour " + "\(hourAndMinutes.minute!)" + " min"
         self.view.endEditing(true)
     }
 }
+
