@@ -13,7 +13,6 @@ import SDWebImage
 
 class MyParkingsVC: UIViewController {
     
-    @IBOutlet weak var PastTable: UITableView!
     @IBOutlet weak var SegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var EQRCode: UIButton!
@@ -642,6 +641,7 @@ class MyParkingsVC: UIViewController {
     
     @IBOutlet weak var ActiveView: UICollectionViewFlowLayout!
 
+
 }
 // Past reservations
 extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
@@ -650,7 +650,7 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        PastTable.backgroundColor = UIColor("#F5F5F5")
+        Past.backgroundColor = UIColor("#F5F5F5")
         return 60
         
     }
@@ -711,7 +711,6 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
    
-
 ////        self.selectedRes = self.pastReservations[indexPath.row]
 ////        let sender: Reservation? = self.pastReservations[indexPath.row]
 ////        self.performSegue(withIdentifier: "GoToViewDetails", sender: sender)

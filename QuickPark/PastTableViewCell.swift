@@ -21,17 +21,14 @@ class PastTableViewCell: UITableViewCell {
         self.PastView.layer.cornerRadius = 20
         self.PastView.layer.borderColor = UIColor.white.cgColor
         self.PastView.layer.masksToBounds = true
-
         self.BackView.layer.shadowOpacity = 0.18
         self.BackView.layer.shadowOffset = CGSize(width: 0, height: 2)
       //  self.BackView.layer.shadowRadius = 6
         self.BackView.layer.shadowColor = UIColor.black.cgColor
         self.BackView.layer.masksToBounds = false
-     //   self.BackView.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 1.0)
-    //    self.PastView.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 1.0)
-    //    self.MainView.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 1.0)
-          self.BackView.layer.cornerRadius = 15
 
+          self.BackView.layer.cornerRadius = 15
+        
 
     }
 
@@ -44,10 +41,11 @@ class PastTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var Logo: UIImageView!
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+      
 
         // Configure the view for the selected state
     }
