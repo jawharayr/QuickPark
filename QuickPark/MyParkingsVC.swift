@@ -51,12 +51,17 @@ class MyParkingsVC: UIViewController {
         // Do any additional setup after loading the view.
         //        getReservations()
         getIfAnyReservation()
+        SegmentedControl.selectedSegmentIndex = 0
+        Past.backgroundColor = UIColor("#F5F5F5")
+        self.PastLabel.isHidden = true
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         clearData()
-        
+        SegmentedControl.selectedSegmentIndex = 0
+
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
         
         ref = Database.database().reference()
@@ -130,8 +135,10 @@ class MyParkingsVC: UIViewController {
         self.clearData()
         Past.reloadData()
 
-        RESERVATIONS.child(uid).observeSingleEvent(of: .value) { dataSnap in
+        RESERVATIONS.child(uid).observeSingleEvent(of: .value) { [self] dataSnap in
             self.pastReservations.removeAll()
+           
+        
             if dataSnap.exists(){
                 let reserDict = dataSnap.value as! [String:Any]
                 for (k,_) in reserDict{
@@ -144,6 +151,7 @@ class MyParkingsVC: UIViewController {
                         break
                     }else{
                         self.pastReservations.append(res)
+                        self.PastLabel.isHidden = true
                         self.pastReservations = self.pastReservations.sorted(by:{$1.StartTime < $0.StartTime })
                       //  self.Past.reloadData()
 
@@ -155,7 +163,10 @@ class MyParkingsVC: UIViewController {
                     self.ViewAC.isHidden = false
                     self.EmptyLabel.isHidden = true
                     self.loadData()
-                    //                    self.getStartTime()
+                    //   self.getStartTime()
+              
+                    
+
                 }else{
                     self.clearData()
                 }
@@ -483,20 +494,49 @@ class MyParkingsVC: UIViewController {
     }
     
     
+    @IBOutlet weak var PastLabel: UILabel!
     
-    @IBAction func ActiveAndPast(_ sender: Any) {
-        if SegmentedControl.selectedSegmentIndex == 0{
-            // Active
+        
+
+
+    @IBAction func ActiveAndPast(_ sender: UISegmentedControl) {
+        let selection = sender.selectedSegmentIndex
+        
+        
+        switch selection {
+                  case 0:
+            PastLabel.isHidden = true
             Active.isHidden = false
             Past.isHidden = true
-        }else{
+           
+
+         //   EmptyLabel.isHidden = true
+
+                   case 1:
+       
             // Past
-            Active.isHidden = true
-            ViewAC.isHidden = true
+          //  Active.isHidden = true
             Past.isHidden = false
-            
-            EmptyLabel.isHidden = true
-        }
+            if pastReservations.isEmpty{
+                PastLabel.isHidden = false }
+    
+          //  EmptyLabel.isHidden = true
+         
+                     default: break
+           }
+//
+//        if SegmentedControl.selectedSegmentIndex == 0{
+//            // Active
+//            Active.isHidden = false
+//            Past.isHidden = true
+//            EmptyLabel.isHidden = true
+//
+//        }else if SegmentedControl.selectedSegmentIndex == 1 {
+//            // Past
+//            Active.isHidden = true
+//            Past.isHidden = false
+//            EmptyLabel.isHidden = true
+//        }
     }
     
     
