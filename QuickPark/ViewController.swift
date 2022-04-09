@@ -18,8 +18,6 @@ import SDWebImage
 
 class ViewController: UIViewController {
     //  let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
-    
-    
     @IBOutlet weak var searchText: UITextField!
     //
     var parkings = [Area]()
@@ -404,10 +402,6 @@ class ViewController: UIViewController {
             vc.reservation = self.reservation
             self.present(vc, animated: true, completion: nil)
         }
-        
-        //NotificationCenter.default.post(name: Notification.Name("timr"), object: self.totalTime)
-       
-        
     }
     
 }

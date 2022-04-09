@@ -19,28 +19,18 @@ class MyParkingsVC: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     //    @IBOutlet weak var viewLoader: UIView!
     //    @IBOutlet weak var lblCountDown: UILabel!
-    
-    
     var totalTime = 0
     var uid = ""
     var pastReservations = [Reservation]()
     var ref:DatabaseReference!
     var reservation:Reservation!
     var timer:Timer!
-    
-    
     @IBOutlet weak var StartTime: UILabel!
     @IBOutlet weak var EndTime: UILabel!
     @IBOutlet weak var area: UILabel!
-    
-    
     @IBOutlet weak var btnEnd: UIButton!
     @IBOutlet weak var lblCountDown: UILabel!
-    
-    
     @IBOutlet weak var viewLoader: UIView!
-    
-    
     @IBOutlet weak var ViewAC: UIView!
     @IBOutlet weak var EmptyLabel: UILabel!
     @IBOutlet weak var Active: UIView!
@@ -51,20 +41,27 @@ class MyParkingsVC: UIViewController {
         // Do any additional setup after loading the view.
         //        getReservations()
         getIfAnyReservation()
+        
         Past.backgroundColor = UIColor("#F5F5F5")
         self.PastLabel.isHidden = true
         if pastReservations.isEmpty && SegmentedControl.selectedSegmentIndex == 1 {
-            PastLabel.isHidden = false }
+            PastLabel.isHidden = false
+        }
+        
+        if UserDefaults.standard.bool(forKey: "start") {//The reservation is active
+            SegmentedControl.selectedSegmentIndex = 0
+            ActiveAndPast(SegmentedControl)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         clearData()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
+       // NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
         
         ref = Database.database().reference()
-        
+         
         if Auth.auth().currentUser?.uid == nil{
             if  UserDefaults.standard.string(forKey: "uid") == nil{
                 uid = UtilitiesManager.sharedIntance.getRandomString()
@@ -78,9 +75,6 @@ class MyParkingsVC: UIViewController {
         
         Past.delegate = self
         Past.dataSource = self
-        
-//        getIfAnyReservation()
-        
         Active.layer.cornerRadius = 20
         Active.layer.shadowOpacity = 0.1
         Active.layer.shadowOffset = .zero
@@ -91,7 +85,7 @@ class MyParkingsVC: UIViewController {
     
     // cancel resrvation by the user SPRINT #3
     @IBAction func cancelResrevation(_ sender: Any) {
-        
+        let reservationID = UserDefaults.standard.object(forKey: "reservationId") as! String
         QPAlert(self).showAlert(title: "Are you sure you want to cancel your resrevation?", message: nil, buttons: ["Cancel", "Yes"]) { [self] _, index in
             if index == 1 {
                 // remove data from firebase
@@ -99,7 +93,7 @@ class MyParkingsVC: UIViewController {
                 guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
                 self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
                 UserDefaults.standard.removeObject(forKey: "parkingArea")
-                RESERVATIONS.child(uid).removeValue()
+                RESERVATIONS.child(uid).child(reservationID).removeValue()
                  NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
             }
         }
@@ -120,8 +114,7 @@ class MyParkingsVC: UIViewController {
 //        Database.database().reference().child("QRCode").child(code).observeSingleEvent(of: .value, with: )
     }
     
-    func getIfAnyReservation(){
-        
+    func getIfAnyReservation() {
         lblCountDown.textColor =  UIColor(red: 0, green: 144/255, blue: 205/255, alpha: 1)
         self.viewLoader.viewWithTag(101)?.removeFromSuperview()
         self.viewLoader.viewWithTag(102)?.removeFromSuperview()
@@ -129,42 +122,45 @@ class MyParkingsVC: UIViewController {
         ViewAC.isHidden = true
         EmptyLabel.isHidden = false
         reservation = nil
-     //   pastReservations.removeAll()
         self.clearData()
         Past.reloadData()
+        
+        RESERVATIONS.child(uid).getData { error, dataSnap in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
 
-        RESERVATIONS.child(uid).observeSingleEvent(of: .value) { [self] dataSnap in
-            self.pastReservations.removeAll()
-           
+        
+
+//        RESERVATIONS.child(uid).observeSingleEvent(of: .value) { [self] dataSnap in
         
             if dataSnap.exists(){
+                self.pastReservations.removeAll()
+
                 let reserDict = dataSnap.value as! [String:Any]
-                for (k,_) in reserDict{
+                print("All Keys = ", reserDict.keys)
+                for k in reserDict.keys{
+                    print ("Key = ", k)
                     let res = Reservation.init(dict: reserDict[k] as! [String : Any])
-                    if !res.isCompleted{
+                    if !res.isCompleted {
                         self.reservation = res
                         if !res.qrcode.isEmpty{
                             self.track(qrcode: res.qrcode)
                         }
-                        break
                     }else{
                         self.pastReservations.append(res)
-                        self.PastLabel.isHidden = true
-                        self.pastReservations = self.pastReservations.sorted(by:{$1.StartTime < $0.StartTime })
-                      //  self.Past.reloadData()
-
-                
                     }
                 }
+                self.pastReservations = self.pastReservations.sorted(by:{$1.StartTime < $0.StartTime })
+                self.PastLabel.isHidden = (self.pastReservations.count > 0)
                 self.Past.reloadData()
-                if self.reservation != nil{
+                
+                //Active reservation Stuff
+                if self.reservation != nil {
                     self.ViewAC.isHidden = false
                     self.EmptyLabel.isHidden = true
                     self.loadData()
-                    //   self.getStartTime()
-              
-                    
-
                 }else{
                     self.clearData()
                 }
@@ -322,30 +318,6 @@ class MyParkingsVC: UIViewController {
         
     }
     
-    //    func getIfAnyReservation(){
-    //        viewLoader.isHidden = true
-    //        self.reservation = nil
-    //        RESERVATIONS.child(uid).observe(.value) { dataSnap in
-    //            if dataSnap.exists(){
-    //                let reserDict = dataSnap.value as! [String:Any]
-    //                for (k,_) in reserDict{
-    //                    let res = Reservation.init(dict: reserDict[k] as! [String : Any])
-    //                    if res.isCompleted{
-    //                    }else{
-    //                        self.reservation = res
-    //                    }
-    //                }
-    //
-    //                if self.reservation != nil{
-    //
-    //                    self.checkIfTimeIsValid()
-    //                }
-    //            }
-    //        }
-    //    }
-    
-    
-    
     @IBAction func EndParking(_ sender: Any) {
         QPAlert(self).showAlert(title:"End Parking.", message: "Are you sure?" , buttons:  ["Yes","cancel"]) { _, index in
             if index == 0 {
@@ -499,45 +471,19 @@ class MyParkingsVC: UIViewController {
 
     @IBAction func ActiveAndPast(_ sender: UISegmentedControl) {
         let selection = sender.selectedSegmentIndex
-        
-        
         switch selection {
-                  case 0:
+        case 0:
             PastLabel.isHidden = true
             Active.isHidden = false
             Past.isHidden = true
-           
-
-         //   EmptyLabel.isHidden = true
-
-                   case 1:
-       
-            // Past
-          //  Active.isHidden = true
+        case 1:
             Past.isHidden = false
-            if pastReservations.isEmpty{
-                PastLabel.isHidden = false }
-    
-          //  EmptyLabel.isHidden = true
-         
-                     default: break
-           }
-//
-//        if SegmentedControl.selectedSegmentIndex == 0{
-//            // Active
-//            Active.isHidden = false
-//            Past.isHidden = true
-//            EmptyLabel.isHidden = true
-//
-//        }else if SegmentedControl.selectedSegmentIndex == 1 {
-//            // Past
-//            Active.isHidden = true
-//            Past.isHidden = false
-//            EmptyLabel.isHidden = true
-//        }
+            if pastReservations.isEmpty {
+                PastLabel.isHidden = false
+            }
+        default: break
+        }
     }
-    
-    
     
     func timeFormatted(_ totalSeconds: Int) -> String {
         let hour = totalSeconds / 3600
@@ -673,7 +619,6 @@ class MyParkingsVC: UIViewController {
     //    } */
     
     @objc func methodOfReceivedNotification(notification: Notification) {
-        
         getIfAnyReservation()
     }
     

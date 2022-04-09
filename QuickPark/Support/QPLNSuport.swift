@@ -58,6 +58,9 @@ class QPLNSupport {
                     title:String,
                     detail:String,
                     userInfo:[String:Any]) {
+        
+        guard after > 0 else {return}
+        
         let c = UNMutableNotificationContent()
         c.title = title
         c.body = detail

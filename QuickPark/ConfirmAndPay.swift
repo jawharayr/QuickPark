@@ -229,6 +229,7 @@ class ConfirmAndPay: UIViewController {
             let unique = String("\(Date().timeIntervalSince1970)").replacingOccurrences(of: ".", with: "")
             
             let reservationId = UtilitiesManager.sharedIntance.getRandomString()
+            UserDefaults.standard.set(reservationId, forKey: "reservationId")
 //            let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false] as [String : Any]
             let paramas = ["id":reservationId,"Date":dateStr,"EndTime":EndTimePicker.date.timeIntervalSince1970,"ExtraCharge":"0","Name":"user_name","Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,"area":areaName,"isCompleted":false,"qrcode": unique,"isScanned":false] as [String : Any]
             

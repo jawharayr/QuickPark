@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseDatabase
 
-let K_NotificationEndParkingBefore : TimeInterval = 1830//600 sec not, should be 600
+let K_NotificationEndParkingBefore : TimeInterval = 600//sec not, should be 600
 
 class EnterParkingVC: UIViewController {
     
@@ -145,7 +145,7 @@ class EnterParkingVC: UIViewController {
         //Adding notification to trigger before 10 min of parking end.
         let notificationTime = reservation.EndTime - K_NotificationEndParkingBefore
         let t = Date(timeIntervalSince1970: notificationTime).timeIntervalSinceNow
-        print("reservation.EndTime", reservation.EndTime,    "notificationTime",notificationTime, "t", t)
+        print("reservation.EndTime", reservation.EndTime, "notificationTime",notificationTime, "t", t)
         
         QPLNSupport.add(reservation.id,
                         after: t,
