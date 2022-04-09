@@ -58,7 +58,7 @@ class MyParkingsVC: UIViewController {
         super.viewDidLoad()
         clearData()
 
-       // NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
+       NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
         
         ref = Database.database().reference()
          
