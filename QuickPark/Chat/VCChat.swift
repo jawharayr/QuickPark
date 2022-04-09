@@ -72,7 +72,7 @@ extension Chat {
 //MARK: -
 struct ChatUser: SenderType, Equatable {
     var senderId: String
-    var displayName: String
+    var displayName: String = ""
     var uid : String {return senderId}
 }
 
@@ -190,7 +190,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = otherUser.displayName
+        self.title = (otherUser.displayName.count > 0) ? otherUser.displayName : "User"
         
         navigationItem.largeTitleDisplayMode = .never
         maintainPositionOnKeyboardFrameChanged = true
@@ -359,7 +359,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                 guard let user = querySnapshot?.documents.first, let fcmToken = user["fcmToken"] as? String else {
                     return
                 }
-                PushNotificationSender.sendPushNotification(to: fcmToken, title: "", body: "\(self.currentUser.displayName ?? "") you have a message")
+                PushNotificationSender.sendPushNotification(to: fcmToken, title: "", body: //"\(self.currentUser.displayName ?? "") send you a message")
+                        " you have a new message")
             }
         }
     }
