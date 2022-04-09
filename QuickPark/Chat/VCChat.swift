@@ -359,7 +359,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                 guard let user = querySnapshot?.documents.first, let fcmToken = user["fcmToken"] as? String else {
                     return
                 }
-                PushNotificationSender.sendPushNotification(to: fcmToken, title: "New message", body: "\(self.currentUser.displayName ?? "Support Team") sent you a message.")
+                PushNotificationSender.sendPushNotification(to: fcmToken, title: "", body: "\(self.currentUser.displayName ?? "") you have a message")
             }
         }
     }
