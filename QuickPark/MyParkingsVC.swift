@@ -53,7 +53,8 @@ class MyParkingsVC: UIViewController {
         getIfAnyReservation()
         Past.backgroundColor = UIColor("#F5F5F5")
         self.PastLabel.isHidden = true
-
+        if pastReservations.isEmpty && SegmentedControl.selectedSegmentIndex == 1 {
+            PastLabel.isHidden = false }
     }
     
     override func viewDidLoad() {
@@ -84,7 +85,8 @@ class MyParkingsVC: UIViewController {
         Active.layer.shadowOpacity = 0.1
         Active.layer.shadowOffset = .zero
         Active.layer.shadowRadius = 10
-        
+        if pastReservations.isEmpty && SegmentedControl.selectedSegmentIndex == 1 {
+            PastLabel.isHidden = false }
     }
     
     // cancel resrvation by the user SPRINT #3
@@ -98,7 +100,7 @@ class MyParkingsVC: UIViewController {
                 self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
                 UserDefaults.standard.removeObject(forKey: "parkingArea")
                 RESERVATIONS.child(uid).removeValue()
-                NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                 NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
             }
         }
     
