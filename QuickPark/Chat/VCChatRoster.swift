@@ -9,7 +9,6 @@ import UIKit
 import Firebase
 
 class UserCell : UITableViewCell {
-    var chat : Chat!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -26,12 +25,13 @@ class UserCell : UITableViewCell {
     }
     var user : QPUser! {
         didSet {
-            self.textLabel?.text = user.name
+            self.titleLabel.text = user.name
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        messageCountlabel.layer.masksToBounds = true
     }
 }
 
@@ -73,7 +73,6 @@ class VCChatRoster : UIViewController {
                 guard let sds  = querySnapshot?.documents, sds.count > 0 else {
                     self.noMessageLabel.text = "No chats"
                     return
-                    
                 }
                 
                 self.chats.removeAll()
