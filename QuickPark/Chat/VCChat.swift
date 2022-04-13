@@ -21,6 +21,7 @@ class Chat {
     var unreadCount : Int?
     
     init(dictionary: [String:Any]) {
+        print ("Chat Dictionary: ", dictionary)
         if let chatUsers = dictionary["users"] as? [String] {
             users = chatUsers
         }
@@ -283,12 +284,11 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                     self.createNewChat()
                 }
                 else if queryCount >= 1 {
-                    //Chat(s) found for currentUser
                     for doc in chatQuerySnap!.documents {
                         
                         let chat = Chat(dictionary: doc.data())
                         
-                        //Get the chat which has user2 id
+                        //Get the chat which has user id
                         if ((chat.users.contains(self.otherUser.uid))) {
                             self.docReference = doc.reference
                         
@@ -320,7 +320,6 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                                         self.messagesCollectionView.scrollToLastItem(at: .bottom, animated: true)
                                     }
                                 })
-                            //list.remove()
                             return
                         } //end of if
                     } //end of for
