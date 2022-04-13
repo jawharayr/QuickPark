@@ -10,6 +10,20 @@ import Firebase
 
 class UserCell : UITableViewCell {
     var chat : Chat!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var messageCountlabel: UILabel!
+    var chat : Chat! {
+        didSet {
+            self.detailLabel.text = chat.dateString
+            self.messageCountlabel.isHidden = true
+            if let uc = chat.unreadCount, uc > 0 {
+                self.messageCountlabel.isHidden = false
+                self.messageCountlabel.text = "\(uc)"
+            }
+        }
+    }
     var user : QPUser! {
         didSet {
             self.textLabel?.text = user.name
