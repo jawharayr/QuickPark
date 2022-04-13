@@ -76,6 +76,9 @@ class VCChatRoster : UIViewController {
                                     print("Error: \(error)")
                                 } else {
                                     c.unreadCount = threadQuery?.documents.count ?? 0
+                                    if let md = threadQuery?.documents.first, let m = Message(dictionary: md.data()) {
+                                        c.lastMessage = m
+                                    }
                                 }
                                 cs.append(c)
                                 dataLoadCounter += 1
