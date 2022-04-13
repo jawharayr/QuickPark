@@ -101,23 +101,11 @@ extension VCChatRoster:UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell : UserCell!
-        if let c = tableView.dequeueReusableCell(withIdentifier: "ci_chatUser") as? UserCell {
+        if let c = tableView.dequeueReusableCell(withIdentifier: "ci_UserCell") as? UserCell {
             cell = c
-        }else {
-            cell = UserCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "ci_chatUser")
-            cell.detailTextLabel?.textColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
-            cell.detailTextLabel?.font = .boldSystemFont(ofSize: 18)
-            cell.accessoryType = .disclosureIndicator
-//            cell.detailTextLabel?.backgroundColor = .red
-//            var f = cell.detailTextLabel?.frame
-//            f?.size = CGSize(width: 32, height: 32)
-//            cell.detailTextLabel?.frame = f ?? .zero
-//            cell.detailTextLabel?.layer.cornerRadius = 16
-//            cell.detailTextLabel?.layer.masksToBounds = true
         }
         let c = chats[indexPath.row]
         cell.chat = c
-        cell.detailTextLabel?.text = ((c.unreadCount ?? 0) != 0) ?  "\(c.unreadCount!)" : ""
         c.loadOtherUser { user in
             cell?.user = user
         }
@@ -125,7 +113,7 @@ extension VCChatRoster:UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var c = chats[indexPath.row]
+        let c = chats[indexPath.row]
         c.unreadCount = 0
         chats[indexPath.row] = c
         //let cell  = tableView.cellForRow(at: indexPath) as! UserCell
