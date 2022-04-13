@@ -122,6 +122,10 @@ extension VCChatRoster:UITableViewDelegate, UITableViewDataSource {
         //let cell  = tableView.cellForRow(at: indexPath) as! UserCell
         self.performSegue(withIdentifier: "si_rosterToChat", sender: indexPath)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 104
+    }
 }
 
 //navigate
