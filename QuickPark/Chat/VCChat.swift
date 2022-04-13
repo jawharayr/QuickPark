@@ -10,9 +10,14 @@ class Chat {
     var dictionary: [String: Any] {
         return ["users": users]
     }
-    
+    var lastMessage:Message?
     var documentID:String?
     var otherUser : QPUser?
+    var dateString : String {
+        get {
+            return lastMessage?.created.dateValue().displayString() ?? Date().displayString()
+        }
+    }
     var unreadCount : Int?
     
     init(dictionary: [String:Any]) {
