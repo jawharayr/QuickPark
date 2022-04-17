@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04206F87280C43760044F518 /* ViewOnMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04206F86280C43750044F518 /* ViewOnMapController.swift */; };
 		04DD469B27A4621200342200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469A27A4621200342200 /* AppDelegate.swift */; };
 		04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469C27A4621200342200 /* SceneDelegate.swift */; };
 		04DD469F27A4621200342200 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD469E27A4621200342200 /* ViewController.swift */; };
@@ -98,6 +99,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04206F86280C43750044F518 /* ViewOnMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOnMapController.swift; sourceTree = "<group>"; };
 		04DD469727A4621200342200 /* QuickPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DD469A27A4621200342200 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04DD469C27A4621200342200 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				22A0756F27A9257D00658889 /* Auth */,
 				2228409427F38EBE00FE2E5C /* Controllers */,
 				2228409927F392D800FE2E5C /* Chat */,
+				04206F86280C43750044F518 /* ViewOnMapController.swift */,
 			);
 			path = QuickPark;
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				22EC709C27FF81DC005438BC /* ReservationDetailsVC.swift in Sources */,
 				22035FA027B6B24E00D1A3B5 /* TVCResetPassword.swift in Sources */,
 				225AB86227C7B41C003D4253 /* AddAreaViewController.swift in Sources */,
+				04206F87280C43760044F518 /* ViewOnMapController.swift in Sources */,
 				225AB85F27C7B3FA003D4253 /* QPVCTabBar.swift in Sources */,
 				1FE81F6F27EB3AC600F8D142 /* HowToViewController.swift in Sources */,
 				1FE81F6927EB390D00F8D142 /* DataManager.swift in Sources */,
