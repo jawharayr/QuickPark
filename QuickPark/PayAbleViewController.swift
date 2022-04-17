@@ -137,7 +137,94 @@ class PayAbleViewController: UIViewController {
             self.present(vc, animated: true, completion: nil)
         }
     }
+    //till 224 this will be activited when clicong the button "Regenerate"
+    func generateQRCodeAfterexpired(using string:String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator"){
+            filter.setValue( data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+            if let output = filter.outputImage?.transformed(by: transform){
+                return UIImage(ciImage: output)
+            }
+        }
+        return nil
+    }
+    //calc time from 1QRexitcoe - 2QR"regreneted"exitQ
+    func calculateTimeAfterRegenrate(){
+        
+        var extra:Double = 0.0
+        var price:Double = 0.0
+        var total:Double = 0.0
+        var minOfPrice:Double = 0.0
+        var minOfExtra:Double = 0.0
+        
+        var HoursofPrice=0.0
+        var HoursofExtra = 0.0
+        
+        var isInteger = true
+        
+        let startTime = reservation.StartTime
+        let endTime = reservation.EndTime
+        
+        let now = Date.init().addingMinutes(minutes: 1)
+        
+        
+        if now.timeIntervalSince1970 > TimeInterval.init(endTime){
             
+            minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
+            
+            HoursofPrice = minOfPrice/60
+            isInteger = floor(HoursofPrice) == HoursofPrice // true
+            
+            if (isInteger){
+                price = HoursofPrice * 15
+            }
+            else{
+                price =  ( floor(HoursofPrice) * 15 ) + 15
+            }
+            
+            minOfExtra = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(endTime)), endTime: Int(now.timeIntervalSince1970))
+            
+            HoursofExtra = minOfExtra/60
+            isInteger = floor(HoursofExtra) == HoursofExtra // true if its integer
+            
+            if (isInteger){
+                extra = HoursofExtra * 15
+            }
+            else{
+                extra =  ( floor(HoursofExtra) * 15 ) + 15
+            }
+            
+            total = price + extra
+        }else{
+            
+            minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
+            
+            HoursofPrice = minOfPrice/60
+            isInteger = floor(HoursofPrice) == HoursofPrice // true
+            
+            if (isInteger){
+                price = HoursofPrice * 15
+            }
+            else{
+                price =  ( floor(HoursofPrice) * 15 ) + 15
+            }
+            
+            total = price
+        }
+        
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PayAbleViewController") as! PayAbleViewController
+        vc.total = "\(total.rounded())"
+        vc.extra = "\(extra.rounded())"
+        vc.price = "\(price.rounded())"
+        vc.modalPresentationStyle = .overFullScreen
+        vc.reservation = self.reservation
+       // mainVC.present(vc, animated: true, completion: nil)
+    }
+    
+    
     func generateQRCode(using string:String) -> UIImage? {
         let data = string.data(using: String.Encoding.ascii)
         
