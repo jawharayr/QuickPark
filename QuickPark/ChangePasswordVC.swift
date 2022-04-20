@@ -11,6 +11,7 @@ import FirebaseAuth
 class ChangePasswordVC: UIViewController {
 
     
+    @IBOutlet weak var Info: UIView!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -88,6 +89,14 @@ class ChangePasswordVC: UIViewController {
         passwordTextField.isSecureTextEntry = true
         confirmPasswordTextField.isSecureTextEntry = true
         // Do any additional setup after loading the view.
+        self.Info.layer.borderWidth = 1
+        self.Info.layer.cornerRadius = 6
+        self.Info.layer.borderColor = UIColor.white.cgColor
+        self.Info.layer.masksToBounds = true
+        self.Info.layer.shadowOpacity = 0.18
+        self.Info.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.Info.layer.shadowColor = UIColor.black.cgColor
+        self.Info.layer.masksToBounds = false
     }
     
     func passwordValidation() -> Bool {

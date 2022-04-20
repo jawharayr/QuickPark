@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -80,19 +80,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fan-9q-r9x">
-                                <rect key="frame" x="0.0" y="-142.5" width="414" height="386"/>
-                                <color key="backgroundColor" red="0.0039215686269999999" green="0.56078431370000004" blue="0.80784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="386" id="N2W-49-Bwd"/>
-                                </constraints>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CAZ-AA-1C0">
                                 <rect key="frame" x="0.0" y="334" width="414" height="402"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.95686274770000002" green="0.95686274770000002" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="402" id="5py-sr-lJ5"/>
                                 </constraints>
+                                <color key="sectionIndexBackgroundColor" red="0.95686274770000002" green="0.95686274770000002" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdminCustomCell" rowHeight="100" id="xEZ-0T-59c" customClass="AdminCustomCell" customModule="QuickPark" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="100"/>
@@ -184,10 +178,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hV5-le-IBe">
-                                <rect key="frame" x="20" y="195.5" width="374" height="79.5"/>
+                                <rect key="frame" x="34" y="122.5" width="346.5" height="79.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What areas your are looking for?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EBc-RI-wgz">
-                                        <rect key="frame" x="57" y="11" width="293" height="60.5"/>
+                                        <rect key="frame" x="29.5" y="11" width="293" height="60.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="293" id="f9s-MK-qeu"/>
                                         </constraints>
@@ -195,7 +189,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9v-wu-kuL">
-                                        <rect key="frame" x="8" y="11" width="49" height="57.5"/>
+                                        <rect key="frame" x="8" y="11" width="21.5" height="57.5"/>
                                         <color key="tintColor" systemColor="systemGray3Color"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="magnifyingglass" catalog="system"/>
@@ -220,24 +214,20 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QST-F1-Gah"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.95686274770000002" green="0.95686274770000002" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="9Xp-1L-tIX" firstAttribute="top" secondItem="CAZ-AA-1C0" secondAttribute="bottom" constant="16" id="17i-N4-qEd"/>
-                            <constraint firstItem="AGZ-EU-sxh" firstAttribute="top" secondItem="hV5-le-IBe" secondAttribute="bottom" constant="7.5" id="71j-em-Byl"/>
-                            <constraint firstItem="Fan-9q-r9x" firstAttribute="trailing" secondItem="CAZ-AA-1C0" secondAttribute="trailing" id="FIp-aP-cIz"/>
-                            <constraint firstItem="AGZ-EU-sxh" firstAttribute="top" secondItem="Fan-9q-r9x" secondAttribute="bottom" constant="39" id="GW9-Zq-wAC"/>
+                            <constraint firstItem="AGZ-EU-sxh" firstAttribute="top" secondItem="hV5-le-IBe" secondAttribute="bottom" constant="80.5" id="71j-em-Byl"/>
                             <constraint firstItem="QST-F1-Gah" firstAttribute="trailing" secondItem="AGZ-EU-sxh" secondAttribute="trailing" constant="109" id="Hql-o8-JF0"/>
                             <constraint firstItem="9Xp-1L-tIX" firstAttribute="leading" secondItem="QST-F1-Gah" secondAttribute="leading" constant="45" id="Kat-Qv-14q"/>
                             <constraint firstItem="QST-F1-Gah" firstAttribute="bottom" secondItem="9Xp-1L-tIX" secondAttribute="bottom" constant="16" id="MIA-st-GVW"/>
-                            <constraint firstItem="hV5-le-IBe" firstAttribute="top" secondItem="QST-F1-Gah" secondAttribute="top" constant="107.5" id="OEo-FN-DVA"/>
-                            <constraint firstItem="Fan-9q-r9x" firstAttribute="leading" secondItem="CAZ-AA-1C0" secondAttribute="leading" id="PEc-lx-Qbs"/>
+                            <constraint firstItem="hV5-le-IBe" firstAttribute="top" secondItem="QST-F1-Gah" secondAttribute="top" constant="34.5" id="OEo-FN-DVA"/>
                             <constraint firstItem="AGZ-EU-sxh" firstAttribute="leading" secondItem="PxW-Hh-XhN" secondAttribute="leadingMargin" id="Xx6-JU-V0I"/>
                             <constraint firstItem="CAZ-AA-1C0" firstAttribute="top" secondItem="AGZ-EU-sxh" secondAttribute="bottom" constant="18.333333333333371" id="YMi-hm-qvn"/>
                             <constraint firstItem="CAZ-AA-1C0" firstAttribute="centerX" secondItem="9Xp-1L-tIX" secondAttribute="centerX" id="eY6-ph-7L7"/>
                             <constraint firstAttribute="trailing" secondItem="CAZ-AA-1C0" secondAttribute="trailing" id="jYo-QX-2v9"/>
                             <constraint firstItem="CAZ-AA-1C0" firstAttribute="leading" secondItem="PxW-Hh-XhN" secondAttribute="leading" id="mDj-Fm-dSu"/>
-                            <constraint firstItem="Fan-9q-r9x" firstAttribute="centerX" secondItem="hV5-le-IBe" secondAttribute="centerX" id="mio-ZC-UdQ"/>
-                            <constraint firstItem="AGZ-EU-sxh" firstAttribute="leading" secondItem="hV5-le-IBe" secondAttribute="leading" id="uGs-pv-w3O"/>
+                            <constraint firstItem="AGZ-EU-sxh" firstAttribute="leading" secondItem="hV5-le-IBe" secondAttribute="leading" constant="-14" id="uGs-pv-w3O"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TT4-fe-7j8"/>
@@ -251,7 +241,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lyg-GM-eg6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1264.6153846153845" y="-15.639810426540283"/>
+            <point key="canvasLocation" x="1262.3188405797102" y="-16.071428571428569"/>
         </scene>
         <!--AddNewArea-->
         <scene sceneID="Waa-HE-Hxw">
@@ -1019,7 +1009,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aze-xr-9GF"/>
+        <segue reference="JPb-9a-idl"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="-support-50-removebg-preview" width="50" height="50"/>

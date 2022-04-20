@@ -33,7 +33,8 @@ class ViewController: UIViewController {
     let storageRef = Storage.storage().reference()
     var ref:DatabaseReference!
     
- 
+    @IBOutlet weak var HelloLabel: UILabel!
+    
     @IBOutlet weak var NoResults: UILabel!
     @IBOutlet weak var SearchTxt: UIView!
     @IBOutlet weak var ParkingView: UIView!
@@ -50,6 +51,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        getName { (name) in
+                    if let name = name {
+        self.HelloLabel.text = "Hello, \(name)!"
+                    
+                    }
+                }
         NoResults.isHidden = true
         searchText.addTarget(self, action: #selector(searchRecord), for: .editingChanged)
         ref = Database.database().reference()
@@ -99,6 +107,31 @@ class ViewController: UIViewController {
        
         }
     
+    
+    func getName(completion: @escaping (_ name: String?) -> Void) {
+            guard let uemail = Auth.auth().currentUser?.email else { // safely unwrap the uid; avoid force unwrapping with !
+                
+                completion(nil) // user is not logged in; return nil
+                return
+            }
+
+        
+            Firestore.firestore().collection("users").document(uemail).getDocument { (docSnapshot, error) in
+                if let doc = docSnapshot {
+                    if let name = doc.get("name") as? String {
+                        completion(name) // success; return name
+                    } else {
+                        print("error getting field")
+                        completion(nil) // error getting field; return nil
+                    }
+                } else {
+                    if let error = error {
+                        print(error)
+                    }
+                    completion(nil) // error getting document; return nil
+                }
+            }
+        }
     
     
     func setUI(){

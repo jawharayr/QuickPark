@@ -20,6 +20,7 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var changePassbtn: UIButton!
     @IBOutlet weak var deletebtn: UIButton!
     
+    @IBOutlet weak var Info: UIView!
     @IBOutlet weak var labelEmailAlert: UILabel!
     @IBOutlet weak var labelFieldsAlert: UILabel!
     @IBOutlet weak var LabelNameAlert: UILabel!
@@ -38,9 +39,11 @@ class UserProfileViewController: UIViewController {
     @IBAction func cancelAction(_ sender: Any) {
         if !(txtUserName.text != name || txtEmail.text != email){return}
         let alert = UIAlertController(title: "Cancel", message: "Are you sure you want to cancel changes?", preferredStyle: .alert)
-        alert.addAction(.init(title: "Discard Changes", style: .destructive, handler: { _ in
+        alert.addAction(.init(title: "Discard Changes", style: .destructive, handler: { [self] _ in
             self.txtUserName.text = self.name
             self.txtEmail.text = self.email
+            self.labelEmailAlert.isHidden = true
+            self.LabelNameAlert.isHidden = true
         }))
         alert.addAction(.init(title: "Close", style: .cancel, handler: nil))
         self.present(alert, animated: true)
@@ -55,8 +58,16 @@ class UserProfileViewController: UIViewController {
         labelFieldsAlert.isHidden = true
         LabelNameAlert.isHidden = true
         userLoggedIn()
+        self.Info.layer.borderWidth = 1
+        self.Info.layer.cornerRadius = 6
+        self.Info.layer.borderColor = UIColor.white.cgColor
+        self.Info.layer.masksToBounds = true
+        self.Info.layer.shadowOpacity = 0.18
+      self.Info.layer.shadowOffset = CGSize(width: 0, height: 2)
+    self.Info.layer.shadowColor = UIColor.black.cgColor
+        self.Info.layer.masksToBounds = false
         
-        self.navigationController?.navigationBar.isHidden = true
+//        self.navigationController?.navigationBar.isHidden = true
         self.setupViews()
          let deleteAttributeString = NSMutableAttributedString(
             string: "Delete Account",
@@ -107,16 +118,16 @@ class UserProfileViewController: UIViewController {
         //For shadow and cornerRadius for Name textfield
         txtUserName.layer.masksToBounds = false
         txtUserName.layer.shadowRadius = 4.0
-        txtUserName.layer.shadowColor = UIColor.lightGray.cgColor
-        txtUserName.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        txtUserName.layer.shadowOpacity = 1.0
+//        txtUserName.layer.shadowColor = UIColor.lightGray.cgColor
+//        txtUserName.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+//        txtUserName.layer.shadowOpacity = 1.0
         
         //For shadow and cornerRadius for Email textfield
         txtEmail.layer.masksToBounds = false
         txtEmail.layer.shadowRadius = 4.0
-        txtEmail.layer.shadowColor = UIColor.lightGray.cgColor
-        txtEmail.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        txtEmail.layer.shadowOpacity = 1.0
+//        txtEmail.layer.shadowColor = UIColor.lightGray.cgColor
+//        txtEmail.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+//        txtEmail.layer.shadowOpacity = 1.0
                 
         //For shadow and cornerRadius for Password textfield
         
@@ -285,7 +296,6 @@ class UserProfileViewController: UIViewController {
         alert.addAction(.init(title: "Close", style: .cancel, handler: nil))
         self.present(alert,animated: true)
     }
-    
     @IBAction func saveProfileBtn(_ sender: UIButton) {
         if !(txtUserName.text != name || txtEmail.text != email){return}
         let str = self.validateFields()
@@ -293,6 +303,7 @@ class UserProfileViewController: UIViewController {
         {
             let newEmail = txtEmail.text ?? ""
             let newName = txtUserName.text ?? ""
+
             if (self.isValidName(newName) ){
                 if (self.EmailValidation(newEmail) ){
                     
