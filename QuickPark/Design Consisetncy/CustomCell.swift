@@ -14,6 +14,8 @@ class CustomCell: UITableViewCell {
 
     @IBOutlet weak var MainView: UIView!
     @IBOutlet weak var BackView: UIView!
+    @IBOutlet var btnFav : UIButton!
+    
     
     @IBOutlet weak var Km: UILabel!
     override func awakeFromNib() {

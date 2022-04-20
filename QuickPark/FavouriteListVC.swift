@@ -21,7 +21,17 @@ import SDWebImage
 class  FavouriteListVC: UIViewController {
     //  let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
     @IBOutlet weak var searchText: UITextField!
-    //
+    
+    var favouriteArray : [String]! {
+        set{
+            UserDefaults.standard.set(newValue, forKey: "favouriteArray")
+        }get {
+            return UserDefaults.standard.object(forKey: "favouriteArray") as? [String] ?? []
+
+        }
+    }
+    
+    var favParkings = [Area]()
     var parkings = [Area]()
     var searchedArea = [Area]()
     var searchedLogos = [Area]()
@@ -36,7 +46,8 @@ class  FavouriteListVC: UIViewController {
     var ref:DatabaseReference!
     
     @IBOutlet weak var HelloLabel: UILabel!
-    
+    @IBOutlet weak var FavBtn: UIImageView!
+
     @IBOutlet weak var NoResults: UILabel!
     @IBOutlet weak var SearchTxt: UIView!
     @IBOutlet weak var ParkingView: UIView!
@@ -81,6 +92,12 @@ class  FavouriteListVC: UIViewController {
         
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.getParkings()
+    }
+    
     @objc func searchRecord(sender : UITextField){
         self.searchedArea.removeAll()
         self.searchedLogos.removeAll()
@@ -400,6 +417,8 @@ class  FavouriteListVC: UIViewController {
             print(snapshots.childrenCount)
             
             parkings.removeAll()
+            favParkings.removeAll()
+            
             for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
                 let dictionary = snapshot.value as? NSDictionary
                 var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
@@ -417,6 +436,10 @@ class  FavouriteListVC: UIViewController {
                 
                 
                 parkings.append(area)
+                let thisTimeArray = self.favouriteArray ?? []
+                if thisTimeArray.contains(area.areaname){
+                    self.favParkings.append(area)
+                }
             }
             parkings = parkings.sorted(by:{$0.distance < $1.distance })
             ParkingsViews.reloadData()
@@ -439,6 +462,34 @@ class  FavouriteListVC: UIViewController {
         }
     }
     
+    @objc func btnFavClicked(_ sender : UIButton){
+        print("fav button clicked")
+        
+        
+        var favouriteArray : [String] = self.favouriteArray
+        let newValue = sender.accessibilityValue ?? ""
+        
+        if let index = favouriteArray.firstIndex(of: newValue) {
+            favouriteArray.remove(at: index)
+        }else{
+            favouriteArray.append(sender.accessibilityValue ?? "")
+        }
+        
+        self.favouriteArray = favouriteArray
+        self.populateFavArray()
+        ParkingsViews.reloadData()
+    }
+    
+    
+    func populateFavArray() {
+        self.favParkings = []
+        for thiss in self.parkings {
+            if (self.favouriteArray.firstIndex(of: thiss.areaname) != nil){
+                self.favParkings.append(thiss)
+            }
+        }
+    }
+    
 }
 
 extension FavouriteListVC: CLLocationManagerDelegate{
@@ -446,7 +497,7 @@ extension FavouriteListVC: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last{
             currentLocation = location
-            self.getParkings()
+            //self.getParkings()
         }
     }
     
@@ -461,10 +512,19 @@ extension FavouriteListVC: UITableViewDelegate, UITableViewDataSource, UITextFie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if section == 0 {
+            return self.favParkings.count
+        }
         if searching{
             if searchedArea.count == 0 {
-                NoResults.isHidden = false }
+               NoResults.isHidden = false }
                 return searchedArea.count
             } else{
                 NoResults.isHidden = true
@@ -528,6 +588,27 @@ extension FavouriteListVC: UITableViewDelegate, UITableViewDataSource, UITextFie
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0 {
+            let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
+            let parking = favParkings[indexPath.row]
+            
+            cell.Label.text = parking.areaname
+            cell.btnFav.accessibilityValue = parking.areaname
+            cell.Logos.sd_setImage(with: URL(string: parking.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
+            let dist = parking.distance/1000
+            let x = Double(String(format: "%.2f", dist )) ?? 0
+            cell.Km.text = "\(x) km"
+            
+            cell.btnFav.tag = indexPath.row
+            cell.btnFav.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
+            cell.btnFav.addTarget(self, action: #selector(self.btnFavClicked), for: .touchUpInside)
+            
+            
+            return cell
+        }
+
+        
         let cell = ParkingsViews.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomCell
         let parking = parkings[indexPath.row]
 //        let dist = parking.distance/1000
@@ -546,6 +627,7 @@ extension FavouriteListVC: UITableViewDelegate, UITableViewDataSource, UITextFie
         if searching {
             let searchedAreaS = searchedArea[indexPath.row]
             cell.Label.text = searchedAreaS.areaname
+            cell.btnFav.accessibilityValue = searchedAreaS.areaname
             let dist = searchedAreaS.distance/1000
             let x = Double(String(format: "%.2f", dist )) ?? 0
             cell.Km.text = "\(x) km"
@@ -553,13 +635,17 @@ extension FavouriteListVC: UITableViewDelegate, UITableViewDataSource, UITextFie
         
         } else {
             cell.Label.text = parking.areaname
+            cell.btnFav.accessibilityValue = parking.areaname
+
             cell.Logos.sd_setImage(with: URL(string: parking.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
             let dist = parking.distance/1000
             let x = Double(String(format: "%.2f", dist )) ?? 0
             cell.Km.text = "\(x) km"
             
         }
-       
+        cell.btnFav.tag = indexPath.row
+        cell.btnFav.addTarget(self, action: #selector(self.btnFavClicked), for: .touchUpInside)
+        cell.btnFav.setImage(UIImage(systemName: "suit.heart"), for: .normal)
     
         (parking.areaname == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
         
@@ -567,6 +653,19 @@ extension FavouriteListVC: UITableViewDelegate, UITableViewDataSource, UITextFie
         return cell
         
     }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            if self.favParkings.count == 0 {
+                return ""
+            }
+            return "Favourites Parking"
+        }
+        if self.parkings.count == 0 {
+            return ""
+        }
+        return "All Parkings"
+    }
+    
     //this is to push somthing
     func addShadow(backgroundColor: UIColor = .white, cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 5, shadowOpacity: Float = 0.1, shadowPathInset: (dx: CGFloat, dy: CGFloat), shadowPathOffset: (dx: CGFloat, dy: CGFloat)) {
         
