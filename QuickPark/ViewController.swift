@@ -20,18 +20,32 @@ class ViewController: UIViewController {
     //  let parkings = ["King Saud University" , "Imam University" , "Dallah Hospital"]
     @IBOutlet weak var searchText: UITextField!
     //
+    var favouriteArray : [String]! {
+        set{
+            UserDefaults.standard.set(newValue, forKey: "favouriteArray")
+        }get {
+            return UserDefaults.standard.object(forKey: "favouriteArray") as? [String] ?? []
+
+        }
+    }
     var parkings = [Area]()
+    var favParkings = [Area]()
+    
     var searchedArea = [Area]()
     var searchedLogos = [Area]()
     var searchedDistance = [Area]()
     var filtered = false
     var waitingTime:Int? = 0
     
+    var selectedIndex = 0
     
     var locationManager:CLLocationManager?
     var currentLocation:CLLocation?
     let storageRef = Storage.storage().reference()
     var ref:DatabaseReference!
+    
+    @IBOutlet var segments : UISegmentedControl!
+    
     
     @IBOutlet weak var HelloLabel: UILabel!
     
@@ -77,6 +91,13 @@ class ViewController: UIViewController {
         getIfAnyReservation()
         
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.getParkings()
         
     }
     @objc func searchRecord(sender : UITextField){
@@ -187,6 +208,31 @@ class ViewController: UIViewController {
             }
         })
     }
+    
+    
+    @IBAction func allAndFavourites(_ sender: UISegmentedControl) {
+        let selection = sender.selectedSegmentIndex
+        switch selection {
+        case 0:
+           
+            self.SearchTxt.isHidden = false
+            selectedIndex = 0
+            ParkingsViews.reloadData()
+
+            
+            break
+        case 1:
+            
+            self.SearchTxt.isHidden = true
+            selectedIndex = 1
+            ParkingsViews.reloadData()
+
+            break
+            
+        default: break
+        }
+    }
+    
     
     func track(qrcode code: String,ref: DatabaseReference,resId:String){
         Database.database().reference().child("QRCode").child(code).observe(.value) { dataSnap in
@@ -398,6 +444,7 @@ class ViewController: UIViewController {
             print(snapshots.childrenCount)
             
             parkings.removeAll()
+            favParkings.removeAll()
             for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
                 let dictionary = snapshot.value as? NSDictionary
                 var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
@@ -415,10 +462,44 @@ class ViewController: UIViewController {
                 
                 
                 parkings.append(area)
+                let thisTimeArray = self.favouriteArray ?? []
+                if thisTimeArray.contains(area.areaname){
+                    self.favParkings.append(area)
+                }
             }
             parkings = parkings.sorted(by:{$0.distance < $1.distance })
             ParkingsViews.reloadData()
         })
+    }
+    
+    
+    @objc func btnFavClicked(_ sender : UIButton){
+        print("fav button clicked")
+        
+        
+        var favouriteArray : [String] = self.favouriteArray
+        let newValue = sender.accessibilityValue ?? ""
+        
+        if let index = favouriteArray.firstIndex(of: newValue) {
+            favouriteArray.remove(at: index)
+        }else{
+            favouriteArray.append(sender.accessibilityValue ?? "")
+        }
+        
+        self.favouriteArray = favouriteArray
+        self.populateFavArray()
+        ParkingsViews.reloadData()
+    }
+    
+    
+    
+    func populateFavArray() {
+        self.favParkings = []
+        for thiss in self.parkings {
+            if (self.favouriteArray.firstIndex(of: thiss.areaname) != nil){
+                self.favParkings.append(thiss)
+            }
+        }
     }
     
     @IBAction func btnGoToTimer(_ sender:Any){
@@ -444,7 +525,7 @@ extension ViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last{
             currentLocation = location
-            self.getParkings()
+            
         }
     }
     
@@ -460,6 +541,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
         return 120
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if selectedIndex == 1 {
+            return self.favParkings.count
+        }
+        
         if searching{
             if searchedArea.count == 0 {
                 NoResults.isHidden = false }
@@ -539,15 +624,23 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
         }
         
         
-        
-
-        if searching {
+        if self.selectedIndex == 1 {
+            let searchedAreaS = favParkings[indexPath.row]
+            cell.Label.text = searchedAreaS.areaname
+            let dist = searchedAreaS.distance/1000
+            let x = Double(String(format: "%.2f", dist )) ?? 0
+            cell.Km.text = "\(x) km"
+            cell.Logos.sd_setImage(with: URL(string: searchedAreaS.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
+            cell.btnFav.accessibilityValue = searchedAreaS.areaname
+        }
+        else if searching {
             let searchedAreaS = searchedArea[indexPath.row]
             cell.Label.text = searchedAreaS.areaname
             let dist = searchedAreaS.distance/1000
             let x = Double(String(format: "%.2f", dist )) ?? 0
             cell.Km.text = "\(x) km"
             cell.Logos.sd_setImage(with: URL(string: searchedAreaS.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
+            cell.btnFav.accessibilityValue = searchedAreaS.areaname
         
         } else {
             cell.Label.text = parking.areaname
@@ -555,9 +648,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
             let dist = parking.distance/1000
             let x = Double(String(format: "%.2f", dist )) ?? 0
             cell.Km.text = "\(x) km"
+            cell.btnFav.accessibilityValue = parking.areaname
             
         }
        
+        
+        cell.btnFav.tag = indexPath.row
+        if self.selectedIndex == 1 {
+        cell.btnFav.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
+        }else {
+            if (self.favouriteArray.firstIndex(of: cell.btnFav.accessibilityValue ?? "") != nil) {
+                cell.btnFav.setImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
+            }else {
+                cell.btnFav.setImage(UIImage(systemName: "suit.heart"), for: .normal)
+            }
+        }
+        cell.btnFav.addTarget(self, action: #selector(self.btnFavClicked), for: .touchUpInside)
+        
+        
     
         (parking.areaname == " ") ? (cell.Alert.text = "No Available Parkings") : (cell.Alert.text = " ")
         
