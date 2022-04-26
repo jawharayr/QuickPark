@@ -210,6 +210,8 @@ class ConfirmAndPay: UIViewController {
         self.view.endEditing(true)
         StartWithView.backgroundColor = .white
         EndWithView.backgroundColor = .white
+        StartTimeTxt.backgroundColor = .white
+        EndTimeTxt.backgroundColor = .white
     }
     
     private let database = Database.database().reference()
