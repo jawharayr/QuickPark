@@ -208,7 +208,8 @@ class ConfirmAndPay: UIViewController {
 
     @objc func donePressed(){
         self.view.endEditing(true)
-       
+        StartWithView.backgroundColor = .white
+        EndWithView.backgroundColor = .white
     }
     
     private let database = Database.database().reference()

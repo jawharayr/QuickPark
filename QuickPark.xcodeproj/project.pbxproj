@@ -14,6 +14,7 @@
 		04DD46B227A4621300342200 /* QuickParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46B127A4621300342200 /* QuickParkTests.swift */; };
 		04DD46BC27A4621300342200 /* QuickParkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BB27A4621300342200 /* QuickParkUITests.swift */; };
 		04DD46BE27A4621300342200 /* QuickParkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */; };
+		04E3E1D92818A5C6008E35E3 /* ViewOnMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E3E1D82818A5C6008E35E3 /* ViewOnMap.swift */; };
 		1F342B1527A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1627A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
 		1F342B1727A56D6A00493084 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F342B1427A56D6A00493084 /* GoogleService-Info.plist */; };
@@ -111,6 +112,7 @@
 		04DD46B727A4621300342200 /* QuickParkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickParkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DD46BB27A4621300342200 /* QuickParkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITests.swift; sourceTree = "<group>"; };
 		04DD46BD27A4621300342200 /* QuickParkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickParkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		04E3E1D82818A5C6008E35E3 /* ViewOnMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOnMap.swift; sourceTree = "<group>"; };
 		1F342B1427A56D6A00493084 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F3C553427F626AB00E8A7EC /* QuickPark.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickPark.entitlements; sourceTree = "<group>"; };
 		1F3C553527F630C600E8A7EC /* VCChatRoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCChatRoster.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				226C1D0327BE682400D11E24 /* VCMore.swift */,
 				951624D327E51B2000CA4675 /* ChangePasswordVC.swift */,
 				1F999FBE2810BDAC0084CB8D /* FavouriteListVC.swift */,
+				04E3E1D82818A5C6008E35E3 /* ViewOnMap.swift */,
 				1F54BC922814B3D200C318AC /* ViewControllerOLD.swift */,
 			);
 			name = Controllers;
@@ -742,6 +745,7 @@
 				1F999FBF2810BDAC0084CB8D /* FavouriteListVC.swift in Sources */,
 				22035FAB27BBCF2300D1A3B5 /* Profile.swift in Sources */,
 				2272433727C8CD3900A35AF3 /* Constants.swift in Sources */,
+				04E3E1D92818A5C6008E35E3 /* ViewOnMap.swift in Sources */,
 				2291945E27E9FE0300E78016 /* HideViews.swift in Sources */,
 				222840A127F392F000FE2E5C /* VCChat.swift in Sources */,
 				22825ADC27CA0625002F49A0 /* QPAlert.swift in Sources */,
