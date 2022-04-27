@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseFirestore
 import MapKit
 import CoreLocation
 import StoreKit
@@ -263,7 +264,9 @@ class ConfirmAndPay: UIViewController {
                 
                 self.present(vc, animated: true, completion: {
                 RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
-                if self.parking.areaname == "King Saud University"{
+                    let database = Firestore.firestore()
+                    database.collection("users").document(self.uid).setData( ["hasReservation": true], merge: true)
+                    if self.parking.areaname == "King Saud University"{
                     self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
                     UserDefaults.standard.set("Area_23", forKey: "parkingArea")
                 }else{

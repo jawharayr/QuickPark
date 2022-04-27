@@ -7,6 +7,7 @@
 import UIKit
 import FirebaseDatabase
 import Foundation
+import FirebaseFirestore
 import FirebaseAuth
 import SwiftUI
 import SDWebImage
@@ -95,6 +96,8 @@ class MyParkingsVC: UIViewController {
                 UserDefaults.standard.removeObject(forKey: "parkingArea")
                 RESERVATIONS.child(uid).child(reservationID).removeValue()
                  NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                let database = Firestore.firestore()
+                database.collection("users").document(self.uid).setData( ["hasReservation": false], merge: true)
             }
         }
     
@@ -324,6 +327,7 @@ class MyParkingsVC: UIViewController {
                 self.calculateTime()
         }
         }
+        
     }
 
     

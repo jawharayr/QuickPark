@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import MapKit
 import Firebase
+import FirebaseFirestore
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -84,11 +85,21 @@ extension ViewOnMap: MKMapViewDelegate{
         annotationView?.image = UIImage(named: "pin (2)")
         return annotationView
     }
+    func CheckIfHasReservation(completionHandler:@escaping (_ result : Bool)-> Void){
+        let db = Firestore.firestore()
+        db.collection("users").document(uid).getDocument { snapshot, err in
+            let snapdata = snapshot?.data() as? [String:Any]
+            let hasReservation = snapdata?["hasReservation"] as? Bool ?? false
+            completionHandler (hasReservation)
+            
+        }
+    }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-       // if RESERVATIONS.child(self.uid) {
-         //   QPAlert(self).showError(message: "You already have an reservertion.")
-        //    return
-     //   }
+        CheckIfHasReservation { result in
+            if result == true {
+                QPAlert(self).showError(message: "You already have a reservation.")
+            }else {
+                
         let ref = Database.database().reference()
         let areaRef = ref.child("Areas")
         areaRef.observe(.childAdded, with: { [self] snapshot in
@@ -126,6 +137,8 @@ extension ViewOnMap: MKMapViewDelegate{
             }
             
         })
+            }
+        }
 
     }
     

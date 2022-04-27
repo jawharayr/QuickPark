@@ -314,6 +314,8 @@ class ViewController: UIViewController {
             //UtilitiesManager.sharedIntance.showAlert(view: self, title:"Oops", message: "You are late reservation was cancelled by server.")
             
             QPAlert(self).showError(message: "You are late, reservation was cancelled by server.")
+            let database = Firestore.firestore()
+            database.collection("users").document(self.uid).setData( ["hasReservation": false], merge: true)
             
             RESERVATIONS.child(uid).removeValue()
             guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}

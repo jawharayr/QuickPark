@@ -162,9 +162,10 @@ class RegViewController: UIViewController {
             let database = Firestore.firestore()
             let userdata : [String: Any] = ["email": email,
                                             "name": name,
-                                            "uid": thisUser.uid]
+                                            "uid": thisUser.uid,
+                                            "hasReservation" : false]
             print (userdata)
-            database.collection("users").document(email).setData(userdata){(error) in
+            database.collection("users").document(thisUser.uid).setData(userdata){(error) in
                 if let e = error {
                     print ("Error = ", e)
                 }
