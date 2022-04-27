@@ -312,7 +312,7 @@ class UserProfileViewController: UIViewController {
                             self.alertUser(title: "Error", body: error)
                         }else{
                             let database = Firestore.firestore()
-                            let userdata = ["email": newEmail, "name": self.txtUserName.text ?? ""]
+                            let userdata = ["email": newEmail,"uid":Auth.auth().currentUser!.uid ,"name": self.txtUserName.text ?? ""]
                             print (userdata)
                             
                             if let currentEmail = Auth.auth().currentUser?.email{
