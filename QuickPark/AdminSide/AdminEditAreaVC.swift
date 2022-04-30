@@ -255,7 +255,9 @@ class AdminEditAreaVC: UIViewController {
     
     
     @IBAction func SaveAreaButton(_ sender: UIButton) {
-        QPAlert(self).showAlert(title: "Are you sure you want to edit this area?", message: "The current data will be changed permenently and you won't be able to restore it", buttons: ["Cancel", "Yes"]) { _, index in
+        
+        
+            QPAlert(self).showAlert(title: "Are you sure you want to edit this area?", message: "The current data will be changed permenently and you won't be able to restore it", buttons: ["Cancel", "Yes"]) { _, index in
             if index == 1 {
                 self.btnYesClicked()
                
@@ -354,7 +356,9 @@ class AdminEditAreaVC: UIViewController {
     func checkAreaNameExist(thisName : String) -> Bool {
         
         for area in self.parkings {
-            if area.areaname == thisName {
+            //area.areaname == thisName
+           
+            if  area.areaname.caseInsensitiveCompare(thisName) == .orderedSame {
                 return true
             }
         }

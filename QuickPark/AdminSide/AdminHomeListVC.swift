@@ -105,6 +105,7 @@ class AdminHomeListVC: UIViewController {
             let secondView = segue.destination as! AdminEditAreaVC
                   let object = selectedArea
             secondView.curSelectedArea = selectedArea
+            secondView.parkings = self.parkings
             
             //secondView.spotNo = selectedArea?.spotNo
           
