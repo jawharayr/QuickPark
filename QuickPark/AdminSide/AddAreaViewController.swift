@@ -281,7 +281,9 @@ class AddAreaViewController: UIViewController {
     func checkAreaNameExist(thisName : String) -> Bool {
         
         for area in self.parkings {
-            if area.areaname == thisName {
+            //area.areaname == thisName
+           
+            if  area.areaname.caseInsensitiveCompare(thisName) == .orderedSame {
                 return true
             }
         }
