@@ -12,13 +12,9 @@ import SwiftUI
 import SDWebImage
 
 class MyParkingsVC: UIViewController {
-    
     @IBOutlet weak var SegmentedControl: UISegmentedControl!
-    
     @IBOutlet weak var EQRCode: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    //    @IBOutlet weak var viewLoader: UIView!
-    //    @IBOutlet weak var lblCountDown: UILabel!
     var totalTime = 0
     var uid = ""
     var pastReservations = [Reservation]()
@@ -35,11 +31,10 @@ class MyParkingsVC: UIViewController {
     @IBOutlet weak var EmptyLabel: UILabel!
     @IBOutlet weak var Active: UIView!
     @IBOutlet weak var Past: UITableView!
+    @IBOutlet weak var PastLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Do any additional setup after loading the view.
-        //        getReservations()
         getIfAnyReservation()
         
         Past.backgroundColor = UIColor("#F5F5F5")
@@ -57,11 +52,11 @@ class MyParkingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         clearData()
-
-       NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("updateTimer"), object: nil)
         
         ref = Database.database().reference()
-         
+        
         if Auth.auth().currentUser?.uid == nil{
             if  UserDefaults.standard.string(forKey: "uid") == nil{
                 uid = UtilitiesManager.sharedIntance.getRandomString()
@@ -94,24 +89,23 @@ class MyParkingsVC: UIViewController {
                 self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
                 UserDefaults.standard.removeObject(forKey: "parkingArea")
                 RESERVATIONS.child(uid).child(reservationID).removeValue()
-                 NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
             }
         }
-    
+        
     }
     
     func track(qrcode code: String){
         Database.database().reference().child("QRCode").child(code).observe(.value) { dataSnap in
             if dataSnap.exists(){
                 guard let reserDict = dataSnap.value as? [String:Any] else{return}
-              //  print("Iterating on QRCode dictionary: ",reserDict)
+                //  print("Iterating on QRCode dictionary: ",reserDict)
                 if let isScanned = reserDict["isScanned"] as? Bool{
                     self.EQRCode.isHidden = isScanned
                     self.cancelButton.isHidden = isScanned
                 }
             }
         }
-//        Database.database().reference().child("QRCode").child(code).observeSingleEvent(of: .value, with: )
     }
     
     func getIfAnyReservation() {
@@ -130,14 +124,10 @@ class MyParkingsVC: UIViewController {
                 print(error!.localizedDescription)
                 return
             }
-
-        
-
-//        RESERVATIONS.child(uid).observeSingleEvent(of: .value) { [self] dataSnap in
-        
+            
             if dataSnap.exists(){
                 self.pastReservations.removeAll()
-
+                
                 let reserDict = dataSnap.value as! [String:Any]
                 print("All Keys = ", reserDict.keys)
                 for k in reserDict.keys{
@@ -168,22 +158,17 @@ class MyParkingsVC: UIViewController {
         }
     }
     
-    func loadData(){
-        
+    func loadData() {
         if timer != nil{
             timer.invalidate()
         }
-        
         EmptyLabel.isHidden = true
-        
         StartTime.isHidden = false
         EndTime.isHidden = false
         area.isHidden = false
         viewLoader.isHidden = false
         btnEnd.isHidden = false
         EmptyLabel.isHidden = false
-                              
-        
         StartTime.text = TimeInterval.init(reservation.StartTime).dateFromTimeinterval()
         EndTime.text = TimeInterval.init(reservation.EndTime).dateFromTimeinterval()
         area.text = reservation.area
@@ -191,7 +176,6 @@ class MyParkingsVC: UIViewController {
         if !reservation.isCompleted{
             checkIfTimeIsValid()
         }
-        
     }
     
     func clearData(){
@@ -208,14 +192,10 @@ class MyParkingsVC: UIViewController {
         }
     }
     
-    
     private func startTimer() {
-        
         startActivityAnimating(padding: 0, isFromOnView: false, view: self.viewLoader,width: self.viewLoader.frame.width,height: self.viewLoader.frame.height)
         self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
-    
-    
     
     @objc func updateTimer() {
         print(self.totalTime)
@@ -274,7 +254,6 @@ class MyParkingsVC: UIViewController {
         }
     }
     
-    
     func stopTimer(){
         if let timer = self.timer {
             timer.invalidate()
@@ -282,31 +261,22 @@ class MyParkingsVC: UIViewController {
         }
     }
     
-    
     func getStartTime(){
         let start = TimeInterval.init(reservation.StartTime)
         let end = TimeInterval.init(reservation.EndTime)
-        
-        
         let isValidTime = UtilitiesManager.sharedIntance.checkIfTimeIsValid(endTime: Date.init(timeIntervalSince1970: end))
         if isValidTime{
             self.totalTime = Int(UtilitiesManager.sharedIntance.getTimerValue(start: Date(), endtime: Date.init(timeIntervalSince1970: end)))
             startTimer()
         }else{
-            
             totalTime = 0
-            
         }
-        
-        
     }
     
     
     func playOverTimer(){
         let start = TimeInterval.init(reservation.StartTime)
         let end = TimeInterval.init(reservation.EndTime)
-        
-        
         UserDefaults.standard.set(true, forKey: "isOverTime")
         
         self.totalTime = Int(UtilitiesManager.sharedIntance.getTimerValue(start: Date.init(timeIntervalSince1970: end), endtime: Date()))
@@ -314,18 +284,16 @@ class MyParkingsVC: UIViewController {
         self.viewLoader.isHidden = false
         totalTime += 1
         startTimer()
-        
-        
     }
     
     @IBAction func EndParking(_ sender: Any) {
         QPAlert(self).showAlert(title:"End Parking.", message: "Are you sure?" , buttons:  ["Yes","cancel"]) { _, index in
             if index == 0 {
                 self.calculateTime()
-        }
+            }
         }
     }
-
+    
     
     @IBAction func EntryQRCode(_ sender: Any) {
         guard let qrcodeImage = UIImage.generateQRCode(using: reservation.qrcode) else{
@@ -339,68 +307,22 @@ class MyParkingsVC: UIViewController {
     }
     
     @IBAction func Pay(_ sender: Any) {
-        
         let x = String(Int.random(in: 1000...6000))
-        
         if let image = UIImage.generateQRCode(using: x){
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
             vc.image = image
             navigationController?.pushViewController(vc, animated: true)
         }
-        
-    /*    let object: [String : Any] = [" ":  as Any ]
-        var ExitQR = "ExitQR_\(x)"
-        if self.thisQRCode != nil {
-            ExitQR = self.thisQRCode?.ExitQR ?? " ExitQR_0000"
-        }
-        
-        if {
-        database.child("QRcode").child(invalid).setValue(object) { error, ref in
-            self.navigationController?.popViewController(animated: true) } }
-        
-            else{
-                database.child("QRcode").child(valid).child(ExitQR)setValue(object) { error, ref in
-                    self.navigationController?.popViewController(animated: true) }
-            }
-                */
-                
-            
-        }
-
-        
-    
-//    func generateQRCode(using string:String) -> UIImage? {
-//            
-//            let data = string.data(using: String.Encoding.ascii)
-//            
-//            if let filter = CIFilter(name: "CIQRCodeGenerator"){
-//                filter.setValue( data, forKey: "inputMessage")
-//                let transform = CGAffineTransform(scaleX: 3, y: 3)
-//                if let output = filter.outputImage?.transformed(by: transform){
-//                    return UIImage(ciImage: output)
-//                }
-//            }
-//            return nil
-//            
-//        }
-//        UtilitiesManager.sharedIntance.showAlertWithAction(self, message: "Are you sure?", title: "End Parking?", buttons: ["YES","cancel"]) { index in
-//            if index == 0{
-//                self.calculateTime()
-//            }
-//        }
-
+    }
     
     func calculateTime(){
-        
         var extra:Double = 0.0
         var price:Double = 0.0
         var total:Double = 0.0
         var minOfPrice:Double = 0.0
         var minOfExtra:Double = 0.0
-        
         var HoursofPrice=0.0
         var HoursofExtra = 0.0
-        
         var isInteger = true
         
         let startTime = reservation.StartTime
@@ -409,12 +331,10 @@ class MyParkingsVC: UIViewController {
         let now = Date.init().addingMinutes(minutes: 1)
         
         
-        if now.timeIntervalSince1970 > TimeInterval.init(endTime){
-            
+        if now.timeIntervalSince1970 > TimeInterval.init(endTime) {
             minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
-            
             HoursofPrice = minOfPrice/60
-            isInteger = floor(HoursofPrice) == HoursofPrice // true
+            isInteger = floor(HoursofPrice) == HoursofPrice
             
             if (isInteger){
                 price = HoursofPrice * 15
@@ -432,12 +352,11 @@ class MyParkingsVC: UIViewController {
                 extra = HoursofExtra * 15
             }
             else{
-                extra =  ( floor(HoursofExtra) * 15 ) + 15
+                extra =  (floor(HoursofExtra) * 15) + 15
             }
             
             total = price + extra
         }else{
-            
             minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
             
             HoursofPrice = minOfPrice/60
@@ -449,10 +368,8 @@ class MyParkingsVC: UIViewController {
             else{
                 price =  ( floor(HoursofPrice) * 15 ) + 15
             }
-            
             total = price
         }
-        
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PayAbleViewController") as! PayAbleViewController
         vc.total = "\(total.rounded())"
@@ -462,12 +379,6 @@ class MyParkingsVC: UIViewController {
         vc.reservation = self.reservation
         self.present(vc, animated: true, completion: nil)
     }
-    
-    
-    @IBOutlet weak var PastLabel: UILabel!
-    
-        
-
 
     @IBAction func ActiveAndPast(_ sender: UISegmentedControl) {
         let selection = sender.selectedSegmentIndex
@@ -489,153 +400,25 @@ class MyParkingsVC: UIViewController {
         let hour = totalSeconds / 3600
         let minute = totalSeconds / 60 % 60
         let second = totalSeconds % 60
-        
-        // return formated string
         return String(format: "%02i:%02i:%02i", hour, minute, second)
     }
-    
-    /* func removeConstraint() {
-     
-     removeConstraint()
-     }*/
-    
-    
-    //    @IBAction func EndParking(_ sender: Any) {
-    //        if let image = generateQRCode(using: "test"){
-    //            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRCodeVC") as! QRCodeVC
-    //            vc.image = image
-    //            vc.reservation = self.reservation
-    //            navigationController?.pushViewController(vc, animated: true)
-    //
-    //
-    //        }
-    //    }
-    
-  /*  func generateQRCode(using string:String) -> UIImage? {
-        
-        let data = string.data(using: String.Encoding.ascii)
-        
-        if let filter = CIFilter(name: "CIQRCodeGenerator"){
-            filter.setValue( data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-            if let output = filter.outputImage?.transformed(by: transform){
-                return UIImage(ciImage: output)
-            }
-        }
-        return nil
-        
-    } */
-    
-    
-    
-    //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    //        return reservations.count
-    //    }
-    
-    //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    //
-    //
-    //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reservationCell", for: indexPath) as! ReservationCell
-    //
-    //     cell.Name.text = reservation.Name
-    //       cell.Date.text = reservation.Date
-    //        let ds = reservations[indexPath.row]
-    //        cell.StartTime.text = TimeInterval.init(ds.StartTime).dateFromTimeinterval()
-    //        cell.EndTime.text = TimeInterval.init(ds.EndTime).dateFromTimeinterval()
-    //        cell.area.text = ds.area
-    //        cell.reservation = reservations[indexPath.row]
-    //        if !ds.isCompleted{
-    //            cell.checkIfTimeIsValid()
-    //        }
-    //        cell.mainVC = self
-    //        cell.viewWidth.constant = self.view.frame.width - 40
-    //        cell.viewHeight.constant = 400
-    //        cell.uid = self.uid
-    //     //   cell.EndTime.text = "End time: "
-    ////        cell.Price.text = "Price: " + reservation.Price
-    ////        cell.ExtraCharge.text = "ExtraCharge: " + reservation.ExtraCharge
-    ////        cell.logo.image = UIImage(named: "King Saud University")
-    //
-    //
-    //
-    //        return cell
-    //    }
-    
-    
-    //    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    //        let cel = cell as! ReservationCell
-    //
-    ////        cell.Name.text = reservation.Name
-    ////        cell.Date.text = reservation.Date
-    //        let ds = reservations[indexPath.row]
-    //        cel.StartTime.text = TimeInterval.init(ds.StartTime).dateFromTimeinterval()
-    //        cel.EndTime.text = TimeInterval.init(ds.EndTime).dateFromTimeinterval()
-    //        cel.area.text = ds.area
-    //        cel.reservation = reservations[indexPath.row]
-    //        if !ds.isCompleted{
-    //            cel.checkIfTimeIsValid()
-    //        }
-    //        cel.mainVC = self
-    //        cel.viewWidth.constant = self.view.frame.width - 40
-    //        cel.viewHeight.constant = 400
-    //        cel.uid = self.uid
-    //    }
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: self.view.frame.width - 40, height: 387)
     }
-    
-    
-    
-    /*   private func getReservations() {
-    //        ref.child("Reservations").child("UserID").observe(DataEventType.value, with: { [self] snapshots in
-    //            print(snapshots.childrenCount)
-    //
-    //            reservations.removeAll()
-    //            pastReservations.removeAll()
-    //            for snapshot in snapshots.children.allObjects as! [DataSnapshot] {
-    //                let dictionary = snapshot.value as? NSDictionary
-    //                let reservation = Reservation(id:dictionary?["id"] as? String ?? "missing Id",Name: dictionary?["Name"] as? String ?? "", Date: dictionary?["Date"] as? String ?? "" , StartTime: dictionary?["StartTime"] as? String ?? "", EndTime: dictionary?["EndTime"] as? String ?? "", Price: dictionary?["Price"] as? String ?? "", ExtraCharge: dictionary?["ExtraCharge"] as? String ?? "", isActive: dictionary?["isActive"] as? Bool ?? false)
-    //                if (reservation.isActive) {
-    //                    reservations.append(reservation)
-    //                }else{
-    //                    pastReservations.append(reservation)
-    //                }
-    //
-    //            }
-    //
-    //            if (reservations.isEmpty) {
-    //                EmptyLabel.isHidden = false
-    //                EndParking.isHidden = true
-    //                Active.isHidden = true
-    //                ActiveView.collectionView?.isHidden = true
-    //            }
-    //
-    //            Active.reloadData()
-    //            Past.reloadData()
-    //        })
-    //    } */
     
     @objc func methodOfReceivedNotification(notification: Notification) {
         getIfAnyReservation()
     }
     
     @IBOutlet weak var ActiveView: UICollectionViewFlowLayout!
-
-
 }
+
 // Past reservations
 extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
-
-
-    
-    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         Past.backgroundColor = UIColor("#F5F5F5")
         return 60
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -646,18 +429,12 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "PastTableViewCell") as! PastTableViewCell
         let object = pastReservations[indexPath.row]
-     // cell.viewDetails.tag = indexPath.row
-     // cell.logo.image = UIImage(named: "King Saud University")
         cell.Logo.sd_setImage(with: URL(string: object.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
         cell.Name.text = object.area
-     // cell.Date.text = object.Date
-     // cell.ExtraCharges.text = object.ExtraCharge
         cell.Price.text = object.Price
         cell.StartTime.text = TimeInterval.init(object.StartTime).dateFromTimeinterval()
-     // cell.EndTime.text = TimeInterval.init(object.EndTime).dateFromTimeinterval()
         cell.layer.cornerRadius = 20;
         cell.layer.masksToBounds = true;
         
@@ -668,47 +445,24 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
             for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
                 let dictionary = snapshot.value as? NSDictionary
                 var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
-    
+                
                 if cell.Name.text == area.areaname {
                     cell.Logo.sd_setImage(with: URL(string: area.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
-//                    ReservationDetailsVC.Logo.sd_setImage(with: URL(string: area.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
                 }
             }
         })
-        
-      /*  if viewDetails.isTouchInside {
-    let vc = storyboard?.instantiateViewController(withIdentifier: "ReservationDetailsVC") as? ReservationDetailsVC
-          //  vc?.image = UIImage(named: names[indexPath.row] )!
-        vc?.areaname = object.area
-        vc?.date = object.Date
-        vc?.Stime = object.StartTime
-        vc?.Etime = object.EndTime
-        vc?.price = object.Price
-        vc?.extra = object.ExtraCharge
-       // vc?.total =  vc?.extra ?? " " +  vc?.price
-    navigationController?.pushViewController(vc!, animated: true) }*/
-        
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-   
-////        self.selectedRes = self.pastReservations[indexPath.row]
-////        let sender: Reservation? = self.pastReservations[indexPath.row]
-////        self.performSegue(withIdentifier: "GoToViewDetails", sender: sender)
-//
- let vc = self.storyboard?.instantiateViewController(withIdentifier: "ReservationDetailsVC") as? ReservationDetailsVC
-    let obj = self.pastReservations[indexPath.row]
-     vc?.areaname = obj.area
-     vc?.date = obj.Date
-    vc?.Stime = obj.StartTime
-    vc?.Etime = obj.EndTime
-    vc?.price = obj.Price
-    vc?.extra = obj.ExtraCharge
-       // vc?.total =  vc?.price
-        
-        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ReservationDetailsVC") as? ReservationDetailsVC
+        let obj = self.pastReservations[indexPath.row]
+        vc?.areaname = obj.area
+        vc?.date = obj.Date
+        vc?.Stime = obj.StartTime
+        vc?.Etime = obj.EndTime
+        vc?.price = obj.Price
+        vc?.extra = obj.ExtraCharge
         let ref = Database.database().reference()
         ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
             print(snapshots.childrenCount)
@@ -716,16 +470,14 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
             for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
                 let dictionary = snapshot.value as? NSDictionary
                 var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
-    
+                
                 if vc?.areaname == area.areaname {
                     vc?.Logo.sd_setImage(with: URL(string: area.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
-//                    ReservationDetailsVC.Logo.sd_setImage(with: URL(string: area.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
                 }
             }
         })
         
-    navigationController?.pushViewController(vc!, animated: true)
-        
+        navigationController?.pushViewController(vc!, animated: true)
     }
     
     func addShadow(backgroundColor: UIColor = .white, cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 5, shadowOpacity: Float = 0.1, shadowPathInset: (dx: CGFloat, dy: CGFloat), shadowPathOffset: (dx: CGFloat, dy: CGFloat)) {
@@ -733,24 +485,24 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     } }
 
 extension UIColor {
-  
-  convenience init(_ hex: String, alpha: CGFloat = 1.0) {
-    var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-    
-    if cString.hasPrefix("#") { cString.removeFirst() }
-    
-    if cString.count != 6 {
-      self.init("F5F5F5") // return red color for wrong hex input
-      return
+    convenience init(_ hex: String, alpha: CGFloat = 1.0) {
+        var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        if cString.hasPrefix("#") {
+            cString.removeFirst()
+        }
+        
+        if cString.count != 6 {
+            self.init("F5F5F5")
+            return
+        }
+        
+        var rgbValue: UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+        
+        self.init(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+                  green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+                  blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+                  alpha: alpha)
     }
     
-    var rgbValue: UInt64 = 0
-    Scanner(string: cString).scanHexInt64(&rgbValue)
-    
-    self.init(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-              green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-              blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-              alpha: alpha)
-  }
-
 }

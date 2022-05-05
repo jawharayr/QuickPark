@@ -493,7 +493,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFiel
                     print("Value", Value)
                     if Value == 1 {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay") as! ConfirmAndPay
+                        let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay") as! ConfirmParkingViewController
                         viewController.parking = self.parkings[indexPath.row]
                         viewController.areaName = areaname
                         if #available(iOS 15.0, *) {
