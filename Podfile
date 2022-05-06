@@ -19,6 +19,7 @@ target 'QuickPark' do
   pod 'SDWebImage', '~> 5.0'
   pod 'Kingfisher'
   pod 'NVActivityIndicatorView'
+  pod 'DropDown'
   
   #Other Pods
   pod 'CodableFirebase'

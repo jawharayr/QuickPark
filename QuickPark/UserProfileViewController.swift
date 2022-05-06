@@ -87,6 +87,7 @@ class UserProfileViewController: UIViewController {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
         navigationController?.pushViewController(vc, animated: true)
     }
+    
     func setupViews() {
         self.txtUserName?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         self.txtEmail?.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -174,6 +175,7 @@ class UserProfileViewController: UIViewController {
                         print("error getting field")
                         completion(nil) // error getting field; return nil
                     }
+                    
                 } else {
                     if let error = error {
                         print(error)

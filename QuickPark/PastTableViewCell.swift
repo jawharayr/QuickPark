@@ -11,7 +11,6 @@ class PastTableViewCell: UITableViewCell {
 
     @IBOutlet weak var MainView: UIView!
     @IBOutlet weak var BackView: UIView!
-    
     @IBOutlet weak var PastView: UIView!
     
     override func awakeFromNib() {

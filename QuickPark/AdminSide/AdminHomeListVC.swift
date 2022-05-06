@@ -12,6 +12,7 @@ import Firebase
 import SDWebImage
 
 
+
 class AdminHomeListVC: UIViewController {
     
     var parkings = [Area]()
@@ -39,9 +40,7 @@ class AdminHomeListVC: UIViewController {
         SearchTxt.layer.shadowOpacity = 0.1
         SearchTxt.layer.shadowOffset = .zero
         SearchTxt.layer.shadowRadius = 10
-        
-        
-    }
+            }
     @objc func searchRecord(sender : UITextField){
         self.searchedArea.removeAll()
         self.searchedLogos.removeAll()
@@ -82,7 +81,6 @@ class AdminHomeListVC: UIViewController {
                 let dictionary = snapshot.value as? NSDictionary
                 let area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
                 parkings.append(area)
-                
             }
             
             
@@ -98,6 +96,13 @@ class AdminHomeListVC: UIViewController {
         self.performSegue(withIdentifier: "GoToAdminAddAreaVC", sender: self)
     }
     
+    
+    @IBAction func AddPromoCode(_ sender: Any) {
+    let vc = self.storyboard?.instantiateViewController(withIdentifier: "AdminPromoCodeVC") as? AdminPromoCodeVC
+
+        navigationController?.pushViewController(vc!, animated: true)
+    }
+  
     
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -157,6 +162,7 @@ extension AdminHomeListVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        ParkingsViews.backgroundColor = UIColor("#F5F5F5")
         return true
     }
     
@@ -167,6 +173,7 @@ extension AdminHomeListVC: UITableViewDelegate, UITableViewDataSource{
         }
   
     }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
             QPAlert(self).showAlert(title: "Are you sure you want to delete this area?", message: "The area will be deleted permenently and you won't be able to restore it", buttons: ["Cancel", "Yes"]) { _, index in
@@ -179,7 +186,7 @@ extension AdminHomeListVC: UITableViewDelegate, UITableViewDataSource{
                 }
             }
            
-        } // */
+        }
            
         
         

@@ -70,7 +70,6 @@ class RegViewController: UIViewController {
         confirmPas.borderStyle = UITextField.BorderStyle.roundedRect
         
         
-        
         //passOfRegField.enablePasswordToggle()
         // Do any additional setup after loading the view.
         // textFieldEmail.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
@@ -232,8 +231,8 @@ extension RegViewController {
             nameLabel.isHidden = false
             nameLabel.attributedText = NSAttributedString(string: "Please enter your name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
             return false
-            
         }
+        
         if !name.isAlphanumeric || name.count < 3 {
             nameLabel.isHidden = false
             nameLabel.attributedText = NSAttributedString(string: "Name should have alphabets and min 3 letters characters", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])

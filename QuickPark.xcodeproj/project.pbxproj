@@ -76,7 +76,12 @@
 		7132474827F7BCD900FC1F66 /* PNSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132474727F7BCD900FC1F66 /* PNSender.swift */; };
 		7132474A27F7BDD900FC1F66 /* PNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132474927F7BDD900FC1F66 /* PNManager.swift */; };
 		951624D427E51B2000CA4675 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951624D327E51B2000CA4675 /* ChangePasswordVC.swift */; };
+		956BCAE62813D6EC00E3FE8F /* AdminPromoCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BCAE52813D6EC00E3FE8F /* AdminPromoCodeVC.swift */; };
+		958B5BF4281AFF59008D0D67 /* ViewPromoCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958B5BF3281AFF59008D0D67 /* ViewPromoCodeVC.swift */; };
+		958B5BF6281AFFC9008D0D67 /* PromoCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958B5BF5281AFFC9008D0D67 /* PromoCodeCell.swift */; };
+		958B5BF8281B1701008D0D67 /* EditPromoCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958B5BF7281B1701008D0D67 /* EditPromoCodeVC.swift */; };
 		95CED68527DD04D800223275 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CED68427DD04D800223275 /* UIImage+Extension.swift */; };
+		95D739572819ABE6001E855E /* PromoCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D739562819ABE6001E855E /* PromoCode.swift */; };
 		D059121AA59CF4450ACB2FB6 /* Pods_QuickPark_QuickParkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2E8B9214F8CFF56EFAB53E /* Pods_QuickPark_QuickParkTests.framework */; };
 		ED08CCF069A3B5E6753C5BDD /* Pods_QuickPark_QuickParkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */; };
 /* End PBXBuildFile section */
@@ -177,7 +182,12 @@
 		8CF14C3F2E16B57B46117C4D /* Pods-QuickParkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickParkTests.release.xcconfig"; path = "Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests.release.xcconfig"; sourceTree = "<group>"; };
 		8E12F9684092C5EB5D532BA4 /* Pods-QuickPark-QuickParkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkUITests.release.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests.release.xcconfig"; sourceTree = "<group>"; };
 		951624D327E51B2000CA4675 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
+		956BCAE52813D6EC00E3FE8F /* AdminPromoCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPromoCodeVC.swift; sourceTree = "<group>"; };
+		958B5BF3281AFF59008D0D67 /* ViewPromoCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPromoCodeVC.swift; sourceTree = "<group>"; };
+		958B5BF5281AFFC9008D0D67 /* PromoCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCodeCell.swift; sourceTree = "<group>"; };
+		958B5BF7281B1701008D0D67 /* EditPromoCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPromoCodeVC.swift; sourceTree = "<group>"; };
 		95CED68427DD04D800223275 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		95D739562819ABE6001E855E /* PromoCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCode.swift; sourceTree = "<group>"; };
 		C4D573FE1E7BF3A931F98B73 /* Pods-QuickPark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.debug.xcconfig"; sourceTree = "<group>"; };
 		DEE26C2A1663C1B2E299610A /* Pods-QuickParkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickParkTests.debug.xcconfig"; path = "Target Support Files/Pods-QuickParkTests/Pods-QuickParkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F175DF20F53E8ED5BD468F26 /* Pods_QuickPark_QuickParkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark_QuickParkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,6 +297,11 @@
 			isa = PBXGroup;
 			children = (
 				225AB86827C7B796003D4253 /* AdminMain.storyboard */,
+				958B5BF7281B1701008D0D67 /* EditPromoCodeVC.swift */,
+				958B5BF3281AFF59008D0D67 /* ViewPromoCodeVC.swift */,
+				958B5BF5281AFFC9008D0D67 /* PromoCodeCell.swift */,
+				95D739562819ABE6001E855E /* PromoCode.swift */,
+				956BCAE52813D6EC00E3FE8F /* AdminPromoCodeVC.swift */,
 				225AB85A27C7B3FA003D4253 /* AdminHomeListVC.swift */,
 				225AB85B27C7B3FA003D4253 /* QPVCTabBar.swift */,
 				2272433027C8CD3800A35AF3 /* VCAdminMore.swift */,
@@ -699,10 +714,12 @@
 				951624D427E51B2000CA4675 /* ChangePasswordVC.swift in Sources */,
 				225AB85D27C7B3FA003D4253 /* CustomCell.swift in Sources */,
 				225AB85727C7A806003D4253 /* UIViewController+Extension.swift in Sources */,
+				958B5BF6281AFFC9008D0D67 /* PromoCodeCell.swift in Sources */,
 				226C1D1327BE85A800D11E24 /* ReservationCell.swift in Sources */,
 				226C1D1A27BE85A800D11E24 /* QRCodeVC.swift in Sources */,
 				22A0757327A9260500658889 /* LogViewController.swift in Sources */,
 				22A0757527A9261E00658889 /* HomePageViewController.swift in Sources */,
+				95D739572819ABE6001E855E /* PromoCode.swift in Sources */,
 				226C1D1B27BE85A800D11E24 /* MyParkingsVC.swift in Sources */,
 				226C1D1627BE85A800D11E24 /* ConfirmAndPay.swift in Sources */,
 				22035FA927BB75B500D1A3B5 /* SBSupport.swift in Sources */,
@@ -718,7 +735,9 @@
 				226C1D0427BE682400D11E24 /* VCMore.swift in Sources */,
 				1FE81F6D27EB395800F8D142 /* LocationSearchTable.swift in Sources */,
 				1FE81F6527EB381D00F8D142 /* AdminEditAreaVC.swift in Sources */,
+				958B5BF8281B1701008D0D67 /* EditPromoCodeVC.swift in Sources */,
 				04DD469D27A4621200342200 /* SceneDelegate.swift in Sources */,
+				958B5BF4281AFF59008D0D67 /* ViewPromoCodeVC.swift in Sources */,
 				22EC709A27FF7A65005438BC /* FBImageSupport.swift in Sources */,
 				226C1D1427BE85A800D11E24 /* PastTableViewCell.swift in Sources */,
 				2291945C27E9FCEF00E78016 /* QPLNSuport.swift in Sources */,
@@ -726,6 +745,7 @@
 				7132474A27F7BDD900FC1F66 /* PNManager.swift in Sources */,
 				95CED68527DD04D800223275 /* UIImage+Extension.swift in Sources */,
 				2272433427C8CD3900A35AF3 /* CountdownParkingVC.swift in Sources */,
+				956BCAE62813D6EC00E3FE8F /* AdminPromoCodeVC.swift in Sources */,
 				225AB85227C7A7C1003D4253 /* OnboardingCollectionViewCell.swift in Sources */,
 				225AB85E27C7B3FA003D4253 /* AdminHomeListVC.swift in Sources */,
 				22A0757127A925DC00658889 /* RegViewController.swift in Sources */,

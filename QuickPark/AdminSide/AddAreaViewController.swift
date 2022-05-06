@@ -129,12 +129,10 @@ class AddAreaViewController: UIViewController {
             self.checkSpotNumber(sender.text ?? "")
 
         }
-        
     }
     
     func checkAreaName(_ value : String){
-        
-        
+    
         if (value == ""){
             self.lblAreaNameError.isHidden = true
             self.lblAreaNameError.text =  ""
@@ -246,7 +244,7 @@ class AddAreaViewController: UIViewController {
                                 }
                                 self.database.child("Areas").child(areaKey).setValue(object) { error, ref in
                                     self.showConfirmationAlert()
-                                }                   }else{
+                                }     }else{
                                self.showAlert(title: "Photo upload failed", message: "photo uploading failed, please try again")
                             }
                         }
@@ -261,11 +259,8 @@ class AddAreaViewController: UIViewController {
                         }
                         database.child("Areas").child(areaKey).setValue(object) { error, ref in
                             
-                            
                             self.showConfirmationAlert()
-                            
                         }
-                        
                     }
 
                 }
@@ -492,6 +487,12 @@ extension String {
     var isString: Bool {
         guard self.count > 2 else { return false }
         let str: Set<Character> = [" ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "-", ",", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        
+        return Set(self).isSubset(of: str)
+    }
+    var isPString: Bool {
+        guard self.count > 2 else { return false }
+        let str: Set<Character> = [" ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
         
         return Set(self).isSubset(of: str)
     }

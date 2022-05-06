@@ -2,6 +2,7 @@ ${PODS_ROOT}/Target Support Files/Pods-QuickPark-QuickParkTests/Pods-QuickPark-Q
 ${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework
 ${BUILT_PRODUCTS_DIR}/Braintree/Braintree.framework
 ${BUILT_PRODUCTS_DIR}/CodableFirebase/CodableFirebase.framework
+${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework
