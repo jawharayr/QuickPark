@@ -69,9 +69,9 @@ class ViewController: UIViewController {
         getName { (name) in
                     if let name = name {
         self.HelloLabel.text = "Hello, \(name)!"
-                    
                     }
                 }
+        
         NoResults.isHidden = true
         searchText.addTarget(self, action: #selector(searchRecord), for: .editingChanged)
         ref = Database.database().reference()
@@ -89,9 +89,6 @@ class ViewController: UIViewController {
         
         setUI()
         getIfAnyReservation()
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -20,7 +20,13 @@ class VCAdminMore : UITableViewController {
             }
             break;
             
-        case 1: //logout
+        case 1: //Call Feature
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewPromoCodeVC") as? ViewPromoCodeVC
+
+                navigationController?.pushViewController(vc!, animated: true)
+            break;
+            
+        case 2: //logout
             logout()
             break;
         default:

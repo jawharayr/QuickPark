@@ -98,6 +98,12 @@ class AdminHomeListVC: UIViewController {
         self.performSegue(withIdentifier: "GoToAdminAddAreaVC", sender: self)
     }
     
+    @IBAction func AddPromoCode(_ sender: Any) {
+    let vc = self.storyboard?.instantiateViewController(withIdentifier: "AdminPromoCodeVC") as? AdminPromoCodeVC
+
+        navigationController?.pushViewController(vc!, animated: true)
+    }
+  
     
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

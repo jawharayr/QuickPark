@@ -457,7 +457,7 @@ class MyParkingsVC: UIViewController {
             total = price
         }
         
-        
+
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PayAbleViewController") as! PayAbleViewController
         vc.total = "\(total.rounded())"
         vc.extra = "\(extra.rounded())"

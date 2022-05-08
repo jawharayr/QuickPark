@@ -164,6 +164,7 @@ class UserProfileViewController: UIViewController {
                 completion(nil) // user is not logged in; return nil
                 return
             }
+        
         print (uemail)
         
             Firestore.firestore().collection("users").document(uemail).getDocument { (docSnapshot, error) in
