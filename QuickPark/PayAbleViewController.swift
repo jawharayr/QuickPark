@@ -100,18 +100,19 @@ class PayAbleViewController: UIViewController {
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true, completion: nil)
             
-            self.perform(#selector(exitParkingQRCodeExpired), with: self.reservation, afterDelay: TimeInterval(K_QR_Code_Expire_Time))
-            UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "K_Parking_End_Time")
+            //self.perform(#selector(exitParkingQRCodeExpired), with: self.reservation, afterDelay: TimeInterval(K_QR_Code_Expire_Time))
+            UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: UDKeys.K_Parking_End_Time)
         }   
     }
     
     @objc func exitParkingQRCodeExpired() {
         payButton.setTitle("Pay Margin", for: .normal)
-        
+        calculateMargin()
+        self.dim
     }
     
     func calculateMargin() {
-        guard let pit = UserDefaults.standard.value(forKey: "K_Parking_End_Time") as? TimeInterval else {
+        guard let pit = ParkingAfterPaymentManager.shared.lastPaymentTime else {
             price = "0"
             total = "0"
             extra = "0"
@@ -126,10 +127,7 @@ class PayAbleViewController: UIViewController {
     }
     
     func updateValues() {
-        
     }
-    
-    
     
     func generateQRCode(using string:String) -> UIImage? {
         let data = string.data(using: String.Encoding.ascii)
