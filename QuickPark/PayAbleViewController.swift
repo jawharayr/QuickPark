@@ -20,6 +20,8 @@ class PayAbleViewController: UIViewController {
     @IBOutlet weak var PromoTxt: UITextField!
     
     @IBOutlet weak var KSULabel: UILabel!
+    
+    var ref:DatabaseReference!
     var price = ""
     var total = ""
     var extra = ""
@@ -46,6 +48,9 @@ class PayAbleViewController: UIViewController {
         
         //Paypal
         braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
+        
+        //PromoTxt.addTarget(self, action: #selector(promoSearch), for: .editingChanged)
+
     }
     
     
@@ -191,6 +196,10 @@ extension CIImage {
         combinedFilter.setValue(image.transformed(by: centerTransform), forKey: "image")
         combinedFilter.setValue(self, forKey: "inputBackgroundImage")
         return combinedFilter.outputImage!
+    }
+    
+    @objc func promoSearch(sender : UITextField){
+        
     }
 }
 
