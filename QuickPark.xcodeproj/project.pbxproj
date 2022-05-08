@@ -72,6 +72,7 @@
 		22EC709A27FF7A65005438BC /* FBImageSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EC709927FF7A65005438BC /* FBImageSupport.swift */; };
 		22EC709C27FF81DC005438BC /* ReservationDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EC709B27FF81DB005438BC /* ReservationDetailsVC.swift */; };
 		3BD1D4DDEFF9F67B7372195A /* Pods_QuickPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */; };
+		710BD39828279F86001DF5D6 /* Parking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710BD39728279F86001DF5D6 /* Parking.swift */; };
 		7132474827F7BCD900FC1F66 /* PNSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132474727F7BCD900FC1F66 /* PNSender.swift */; };
 		7132474A27F7BDD900FC1F66 /* PNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7132474927F7BDD900FC1F66 /* PNManager.swift */; };
 		951624D427E51B2000CA4675 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951624D327E51B2000CA4675 /* ChangePasswordVC.swift */; };
@@ -169,6 +170,7 @@
 		3B2E8B9214F8CFF56EFAB53E /* Pods_QuickPark_QuickParkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark_QuickParkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5F27C0CB7DE6030D0E20B1 /* Pods-QuickPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark.release.xcconfig"; path = "Target Support Files/Pods-QuickPark/Pods-QuickPark.release.xcconfig"; sourceTree = "<group>"; };
 		4A00A6A2B387B56D3904BD93 /* Pods_QuickPark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickPark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		710BD39728279F86001DF5D6 /* Parking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parking.swift; sourceTree = "<group>"; };
 		7132474727F7BCD900FC1F66 /* PNSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNSender.swift; sourceTree = "<group>"; };
 		7132474927F7BDD900FC1F66 /* PNManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNManager.swift; sourceTree = "<group>"; };
 		88D157D820121CDA58F7CDAB /* Pods-QuickPark-QuickParkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickPark-QuickParkUITests.debug.xcconfig"; path = "Target Support Files/Pods-QuickPark-QuickParkUITests/Pods-QuickPark-QuickParkUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -253,10 +255,10 @@
 				1F3C553427F626AB00E8A7EC /* QuickPark.entitlements */,
 				22035FA527BB731100D1A3B5 /* AppProtocols */,
 				22035FA327BB726000D1A3B5 /* Resources */,
+				22035FA427BB728300D1A3B5 /* Support */,
 				1FE81F7127EB41F100F8D142 /* General */,
 				1FE81F7027EB41BB00F8D142 /* Design Consisetncy */,
 				1FE81F6327EB379000F8D142 /* AdminSide */,
-				22035FA427BB728300D1A3B5 /* Support */,
 				22A0756F27A9257D00658889 /* Auth */,
 				2228409427F38EBE00FE2E5C /* Controllers */,
 				2228409927F392D800FE2E5C /* Chat */,
@@ -349,6 +351,7 @@
 				2272433127C8CD3800A35AF3 /* Constants.swift */,
 				2272433927C8CD6B00A35AF3 /* Utilities.swift */,
 				22825ADB27CA0625002F49A0 /* QPAlert.swift */,
+				710BD39728279F86001DF5D6 /* Parking.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				225AB85227C7A7C1003D4253 /* OnboardingCollectionViewCell.swift in Sources */,
 				225AB85E27C7B3FA003D4253 /* AdminHomeListVC.swift in Sources */,
 				22A0757127A925DC00658889 /* RegViewController.swift in Sources */,
+				710BD39828279F86001DF5D6 /* Parking.swift in Sources */,
 				225AB85627C7A806003D4253 /* UIView+Extension.swift in Sources */,
 				22C1C4CB27B6993A00866DA4 /* TermsViewController.swift in Sources */,
 				1FE81F6727EB38E800F8D142 /* AdminCustomCell.swift in Sources */,
