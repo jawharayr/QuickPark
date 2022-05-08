@@ -23,4 +23,7 @@ class ParkingAfterPaymentManager {
         }
     }
     
+    var paymentMadeWithoutExit : Bool {
+        return (self.lastPaymentTime != nil)
+    }
 }
