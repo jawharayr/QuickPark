@@ -16,6 +16,7 @@ class PayAbleViewController: UIViewController {
     @IBOutlet weak var lblExtra:UILabel!
     @IBOutlet weak var lblTotal:UILabel!
     @IBOutlet weak var mainView:UIView!
+    
     @IBOutlet weak var PromoTxt: UITextField!
     
     @IBOutlet weak var KSULabel: UILabel!
