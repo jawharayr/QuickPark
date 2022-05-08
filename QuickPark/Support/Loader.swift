@@ -26,8 +26,6 @@ func startActivityAnimating(padding: CGFloat? = nil, isFromOnView:Bool,view:UIVi
     let xAxis = (view.frame.size.width / 2 - width/2)//self.view.center.x // or use  // or use (faqWebView.frame.size.width / 2)
     let yAxis = (view.frame.size.height / 2 - height/2)//self.view.center.y // or use  // or use (faqWebView.frame.size.height / 2)
     
-    
-    
     let frame = CGRect(x: (xAxis), y: (yAxis), width: width, height: height)
     activityIndicator = NVActivityIndicatorView(frame: frame)
     activityIndicator.type = type // add your type
@@ -35,7 +33,6 @@ func startActivityAnimating(padding: CGFloat? = nil, isFromOnView:Bool,view:UIVi
     activityIndicator.tag = 101
     view.addSubview(activityIndicator) // or use  webView.addSubview(activityIndicator)
     activityIndicator.startAnimating()
-    
 }
 
 
