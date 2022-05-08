@@ -21,6 +21,7 @@ class PayAbleViewController: UIViewController {
     var price = ""
     var total = ""
     var extra = ""
+    var promocode = ""
     var reservation:Reservation!
     
     private let database = Database.database().reference()
