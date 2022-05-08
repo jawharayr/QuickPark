@@ -49,8 +49,6 @@ class PayAbleViewController: UIViewController {
         //Paypal
         braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
         
-        //PromoTxt.addTarget(self, action: #selector(promoSearch), for: .editingChanged)
-
     }
     
     
@@ -198,9 +196,6 @@ extension CIImage {
         return combinedFilter.outputImage!
     }
     
-    @objc func promoSearch(sender : UITextField){
-        
-    }
 }
 
 
