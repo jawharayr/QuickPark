@@ -97,7 +97,7 @@ class MyParkingsVC: UIViewController {
                 RESERVATIONS.child(uid).child(reservationID).removeValue()
                  NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
                 let database = Firestore.firestore()
-                database.collection("users").document(self.uid).setData( ["hasReservation": false], merge: true)
+                database.collection("users").document((Auth.auth().currentUser?.email)!).setData( ["hasReservation": false], merge: true)
             }
         }
     

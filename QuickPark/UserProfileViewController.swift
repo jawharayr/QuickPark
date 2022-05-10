@@ -11,12 +11,13 @@ import FirebaseAuth
 import FirebaseFirestore
 
 
-class UserProfileViewController: UIViewController {
+class UserProfileViewController: UIViewController{
 
     
     @IBOutlet weak var txtUserName : UITextField!
     @IBOutlet weak var txtEmail : UITextField!
     
+    @IBOutlet weak var EmailAlert: UILabel!
     @IBOutlet weak var changePassbtn: UIButton!
     @IBOutlet weak var deletebtn: UIButton!
     
@@ -30,6 +31,7 @@ class UserProfileViewController: UIViewController {
     var id = ""
     var email = ""
     private var name = ""
+    var uid = ""
     let yourAttributes: [NSAttributedString.Key: Any] = [
           .underlineStyle: NSUnderlineStyle.single.rawValue
       ] // .double.rawValue, .thick.rawValue
@@ -67,6 +69,19 @@ class UserProfileViewController: UIViewController {
     self.Info.layer.shadowColor = UIColor.black.cgColor
         self.Info.layer.masksToBounds = false
         
+        
+        if Auth.auth().currentUser?.uid == nil{
+            if  UserDefaults.standard.string(forKey: "uid") == nil{
+                uid = UtilitiesManager.sharedIntance.getRandomString()
+                UserDefaults.standard.set(uid, forKey: "uid")
+            }else{
+                uid = UserDefaults.standard.string(forKey: "uid")!
+            }
+        }else{
+            uid = Auth.auth().currentUser!.uid
+        }
+      
+    
 //        self.navigationController?.navigationBar.isHidden = true
         self.setupViews()
          let deleteAttributeString = NSMutableAttributedString(
@@ -112,8 +127,7 @@ class UserProfileViewController: UIViewController {
                         print("success in getting name")
                     }
                 }
-        self.txtEmail.text = email
-        
+        self.txtEmail.text = Auth.auth().currentUser?.email ?? email
         
         //For shadow and cornerRadius for Name textfield
         txtUserName.layer.masksToBounds = false
@@ -154,20 +168,30 @@ class UserProfileViewController: UIViewController {
         
         //---------------------------------------
         
-       
+        let db = Firestore.firestore()
+        db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { snapshot, err in
+            let snapdata = snapshot?.data() as? [String:Any]
+            let hasReservation = snapdata?["hasReservation"] as? Bool ?? false
+            if hasReservation == true{
+                self.txtEmail.isEnabled = false
+                self.EmailAlert.isHidden = false
+            }else{
+                self.txtEmail.isEnabled = true
+                self.EmailAlert.isHidden = true
+            }
+    }
         
     }
     
     func getName(completion: @escaping (_ name: String?) -> Void) {
-            guard let uemail = Auth.auth().currentUser?.email else { // safely unwrap the uid; avoid force unwrapping with !
+            guard let Uemail = Auth.auth().currentUser?.email else { // safely unwrap the uid; avoid force unwrapping with !
                 
                 completion(nil) // user is not logged in; return nil
                 return
             }
-        
-        print (uemail)
-        
-            Firestore.firestore().collection("users").document(uemail).getDocument { (docSnapshot, error) in
+        print (Uemail)
+       
+        Firestore.firestore().collection("users").document(Uemail).getDocument { (docSnapshot, error) in
                 if let doc = docSnapshot {
                     if let name = doc.get("name") as? String {
                         completion(name) // success; return name
@@ -313,26 +337,40 @@ class UserProfileViewController: UIViewController {
                             self.alertUser(title: "Error", body: error)
                         }else{
                             let database = Firestore.firestore()
-                            let userdata = ["email": newEmail,"uid":Auth.auth().currentUser!.uid ,"name": self.txtUserName.text ?? ""]
+                            let userdata = ["email": newEmail, "name": self.txtUserName.text ?? "","hasReservation":false] as [String : Any]
                             print (userdata)
                             
                             if let currentEmail = Auth.auth().currentUser?.email{
-                                database.collection("users").document(currentEmail).delete()
-                            }
-                            database.collection("users").document(newEmail).setData(userdata){(error) in
-                                if let error = error{
-                                    print("Error occured while writing new user data. Error= ",error.localizedDescription)
+                                if newEmail != currentEmail{
+                                    database.collection("users").document(currentEmail).delete()
+                                    
+                                    Auth.auth().currentUser?.updateEmail(to: newEmail, completion: { error in
+                                        if let error = error{
+                                            self.alertUser(title: "Error", body: error.localizedDescription)
+                                        }else{
+                                            
+                                            database.collection("users").document(newEmail).setData(userdata,merge: true){(error) in
+                                                if let error = error{
+                                                    print("Error occured while writing new user data. Error= ",error.localizedDescription)
+                                                }else{
+                                                    self.alertUser(title: "Information updated", body: "Your account information has been updated successfully.")
+                                                }
+                                            }
+                                            
+                                        }
+                                    })
                                 }else{
-                                    print("Did update user data successfully.")
+                                    
+                                    database.collection("users").document(newEmail).setData(userdata,merge: true){(error) in
+                                        if let error = error{
+                                            print("Error occured while writing new user data. Error= ",error.localizedDescription)
+                                        }else{
+                                            self.alertUser(title: "Information updated", body: "Your account information has been updated successfully.")
+                                        }
+                                    }
                                 }
                             }
-                            Auth.auth().currentUser?.updateEmail(to: newEmail, completion: { error in
-                                if let error = error{
-                                    self.alertUser(title: "Error", body: error.localizedDescription)
-                                }else{
-                                    self.alertUser(title: "Information updated", body: "Your account information has been updated successfully.")
-                                }
-                            })
+                            
                         }
                     }
                     

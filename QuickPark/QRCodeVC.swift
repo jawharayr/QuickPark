@@ -130,7 +130,7 @@ class QRCodeVC: UIViewController {
                         self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true) { err, data in
                             if err == nil{
                                 let database = Firestore.firestore()
-                                database.collection("users").document(self.uid).setData( ["hasReservation": false], merge: true)
+                                database.collection("users").document((Auth.auth().currentUser?.email)!).setData( ["hasReservation": false], merge: true)
                                 UserDefaults.standard.set(false, forKey: "isOverTime")
                                 UserDefaults.standard.set(false, forKey: "start")
                                 UserDefaults.standard.removeObject(forKey: "parkingArea")

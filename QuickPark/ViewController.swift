@@ -312,7 +312,7 @@ class ViewController: UIViewController {
             
             QPAlert(self).showError(message: "You are late, reservation was cancelled by server.")
             let database = Firestore.firestore()
-            database.collection("users").document(self.uid).setData( ["hasReservation": false], merge: true)
+            database.collection("users").document((Auth.auth().currentUser?.email)!).setData( ["hasReservation": false], merge: true)
             
             RESERVATIONS.child(uid).removeValue()
             guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
