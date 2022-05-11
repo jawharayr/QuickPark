@@ -319,14 +319,15 @@ class MyParkingsVC: UIViewController {
     }
     
     func showPaymentDetails() {
-        let result = ParkingManager.shared.calculateTime(reservation: reservation)
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PayAbleViewController") as! PayAbleViewController
-        vc.total = "\(result.0.rounded())"
-        vc.extra = "\(result.1.rounded())"
-        vc.price = "\(result.2.rounded())"
-        vc.modalPresentationStyle = .overFullScreen
-        vc.reservation = self.reservation
-        self.present(vc, animated: true, completion: nil)
+//        let result = ParkingManager.shared.calculateTime(reservation: reservation)
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PayAbleViewController") as! PayAbleViewController
+//        vc.total = "\(result.0.rounded())"
+//        vc.extra = "\(result.1.rounded())"
+//        vc.price = "\(result.2.rounded())"
+//        vc.modalPresentationStyle = .overFullScreen
+//        vc.reservation = self.reservation
+//        self.present(vc, animated: true, completion: nil)
+        ParkingManager.shared.presentPayableView(on: self, reservation: reservation)
     }
     
     @IBAction func ActiveAndPast(_ sender: UISegmentedControl) {

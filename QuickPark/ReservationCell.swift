@@ -107,15 +107,17 @@ class ReservationCell: UICollectionViewCell {
     }
     
     func showPaymentDetails() {
-        let result = ParkingManager.shared.calculateTime(reservation: self.reservation)
+        ParkingManager.shared.presentPayableView(on: mainVC, reservation: reservation)
         
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PayAbleViewController") as! PayAbleViewController
-        vc.total = "\(result.0.rounded())"
-        vc.extra = "\(result.1.rounded())"
-        vc.price = "\(result.2.rounded())"
-        vc.modalPresentationStyle = .overFullScreen
-        vc.reservation = self.reservation
-        mainVC.present(vc, animated: true, completion: nil)
+//        let result = ParkingManager.shared.calculateTime(reservation: self.reservation)
+//
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PayAbleViewController") as! PayAbleViewController
+//        vc.total = "\(result.0.rounded())"
+//        vc.extra = "\(result.1.rounded())"
+//        vc.price = "\(result.2.rounded())"
+//        vc.modalPresentationStyle = .overFullScreen
+//        vc.reservation = self.reservation
+//        mainVC.present(vc, animated: true, completion: nil)
     }
 }
 
