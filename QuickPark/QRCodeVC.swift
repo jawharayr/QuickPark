@@ -71,6 +71,7 @@ class QRCodeVC: UIViewController {
                 timer.invalidate()
                 self.timer = nil
             }
+            NotificationCenter.default.post(name: NotificationNames.K_QRCodeExpired, object: 0)
         }
     }
     
