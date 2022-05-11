@@ -17,7 +17,7 @@ class ReservationCell: UICollectionViewCell {
     @IBOutlet weak var viewLoader: UIView!
     @IBOutlet weak var viewWidth:NSLayoutConstraint!
     @IBOutlet weak var viewHeight:NSLayoutConstraint!
-
+    
     var mainVC:UIViewController!
     var timer:Timer!
     var totalTime = 0
@@ -37,8 +37,7 @@ class ReservationCell: UICollectionViewCell {
     }
     
     @objc func updateTimer() {
-        print("ReservationCell: ", self.totalTime)
-        self.lblCountDown.text = UtilitiesManager.sharedIntance.timeFormatted(self.totalTime) // will show timer
+        self.lblCountDown.text = UtilitiesManager.sharedIntance.timeFormatted(self.totalTime)
         if totalTime != 0 {
             totalTime -= 1
             if totalTime < 600{
@@ -62,14 +61,12 @@ class ReservationCell: UICollectionViewCell {
                 self.btnEnd.isUserInteractionEnabled = false
             }
         }else{
-            
             self.btnEnd.isUserInteractionEnabled = false
             lblCountDown.text = "Wait to start"
         }
     }
     
     func getStartTime(){
-        let start = TimeInterval.init(reservation.StartTime)
         let end = TimeInterval.init(reservation.EndTime)
         let isValidTime = UtilitiesManager.sharedIntance.checkIfTimeIsValid(endTime: Date.init(timeIntervalSince1970: end))
         if isValidTime{
@@ -79,7 +76,6 @@ class ReservationCell: UICollectionViewCell {
             totalTime = 0
         }
     }
-    
     
     func getIfAnyReservation(){
         viewLoader.isHidden = true
@@ -105,83 +101,21 @@ class ReservationCell: UICollectionViewCell {
     @IBAction func EndParking(_ sender: Any) {
         QPAlert(mainVC).showAlert(title:"End Parking.", message: "Are you sure?" , buttons:  ["Yes","cancel"]) { _, index in
             if index == 0{
-                self.calculateTime()
+                self.showPaymentDetails()
             }
         }
     }
     
-    func calculateTime() {
-        var extra:Double = 0.0
-        var price:Double = 0.0
-        var total:Double = 0.0
-        var minOfPrice:Double = 0.0
-        var minOfExtra:Double = 0.0
-        
-        var HoursofPrice=0.0
-        var HoursofExtra = 0.0
-        
-        var isInteger = true
-        
-        let startTime = reservation.StartTime
-        let endTime = reservation.EndTime
-        
-        let now = Date.init().addingMinutes(minutes: 1)
-        
-        
-        if now.timeIntervalSince1970 > TimeInterval.init(endTime){
-            
-            minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
-            
-            HoursofPrice = minOfPrice/60
-            isInteger = floor(HoursofPrice) == HoursofPrice // true
-            
-            if (isInteger){
-                price = HoursofPrice * 15
-            }
-            else{
-                price =  ( floor(HoursofPrice) * 15 ) + 15
-            }
-            
-            minOfExtra = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(endTime)), endTime: Int(now.timeIntervalSince1970))
-            
-            HoursofExtra = minOfExtra/60
-            isInteger = floor(HoursofExtra) == HoursofExtra // true if its integer
-            
-            if (isInteger){
-                extra = HoursofExtra * 15
-            }
-            else{
-                extra =  ( floor(HoursofExtra) * 15 ) + 15
-            }
-            
-            total = price + extra
-        }else{
-            
-            minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
-            
-            HoursofPrice = minOfPrice/60
-            isInteger = floor(HoursofPrice) == HoursofPrice // true
-            
-            if (isInteger){
-                price = HoursofPrice * 15
-            }
-            else{
-                price =  ( floor(HoursofPrice) * 15 ) + 15
-            }
-            
-            total = price
-        }
-        
+    func showPaymentDetails() {
+        let result = ParkingManager.shared.calculateTime(reservation: self.reservation)
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PayAbleViewController") as! PayAbleViewController
-        vc.total = "\(total.rounded())"
-        vc.extra = "\(extra.rounded())"
-        vc.price = "\(price.rounded())"
+        vc.total = "\(result.0.rounded())"
+        vc.extra = "\(result.1.rounded())"
+        vc.price = "\(result.2.rounded())"
         vc.modalPresentationStyle = .overFullScreen
         vc.reservation = self.reservation
         mainVC.present(vc, animated: true, completion: nil)
     }
-    
-    
-    }
+}
 
