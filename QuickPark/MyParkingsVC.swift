@@ -275,7 +275,6 @@ class MyParkingsVC: UIViewController {
     
     
     func playOverTimer(){
-        let start = TimeInterval.init(reservation.StartTime)
         let end = TimeInterval.init(reservation.EndTime)
         UserDefaults.standard.set(true, forKey: "isOverTime")
         
@@ -289,7 +288,7 @@ class MyParkingsVC: UIViewController {
     @IBAction func EndParking(_ sender: Any) {
         QPAlert(self).showAlert(title:"End Parking.", message: "Are you sure?" , buttons:  ["Yes","cancel"]) { _, index in
             if index == 0 {
-                self.calculateTime()
+                self.showPaymentDetails()
             }
         }
     }
@@ -315,71 +314,17 @@ class MyParkingsVC: UIViewController {
         }
     }
     
-    func calculateTime(){
-        var extra:Double = 0.0
-        var price:Double = 0.0
-        var total:Double = 0.0
-        var minOfPrice:Double = 0.0
-        var minOfExtra:Double = 0.0
-        var HoursofPrice=0.0
-        var HoursofExtra = 0.0
-        var isInteger = true
-        
-        let startTime = reservation.StartTime
-        let endTime = reservation.EndTime
-        
-        let now = Date.init().addingMinutes(minutes: 1)
-        
-        
-        if now.timeIntervalSince1970 > TimeInterval.init(endTime) {
-            minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
-            HoursofPrice = minOfPrice/60
-            isInteger = floor(HoursofPrice) == HoursofPrice
-            
-            if (isInteger){
-                price = HoursofPrice * 15
-            }
-            else{
-                price =  ( floor(HoursofPrice) * 15 ) + 15
-            }
-            
-            minOfExtra = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(endTime)), endTime: Int(now.timeIntervalSince1970))
-            
-            HoursofExtra = minOfExtra/60
-            isInteger = floor(HoursofExtra) == HoursofExtra // true if its integer
-            
-            if (isInteger){
-                extra = HoursofExtra * 15
-            }
-            else{
-                extra =  (floor(HoursofExtra) * 15) + 15
-            }
-            
-            total = price + extra
-        }else{
-            minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
-            
-            HoursofPrice = minOfPrice/60
-            isInteger = floor(HoursofPrice) == HoursofPrice // true
-            
-            if (isInteger){
-                price = HoursofPrice * 15
-            }
-            else{
-                price =  ( floor(HoursofPrice) * 15 ) + 15
-            }
-            total = price
-        }
-        
+    func showPaymentDetails() {
+        let result = ParkingManager.shared.calculateTime(reservation: reservation)
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PayAbleViewController") as! PayAbleViewController
-        vc.total = "\(total.rounded())"
-        vc.extra = "\(extra.rounded())"
-        vc.price = "\(price.rounded())"
+        vc.total = "\(result.0.rounded())"
+        vc.extra = "\(result.1.rounded())"
+        vc.price = "\(result.2.rounded())"
         vc.modalPresentationStyle = .overFullScreen
         vc.reservation = self.reservation
         self.present(vc, animated: true, completion: nil)
     }
-
+    
     @IBAction func ActiveAndPast(_ sender: UISegmentedControl) {
         let selection = sender.selectedSegmentIndex
         switch selection {
@@ -442,9 +387,16 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
         ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
             print(snapshots.childrenCount)
             
-            for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
+            for (i, snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
                 let dictionary = snapshot.value as? NSDictionary
-                var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
+                let area = Area(
+                    areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "",
+                    locationLat: dictionary?["locationLat"] as? Double ?? 0.0,
+                    locationLong: dictionary?["locationLong"] as? Double ?? 0.0,
+                    Value: dictionary?["Value"] as? Int ?? 0,
+                    isAvailable: dictionary?["isAvailable"] as? Bool ?? false,
+                    spotNo: dictionary?["spotNo"] as? Int ?? 0,
+                    logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
                 
                 if cell.Name.text == area.areaname {
                     cell.Logo.sd_setImage(with: URL(string: area.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
@@ -469,7 +421,15 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
             
             for (i,snapshot) in (snapshots.children.allObjects as! [DataSnapshot]).enumerated() {
                 let dictionary = snapshot.value as? NSDictionary
-                var area = Area(areaKey : snapshot.key, areaname: dictionary?["areaname"] as? String ?? "", locationLat: dictionary?["locationLat"] as? Double ?? 0.0, locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0, isAvailable: dictionary?["isAvailable"] as? Bool ?? false, spotNo: dictionary?["spotNo"] as? Int ?? 0, logo: dictionary?["areaImage"] as? String ?? "", distance: 0.0)
+                let area = Area(
+                    areaKey : snapshot.key,
+                    areaname: dictionary?["areaname"] as? String ?? "",
+                    locationLat: dictionary?["locationLat"] as? Double ?? 0.0,
+                    locationLong: dictionary?["locationLong"] as? Double ?? 0.0, Value: dictionary?["Value"] as? Int ?? 0,
+                    isAvailable: dictionary?["isAvailable"] as? Bool ?? false,
+                    spotNo: dictionary?["spotNo"] as? Int ?? 0,
+                    logo: dictionary?["areaImage"] as? String ?? "",
+                    distance: 0.0)
                 
                 if vc?.areaname == area.areaname {
                     vc?.Logo.sd_setImage(with: URL(string: area.logo), placeholderImage:UIImage(named: "locPlaceHolder"))
