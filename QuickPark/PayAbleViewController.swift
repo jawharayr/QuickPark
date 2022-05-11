@@ -24,6 +24,7 @@ class PayAbleViewController: UIViewController {
     var price = ""
     var total = ""
     var extra = ""
+    var promocode = ""
     var reservation:Reservation!
     
     private let database = Database.database().reference()
@@ -206,4 +207,105 @@ extension PayAbleViewController: BTViewControllerPresentingDelegate{
     func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
         
     }
+}
+extension PayAbleViewController:UITextFieldDelegate{
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if let text = textField.text,
+           let textRange = Range(range, in: text) {
+            let updatedText = text.replacingCharacters(in: textRange,with: string)
+            if updatedText.count == 5{
+                checkPromoCode(promoCode: updatedText)
+                return true
+            }else if updatedText.count > 5{
+                return false
+            }
+            
+        }
+        return true
+    }
+    
+    func checkPromoCode(promoCode:String){
+        let completePromo = "PromoCode_"+promoCode
+        
+        ref.child("PromoCode").child(completePromo).observeSingleEvent(of: .value) { dataSnap in
+            if dataSnap.exists(){
+                let promoData = Promo.init(dict: dataSnap.value as? [String:Any] ?? [:])
+                if promoData.SelectedArea == "All Areas" || self.reservation.area == promoData.SelectedArea {
+                    self.makeDiscount(promo: promoData)
+                }else{
+                    UtilitiesManager.sharedIntance.showAlert(title: "Oops", message: "\(promoCode) is not invalid for this parking area.", VC: self)
+                    self.PromoTxt.text = ""
+                }
+            }else{
+                UtilitiesManager.sharedIntance.showAlert(title: "Oops", message: "\(promoCode) is invalid or Expired.", VC: self)
+                self.PromoTxt.text = ""
+            }
+        }
+    }
+    
+    func makeDiscount(promo:Promo){
+        
+        if promo.Precentage != ""{
+            
+            self.total = "\(Double(total)!-(calculatePercentage(value: Double(total)!,percentageVal: Double(promo.Precentage) ?? 0)))"
+            self.lblTotal.text = self.total
+            self.PromoTxt.isUserInteractionEnabled = false
+            self.PromoTxt.resignFirstResponder()
+
+//            let percentage = (Double(promo.Precentage) ?? 0) / 100
+//            let discountedPrice = Double(total) ?? 0.0 - (Double(total) ?? 0.0 * percentage)
+//            self.total = "\(discountedPrice.rounded())"
+//            self.lblTotal.text = "\(discountedPrice.rounded())"
+        }else if promo.Price != ""{
+            let discountedPrice = Double(total)! - Double(promo.Price)!
+            self.total = "\(discountedPrice.rounded())"
+            self.lblTotal.text = "\(discountedPrice.rounded())"
+            self.PromoTxt.isUserInteractionEnabled = false
+            self.PromoTxt.resignFirstResponder()
+        }
+        
+    }
+    
+    
+}
+
+
+class Promo{
+   
+    var Precentage:String
+    var Price:String
+    var SelectedArea:String
+    var  isvalid:Bool
+    var promoCode:String
+
+    //    "All Areas"
+
+   
+    init(Precentage: String,Price:String, SelectedArea: String, isvalid: Bool, promoCode: String) {
+        self.Precentage = Precentage
+        self.Price = Price
+        self.SelectedArea = SelectedArea
+        self.isvalid = isvalid
+        self.promoCode = promoCode
+    }
+    
+    
+    init(dict:[String:Any]){
+        self.Precentage = dict["Precentage"] as? String ?? ""
+        self.SelectedArea = dict["SelectedArea"] as? String ?? ""
+        self.Price = dict["Price"] as? String ?? ""
+        self.isvalid = dict["isvalid"] as? Bool ?? false
+        self.promoCode = dict["promoCode"] as? String ?? ""
+    }
+    
+    
+    
+}
+
+
+public func calculatePercentage(value:Double,percentageVal:Double)->Double{
+    let val = value * percentageVal
+    return val / 100.0
 }
