@@ -500,12 +500,12 @@ extension ViewControllerOLD: UITableViewDelegate, UITableViewDataSource, UITextF
                     print("Value", Value)
                     if Value == 1 {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay") as! ConfirmAndPay
+                        let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay") as! ConfirmParkingViewController
                         viewController.parking = self.parkings[indexPath.row]
                         viewController.areaName = areaname
                         if #available(iOS 15.0, *) {
                             if let presentationController = viewController.presentationController as? UISheetPresentationController {
-                                presentationController.detents = [.medium()]
+                                //presentationController.detents = [.medium()]
                                 /// change to [.medium(), .large()] for a half and full screen sheet
                             }
                         }

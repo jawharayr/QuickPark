@@ -255,17 +255,18 @@ class ConfirmParkingViewController: UIViewController {
                 }
                 
                 self.present(vc, animated: true, completion: {
-                RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
+                    RESERVATIONS.child(self.uid).child(reservationId).setValue(paramas)
                     let database = Firestore.firestore()
                     database.collection("users").document((Auth.auth().currentUser?.email)!).setData( ["hasReservation": true], merge: true)
                     if self.parking.areaname == "King Saud University"{
-                    self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
-                    UserDefaults.standard.set("Area_23", forKey: "parkingArea")
-                }else{
-                    self.ref.child("Areas").child("Area_88").child("isAvailable").setValue(false)
-                    UserDefaults.standard.set("Area_88", forKey: "parkingArea")
-                }
-            })
+                        self.ref.child("Areas").child("Area_23").child("isAvailable").setValue(false)
+                        UserDefaults.standard.set("Area_23", forKey: "parkingArea")
+                    }else{
+                        self.ref.child("Areas").child("Area_88").child("isAvailable").setValue(false)
+                        UserDefaults.standard.set("Area_88", forKey: "parkingArea")
+                    }
+                })
+            }
         }
     }
 }
