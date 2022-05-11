@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseFirestore
 import SVProgressHUD
 
 let K_QR_Code_Expire_Time = 600
@@ -117,6 +118,8 @@ class QRCodeVC: UIViewController {
                         guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
                         self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true) { err, data in
                             if err == nil{
+                                let database = Firestore.firestore()
+                                database.collection("users").document((Auth.auth().currentUser?.email)!).setData( ["hasReservation": false], merge: true)
                                 UserDefaults.standard.set(false, forKey: "isOverTime")
                                 UserDefaults.standard.set(false, forKey: "start")
                                 UserDefaults.standard.removeObject(forKey: "parkingArea")

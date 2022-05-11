@@ -98,6 +98,12 @@ class AdminHomeListVC: UIViewController {
         self.performSegue(withIdentifier: "GoToAdminAddAreaVC", sender: self)
     }
     
+    @IBAction func AddPromoCode(_ sender: Any) {
+    let vc = self.storyboard?.instantiateViewController(withIdentifier: "AdminPromoCodeVC") as? AdminPromoCodeVC
+
+        navigationController?.pushViewController(vc!, animated: true)
+    }
+  
     
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -105,10 +111,21 @@ class AdminHomeListVC: UIViewController {
             let secondView = segue.destination as! AdminEditAreaVC
                   let object = selectedArea
             secondView.curSelectedArea = selectedArea
+            secondView.parkings = self.parkings
+            
+            //secondView.spotNo = selectedArea?.spotNo
+          
+            //dvc.selectedArea = curSelectedArea
+        } else if segue.identifier == "GoToAdminAddAreaVC" {
+            let secondView = segue.destination as! AddAreaViewController
+            secondView.parkings = self.parkings
+            
             //secondView.spotNo = selectedArea?.spotNo
           
             //dvc.selectedArea = curSelectedArea
         }
+        
+        
     }
     
 }

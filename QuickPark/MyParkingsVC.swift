@@ -7,6 +7,7 @@
 import UIKit
 import FirebaseDatabase
 import Foundation
+import FirebaseFirestore
 import FirebaseAuth
 import SwiftUI
 import SDWebImage
@@ -89,7 +90,9 @@ class MyParkingsVC: UIViewController {
                 self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
                 UserDefaults.standard.removeObject(forKey: "parkingArea")
                 RESERVATIONS.child(uid).child(reservationID).removeValue()
-                NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                 NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                let database = Firestore.firestore()
+                database.collection("users").document((Auth.auth().currentUser?.email)!).setData( ["hasReservation": false], merge: true)
             }
         }
         
@@ -291,6 +294,7 @@ class MyParkingsVC: UIViewController {
                 self.showPaymentDetails()
             }
         }
+        
     }
     
     
