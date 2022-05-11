@@ -112,6 +112,7 @@ class LogViewController: UIViewController {
             }
             else {
                 SceneDelegate.sceneDelegate.setUpHome()
+                FBAuth.enableNotification(condition: true, email: email)
             }
         }
     }

@@ -34,6 +34,7 @@ class ChangePasswordVC: UIViewController {
                 }else{
                     completion("Unexpected error")
                 }
+                FBAuth.enableNotification(condition: true, email: email)
             }
         }))
         alert.addAction(.init(title: "Cancel", style: .cancel, handler: nil))

@@ -309,6 +309,7 @@ class UserProfileViewController: UIViewController{
                     completion(nil)
                 }else{
                     completion("Unexpected error")
+                    FBAuth.enableNotification(condition: true, email: email)
                 }
             }
         }))
