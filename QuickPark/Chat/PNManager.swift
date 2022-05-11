@@ -13,10 +13,17 @@ import UserNotifications
 
 class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenterDelegate {
     let userID: String
-    init(userID: String) {
-        self.userID = userID
-        super.init()
+   
+    init(userID: String? = "") {
+    self.userID = userID ?? ""
+    super.init()
     }
+    
+    
+    static let shared = PushNotificationManager()
+
+  
+    
     
     func registerForPushNotifications() {
         if #available(iOS 10.0, *) {
@@ -37,6 +44,13 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
     }
     
     func updateFirestorePushTokenIfNeeded() {
+        if let token = Messaging.messaging().fcmToken {
+            let usersRef = Firestore.firestore().collection("users").document(userID)
+            usersRef.setData(["fcmToken": token], merge: true)
+        }
+    }
+    
+    func removeFirestorePushTokenOnLogOut() {
         if let token = Messaging.messaging().fcmToken {
             let usersRef = Firestore.firestore().collection("users").document(userID)
             usersRef.setData(["fcmToken": token], merge: true)

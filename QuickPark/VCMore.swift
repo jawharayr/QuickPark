@@ -53,6 +53,8 @@ class TVCMore : UITableViewController {
                     if success == false, let e = error {
                         QPAlert(self).showError(message: e.localizedDescription)
                     } else {
+                        PushNotificationManager.shared.removeFirestorePushTokenOnLogOut()
+
                         SceneDelegate.sceneDelegate.setUpHome()
                     }
                 }

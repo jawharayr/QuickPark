@@ -111,6 +111,8 @@ class LogViewController: UIViewController {
                 }
             }
             else {
+                PushNotificationManager.shared.updateFirestorePushTokenIfNeeded()
+
                 SceneDelegate.sceneDelegate.setUpHome()
                 FBAuth.enableNotification(condition: true, email: email)
             }
