@@ -36,7 +36,7 @@ class PayAbleViewController: UIViewController {
         super.viewDidLoad()
         
         ref = Database.database().reference()
-
+        PromoTxt.delegate = self
         lblPrice.text = price + " SAR"
         lblExtra.text = extra + " SAR"
         lblTotal.text = total + " SAR"
