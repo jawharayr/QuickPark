@@ -37,6 +37,10 @@ class PayAbleViewController: UIViewController {
         mainView.layer.cornerRadius = 20
         braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
         
+        if ParkingManager.shared.paymentMadeWithoutExit {
+            payButton.setTitle("Re generate code", for: .all)
+        }
+        
         displayValue()
     }
     
