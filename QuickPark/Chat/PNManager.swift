@@ -40,20 +40,26 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
             UIApplication.shared.registerUserNotificationSettings(settings)
         }
         UIApplication.shared.registerForRemoteNotifications()
-        updateFirestorePushTokenIfNeeded()
+        updateFirestorePushTokenIfNeeded(userEmail: "", fromManager: true)
     }
     
-    func updateFirestorePushTokenIfNeeded() {
+    func updateFirestorePushTokenIfNeeded(userEmail : String? = "", fromManager : Bool? = false) {
+        var userHere = userEmail
         if let token = Messaging.messaging().fcmToken {
-            let usersRef = Firestore.firestore().collection("users").document(userID)
+            if fromManager ?? false {
+                userHere = userID
+            }
+            
+            let usersRef = Firestore.firestore().collection("users").document(userHere ?? "")
             usersRef.setData(["fcmToken": token], merge: true)
+            
         }
     }
     
-    func removeFirestorePushTokenOnLogOut() {
+    func removeFirestorePushTokenOnLogOut(userID : String) {
         if let token = Messaging.messaging().fcmToken {
             let usersRef = Firestore.firestore().collection("users").document(userID)
-            usersRef.setData(["fcmToken": token], merge: true)
+            usersRef.setData(["sendPush": false, "fcmToken": ""], merge: true)
         }
     }
     
@@ -63,7 +69,7 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
 
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingDelegate) {
         print("Received data message: \(remoteMessage.description)")
-        updateFirestorePushTokenIfNeeded()
+        updateFirestorePushTokenIfNeeded ()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {

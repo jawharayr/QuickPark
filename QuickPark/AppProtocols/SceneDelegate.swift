@@ -61,6 +61,7 @@ extension SceneDelegate {
     func setUpHome () {
         print ("FBAuth.currentUser = " , FBAuth.currentUser)
         if let user = FBAuth.currentUser {
+            PushNotificationManager.shared.updateFirestorePushTokenIfNeeded(userEmail: user.email)
             if user.email == KServerValues.admin.email {
                 //load admin
                 let htb = SBSupport.viewController(sbi: "sbi_adminTabBarViewController", inStoryBoard: "AdminMain")
