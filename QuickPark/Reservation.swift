@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 struct Reservation {
-    
     var id:String
     var Name: String
     var Date: String
@@ -25,7 +24,8 @@ struct Reservation {
     var isScanned:Bool = false
     var logo: String
     var imageURL: ImageURL = ImageURL(url: nil, didLoad: false)
-
+    var exitDelayPayments : [String]
+    
     class ImageURL{
         var url:URL?
         var didLoad:Bool
@@ -34,7 +34,7 @@ struct Reservation {
             self.url = url
             self.didLoad = didLoad
         }
-}
+    }
     
     init(dict:[String:Any]) {
         self.id = dict["id"] as? String ?? ""
@@ -51,8 +51,6 @@ struct Reservation {
         self.qrcode = dict["qrcode"] as? String ?? ""
         self.isScanned = dict["isScanned"] as? Bool ?? false
         self.logo = dict["areaImage"] as? String ?? ""
-    
+        self.exitDelayPayments = dict["exitDelayPayments"] as? [String] ?? []
     }
-    
-
 }
