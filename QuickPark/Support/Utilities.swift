@@ -228,3 +228,21 @@ extension Date {
         }
     }
 }
+
+extension String {
+    var currency : NSNumber {
+        get {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = NumberFormatter.Style.currency
+            return numberFormatter.number(from: self) ?? NSNumber(floatLiteral: 0)
+        }
+    }
+    
+    var floatValue : Float {
+        get {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            return (numberFormatter.number(from: self) ?? NSNumber(floatLiteral: 0)).floatValue
+        }
+    }
+}
