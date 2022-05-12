@@ -25,20 +25,19 @@ struct NotificationNames {
 typealias ParkingCost = (Double, Double, Double)
 class ParkingManager {
     static let shared = ParkingManager()
-    
     var paidActiveParking : PaidActiveParking? {
         set (v) {
             UserDefaults.standard.set(v, forKey: UDKeys.K_Parking_End_Time)
         }
         get {
-            return UserDefaults.standard.value(forKey: UDKeys.K_Parking_End_Time) as! PaidActiveParking
+            return UserDefaults.standard.value(forKey: UDKeys.K_Parking_End_Time) as? PaidActiveParking
         }
     }
     
     var paymentMadeWithoutExit : Bool {
-        return (self.lastPaymentTime != nil)
+        return (self.paidActiveParking != nil)
     }
-
+    
     func calculateTime(reservation: Reservation) -> ParkingCost {
         var extra:Double = 0.0
         var price:Double = 0.0
@@ -52,7 +51,21 @@ class ParkingManager {
         let endTime = reservation.EndTime
         
         let now = Date.init().addingMinutes(minutes: 1)
-        if now.timeIntervalSince1970 > TimeInterval.init(endTime) {
+        
+        if let paidActiveParking = paidActiveParking {
+            minOfExtra = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(paidActiveParking.lastPaidTime), endTime: Int(now.timeIntervalSince1970))
+            HoursofExtra = minOfExtra/60
+            isInteger = floor(HoursofExtra) == HoursofExtra // true if its integer
+            
+            if (isInteger){
+                extra = HoursofExtra * 15
+            }
+            else{
+                extra =  ( floor(HoursofExtra) * 15 ) + 15
+            }
+            
+            total = extra
+        }else if now.timeIntervalSince1970 > TimeInterval.init(endTime) {
             minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
             
             HoursofPrice = minOfPrice/60
@@ -62,7 +75,7 @@ class ParkingManager {
                 price = HoursofPrice * 15
             }
             else{
-                price =  ( floor(HoursofPrice) * 15 ) + 15
+                price =  (floor(HoursofPrice) * 15 ) + 15
             }
             
             minOfExtra = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(endTime)), endTime: Int(now.timeIntervalSince1970))
@@ -79,7 +92,6 @@ class ParkingManager {
             
             total = price + extra
         }else{
-            
             minOfPrice = UtilitiesManager.sharedIntance.minutesInTimeIntervals(startTime: Int(TimeInterval.init(startTime)), endTime: Int(TimeInterval.init(endTime)))
             
             HoursofPrice = minOfPrice/60
