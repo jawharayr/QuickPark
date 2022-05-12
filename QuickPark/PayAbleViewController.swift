@@ -67,18 +67,18 @@ class PayAbleViewController: UIViewController {
         let request = BTPayPalCheckoutRequest(amount: total)
         //let request = BTPayPalCheckoutRequest(amount: "90")//test line
         request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
-
+        
         payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
             if let tokenizedPayPalAccount = tokenizedPayPalAccount {
                 print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
                 /*let email = tokenizedPayPalAccount.email
-                let firstName = tokenizedPayPalAccount.firstName
-                let lastName = tokenizedPayPalAccount.lastName
-                let phone = tokenizedPayPalAccount.phone
-                
-                // See BTPostalAddress.h for details
-                let billingAddress = tokenizedPayPalAccount.billingAddress
-                let shippingAddress = tokenizedPayPalAccount.shippingAddress*/
+                 let firstName = tokenizedPayPalAccount.firstName
+                 let lastName = tokenizedPayPalAccount.lastName
+                 let phone = tokenizedPayPalAccount.phone
+                 
+                 // See BTPostalAddress.h for details
+                 let billingAddress = tokenizedPayPalAccount.billingAddress
+                 let shippingAddress = tokenizedPayPalAccount.shippingAddress*/
                 
                 self.openExitQRCodePage()
             } else if let error = error {
@@ -114,6 +114,7 @@ class PayAbleViewController: UIViewController {
     }
     
     func updateValues() {
+        
     }
     
     func generateQRCode(using string:String) -> UIImage? {
