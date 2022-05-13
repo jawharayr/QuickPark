@@ -79,6 +79,9 @@ class AdminPromoCodeVC: UIViewController, UIPickerViewDelegate, UIPickerViewData
         super.viewDidLoad()
         self.setupViews()
         
+        let newBackButton = UIBarButtonItem(title: "< Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.backAction(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+        
        // view UI
         self.Info.layer.borderWidth = 1
         self.Info.layer.cornerRadius = 6
@@ -129,7 +132,26 @@ class AdminPromoCodeVC: UIViewController, UIPickerViewDelegate, UIPickerViewData
             //self.SelectArea.currentTitle = self.thisCode?.selectedArea
         //}
     }
+    @objc func backAction(sender: UIBarButtonItem) {
+
+        let pcode = PromoCodeTxt.text ?? ""
+        let price = PriceTxt.text ?? ""
+        let per = PrecentageTxt.text ?? ""
+       let area = SelectArea.currentTitle == "Areas"
+
+        if pcode.isEmpty && price.isEmpty && per.isEmpty && area == true   {
+            navigationController?.popViewController(animated: true)
+        }else{
+            let alert = UIAlertController(title: "Discard changes", message: "All changes will be disacred, are you sure you'd like to back?", preferredStyle: .alert)
+            alert.addAction(.init(title: "Discard changes", style: .destructive, handler: { _ in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            
+            alert.addAction(.init(title: "Close", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
     
+    }
 
     func addTransparentView(frames: CGRect) {
         let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
@@ -247,8 +269,10 @@ class AdminPromoCodeVC: UIViewController, UIPickerViewDelegate, UIPickerViewData
         if validate() == false {return}
         
         if validate() == true {
+            DiscountLabel.isHidden = true
             promoCode = PromoCodeTxt.text!.replacingOccurrences(of: " ", with: "")
-
+            
+            
             SelectedArea = SelectArea.currentTitle!
             Precentage = PrecentageTxt.text!.replacingOccurrences(of: " ", with: "")
             Price = PriceTxt.text!.replacingOccurrences(of: " ", with: "")
