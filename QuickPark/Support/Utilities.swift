@@ -89,7 +89,7 @@ class UtilitiesManager{
         formatter.allowedUnits = [.second]
         formatter.unitsStyle = .positional
         let difference = formatter.string(from: std, to: end) ?? "0"
-        print("Time To cover",difference,"\n")
+        print("Time To cover",difference,"\n", Double(difference))
         
         return Double(difference) ?? 0.0
         
@@ -103,7 +103,7 @@ class UtilitiesManager{
         formatter.allowedUnits = [.minute]
         formatter.unitsStyle = .positional
         let difference = formatter.string(from: std, to: end) ?? "0"
-        print("Time To cover",difference,"\n")
+        print("Time To cover",difference,"\n", Double(difference))
         
         return Double(difference) ?? 0.0
         

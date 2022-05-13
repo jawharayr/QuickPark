@@ -15,7 +15,7 @@ struct PaidActiveParking : Codable {
 }
 
 struct UDKeys {
-    static let K_Parking_End_Time = "K_Parking_End_Time"
+    static let qK_Parking_End_Time = "K_Parking_End_Time"
 }
 
 struct NotificationNames {
@@ -25,14 +25,33 @@ struct NotificationNames {
 typealias ParkingCost = (Double, Double, Double)
 class ParkingManager {
     static let shared = ParkingManager()
-    var paidActiveParking : PaidActiveParking? {
+    
+    var paidActiveParking : PaidActiveParking! {
         set (v) {
-            UserDefaults.standard.set(v, forKey: UDKeys.K_Parking_End_Time)
+            if let a = v {
+                do {
+                    try UserDefaults.standard.set(JSONEncoder().encode(a), forKey: "PaidActiveParking")
+                }catch{
+                    print ("error = ", error.localizedDescription)
+                }
+            }else {
+                UserDefaults.standard.removeObject(forKey: "PaidActiveParking")
+            }
+            _ = UserDefaults.standard.synchronize()
         }
         get {
-            return UserDefaults.standard.value(forKey: UDKeys.K_Parking_End_Time) as? PaidActiveParking
+            if let data = UserDefaults.standard.object(forKey: "PaidActiveParking") as? Data {
+                do {
+                    return try JSONDecoder().decode(PaidActiveParking.self, from:data)
+                }catch{
+                    print ("error = ", error.localizedDescription)
+                }
+            }
+            return nil
         }
     }
+    
+  
     
     var paymentMadeWithoutExit : Bool {
         return (self.paidActiveParking != nil)
@@ -110,8 +129,9 @@ class ParkingManager {
         return (total, extra, price)
     }
     
-    
+    private var payablePresenterViewController : UIViewController?
     func presentPayableView(on pvc : UIViewController, reservation:Reservation)  {
+        self.payablePresenterViewController = pvc
         let result = ParkingManager.shared.calculateTime(reservation: reservation)
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PayAbleViewController") as! PayAbleViewController
@@ -121,6 +141,14 @@ class ParkingManager {
         vc.modalPresentationStyle = .overFullScreen
         vc.reservation = reservation
         pvc.present(vc, animated: true, completion: nil)
+    }
+    
+    func qrCodeExpired() {
+        if let ppvc = self.payablePresenterViewController {
+            ppvc.dismiss(animated: true) {
+                QPAlert(ppvc).showError(message: "QRCode was expired.")
+            }
+        }
     }
 }
 

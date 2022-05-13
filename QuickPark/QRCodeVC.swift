@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import SVProgressHUD
 
-let K_QR_Code_Expire_Time = 600
+let K_QR_Code_Expire_Time = 900
 
 class QRCodeVC: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
@@ -72,7 +72,7 @@ class QRCodeVC: UIViewController {
                 timer.invalidate()
                 self.timer = nil
             }
-            NotificationCenter.default.post(name: NotificationNames.K_QRCodeExpired, object: 0)
+            ParkingManager.shared.qrCodeExpired()
         }
     }
     
