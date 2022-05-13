@@ -123,8 +123,9 @@ class QRCodeVC: UIViewController {
                                 UserDefaults.standard.set(false, forKey: "isOverTime")
                                 UserDefaults.standard.set(false, forKey: "start")
                                 UserDefaults.standard.removeObject(forKey: "parkingArea")
-                                ParkingManager.shared.paidActiveParking = nil
                                 NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                                ParkingManager.shared.paidActiveParking = nil
+                                self.stopTimer()
                                 if let w = self.view.window {
                                     w.rootViewController?.dismiss(animated: false, completion: nil)
                                 } else {
