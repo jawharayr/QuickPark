@@ -158,16 +158,21 @@ class RegViewController: UIViewController {
             })
             
             QPAlert(self).showError(message: "Registered Successfully.") //duration?
-            SceneDelegate.sceneDelegate.setUpHome()
             let database = Firestore.firestore()
             let userdata : [String: Any] = ["email": email,
                                             "name": name,
                                             "uid": thisUser.uid,
-                                            "hasReservation" : false]
+                                            "hasReservation" : false,
+                                            "fcmToken" : "",
+                                            "sendPush": true
+                                            
+            ]
             print (userdata)
             database.collection("users").document(email).setData(userdata){(error) in
                 if let e = error {
                     print ("Error = ", e)
+                }else{
+                    SceneDelegate.sceneDelegate.setUpHome()
                 }
             }
         }

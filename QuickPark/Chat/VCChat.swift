@@ -360,7 +360,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                 //Display Error
                 print(error)
             } else {
-                guard let user = querySnapshot?.documents.first, let fcmToken = user["fcmToken"] as? String else {
+                guard let user = querySnapshot?.documents.first, let fcmToken = user["fcmToken"] as? String, let sendPush = user["sendPush"] as? Bool, sendPush == true  else {
                     return
                 }
                 PushNotificationSender.sendPushNotification(to: fcmToken, title: "", body: //"\(self.currentUser.displayName ?? "") send you a message")

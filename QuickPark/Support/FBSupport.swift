@@ -69,17 +69,35 @@ struct FBAuth {
             }else{
                 SVProgressHUD.showSuccess(withStatus: "Logged in..")
                 complition(authResult?.user, error)
+                FBAuth.enableNotification(condition: true, email: email)
             }
         }
     }
     
+    static func enableNotification(condition:Bool, email:String) {
+        let usersRef = Firestore.firestore().collection("users").document(email)
+        usersRef.setData(["sendPush": true], merge: true)
+    }
+    
     static func logout (complition : @escaping(Bool, Error?) -> Void) {
         do {
+            let email = Auth.auth().currentUser?.email
+
             try Auth.auth().signOut()
             complition(true, nil)
+            
+            //Remove FCM token when user signs out
+            guard let uid = email else {return}
+            let usersRef = Firestore.firestore().collection("users").document(uid)
+            usersRef.setData(["sendPush": false], merge: true)
+            
         } catch {
             complition(false, error)
         }
+    }
+    
+    func removeFirestorePushToken() {
+        
     }
     
     static func resetPasword(email:String, complition: @escaping( Error?) -> Void) {

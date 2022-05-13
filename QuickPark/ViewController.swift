@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     var parkings = [Area]()
     var favParkings = [Area]()
     
+   
     var searchedArea = [Area]()
     var searchedLogos = [Area]()
     var searchedDistance = [Area]()
@@ -48,7 +49,7 @@ class ViewController: UIViewController {
     
     
     @IBOutlet weak var HelloLabel: UILabel!
-    
+    @IBOutlet weak var accountBtn: UIImageView!
     @IBOutlet weak var NoResults: UILabel!
     @IBOutlet weak var SearchTxt: UIView!
     @IBOutlet weak var ParkingView: UIView!
@@ -89,6 +90,10 @@ class ViewController: UIViewController {
         
         setUI()
         getIfAnyReservation()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(accountimgTapped(tapGestureRecognizer:)))
+        accountBtn.isUserInteractionEnabled = true
+        accountBtn.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -206,6 +211,13 @@ class ViewController: UIViewController {
         })
     }
     
+    @objc func accountimgTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+
+        let vc = SBSupport.viewController(sbi: "sbi_UserProfileController", inStoryBoard: "Main")
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     @IBAction func allAndFavourites(_ sender: UISegmentedControl) {
         let selection = sender.selectedSegmentIndex

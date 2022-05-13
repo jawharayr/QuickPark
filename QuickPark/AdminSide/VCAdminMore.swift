@@ -35,15 +35,17 @@ class VCAdminMore : UITableViewController {
     }
     
     func logout () {
+        let userID = FBSUser.currrentUser.email ?? ""
         QPAlert(self).showAlert(title: "Are you sure you want to log out?", message: nil, buttons: ["Cancel", "Yes"]) { _, index in
-            if index == 1 {
-                FBAuth.logout { success, error in
-                    if success == false, let e = error {
-                        QPAlert(self).showError(message: e.localizedDescription)
-                    } else {
-                        SceneDelegate.sceneDelegate.setUpHome()
+        if index == 1 {
+            FBAuth.logout { success, error in
+            if success == false, let e = error {
+                QPAlert(self).showError(message: e.localizedDescription)
+            } else {
+            PushNotificationManager.shared.removeFirestorePushTokenOnLogOut(userID: userID)
+            SceneDelegate.sceneDelegate.setUpHome()
+                        }
                     }
-                }
             }
         }
     }

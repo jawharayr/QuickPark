@@ -92,6 +92,7 @@ class LogViewController: UIViewController {
     }
     
     func emailAuth(email:String,password:String) {
+        
         SVProgressHUD.show()
         Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
             if let error = error as NSError? {
@@ -111,7 +112,9 @@ class LogViewController: UIViewController {
                 }
             }
             else {
+                
                 SceneDelegate.sceneDelegate.setUpHome()
+                FBAuth.enableNotification(condition: true, email: email)
             }
         }
     }
