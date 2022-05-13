@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import SVProgressHUD
 
-let K_QR_Code_Expire_Time =  35 // 900 (15m), 35s is for testing only
+let K_QR_Code_Expire_Time =  60 // 900 (15m), 35s is for testing only
 
 class QRCodeVC: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
