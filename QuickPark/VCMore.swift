@@ -16,29 +16,24 @@ class TVCMore : UITableViewController {
     
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
         switch indexPath.row {
-        case 0: //Call Feature
-            //hcta feature
-            
+        case 0:
             if let vc = SBSupport.viewController(sbi: "sbi_ChatViewController", inStoryBoard: "Chat") as? ChatViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
                 vc.otherUser = FBSUser.admin
             }
             break;
-        case 1: //Show Obboarding
+        case 1:
             if let vc = SBSupport.viewController(sbi: "sbi_HowToViewController", inStoryBoard: "Misclenious") as? HowToViewController {
                 vc.fromViewController = "more"
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-           
             break;
-        case 2: //SHow Terms of service
+        case 2:
             let vc = SBSupport.viewController(sbi: "sbi_TermsViewController", inStoryBoard: "Misclenious")
             self.navigationController?.pushViewController(vc, animated: true)
             break;
-        case 3: //logout
+        case 3:
             logout()
             break;
         default:

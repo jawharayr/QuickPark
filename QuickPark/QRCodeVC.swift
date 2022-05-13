@@ -11,28 +11,25 @@ import FirebaseAuth
 import FirebaseFirestore
 import SVProgressHUD
 
+let K_QR_Code_Expire_Time = 900
+
 class QRCodeVC: UIViewController {
-    
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var lblCountDown: UILabel!
     @IBOutlet weak var viewLoader: UIView!
-    
     @IBOutlet weak var ExitQR: UIImageView!
     
     var timer: Timer?
-    var totalTime = 600
+    var totalTime = K_QR_Code_Expire_Time
     var image:UIImage?
     var exitQRCode:String!
     var reservation:Reservation!
-    
-    
     var ref:DatabaseReference!
     var uid = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       ExitQR.image = image
+        ExitQR.image = image
         ref = Database.database().reference()
         
         if Auth.auth().currentUser?.uid == nil{
@@ -47,20 +44,15 @@ class QRCodeVC: UIViewController {
         }
         
         track(qrcode: exitQRCode)
-       // imageView.image = image
-        // Do any additional setup after loading the view.
+        
         startTimer()
         colour = UIColor(red: 0, green: 144/255, blue: 205/255, alpha: 1)
         startActivityAnimating(padding: 2, isFromOnView: false, view: self.viewLoader,width: 100,height: 100)
         UtilitiesManager.sharedIntance.removeTimer()
     }
     
-    
-
-    
     // MARK: - CountDown_Timer
     private func startTimer() {
-        //self.totalTime = 60
         self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
@@ -72,7 +64,6 @@ class QRCodeVC: UIViewController {
     }
     
     @objc func updateTimer() {
-       // print("QRCodeVC:tt", self.totalTime)
         self.lblCountDown.text = self.timeFormatted(self.totalTime) // will show timer
         if totalTime != 0 {
             totalTime -= 1  // decrease counter timer
@@ -81,21 +72,23 @@ class QRCodeVC: UIViewController {
                 timer.invalidate()
                 self.timer = nil
             }
+            ParkingManager.shared.qrCodeExpired()
         }
     }
-    
     
     func timeFormatted(_ totalSeconds: Int) -> String {
         let seconds: Int = totalSeconds % 60
         let minutes: Int = (totalSeconds / 60) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
+    
     @IBAction func btnExist(_ sender:Any){
         stopTimer()
         NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
     
+    //Test function
     @IBAction func skipTapped(_ sender:Any){
         finishParking()
     }
@@ -108,9 +101,7 @@ class QRCodeVC: UIViewController {
                     if let vc = self.view.window?.rootViewController {
                         QPAlert(vc).showAlert(message:"Your reservation has been ended successfully")
                     }
-                    
                     SVProgressHUD.showSuccess(withStatus: "Your reservation has been ended successfully")
-                    
                     RESERVATIONS.child(self.uid).child(self.reservation.id).updateChildValues(["isExitScanned":true])
                     self.finishParking()
                 }
@@ -119,8 +110,6 @@ class QRCodeVC: UIViewController {
     }
     
     func finishParking(){
-        
-        
         RESERVATIONS.child(self.uid).child(reservation.id).child("ExtraCharge").setValue(   reservation.ExtraCharge) { err, data in
             if err == nil{
                 RESERVATIONS.child(self.uid).child(self.reservation.id).child("isCompleted").setValue(true) { err, data in
@@ -134,6 +123,7 @@ class QRCodeVC: UIViewController {
                                 UserDefaults.standard.set(false, forKey: "isOverTime")
                                 UserDefaults.standard.set(false, forKey: "start")
                                 UserDefaults.standard.removeObject(forKey: "parkingArea")
+                                ParkingManager.shared.paidActiveParking = nil
                                 NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
                                 if let w = self.view.window {
                                     w.rootViewController?.dismiss(animated: false, completion: nil)
@@ -142,13 +132,9 @@ class QRCodeVC: UIViewController {
                                 }
                             }
                         }
-                        
                     }
                 }
             }
-            
         }
-        
     }
-    
 }

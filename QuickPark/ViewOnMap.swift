@@ -113,7 +113,7 @@ extension ViewOnMap: MKMapViewDelegate{
                     print("Value", Value)
                     if Value == 1 {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay") as! ConfirmAndPay
+                        let viewController = storyboard.instantiateViewController(withIdentifier: "ConfirmAndPay") as! ConfirmParkingViewController
                         viewController.areaName = areaname
                         viewController.parking = areas[getAreaByname(name: areaname)!]
 

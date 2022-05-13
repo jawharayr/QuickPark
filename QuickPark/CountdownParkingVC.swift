@@ -28,10 +28,10 @@ class CountdownParkingVC: UIViewController, UITabBarControllerDelegate {
         guard !endTimer.isEmpty else{startTimer();return}
         getDifferenceBetweenTime()
         UtilitiesManager.sharedIntance.saveTimer(time: endTimer)
-
+        
     }
-    // MARK: - Timer
     
+    // MARK: - Timer
     private func startTimer() {
         self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
