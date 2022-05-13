@@ -47,7 +47,7 @@ class PayAbleViewController: UIViewController {
         braintreeClient = BTAPIClient(authorization: "sandbox_5rv25jbw_qf575jr29ngyc4r9")
         
         if ParkingManager.shared.paymentMadeWithoutExit {
-            payButton.setTitle("Re generate code", for: .normal)
+            payButton.setTitle("Pay & Re-generate QRCode", for: .normal)
         }
         
         displayValue()
