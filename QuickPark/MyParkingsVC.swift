@@ -290,7 +290,7 @@ class MyParkingsVC: UIViewController {
     }
     
     @IBAction func EndParking(_ sender: Any) {
-        QPAlert(self).showAlert(title:"End Parking.", message: "Are you sure?" , buttons:  ["Yes","cancel"]) { _, index in
+        QPAlert(self).showAlert(title:"End Parking", message: "Are you sure?" , buttons:  ["Yes","cancel"]) { _, index in
             if index == 0 {
                 self.showPaymentDetails()
             }

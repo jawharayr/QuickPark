@@ -16,6 +16,10 @@ class PayAbleViewController: UIViewController {
     @IBOutlet weak var lblTotal:UILabel!
     @IBOutlet weak var mainView:UIView!
     
+    @IBOutlet weak var RegenerateMsg: UILabel!
+    @IBAction func XButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var PromoTxt: UITextField!
     
@@ -32,7 +36,7 @@ class PayAbleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        RegenerateMsg.isHidden = true
         ref = Database.database().reference()
         PromoTxt.delegate = self
         lblPrice.text = price + " SAR"
@@ -48,6 +52,7 @@ class PayAbleViewController: UIViewController {
         
         if ParkingManager.shared.paymentMadeWithoutExit {
             payButton.setTitle("Pay & Re-generate QRCode", for: .normal)
+            RegenerateMsg.isHidden = false
         }
         
         displayValue()

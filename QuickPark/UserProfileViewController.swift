@@ -295,7 +295,7 @@ class UserProfileViewController: UIViewController{
     
  
     private func authUser(completion: @escaping (_ error:String?)->()){
-        let alert = UIAlertController(title: "Password", message: "Please enter your password to confirm new changes.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Password", message: "Please enter your old password to confirm new changes", preferredStyle: .alert)
         alert.addTextField { textField in
             textField.placeholder = "Enter your password"
             textField.isSecureTextEntry = true

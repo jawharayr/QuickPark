@@ -99,7 +99,7 @@ class ReservationCell: UICollectionViewCell {
     }
     
     @IBAction func EndParking(_ sender: Any) {
-        QPAlert(mainVC).showAlert(title:"End Parking.", message: "Are you sure?" , buttons:  ["Yes","cancel"]) { _, index in
+        QPAlert(mainVC).showAlert(title:"End Parking", message: "Are you sure?" , buttons:  ["Yes","cancel"]) { _, index in
             if index == 0{
                 self.showPaymentDetails()
             }
