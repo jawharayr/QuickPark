@@ -23,6 +23,7 @@ struct Reservation {
     var qrcode:String
     var isScanned:Bool = false
     var logo: String
+    var isCancelled:Bool
     var imageURL: ImageURL = ImageURL(url: nil, didLoad: false)
     var exitDelayPayments : [String]
     
@@ -51,6 +52,7 @@ struct Reservation {
         self.qrcode = dict["qrcode"] as? String ?? ""
         self.isScanned = dict["isScanned"] as? Bool ?? false
         self.logo = dict["areaImage"] as? String ?? ""
+        self.isCancelled = dict["isCancelled"] as? Bool ?? false
         self.exitDelayPayments = dict["exitDelayPayments"] as? [String] ?? []
     }
 }

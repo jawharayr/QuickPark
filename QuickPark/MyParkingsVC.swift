@@ -84,16 +84,7 @@ class MyParkingsVC: UIViewController {
         let reservationID = UserDefaults.standard.object(forKey: "reservationId") as! String
         QPAlert(self).showAlert(title: "Are you sure you want to cancel your resrevation?", message: nil, buttons: ["Cancel", "Yes"]) { [self] _, index in
             if index == 1 {
-                // remove data from firebase
-                UserDefaults.standard.set(false, forKey: "start")
-                guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
-                self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true)
-                UserDefaults.standard.removeObject(forKey: "parkingArea")
-                RESERVATIONS.child(uid).child(reservationID).removeValue()
-                // self.pastReservations.append()
-                 NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
-                let database = Firestore.firestore()
-                database.collection("users").document((Auth.auth().currentUser?.email)!).setData( ["hasReservation": false], merge: true)
+                self.finishCancelling()
             }
         }
         
@@ -123,11 +114,7 @@ class MyParkingsVC: UIViewController {
         self.clearData()
         Past.reloadData()
         
-        RESERVATIONS.child(uid).getData { error, dataSnap in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
+        RESERVATIONS.child(uid).observeSingleEvent(of: .value) { [self] dataSnap in
             
             if dataSnap.exists(){
                 self.pastReservations.removeAll()
@@ -161,6 +148,32 @@ class MyParkingsVC: UIViewController {
             }
         }
     }
+    
+    func finishCancelling(){
+            
+            RESERVATIONS.child(self.uid).child(reservation.id).child("ExtraCharge").setValue(reservation.ExtraCharge) { err, data in
+                if err == nil{
+                    RESERVATIONS.child(self.uid).child(self.reservation.id).child("isCancelled").setValue(true) { err, data in
+                        if err == nil{
+                            RESERVATIONS.child(self.uid).child(self.reservation.id).child("isCompleted").setValue(true)
+                            guard let areaName = UserDefaults.standard.string(forKey: "parkingArea")else{return}
+                            self.ref.child("Areas").child(areaName).child("isAvailable").setValue(true) { err, data in
+                                if err == nil{
+                                    let database = Firestore.firestore()
+                                    database.collection("users").document(self.uid).setData( ["hasReservation": false], merge: true)
+                                    UserDefaults.standard.set(false, forKey: "start")
+                                    UserDefaults.standard.removeObject(forKey: "parkingArea")
+                                    NotificationCenter.default.post(name: Notification.Name("updateTimer"), object: 0)
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+                
+            }
+            
+        }
     
     func loadData() {
         if timer != nil{
@@ -389,6 +402,21 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
         cell.layer.cornerRadius = 20;
         cell.layer.masksToBounds = true;
         
+        if object.isCancelled{
+                   cell.PastView.backgroundColor = UIColor.white
+                   cell.PastView.layer.borderColor = UIColor.white.cgColor
+                   cell.BackView.backgroundColor = UIColor.white
+                   cell.Price.text = "0.0"
+                   cell.Price.textColor = .black
+               }else{
+                   cell.PastView.backgroundColor = UIColor.white
+                   cell.PastView.layer.borderColor = UIColor.white.cgColor
+                   cell.BackView.backgroundColor = UIColor.white
+                   cell.Price.text = object.Price
+                   cell.Price.textColor = .black
+                   
+               }
+        
         let ref = Database.database().reference()
         ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
             print(snapshots.childrenCount)
@@ -415,12 +443,21 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ReservationDetailsVC") as? ReservationDetailsVC
         let obj = self.pastReservations[indexPath.row]
-        vc?.areaname = obj.area
-        vc?.date = obj.Date
-        vc?.Stime = obj.StartTime
-        vc?.Etime = obj.EndTime
-        vc?.price = obj.Price
-        vc?.extra = obj.ExtraCharge
+        if obj.isCancelled{
+                   vc?.areaname = obj.area
+                   vc?.date = obj.Date
+                  vc?.Stime = obj.StartTime
+                  vc?.Etime = obj.EndTime
+                  vc?.price = "0.0"
+                  vc?.extra = "0.0"
+               }else{
+                   vc?.areaname = obj.area
+                   vc?.date = obj.Date
+                  vc?.Stime = obj.StartTime
+                  vc?.Etime = obj.EndTime
+                  vc?.price = obj.Price
+                  vc?.extra = obj.ExtraCharge
+               }
         let ref = Database.database().reference()
         ref.child("Areas").observe(DataEventType.value, with: { [self] snapshots in
             print(snapshots.childrenCount)

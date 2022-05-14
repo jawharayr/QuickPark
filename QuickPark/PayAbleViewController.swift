@@ -222,7 +222,7 @@ extension PayAbleViewController:UITextFieldDelegate{
                 if promoData.SelectedArea == "All Areas" || self.reservation.area == promoData.SelectedArea {
                     self.makeDiscount(promo: promoData)
                 }else{
-                    UtilitiesManager.sharedIntance.showAlert(title: "Oops", message: "\(promoCode) is not invalid for this parking area.", VC: self)
+                    UtilitiesManager.sharedIntance.showAlert(title: "Oops", message: "\(promoCode) is not available for this parking area.", VC: self)
                     self.PromoTxt.text = ""
                 }
             }else{

@@ -227,6 +227,7 @@ class ConfirmParkingViewController: UIViewController {
                 "Name":"user_name",
                 "Price":TotalPrice.text ?? 0,"StartTime":StartTimePicker.date.timeIntervalSince1970,
                 "area":areaName,
+                "isCancelled":false,
                 "isCompleted":false,
                 "qrcode": unique,
                 "isScanned":false] as [String : Any]
