@@ -34,7 +34,7 @@ class AddAreaViewController: UIViewController {
     @IBOutlet weak var SpotNoTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     var areaCoordinate:  CLLocationCoordinate2D? = nil
-    @IBOutlet weak var CancelBtn: UIButton!
+    
     
     
     var areaName: String = ""
@@ -196,11 +196,7 @@ class AddAreaViewController: UIViewController {
     }
     
     
-    @IBAction func CancelAreaButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-       // let vc = SBSupport.viewController(sbi: "sbi_TermsViewController", inStoryBoard: "AdminHomePage")
-       // self.navigationController?.pushViewController(vc, animated: true)
-    }
+    
     
     @IBAction func SaveAreaButton(_ sender: UIButton) {
         print("SaveAreaButton is pressed")
