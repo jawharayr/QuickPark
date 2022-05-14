@@ -443,6 +443,7 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ReservationDetailsVC") as? ReservationDetailsVC
         let obj = self.pastReservations[indexPath.row]
+        
         if obj.isCancelled{
                    vc?.areaname = obj.area
                    vc?.date = obj.Date
