@@ -406,14 +406,14 @@ extension MyParkingsVC: UITableViewDelegate, UITableViewDataSource{
                    cell.PastView.backgroundColor = UIColor.white
                    cell.PastView.layer.borderColor = UIColor.white.cgColor
                    cell.BackView.backgroundColor = UIColor.white
-                   cell.Price.text = "0.0"
-                   cell.Price.textColor = .black
+                   cell.Price.text = "Canceled"
+                   cell.Price.textColor = .red
                }else{
                    cell.PastView.backgroundColor = UIColor.white
                    cell.PastView.layer.borderColor = UIColor.white.cgColor
                    cell.BackView.backgroundColor = UIColor.white
-                   cell.Price.text = object.Price
-                   cell.Price.textColor = .black
+                   cell.Price.text = "Completed"
+                   cell.Price.textColor = UIColor(red: 0.0275, green: 0.4275, blue: 0, alpha: 1)
                    
                }
         
